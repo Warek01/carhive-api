@@ -1,0 +1,6 @@
+@FafCarsApi_HostAddress = http://localhost:5089
+
+GET {{FafCarsApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
