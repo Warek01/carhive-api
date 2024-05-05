@@ -1,10 +1,23 @@
 using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(
+  new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger()
+);
+builder.Host.UseSerilog(
+  (context, configuration) =>
+    configuration.ReadFrom.Configuration(context.Configuration)
+);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -45,6 +58,7 @@ builder.Services.AddDbContext<FafCarsDbContext>(options =>
 
 var app = builder.Build();
 
+app.UseSerilogRequestLogging();
 app.UseSwagger();
 app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
 app.UseHttpsRedirection();

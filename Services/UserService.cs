@@ -8,10 +8,12 @@ namespace FafCarsApi.Services;
 public class UserService
 {
   private readonly FafCarsDbContext _dbContext;
+  private readonly ILogger<UserService> _logger;
 
-  public UserService(FafCarsDbContext dbContext)
+  public UserService(FafCarsDbContext dbContext, ILogger<UserService> logger)
   {
     _dbContext = dbContext;
+    _logger = logger;
   }
 
   public async Task<ICollection<UserDto>> GetUsers(PaginationQuery pagination)
@@ -35,12 +37,14 @@ public class UserService
     if (user == null)
       return new OperationResultDto
       {
-        Success = true,
+        Success = false,
         Error = "user not found"
       };
 
     _dbContext.Remove(user);
     await _dbContext.SaveChangesAsync();
+    
+    _logger.LogInformation($"Deleted user {user.Username} ({user.Id})");
 
     return new OperationResultDto
     {

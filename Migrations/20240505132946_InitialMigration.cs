@@ -17,7 +17,7 @@ namespace FafCarsApi.Migrations
                 name: "users",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     username = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
@@ -30,7 +30,7 @@ namespace FafCarsApi.Migrations
                 name: "listings",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "uuid_generate_v4()"),
                     brand = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     model = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     price = table.Column<double>(type: "double precision", nullable: false),
@@ -61,8 +61,8 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "id", "password", "username" },
                 values: new object[,]
                 {
-                    { new Guid("0c2ff978-4813-4f6a-9da1-f952eb613f83"), "denis", "denis" },
-                    { new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "warek", "warek" }
+                    { new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "warek", "warek" },
+                    { new Guid("fb5b1560-f545-41fe-b735-f92ed459e8be"), "denis", "denis" }
                 });
 
             migrationBuilder.InsertData(
@@ -70,12 +70,12 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "id", "brand", "clearance", "color", "engine_type", "engine_volume", "horsepower", "mileage", "model", "price", "publisher_id", "type", "wheel_size", "year" },
                 values: new object[,]
                 {
-                    { new Guid("5b29c135-2589-4b19-b42d-296f0ff37b5c"), "Honda", 160, "#002366", "Gasoline", 1.8, 174, 20000, "Civic", 18000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "Sedan", 16, 2017 },
-                    { new Guid("6327cff9-b8fb-49e7-9eb8-ccf0323746b0"), "Mercedes-Benz", 180, "#1C1C1C", "Diesel", 2.0, 240, 18000, "E-Class", 40000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "Sedan", 18, 2019 },
-                    { new Guid("6423d802-fa57-4921-ad34-62c21cbe12be"), "Toyota", 170, "#007A5E", "Hybrid", 2.5, 208, 10000, "Camry", 25000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "Sedan", 18, 2020 },
-                    { new Guid("74366ce8-2325-4207-b6e1-69d6f6f1aeec"), "BMW", 210, "#FFFFFF", "Petrol", 3.0, 300, 15000, "X5", 35000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "SUV", 20, 2018 },
-                    { new Guid("80936498-ed1d-4496-a534-177fc3e352be"), "Ford", 230, "#FF0000", "Gasoline", 3.5, 375, 25000, "F-150", 30000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "Truck", 17, 2019 },
-                    { new Guid("e6e1cc0c-17bd-4631-bdac-0b4ebfd10f7b"), "Chevrolet", 250, "#800000", "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", 38000.0, new Guid("c0488d4f-b8b1-47ca-8237-f4f0cc680b5b"), "Truck", 20, 2021 }
+                    { new Guid("04b21f12-8af0-4439-bf8c-a3ccdb813a5c"), "Ford", 230, "#FF0000", "Gasoline", 3.5, 375, 25000, "F-150", 30000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "Truck", 17, 2019 },
+                    { new Guid("1be84b58-187e-4147-ac71-fca3874cbac6"), "Chevrolet", 250, "#800000", "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", 38000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "Truck", 20, 2021 },
+                    { new Guid("422bc1b8-fc32-4d39-acaa-a691c493084d"), "BMW", 210, "#FFFFFF", "Petrol", 3.0, 300, 15000, "X5", 35000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "SUV", 20, 2018 },
+                    { new Guid("5f67f9aa-96a6-42f9-8cf6-0b2fa772e991"), "Mercedes-Benz", 180, "#1C1C1C", "Diesel", 2.0, 240, 18000, "E-Class", 40000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "Sedan", 18, 2019 },
+                    { new Guid("6002f869-1c13-4295-9f09-03dba361c7cf"), "Toyota", 170, "#007A5E", "Hybrid", 2.5, 208, 10000, "Camry", 25000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "Sedan", 18, 2020 },
+                    { new Guid("d9cdcd3d-58d6-4931-8ca9-ff80c7a0c7bd"), "Honda", 160, "#002366", "Gasoline", 1.8, 174, 20000, "Civic", 18000.0, new Guid("056178af-552b-48d0-9eb2-2d48cacfd30d"), "Sedan", 16, 2017 }
                 });
 
             migrationBuilder.CreateIndex(
