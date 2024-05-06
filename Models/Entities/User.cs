@@ -34,6 +34,24 @@ public class User
       Id = Guid.NewGuid(),
       Username = "denis",
       Password = "denis"
-    }
+    },
+    new User
+    {
+      Id = Guid.NewGuid(),
+      Username = "alex",
+      Password = "alex"
+    },
+    new User
+    {
+      Id = Guid.NewGuid(),
+      Username = "test",
+      Password = "test"
+    },
+    new User
+    {
+      Id = Guid.NewGuid(),
+      Username = "user",
+      Password = "password"
+    },
   };
 }

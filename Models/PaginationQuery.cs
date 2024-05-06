@@ -9,10 +9,10 @@ public class PaginationQuery
   [FromQuery(Name = "page")]
   [Range(0, int.MaxValue)]
   [DefaultValue(0)]
-  public int Page { get; set; }
+  public int Page { get; set; } = 0;
 
   [FromQuery(Name = "take")]
   [Range(0, int.MaxValue)]
   [DefaultValue(10)]
-  public int Take { get; set; }
+  public int Take { get; set; } = 10;
 }

@@ -1,6 +1,6 @@
 ﻿namespace FafCarsApi.Services;
 
-public static class Services
+public static class AppServices
 {
   private static readonly List<Type> _services = new()
   {

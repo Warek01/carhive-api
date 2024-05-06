@@ -17,10 +17,14 @@ public class ListingDto
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? Year { get; set; }
+  public DateTime UpdatedAt { get; set; }
+  public DateTime CreatedAt { get; set; }
+  public DateTime? DeletedAt { get; set; }
   public UserDto? Publisher { get; set; }
+  public Uri? PreviewUrl { get; set; }
 
   // From listings -----------------------------------------
-  public static ListingDto FromListingWithoutUser(Listing l)
+  public static ListingDto FromListingWithoutPublisher(Listing l)
   {
     return new ListingDto
     {
@@ -37,10 +41,14 @@ public class ListingDto
       Price = l.Price,
       Type = l.Type,
       Year = l.Year,
+      CreatedAt = l.CreatedAt,
+      DeletedAt = l.DeletedAt,
+      PreviewUrl = l.PreviewUrl,
+      UpdatedAt = l.UpdatedAt
     };
   }
 
-  public static ListingDto FromListingWithUser(Listing l)
+  public static ListingDto FromListingWithPublisher(Listing l)
   {
     return new ListingDto
     {
@@ -57,6 +65,10 @@ public class ListingDto
       Price = l.Price,
       Type = l.Type,
       Year = l.Year,
+      CreatedAt = l.CreatedAt,
+      DeletedAt = l.DeletedAt,
+      PreviewUrl = l.PreviewUrl,
+      UpdatedAt = l.UpdatedAt,
       Publisher = new UserDto
       {
         Id = l.Publisher.Id,

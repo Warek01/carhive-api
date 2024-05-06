@@ -4,6 +4,8 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +23,6 @@ builder.Host.UseSerilog(
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(options =>
 {
   options.SwaggerDoc("v1", new OpenApiInfo
@@ -37,7 +38,6 @@ builder.Services.AddSwaggerGen(options =>
     }
   });
 });
-Services.Register(builder);
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -56,13 +56,22 @@ builder.Services.AddDbContext<FafCarsDbContext>(options =>
   options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
 });
 
+AppServices.Register(builder);
+
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 app.UseSwagger();
-app.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
+app.UseSwaggerUI();
 app.UseHttpsRedirection();
 app.UseFileServer();
+app.UseStaticFiles(new StaticFileOptions
+{
+  RequestPath = "/api/file",
+  HttpsCompression = HttpsCompressionMode.Compress,
+  ServeUnknownFileTypes = false,
+  FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"))
+});
 app.UseRouting();
 app.UseCors(options =>
 {
@@ -71,5 +80,4 @@ app.UseCors(options =>
   options.AllowAnyMethod();
 });
 app.MapControllerRoute("Default", "{controller}/{action}/{id?}");
-
 app.Run();

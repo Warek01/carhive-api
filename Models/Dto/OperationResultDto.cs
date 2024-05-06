@@ -2,6 +2,6 @@
 
 public class OperationResultDto
 {
-  public bool Success { get; set; }
-  public string? Error { get; set; }
+  public bool Success { get; set; } = true;
+  public string? Error { get; set; } = null;
 }

@@ -23,6 +23,14 @@ public partial class FafCarsDbContext : DbContext
       .Property(e => e.Id)
       .HasDefaultValueSql("uuid_generate_v4()");
 
+    modelBuilder.Entity<Listing>()
+      .Property(e => e.CreatedAt)
+      .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+    modelBuilder.Entity<Listing>()
+      .Property(e => e.UpdatedAt)
+      .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
     modelBuilder.Entity<User>()
       .Property(e => e.Id)
       .HasDefaultValueSql("uuid_generate_v4()");

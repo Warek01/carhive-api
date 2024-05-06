@@ -1,4 +1,5 @@
-﻿using FafCarsApi.Models;
+﻿using AutoMapper;
+using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -8,69 +9,55 @@ namespace FafCarsApi.Services;
 public class ListingService
 {
   private readonly FafCarsDbContext _dbContext;
+  private readonly ILogger<ListingService> _logger;
 
-  public ListingService(FafCarsDbContext dbContext)
+  public ListingService(FafCarsDbContext dbContext, ILogger<ListingService> logger)
   {
     _dbContext = dbContext;
+    _logger = logger;
   }
 
-  public async Task<PaginatedResultDto<ListingDto>> GetListings(PaginationQuery pagination)
+  public async Task<int> GetActiveListingsCount()
   {
-    int totalPages = await _dbContext.Listings.CountAsync();
+    return await _dbContext.Listings
+      .CountAsync(l => l.DeletedAt == null);
+  }
 
-    ICollection<ListingDto> listings = await _dbContext.Listings
+  public async Task<int> GetDeletedListingsCount()
+  {
+    return await _dbContext.Listings
+      .CountAsync(l => l.DeletedAt != null);
+  }
+
+  public IQueryable<Listing> GetActiveListings(PaginationQuery pagination)
+  {
+    return _dbContext.Listings
       .Skip(pagination.Page * pagination.Take)
       .Take(pagination.Take)
-      .Include(l => l.Publisher)
-      .Select(l => new ListingDto
-      {
-        Id = l.Id,
-        BrandName = l.BrandName,
-        ModelName = l.ModelName,
-        Clearance = l.Clearance,
-        Horsepower = l.Horsepower,
-        EngineType = l.EngineType,
-        EngineVolume = l.EngineVolume,
-        WheelSize = l.WheelSize,
-        Color = l.Color,
-        Mileage = l.Mileage,
-        Price = l.Price,
-        Type = l.Type,
-        Year = l.Year,
-        Publisher = new UserDto
-        {
-          Id = l.Publisher.Id,
-          Username = l.Publisher.Username
-        }
-      })
-      .ToListAsync();
-
-    return new PaginatedResultDto<ListingDto>
-    {
-      Items = listings,
-      Page = pagination.Page,
-      PageSize = pagination.Take,
-      TotalItems = totalPages
-    };
+      .Include(l => l.Publisher);
   }
 
-  public async Task<OperationResultDto> DeleteListing(Guid listingId)
+  public async Task<Listing?> GetListing(Guid listingId)
   {
-    Listing? listing = await _dbContext.Listings.FindAsync(listingId);
+    return await _dbContext.Listings
+      .Include(l => l.Publisher)
+      .Where(l => l.Id == listingId)
+      .FirstOrDefaultAsync();
+  }
 
-    if (listing == null)
-      return new OperationResultDto
-      {
-        Success = false,
-        Error = "listing not found"
-      };
-
-    _dbContext.Remove(listing);
+  public async Task DeleteListing(Listing listing)
+  {
+    listing.DeletedAt = DateTime.UtcNow;
     await _dbContext.SaveChangesAsync();
+    _logger.LogInformation($"Deleted listing {listing.Id}");
+  }
 
-    return new OperationResultDto
-    {
-      Success = true
-    };
+  public async Task UpdateListing(Listing listing, UpdateListingDto updateDto)
+  {
+    var config = new MapperConfiguration(cfg => cfg.CreateMap<UpdateListingDto, Listing>());
+    IMapper mapper = config.CreateMapper();
+    mapper.Map(updateDto, listing);
+    listing.UpdatedAt = DateTime.UtcNow;
+    await _dbContext.SaveChangesAsync();
   }
 }

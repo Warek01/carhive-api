@@ -1,8 +1,10 @@
 ﻿using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
+using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Controllers;
 
@@ -19,17 +21,52 @@ public class ListingController : Controller
   }
 
   [HttpGet]
-  public async Task<PaginatedResultDto<ListingDto>> GetListings(
+  public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
     [FromQuery] PaginationQuery pagination
   )
   {
-    return await _listingService.GetListings(pagination);
+    IQueryable<Listing> listings = _listingService.GetActiveListings(pagination);
+    ICollection<ListingDto> result = await listings
+      .Select(l => ListingDto.FromListingWithPublisher(l))
+      .ToListAsync();
+    int totalListings = await _listingService.GetActiveListingsCount();
+    
+    return Ok(
+      new PaginatedResultDto<ListingDto>
+      {
+        Items = result,
+        TotalItems = totalListings,
+      }
+    );
+  }
+
+  [HttpGet]
+  [Route("{listingId:guid}")]
+  public async Task<ActionResult<ListingDto>> GetListingDetails(Guid listingId)
+  {
+    Listing? listing = await _listingService.GetListing(listingId);
+    if (listing == null) return NotFound();
+
+    return Ok(ListingDto.FromListingWithPublisher(listing));
   }
 
   [HttpDelete]
   [Route("{listingId:guid}")]
-  public async Task<OperationResultDto> DeleteListing(Guid listingId)
+  public async Task<ActionResult> DeleteListing(Guid listingId)
   {
-    return await _listingService.DeleteListing(listingId);
+    Listing? listing = await _listingService.GetListing(listingId);
+    if (listing == null) return NotFound();
+    await _listingService.DeleteListing(listing);
+    return Ok();
+  }
+
+  [HttpPatch]
+  [Route("{listingId:guid}")]
+  public async Task<ActionResult> UpdateListing(Guid listingId, [FromBody] UpdateListingDto updateDto)
+  {
+    Listing? listing = await _listingService.GetListing(listingId);
+    if (listing == null) return NotFound();
+    await _listingService.UpdateListing(listing, updateDto);
+    return Ok();
   }
 }
