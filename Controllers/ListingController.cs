@@ -69,4 +69,11 @@ public class ListingController : Controller
     await _listingService.UpdateListing(listing, updateDto);
     return Ok();
   }
+
+  [HttpPost]
+  public async Task<ActionResult> CreateListing([FromBody] CreateListingDto createDto)
+  {
+    await _listingService.CreateListing(createDto);
+    return Created();
+  }
 }

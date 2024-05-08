@@ -52,12 +52,31 @@ public class ListingService
     _logger.LogInformation($"Deleted listing {listing.Id}");
   }
 
+  public async Task RestoreListing(Listing listing)
+  {
+    listing.DeletedAt = null;
+    await _dbContext.SaveChangesAsync();
+    _logger.LogInformation($"Restored listing {listing.Id}");
+  }
+
   public async Task UpdateListing(Listing listing, UpdateListingDto updateDto)
   {
     var config = new MapperConfiguration(cfg => cfg.CreateMap<UpdateListingDto, Listing>());
     IMapper mapper = config.CreateMapper();
     mapper.Map(updateDto, listing);
     listing.UpdatedAt = DateTime.UtcNow;
+    await _dbContext.SaveChangesAsync();
+  }
+
+  public async Task CreateListing(CreateListingDto createDto)
+  {
+    var config = new MapperConfiguration(cfg => cfg.CreateMap<CreateListingDto, Listing>());
+    IMapper mapper = config.CreateMapper();
+
+    var listing = new Listing();
+    await _dbContext.Listings.AddAsync(listing);
+    mapper.Map(createDto, listing);
+    listing.Publisher = await _dbContext.Users.FindAsync(createDto.PublisherId);
     await _dbContext.SaveChangesAsync();
   }
 }
