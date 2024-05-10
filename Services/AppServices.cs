@@ -5,7 +5,8 @@ public static class AppServices
   private static readonly List<Type> _services = new()
   {
     typeof(ListingService),
-    typeof(UserService)
+    typeof(UserService),
+    typeof(AuthService),
   };
 
 

@@ -1,3 +1,4 @@
+using System.Text;
 using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -6,6 +7,7 @@ using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,7 @@ builder.Host.UseSerilog(
 );
 
 builder.Services.AddControllers();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -51,6 +54,21 @@ builder.Services.AddApiVersioning(options =>
   options.SubstituteApiVersionInUrl = true;
 });
 
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
+{
+  options.TokenValidationParameters = new TokenValidationParameters
+  {
+    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+    ValidAudience = builder.Configuration["Jwt:Audience"],
+    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+    ValidateIssuer = true,
+    ValidateAudience = true,
+    ValidateLifetime = false,
+    ValidateIssuerSigningKey = true
+  };
+});
+builder.Services.AddAuthorization();
+
 builder.Services.AddDbContext<FafCarsDbContext>(options =>
 {
   options.UseNpgsql(builder.Configuration.GetConnectionString("Default"));
@@ -60,6 +78,8 @@ AppServices.Register(builder);
 
 var app = builder.Build();
 
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseSerilogRequestLogging();
 app.UseSwagger();
 app.UseSwaggerUI();
