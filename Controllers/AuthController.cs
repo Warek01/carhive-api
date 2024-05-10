@@ -27,7 +27,7 @@ public class AuthController : Controller
   [HttpPost]
   [Route("login")]
   [AllowAnonymous]
-  public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+  public async Task<ActionResult<JwtResponse>> Login([FromBody] LoginDto loginDto)
   {
     User? user = await _userService.FindUserByUsername(loginDto.Username);
 
@@ -48,7 +48,7 @@ public class AuthController : Controller
   [HttpPost]
   [Route("register")]
   [AllowAnonymous]
-  public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
+  public async Task<ActionResult<JwtResponse>> Register([FromBody] RegisterDto registerDto)
   {
     User? user = await _userService.FindUserByUsername(registerDto.Username);
 
