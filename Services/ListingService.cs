@@ -68,7 +68,7 @@ public class ListingService
     await _dbContext.SaveChangesAsync();
   }
 
-  public async Task CreateListing(CreateListingDto createDto)
+  public async Task CreateListing(CreateListingDto createDto, Guid publisherId)
   {
     var listing = new Listing();
     
@@ -76,7 +76,7 @@ public class ListingService
     IMapper mapper = config.CreateMapper();
     mapper.Map(createDto, listing);
     
-    User publisher = (await _dbContext.Users.FindAsync(createDto.PublisherId))!;
+    User publisher = (await _dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
     

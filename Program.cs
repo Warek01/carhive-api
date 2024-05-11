@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -9,18 +11,15 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(
-  new LoggerConfiguration()
-    .WriteTo.Console()
-    .CreateLogger()
-);
 builder.Host.UseSerilog(
-  (context, configuration) =>
-    configuration.ReadFrom.Configuration(context.Configuration)
+  (context, c) =>
+  {
+    c.ReadFrom.Configuration(context.Configuration);
+    c.MinimumLevel.Information();
+    c.WriteTo.Console();
+  }
 );
 
 builder.Services.AddControllers();
@@ -41,7 +40,7 @@ builder.Services.AddSwaggerGen(options =>
     }
   });
 
-  OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+  OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme
   {
     Name = "Bearer",
     BearerFormat = "JWT",
@@ -52,7 +51,7 @@ builder.Services.AddSwaggerGen(options =>
   };
   options.AddSecurityDefinition("jwt_auth", securityDefinition);
 
-  OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+  OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme
   {
     Reference = new OpenApiReference()
     {
@@ -60,9 +59,9 @@ builder.Services.AddSwaggerGen(options =>
       Type = ReferenceType.SecurityScheme
     }
   };
-  OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+  OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement
   {
-    {securityScheme, new string[] { }},
+    { securityScheme, new string[] { } },
   };
   options.AddSecurityRequirement(securityRequirements);
 });
@@ -83,14 +82,17 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
 {
   options.TokenValidationParameters = new TokenValidationParameters
   {
+    NameClaimType = "sub",
     ValidIssuer = builder.Configuration["Jwt:Issuer"],
     ValidAudience = builder.Configuration["Jwt:Audience"],
     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
     ValidateIssuer = true,
     ValidateAudience = true,
-    ValidateLifetime = false,
-    ValidateIssuerSigningKey = true
+    ValidateLifetime = true,
+    ValidateIssuerSigningKey = true,
+    ClockSkew = TimeSpan.Zero,
   };
+  options.MapInboundClaims = true;
 });
 builder.Services.AddAuthorization();
 
@@ -125,4 +127,5 @@ app.UseAuthentication();
 app.UseRouting();
 app.UseAuthorization();
 app.MapControllerRoute("Default", "{controller}/{action}/{id?}");
+
 app.Run();

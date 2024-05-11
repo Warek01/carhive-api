@@ -14,5 +14,4 @@ public class CreateListingDto
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? Year { get; set; }
-  public Guid PublisherId { get; set; }
 }

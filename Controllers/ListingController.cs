@@ -1,4 +1,5 @@
-﻿using Asp.Versioning;
+﻿using System.Security.Claims;
+using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
@@ -11,7 +12,6 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[AllowAnonymous]
 [Route("api/v{v:apiVersion}/listing")]
 public class ListingController : Controller
 {
@@ -32,7 +32,7 @@ public class ListingController : Controller
       .Select(l => ListingDto.FromListingWithPublisher(l))
       .ToListAsync();
     int totalListings = await _listingService.GetActiveListingsCount();
-    
+
     return Ok(
       new PaginatedResultDto<ListingDto>
       {
@@ -53,29 +53,49 @@ public class ListingController : Controller
   }
 
   [HttpDelete]
+  [Authorize(Roles = "Admin,RemoveListing")]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> DeleteListing(Guid listingId)
   {
     Listing? listing = await _listingService.GetListing(listingId);
     if (listing == null) return NotFound();
-    await _listingService.DeleteListing(listing);
-    return Ok();
+    var publisherId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+
+    if (User.IsInRole("Admin") || (User.IsInRole("RemoveListing") && publisherId == listingId))
+    {
+      await _listingService.DeleteListing(listing);
+      return Ok();
+    }
+    else
+    {
+      return Unauthorized();
+    }
   }
 
   [HttpPatch]
+  [Authorize(Roles = "Admin,CreateListing")]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> UpdateListing(Guid listingId, [FromBody] UpdateListingDto updateDto)
   {
-    Listing? listing = await _listingService.GetListing(listingId);
-    if (listing == null) return NotFound();
-    await _listingService.UpdateListing(listing, updateDto);
-    return Ok();
+    if (User.IsInRole("Admin") || User.IsInRole("CreateListing"))
+    {
+      Listing? listing = await _listingService.GetListing(listingId);
+      if (listing == null) return NotFound();
+      await _listingService.UpdateListing(listing, updateDto);
+      return Ok();
+    }
+    else
+    {
+      return Unauthorized();
+    }
   }
 
+  [Authorize(Roles = "Admin,CreateListing")]
   [HttpPost]
   public async Task<ActionResult> CreateListing([FromBody] CreateListingDto createDto)
   {
-    await _listingService.CreateListing(createDto);
+    var publisherId = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+    await _listingService.CreateListing(createDto, publisherId);
     return Created();
   }
 }

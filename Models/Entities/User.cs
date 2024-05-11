@@ -18,6 +18,8 @@ public class User
 
   [Column("email")] [StringLength(255)] public string Email { get; set; } = null!;
 
+  [Column("roles")] public IList<UserRole> Roles { get; set; } = null!;
+
   public ICollection<Listing> Listings { get; set; } = null!;
 
   public static readonly User[] MockUsers =
@@ -28,9 +30,13 @@ public class User
       Username = "warek",
       Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
         "warek",
-        10
+        13
       ),
       Email = "warek@gmail.com",
+      Roles = new UserRole[]
+      {
+        UserRole.Admin
+      }
     },
     new User
     {
@@ -38,39 +44,13 @@ public class User
       Username = "denis",
       Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
         "denis",
-        10
+        13
       ),
       Email = "denis@gmail.com",
-    },
-    new User
-    {
-      Id = Guid.NewGuid(),
-      Username = "alex",
-      Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
-        "alex",
-        10
-      ),
-      Email = "alex@gmail.com",
-    },
-    new User
-    {
-      Id = Guid.NewGuid(),
-      Username = "test",
-      Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
-        "test",
-        10
-      ),
-      Email = "test@gmail.com",
-    },
-    new User
-    {
-      Id = Guid.NewGuid(),
-      Username = "user",
-      Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
-        "password",
-        10
-      ),
-      Email = "user@gmail.com",
+      Roles = new UserRole[]
+      {
+        UserRole.User, UserRole.CreateListing
+      }
     },
   };
 }

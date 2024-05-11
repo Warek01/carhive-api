@@ -79,8 +79,17 @@ public class UserService
       user.Password,
       int.Parse(_config["BCrypt:HashRounds"]!)
     );
+    user.Roles = new List<UserRole>
+    {
+      UserRole.User, UserRole.CreateListing, UserRole.RemoveListing
+    };
 
     await _dbContext.SaveChangesAsync();
     return user;
+  }
+
+  public async Task<User?> FindUser(Guid userId)
+  {
+    return await _dbContext.Users.FindAsync(userId);
   }
 }

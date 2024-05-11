@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using FafCarsApi.Models;
 using FafCarsApi.Models.Entities;
 using Microsoft.IdentityModel.Tokens;
 
@@ -25,17 +26,22 @@ public class AuthService
     string issuer = _config["Jwt:Issuer"]!;
     string audience = _config["Jwt:Audience"]!;
     var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]!);
+
+    var claims = new List<Claim>
+    {
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+      new Claim(JwtRegisteredClaimNames.Name, user.Username),
+      new Claim(JwtRegisteredClaimNames.Email, user.Email),
+      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };   
+    
+    foreach (UserRole role in user.Roles)
+      claims.Add(new Claim(ClaimTypes.Role, role.ToString()));
+    
     var tokenDescriptor = new SecurityTokenDescriptor
     {
-      Subject = new ClaimsIdentity(new[]
-      {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-        new Claim(JwtRegisteredClaimNames.Name, user.Username),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-      }),
-      Expires = DateTime.UtcNow.AddHours(int.Parse(_config["JWT:TTL"]!)),
+      Subject = new ClaimsIdentity(claims),
+      Expires = DateTime.UtcNow.AddMinutes(int.Parse(_config["JWT:TTL"]!)),
       Issuer = issuer,
       Audience = audience,
       SigningCredentials = new SigningCredentials
