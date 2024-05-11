@@ -3,6 +3,7 @@ using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +11,7 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
+[AllowAnonymous]
 [Route("api/v{v:apiVersion}/listing")]
 public class ListingController : Controller
 {

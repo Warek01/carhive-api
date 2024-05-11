@@ -9,6 +9,7 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
+[AllowAnonymous]
 [Route("api/v{v:apiVersion}/auth")]
 public class AuthController : Controller
 {
@@ -26,7 +27,6 @@ public class AuthController : Controller
 
   [HttpPost]
   [Route("login")]
-  [AllowAnonymous]
   public async Task<ActionResult<JwtResponse>> Login([FromBody] LoginDto loginDto)
   {
     User? user = await _userService.FindUserByUsername(loginDto.Username);
@@ -47,7 +47,6 @@ public class AuthController : Controller
 
   [HttpPost]
   [Route("register")]
-  [AllowAnonymous]
   public async Task<ActionResult<JwtResponse>> Register([FromBody] RegisterDto registerDto)
   {
     User? user = await _userService.FindUserByUsername(registerDto.Username);

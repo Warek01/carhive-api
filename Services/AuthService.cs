@@ -29,16 +29,20 @@ public class AuthService
     {
       Subject = new ClaimsIdentity(new[]
       {
-        new Claim("Id", Guid.NewGuid().ToString()),
-        new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+        new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
+        new Claim(JwtRegisteredClaimNames.Name, user.Username),
+        new Claim(JwtRegisteredClaimNames.Email, user.Email),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
       }),
       Expires = DateTime.UtcNow.AddHours(int.Parse(_config["JWT:TTL"]!)),
       Issuer = issuer,
       Audience = audience,
       SigningCredentials = new SigningCredentials
-      (new SymmetricSecurityKey(key),
-        SecurityAlgorithms.HmacSha512Signature)
+      (
+        new SymmetricSecurityKey(key),
+        SecurityAlgorithms.HmacSha512Signature
+      )
     };
     var tokenHandler = new JwtSecurityTokenHandler();
     SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);

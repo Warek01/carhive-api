@@ -40,6 +40,31 @@ builder.Services.AddSwaggerGen(options =>
       Url = new Uri("https://github.com/Warek01/faf-cars-api.git")
     }
   });
+
+  OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme()
+  {
+    Name = "Bearer",
+    BearerFormat = "JWT",
+    Scheme = "bearer",
+    Description = "Specify the authorization token.",
+    In = ParameterLocation.Header,
+    Type = SecuritySchemeType.Http,
+  };
+  options.AddSecurityDefinition("jwt_auth", securityDefinition);
+
+  OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme()
+  {
+    Reference = new OpenApiReference()
+    {
+      Id = "jwt_auth",
+      Type = ReferenceType.SecurityScheme
+    }
+  };
+  OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement()
+  {
+    {securityScheme, new string[] { }},
+  };
+  options.AddSecurityRequirement(securityRequirements);
 });
 
 builder.Services.AddApiVersioning(options =>
@@ -78,8 +103,6 @@ AppServices.Register(builder);
 
 var app = builder.Build();
 
-app.UseAuthentication();
-app.UseAuthorization();
 app.UseSerilogRequestLogging();
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -92,12 +115,14 @@ app.UseStaticFiles(new StaticFileOptions
   ServeUnknownFileTypes = false,
   FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"))
 });
-app.UseRouting();
 app.UseCors(options =>
 {
   options.AllowAnyOrigin();
   options.AllowAnyHeader();
   options.AllowAnyMethod();
 });
+app.UseAuthentication();
+app.UseRouting();
+app.UseAuthorization();
 app.MapControllerRoute("Default", "{controller}/{action}/{id?}");
 app.Run();
