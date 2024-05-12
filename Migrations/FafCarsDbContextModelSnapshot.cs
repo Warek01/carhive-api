@@ -120,19 +120,19 @@ namespace FafCarsApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8d45f346-1f5a-4bd0-b023-ea29fbacec69"),
+                            Id = new Guid("0767edec-135b-4cb7-9236-15ed39a56a83"),
                             BrandName = "BMW",
                             Clearance = 210,
                             Color = "#FFFFFF",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeletedAt = new DateTime(2024, 5, 11, 16, 8, 25, 152, DateTimeKind.Local).AddTicks(6885),
+                            DeletedAt = new DateTime(2024, 5, 12, 22, 41, 1, 40, DateTimeKind.Local).AddTicks(1472),
                             EngineType = "Petrol",
                             EngineVolume = 3.0,
                             Horsepower = 300,
                             Mileage = 15000,
                             ModelName = "X5",
                             Price = 35000.0,
-                            PublisherId = new Guid("34de19e0-3217-4207-b050-3e9f1eb42644"),
+                            PublisherId = new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"),
                             Type = "SUV",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 20,
@@ -140,19 +140,19 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("3a1fa808-da94-4cc3-862b-5796675da0d3"),
+                            Id = new Guid("2fe514a9-ee7e-403d-8808-26bfc01bc7ac"),
                             BrandName = "Toyota",
                             Clearance = 170,
                             Color = "#007A5E",
                             CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DeletedAt = new DateTime(2024, 5, 11, 16, 8, 25, 154, DateTimeKind.Local).AddTicks(2031),
+                            DeletedAt = new DateTime(2024, 5, 12, 22, 41, 1, 42, DateTimeKind.Local).AddTicks(6203),
                             EngineType = "Hybrid",
                             EngineVolume = 2.5,
                             Horsepower = 208,
                             Mileage = 10000,
                             ModelName = "Camry",
                             Price = 25000.0,
-                            PublisherId = new Guid("34de19e0-3217-4207-b050-3e9f1eb42644"),
+                            PublisherId = new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 18,
@@ -160,7 +160,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("79e66eeb-0dc6-4154-8367-d29c20c7e97d"),
+                            Id = new Guid("a75815e3-7609-4dc6-bde0-1a77a65f3aa1"),
                             BrandName = "Ford",
                             Clearance = 230,
                             Color = "#FF0000",
@@ -172,7 +172,7 @@ namespace FafCarsApi.Migrations
                             ModelName = "F-150",
                             PreviewUrl = "https://localhost:44391/api/file/car-1.jpg",
                             Price = 30000.0,
-                            PublisherId = new Guid("34de19e0-3217-4207-b050-3e9f1eb42644"),
+                            PublisherId = new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"),
                             Type = "Truck",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 17,
@@ -180,7 +180,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("e9948aa9-29bf-4399-85be-dc8216e1d399"),
+                            Id = new Guid("698dbc2c-77ac-4c50-b129-4a8aa53794a6"),
                             BrandName = "Honda",
                             Clearance = 160,
                             Color = "#002366",
@@ -191,7 +191,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 20000,
                             ModelName = "Civic",
                             Price = 18000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 16,
@@ -199,7 +199,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("dd797484-1ca2-4a2b-9a27-2641076621de"),
+                            Id = new Guid("04ed4a6f-57f1-4343-9f54-35af5dca4b33"),
                             BrandName = "Mercedes-Benz",
                             Clearance = 180,
                             Color = "#1C1C1C",
@@ -210,7 +210,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 18000,
                             ModelName = "E-Class",
                             Price = 40000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 18,
@@ -218,7 +218,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("00180b5a-ffdd-4d93-8ef9-ccb79c668b88"),
+                            Id = new Guid("f0045511-fe77-4a3d-a0e3-a0c3c2b5371b"),
                             BrandName = "Chevrolet",
                             Clearance = 250,
                             Color = "#800000",
@@ -229,7 +229,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 12000,
                             ModelName = "Silverado",
                             Price = 38000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Truck",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 20,
@@ -237,7 +237,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("40f7b072-806e-4119-8645-365808a47769"),
+                            Id = new Guid("fbdf77c3-42e5-483c-91e5-21518ffaf6b3"),
                             BrandName = "Chevrolet",
                             Clearance = 250,
                             Color = "#800000",
@@ -248,7 +248,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 12000,
                             ModelName = "Silverado",
                             Price = 38000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Truck",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 20,
@@ -256,7 +256,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("11268a9a-ef7e-4e26-abb9-0dc01a24cd9a"),
+                            Id = new Guid("5e3198b8-fdbc-4406-952d-0aae19ba8944"),
                             BrandName = "Ford",
                             Clearance = 230,
                             Color = "#0000FF",
@@ -267,7 +267,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 10000,
                             ModelName = "F-150",
                             Price = 42000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Truck",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 18,
@@ -275,7 +275,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("08dc46a0-8f69-4376-a822-790eb27855eb"),
+                            Id = new Guid("f299a5bb-6554-4344-b621-c5d497e3a51c"),
                             BrandName = "Toyota",
                             Clearance = 240,
                             Color = "#006400",
@@ -286,7 +286,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 15000,
                             ModelName = "Tacoma",
                             Price = 34000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Truck",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 17,
@@ -294,7 +294,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("2c73b60c-8a12-41c8-bad3-e44522d73e1b"),
+                            Id = new Guid("e35455bd-6289-418c-b6ee-bb9853ec58ea"),
                             BrandName = "Honda",
                             Clearance = 150,
                             Color = "#FFA500",
@@ -305,7 +305,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 20000,
                             ModelName = "Civic",
                             Price = 22000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 16,
@@ -313,7 +313,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a5f48973-77f1-4217-981d-fd437a5017ae"),
+                            Id = new Guid("76a8aa62-d3f3-41bc-88d2-72f77450d834"),
                             BrandName = "BMW",
                             Clearance = 140,
                             Color = "#000000",
@@ -324,7 +324,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 18000,
                             ModelName = "3 Series",
                             Price = 35000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 18,
@@ -332,7 +332,7 @@ namespace FafCarsApi.Migrations
                         },
                         new
                         {
-                            Id = new Guid("44749168-6e3a-4128-a611-60f25800a83e"),
+                            Id = new Guid("89508075-cbe1-42f9-9b2f-50c2f942abc0"),
                             BrandName = "Tesla",
                             Clearance = 160,
                             Color = "#FFFFFF",
@@ -343,7 +343,7 @@ namespace FafCarsApi.Migrations
                             Mileage = 5000,
                             ModelName = "Model 3",
                             Price = 50000.0,
-                            PublisherId = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            PublisherId = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Type = "Sedan",
                             UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             WheelSize = 19,
@@ -389,17 +389,17 @@ namespace FafCarsApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("34de19e0-3217-4207-b050-3e9f1eb42644"),
+                            Id = new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"),
                             Email = "warek@gmail.com",
-                            Password = "$2a$13$s7vtn2zvuVyZDCth3tz7leduUraPXr11s83ZsA2hD2Zhx4P5m.xCO",
+                            Password = "$2a$13$byO4cqNyS4.13NzIs9Qj8uSNKH6tHC.H.4AKOjMlpZcAZjJ2j4EbK",
                             Roles = new[] { 1 },
                             Username = "warek"
                         },
                         new
                         {
-                            Id = new Guid("5a3680a5-0f06-433e-b6a6-e7509bafca7a"),
+                            Id = new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"),
                             Email = "denis@gmail.com",
-                            Password = "$2a$13$J1YT7U7aGV1CvtwB.ceGmuUnv2okuMHeuBfaHx7fdXP6Nio4T2KOS",
+                            Password = "$2a$13$zBl5vvCX/vNBHCmdi/c3CeaXfq1KTo3HoHVRbGb4dv08Xm8V29rlC",
                             Roles = new[] { 0, 3 },
                             Username = "denis"
                         });
