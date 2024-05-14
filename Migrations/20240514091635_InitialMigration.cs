@@ -45,7 +45,7 @@ namespace FafCarsApi.Migrations
                     wheel_size = table.Column<int>(type: "integer", nullable: true),
                     mileage = table.Column<int>(type: "integer", nullable: true),
                     year = table.Column<int>(type: "integer", nullable: true),
-                    preview_url = table.Column<string>(type: "character varying(1024)", maxLength: 1024, nullable: true),
+                    preview_file_name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     deleted_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: true),
                     publisher_id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -67,27 +67,27 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "id", "email", "password", "roles", "username" },
                 values: new object[,]
                 {
-                    { new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "denis@gmail.com", "$2a$13$zBl5vvCX/vNBHCmdi/c3CeaXfq1KTo3HoHVRbGb4dv08Xm8V29rlC", new[] { 0, 3 }, "denis" },
-                    { new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"), "warek@gmail.com", "$2a$13$byO4cqNyS4.13NzIs9Qj8uSNKH6tHC.H.4AKOjMlpZcAZjJ2j4EbK", new[] { 1 }, "warek" }
+                    { new Guid("10ca3d19-7151-405c-bd76-20957bb92a05"), "warek@gmail.com", "$2a$13$Ds7Nitf/NsuilEtVtM9svePvptmYKeuY821oIo2gv.5yG9ggPxkiq", new[] { 1 }, "warek" },
+                    { new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "denis@gmail.com", "$2a$13$qB8B9Eg30n/SlnImSHL9k.bMecO5ibCaJhqflB4pok5XWJQEuVMAG", new[] { 0, 3 }, "denis" }
                 });
 
             migrationBuilder.InsertData(
                 table: "listings",
-                columns: new[] { "id", "brand", "clearance", "color", "deleted_at", "engine_type", "engine_volume", "horsepower", "mileage", "model", "preview_url", "price", "publisher_id", "type", "wheel_size", "year" },
+                columns: new[] { "id", "brand", "clearance", "color", "deleted_at", "engine_type", "engine_volume", "horsepower", "mileage", "model", "preview_file_name", "price", "publisher_id", "type", "wheel_size", "year" },
                 values: new object[,]
                 {
-                    { new Guid("04ed4a6f-57f1-4343-9f54-35af5dca4b33"), "Mercedes-Benz", 180, "#1C1C1C", null, "Diesel", 2.0, 240, 18000, "E-Class", null, 40000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Sedan", 18, 2019 },
-                    { new Guid("0767edec-135b-4cb7-9236-15ed39a56a83"), "BMW", 210, "#FFFFFF", new DateTime(2024, 5, 12, 22, 41, 1, 40, DateTimeKind.Local).AddTicks(1472), "Petrol", 3.0, 300, 15000, "X5", null, 35000.0, new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"), "SUV", 20, 2018 },
-                    { new Guid("2fe514a9-ee7e-403d-8808-26bfc01bc7ac"), "Toyota", 170, "#007A5E", new DateTime(2024, 5, 12, 22, 41, 1, 42, DateTimeKind.Local).AddTicks(6203), "Hybrid", 2.5, 208, 10000, "Camry", null, 25000.0, new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"), "Sedan", 18, 2020 },
-                    { new Guid("5e3198b8-fdbc-4406-952d-0aae19ba8944"), "Ford", 230, "#0000FF", null, "Gasoline", 5.0, 375, 10000, "F-150", null, 42000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Truck", 18, 2022 },
-                    { new Guid("698dbc2c-77ac-4c50-b129-4a8aa53794a6"), "Honda", 160, "#002366", null, "Gasoline", 1.8, 174, 20000, "Civic", null, 18000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Sedan", 16, 2017 },
-                    { new Guid("76a8aa62-d3f3-41bc-88d2-72f77450d834"), "BMW", 140, "#000000", null, "Gasoline", 2.0, 255, 18000, "3 Series", null, 35000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Sedan", 18, 2020 },
-                    { new Guid("89508075-cbe1-42f9-9b2f-50c2f942abc0"), "Tesla", 160, "#FFFFFF", null, "Electric", 0.0, 450, 5000, "Model 3", null, 50000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Sedan", 19, 2021 },
-                    { new Guid("a75815e3-7609-4dc6-bde0-1a77a65f3aa1"), "Ford", 230, "#FF0000", null, "Gasoline", 3.5, 375, 25000, "F-150", "https://localhost:44391/api/file/car-1.jpg", 30000.0, new Guid("8a63c737-c41d-445f-a837-3d22f3fb37e5"), "Truck", 17, 2019 },
-                    { new Guid("e35455bd-6289-418c-b6ee-bb9853ec58ea"), "Honda", 150, "#FFA500", null, "Gasoline", 2.0, 174, 20000, "Civic", null, 22000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Sedan", 16, 2019 },
-                    { new Guid("f0045511-fe77-4a3d-a0e3-a0c3c2b5371b"), "Chevrolet", 250, "#800000", null, "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", null, 38000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Truck", 20, 2021 },
-                    { new Guid("f299a5bb-6554-4344-b621-c5d497e3a51c"), "Toyota", 240, "#006400", null, "Gasoline", 3.5, 278, 15000, "Tacoma", null, 34000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Truck", 17, 2020 },
-                    { new Guid("fbdf77c3-42e5-483c-91e5-21518ffaf6b3"), "Chevrolet", 250, "#800000", null, "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", null, 38000.0, new Guid("1c0b82aa-0b4c-42d6-9958-8a5f3e1be9dd"), "Truck", 20, 2021 }
+                    { new Guid("0677eb44-0d0e-4f43-8e01-ecaec5e91fde"), "Tesla", 160, "#FFFFFF", null, "Electric", 0.0, 450, 5000, "Model 3", null, 50000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Sedan", 19, 2021 },
+                    { new Guid("0fbb77d0-dd87-472a-9124-978539b5ef30"), "Toyota", 240, "#006400", null, "Gasoline", 3.5, 278, 15000, "Tacoma", null, 34000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Truck", 17, 2020 },
+                    { new Guid("299cc158-a59d-44bd-9353-d0137acc56fe"), "Ford", 230, "#FF0000", null, "Gasoline", 3.5, 375, 25000, "F-150", null, 30000.0, new Guid("10ca3d19-7151-405c-bd76-20957bb92a05"), "Truck", 17, 2019 },
+                    { new Guid("5bb7b41f-33bc-4fed-9b1b-9c81596b30b8"), "Chevrolet", 250, "#800000", null, "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", null, 38000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Truck", 20, 2021 },
+                    { new Guid("6215f7d1-c55d-42e0-8f1b-f2b7e6b3248a"), "Honda", 160, "#002366", null, "Gasoline", 1.8, 174, 20000, "Civic", null, 18000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Sedan", 16, 2017 },
+                    { new Guid("68a68b4c-c4e0-4d15-bf37-3559abf10deb"), "Chevrolet", 250, "#800000", null, "Gasoline", 5.2999999999999998, 355, 12000, "Silverado", null, 38000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Truck", 20, 2021 },
+                    { new Guid("710c75ad-32c7-40b5-905b-8646d186c328"), "Honda", 150, "#FFA500", null, "Gasoline", 2.0, 174, 20000, "Civic", null, 22000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Sedan", 16, 2019 },
+                    { new Guid("90bf64a9-fffc-4e14-ba3d-85f1bf93aa63"), "BMW", 210, "#FFFFFF", new DateTime(2024, 5, 14, 12, 16, 35, 115, DateTimeKind.Local).AddTicks(8278), "Petrol", 3.0, 300, 15000, "X5", null, 35000.0, new Guid("10ca3d19-7151-405c-bd76-20957bb92a05"), "SUV", 20, 2018 },
+                    { new Guid("94ed8176-3f94-4a79-bce5-e638fc857bf5"), "Ford", 230, "#0000FF", null, "Gasoline", 5.0, 375, 10000, "F-150", null, 42000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Truck", 18, 2022 },
+                    { new Guid("b88c3f76-d8e8-49b9-8878-06eb64dbb3f2"), "Toyota", 170, "#007A5E", new DateTime(2024, 5, 14, 12, 16, 35, 118, DateTimeKind.Local).AddTicks(3264), "Hybrid", 2.5, 208, 10000, "Camry", null, 25000.0, new Guid("10ca3d19-7151-405c-bd76-20957bb92a05"), "Sedan", 18, 2020 },
+                    { new Guid("c81d7dff-25e3-43a3-a327-459ad75d1a1e"), "BMW", 140, "#000000", null, "Gasoline", 2.0, 255, 18000, "3 Series", null, 35000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Sedan", 18, 2020 },
+                    { new Guid("fc0d2e50-213e-45c0-bf2f-cfe7a1259dba"), "Mercedes-Benz", 180, "#1C1C1C", null, "Diesel", 2.0, 240, 18000, "E-Class", null, 40000.0, new Guid("d06cbfa0-6f02-455c-a3cd-a32f1f22b64b"), "Sedan", 18, 2019 }
                 });
 
             migrationBuilder.CreateIndex(

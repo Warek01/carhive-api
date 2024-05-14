@@ -21,10 +21,11 @@ public class ListingDto
   public DateTime CreatedAt { get; set; }
   public DateTime? DeletedAt { get; set; }
   public UserDto? Publisher { get; set; }
-  public Uri? PreviewUrl { get; set; }
+  public string? PreviewFileName { get; set; }
 
   // From listings -----------------------------------------
-  public static ListingDto FromListingWithoutPublisher(Listing l)
+
+  public static ListingDto FromListing(Listing l)
   {
     return new ListingDto
     {
@@ -43,37 +44,18 @@ public class ListingDto
       Year = l.Year,
       CreatedAt = l.CreatedAt,
       DeletedAt = l.DeletedAt,
-      PreviewUrl = l.PreviewUrl,
-      UpdatedAt = l.UpdatedAt
+      UpdatedAt = l.UpdatedAt,
+      PreviewFileName = l.PreviewFileName,
+      Publisher = UserDto.CreateFromUser(l.Publisher)
     };
   }
 
-  public static ListingDto FromListingWithPublisher(Listing l)
+  public static ListingDto FromListingWithoutPublisher(Listing l)
   {
-    return new ListingDto
-    {
-      Id = l.Id,
-      BrandName = l.BrandName,
-      ModelName = l.ModelName,
-      Clearance = l.Clearance,
-      Horsepower = l.Horsepower,
-      EngineType = l.EngineType,
-      EngineVolume = l.EngineVolume,
-      WheelSize = l.WheelSize,
-      Color = l.Color,
-      Mileage = l.Mileage,
-      Price = l.Price,
-      Type = l.Type,
-      Year = l.Year,
-      CreatedAt = l.CreatedAt,
-      DeletedAt = l.DeletedAt,
-      PreviewUrl = l.PreviewUrl,
-      UpdatedAt = l.UpdatedAt,
-      Publisher = new UserDto
-      {
-        Id = l.Publisher.Id,
-        Username = l.Publisher.Username
-      }
-    };
+    ListingDto dto = FromListing(l);
+
+    dto.Publisher = null;
+
+    return dto;
   }
 }

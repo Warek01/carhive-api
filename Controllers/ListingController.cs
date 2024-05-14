@@ -29,7 +29,7 @@ public class ListingController : Controller
   {
     IQueryable<Listing> listings = _listingService.GetActiveListings(pagination);
     ICollection<ListingDto> result = await listings
-      .Select(l => ListingDto.FromListingWithPublisher(l))
+      .Select(l => ListingDto.FromListing(l))
       .ToListAsync();
     int totalListings = await _listingService.GetActiveListingsCount();
 
@@ -49,7 +49,7 @@ public class ListingController : Controller
     Listing? listing = await _listingService.GetListing(listingId);
     if (listing == null) return NotFound();
 
-    return Ok(ListingDto.FromListingWithPublisher(listing));
+    return Ok(ListingDto.FromListing(listing));
   }
 
   [HttpDelete]

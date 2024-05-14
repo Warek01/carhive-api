@@ -14,5 +14,5 @@ public class UpdateListingDto
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? Year { get; set; }
-  public string? PreviewUrl { get; set; } = null!;
+  public FileDto? PreviewImage { get; set; }
 }

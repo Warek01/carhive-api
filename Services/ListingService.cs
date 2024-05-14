@@ -10,11 +10,17 @@ public class ListingService
 {
   private readonly FafCarsDbContext _dbContext;
   private readonly ILogger<ListingService> _logger;
+  private readonly StaticFileService _fileService;
 
-  public ListingService(FafCarsDbContext dbContext, ILogger<ListingService> logger)
+  public ListingService(
+    FafCarsDbContext dbContext, 
+    ILogger<ListingService> logger,
+    StaticFileService fileService
+    )
   {
     _dbContext = dbContext;
     _logger = logger;
+    _fileService = fileService;
   }
 
   public async Task<int> GetActiveListingsCount()
@@ -71,15 +77,31 @@ public class ListingService
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId)
   {
     var listing = new Listing();
-    
+
+    if (createDto.PreviewImage != null)
+    {
+      string b64 = createDto.PreviewImage.Base64Body;
+
+      if (b64.StartsWith("data:image/jpeg;base64,"))
+        b64 = b64.Substring("data:image/jpeg;base64,".Length);
+      else if (b64.StartsWith("base64,"))
+        b64 = b64.Substring("base64,".Length);
+
+      byte[] bytes = Convert.FromBase64String(b64);
+      string filename = $"{Guid.NewGuid()}.{Path.GetExtension(createDto.PreviewImage.FileName)[1..]}";
+      listing.PreviewFileName = filename;
+      
+      _fileService.Create(filename, bytes);
+    }
+
     var config = new MapperConfiguration(cfg => cfg.CreateMap<CreateListingDto, Listing>());
     IMapper mapper = config.CreateMapper();
     mapper.Map(createDto, listing);
-    
+
     User publisher = (await _dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
-    
+
     await _dbContext.Listings.AddAsync(listing);
     await _dbContext.SaveChangesAsync();
   }

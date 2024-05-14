@@ -7,6 +7,7 @@ public static class AppServices
     typeof(ListingService),
     typeof(UserService),
     typeof(AuthService),
+    typeof(StaticFileService),
   };
 
 

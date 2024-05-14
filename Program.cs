@@ -1,5 +1,3 @@
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 using System.Text;
 using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
@@ -7,8 +5,6 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -109,14 +105,7 @@ app.UseSerilogRequestLogging();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
-app.UseFileServer();
-app.UseStaticFiles(new StaticFileOptions
-{
-  RequestPath = "/api/file",
-  HttpsCompression = HttpsCompressionMode.Compress,
-  ServeUnknownFileTypes = false,
-  FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"))
-});
+StaticFileService.Init(app);
 app.UseCors(options =>
 {
   options.AllowAnyOrigin();

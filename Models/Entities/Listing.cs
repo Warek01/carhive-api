@@ -46,9 +46,9 @@ public class Listing
   [Range(0, int.MaxValue)]
   public int? Year { get; set; }
 
-  [Column("preview_url")]
-  [StringLength(1024)]
-  public Uri? PreviewUrl { get; set; }
+  [Column("preview_file_name")]
+  [StringLength(255)]
+  public string? PreviewFileName { get; set; }
 
   [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
@@ -116,7 +116,6 @@ public class Listing
       EngineVolume = 3.5,
       WheelSize = 17,
       Price = 30_000,
-      PreviewUrl = new Uri("https://localhost:44391/api/file/car-1.jpg"),
       PublisherId = User.MockUsers[0].Id
     },
     new Listing
