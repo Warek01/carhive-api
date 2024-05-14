@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Text.RegularExpressions;
+using AutoMapper;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
@@ -13,10 +14,10 @@ public class ListingService
   private readonly StaticFileService _fileService;
 
   public ListingService(
-    FafCarsDbContext dbContext, 
+    FafCarsDbContext dbContext,
     ILogger<ListingService> logger,
     StaticFileService fileService
-    )
+  )
   {
     _dbContext = dbContext;
     _logger = logger;
@@ -80,17 +81,16 @@ public class ListingService
 
     if (createDto.PreviewImage != null)
     {
-      string b64 = createDto.PreviewImage.Base64Body;
-
-      if (b64.StartsWith("data:image/jpeg;base64,"))
-        b64 = b64.Substring("data:image/jpeg;base64,".Length);
-      else if (b64.StartsWith("base64,"))
-        b64 = b64.Substring("base64,".Length);
+      string b64 = Regex.Replace(
+        createDto.PreviewImage.Base64Body,
+        @"^(data:image\/[a-zA-Z]+;base64,|base64,)",
+        string.Empty
+      );
 
       byte[] bytes = Convert.FromBase64String(b64);
       string filename = $"{Guid.NewGuid()}.{Path.GetExtension(createDto.PreviewImage.FileName)[1..]}";
       listing.PreviewFileName = filename;
-      
+
       _fileService.Create(filename, bytes);
     }
 
