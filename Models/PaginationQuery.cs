@@ -15,4 +15,7 @@ public class PaginationQuery
   [Range(0, int.MaxValue)]
   [DefaultValue(10)]
   public int Take { get; set; } = 10;
+  
+  [FromQuery(Name = "order")]
+  public string? Order { get; set; }
 }

@@ -24,19 +24,35 @@ public class ListingController : Controller
 
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
-    [FromQuery] PaginationQuery pagination
+    [FromQuery] PaginationQuery pagination,
+    [FromQuery] string[] carTypes
   )
   {
-    IQueryable<Listing> listings = _listingService.GetActiveListings(pagination);
-    ICollection<ListingDto> result = await listings
-      .Select(l => ListingDto.FromListing(l))
-      .ToListAsync();
-    int totalListings = await _listingService.GetActiveListingsCount();
+    IQueryable<Listing> listings = _listingService.GetActiveListings();
+
+    if (carTypes.Length > 0)
+      listings = listings.Where(l => carTypes.Contains(l.Type));
+
+    int totalListings = await listings.CountAsync();
+
+    if (pagination.Order != null)
+      listings = pagination.Order switch
+      {
+        "createdAtDesc" => listings.OrderByDescending(l => l.CreatedAt),
+        "createdAtAsc" => listings.OrderBy(l => l.CreatedAt),
+        "priceDesc" => listings.OrderByDescending(l => l.Price),
+        "priceAsc" => listings.OrderBy(l => l.Price),
+        _ => listings.OrderByDescending(l => l.CreatedAt),
+      };
+
+    listings = listings
+      .Skip(pagination.Page * pagination.Take)
+      .Take(pagination.Take);
 
     return Ok(
       new PaginatedResultDto<ListingDto>
       {
-        Items = result,
+        Items = await listings.Select(l => ListingDto.FromListing(l)).ToListAsync(),
         TotalItems = totalListings,
       }
     );

@@ -36,11 +36,9 @@ public class ListingService
       .CountAsync(l => l.DeletedAt != null);
   }
 
-  public IQueryable<Listing> GetActiveListings(PaginationQuery pagination)
+  public IQueryable<Listing> GetActiveListings()
   {
     return _dbContext.Listings
-      .Skip(pagination.Page * pagination.Take)
-      .Take(pagination.Take)
       .Include(l => l.Publisher);
   }
 
