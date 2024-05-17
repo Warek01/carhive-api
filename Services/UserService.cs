@@ -23,18 +23,9 @@ public class UserService
     _config = config;
   }
 
-  public async Task<ICollection<UserDto>> GetUsers(PaginationQuery pagination)
+  public IQueryable<User> GetUsers()
   {
-    return await _dbContext.Users
-      .Take(pagination.Take)
-      .Skip(pagination.Take * pagination.Page)
-      .Select(u => new UserDto
-        {
-          Id = u.Id,
-          Username = u.Username
-        }
-      )
-      .ToListAsync();
+    return _dbContext.Users.AsNoTracking();
   }
 
   public async Task<OperationResultDto> DeleteUser(Guid userId)
@@ -91,5 +82,14 @@ public class UserService
   public async Task<User?> FindUser(Guid userId)
   {
     return await _dbContext.Users.FindAsync(userId);
+  }
+
+  public async Task UpdateUser(User user, UpdateUserDto updateDto)
+  {
+    user.Username = updateDto.Username;
+    user.Email = updateDto.Email;
+    user.Roles = updateDto.Roles;
+    user.UpdatedAt = DateTime.Now;
+    await _dbContext.SaveChangesAsync();
   }
 }

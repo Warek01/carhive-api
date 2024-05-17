@@ -5,6 +5,7 @@ using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Controllers;
 
@@ -27,27 +28,54 @@ public class UserController : Controller
 
   [Authorize(Roles = "Admin,User")]
   [HttpGet]
-  [Route("{userId:guid}")]
+  [Route("{userId:Guid}")]
   public async Task<ActionResult<UserDto>> GetUser(Guid userId)
   {
     User? user = await _userService.FindUser(userId);
     if (user == null) return NotFound();
-    return Ok(UserDto.CreateFromUser(user));
+    return Ok(UserDto.FromUser(user));
   }
 
   [Authorize(Roles = "Admin")]
   [HttpGet]
-  public async Task<ICollection<UserDto>> GetUsers([FromQuery] PaginationQuery pagination)
+  public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination)
   {
-    return await _userService.GetUsers(pagination);
+    IQueryable<User> usersQuery = _userService.GetUsers();
+    int count = await usersQuery.CountAsync();
+    IList<UserDto> users = await usersQuery
+      .OrderByDescending(u => u.CreatedAt)
+      .Skip(pagination.Take * pagination.Page)
+      .Take(pagination.Take)
+      .Select(u => UserDto.FromUser(u))
+      .ToListAsync();
+
+    return Ok(new PaginatedResultDto<UserDto>
+    {
+      Items = users,
+      TotalItems = count
+    });
   }
 
   [HttpDelete]
   [Authorize(Roles = "Admin,SelfDelete")]
-  [Route("{userId:guid}")]
+  [Route("{userId:Guid}")]
   public async Task<OperationResultDto> DeleteUser(Guid userId)
   {
     _logger.LogInformation($"Deleted user {userId}");
     return await _userService.DeleteUser(userId);
+  }
+
+  [HttpPatch]
+  [Authorize(Roles = "Admin")]
+  [Route("{userId:Guid}")]
+  public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto)
+  {
+    User? user = await _userService.FindUser(userId);
+
+    if (user == null)
+      return NotFound();
+
+    await _userService.UpdateUser(user, updateDto);
+    return NoContent();
   }
 }

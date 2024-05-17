@@ -49,11 +49,11 @@ public class Listing
   [Column("preview_file_name")]
   [StringLength(255)]
   public string? PreviewFileName { get; set; }
-
+  
+  [Column("publisher_id")] public Guid PublisherId { get; set; }
+  
   [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
-
-  [Column("publisher_id")] public Guid PublisherId { get; set; }
 
   [Column("created_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
   public DateTime CreatedAt { get; set; }

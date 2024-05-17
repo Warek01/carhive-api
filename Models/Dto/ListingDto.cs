@@ -46,7 +46,7 @@ public class ListingDto
       DeletedAt = l.DeletedAt,
       UpdatedAt = l.UpdatedAt,
       PreviewFileName = l.PreviewFileName,
-      Publisher = UserDto.CreateFromUser(l.Publisher)
+      Publisher = UserDto.FromUser(l.Publisher)
     };
   }
 

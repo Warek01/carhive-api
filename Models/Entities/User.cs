@@ -21,6 +21,15 @@ public class User
   [Column("roles")] public IList<UserRole> Roles { get; set; } = null!;
 
   public ICollection<Listing> Listings { get; set; } = null!;
+  
+  [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  public DateTime? DeletedAt { get; set; }
+
+  [Column("created_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  public DateTime CreatedAt { get; set; }
+
+  [Column("updated_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  public DateTime UpdatedAt { get; set; }
 
   public static readonly User[] MockUsers =
   {
@@ -36,7 +45,9 @@ public class User
       Roles = new UserRole[]
       {
         UserRole.Admin
-      }
+      },
+      CreatedAt = DateTime.Now,
+      UpdatedAt = DateTime.Now,
     },
     new User
     {
@@ -50,7 +61,9 @@ public class User
       Roles = new UserRole[]
       {
         UserRole.User, UserRole.CreateListing
-      }
+      },
+      CreatedAt = DateTime.Now,
+      UpdatedAt = DateTime.Now,
     },
   };
 }

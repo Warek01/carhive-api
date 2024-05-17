@@ -39,6 +39,10 @@ public partial class FafCarsDbContext : DbContext
       .HasMany(u => u.Listings)
       .WithOne(l => l.Publisher)
       .OnDelete(DeleteBehavior.Cascade);
+
+    modelBuilder.Entity<User>()
+      .HasIndex(e => e.Username)
+      .IsUnique();
     
     modelBuilder.Entity<User>().HasData(
       User.MockUsers
