@@ -69,7 +69,7 @@ public class ListingController : Controller
   }
 
   [HttpDelete]
-  [Authorize(Roles = "Admin,RemoveListing")]
+  [Authorize(Roles = "Admin")]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> DeleteListing(Guid listingId)
   {
@@ -89,11 +89,11 @@ public class ListingController : Controller
   }
 
   [HttpPatch]
-  [Authorize(Roles = "Admin,CreateListing")]
+  [Authorize(Roles = "Admin,ListingCreator")]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> UpdateListing(Guid listingId, [FromBody] UpdateListingDto updateDto)
   {
-    if (User.IsInRole("Admin") || User.IsInRole("CreateListing"))
+    if (User.IsInRole("Admin") || User.IsInRole("ListingCreator"))
     {
       Listing? listing = await _listingService.GetListing(listingId);
       if (listing == null) return NotFound();
@@ -106,7 +106,7 @@ public class ListingController : Controller
     }
   }
 
-  [Authorize(Roles = "Admin,CreateListing")]
+  [Authorize(Roles = "Admin,ListingCreator")]
   [HttpPost]
   public async Task<ActionResult> CreateListing([FromBody] CreateListingDto createDto)
   {

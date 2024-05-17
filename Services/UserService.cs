@@ -57,7 +57,7 @@ public class UserService
       .FirstOrDefaultAsync();
   }
 
-  public async Task<User> CreateUser(RegisterDto registerDto)
+  public async Task<User> RegisterUser(RegisterDto registerDto)
   {
     var user = new User();
     await _dbContext.Users.AddAsync(user);
@@ -72,11 +72,26 @@ public class UserService
     );
     user.Roles = new List<UserRole>
     {
-      UserRole.User, UserRole.CreateListing, UserRole.RemoveListing
+       UserRole.ListingCreator
     };
 
     await _dbContext.SaveChangesAsync();
     return user;
+  }
+
+  // To be called by admin when creating users in dashboard
+  public async Task CreateUser(CreateUserDto c)
+  {
+    var user = new User
+    {
+      Username = c.Username,
+      Password = c.Password,
+      Email = c.Email,
+      Roles = c.Roles
+    };
+
+    await _dbContext.AddAsync(user);
+    await _dbContext.SaveChangesAsync();
   }
 
   public async Task<User?> FindUser(Guid userId)

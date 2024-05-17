@@ -40,16 +40,19 @@ public partial class FafCarsDbContext : DbContext
       .WithOne(l => l.Publisher)
       .OnDelete(DeleteBehavior.Cascade);
 
+    modelBuilder.Entity<Listing>()
+      .Property(e => e.CreatedAt)
+      .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+    modelBuilder.Entity<Listing>()
+      .Property(e => e.UpdatedAt)
+      .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
     modelBuilder.Entity<User>()
       .HasIndex(e => e.Username)
       .IsUnique();
-    
-    modelBuilder.Entity<User>().HasData(
-      User.MockUsers
-    );
-    
-    modelBuilder.Entity<Listing>().HasData(
-      Listing.MockListings
-    );
+
+    modelBuilder.Entity<User>()
+      .HasData(User.InitialData);
   }
 }

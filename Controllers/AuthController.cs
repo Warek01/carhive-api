@@ -27,7 +27,7 @@ public class AuthController : Controller
 
   [HttpPost]
   [Route("login")]
-  public async Task<ActionResult<JwtResponse>> Login([FromBody] LoginDto loginDto)
+  public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto)
   {
     User? user = await _userService.FindUserByUsername(loginDto.Username);
 
@@ -38,7 +38,7 @@ public class AuthController : Controller
       return Unauthorized();
 
     return Ok(
-      new JwtResponse
+      new JwtResponseDto
       {
         Token = _authService.GenerateJwt(user)
       }
@@ -47,17 +47,17 @@ public class AuthController : Controller
 
   [HttpPost]
   [Route("register")]
-  public async Task<ActionResult<JwtResponse>> Register([FromBody] RegisterDto registerDto)
+  public async Task<ActionResult<JwtResponseDto>> Register([FromBody] RegisterDto registerDto)
   {
     User? user = await _userService.FindUserByUsername(registerDto.Username);
 
     if (user != null)
       return Conflict();
 
-    User newUser = await _userService.CreateUser(registerDto);
+    User newUser = await _userService.RegisterUser(registerDto);
 
     return Ok(
-      new JwtResponse
+      new JwtResponseDto
       {
         Token = _authService.GenerateJwt(newUser)
       }

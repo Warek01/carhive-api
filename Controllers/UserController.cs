@@ -26,7 +26,7 @@ public class UserController : Controller
     _logger = logger;
   }
 
-  [Authorize(Roles = "Admin,User")]
+  [Authorize(Roles = "Admin")]
   [HttpGet]
   [Route("{userId:Guid}")]
   public async Task<ActionResult<UserDto>> GetUser(Guid userId)
@@ -57,7 +57,7 @@ public class UserController : Controller
   }
 
   [HttpDelete]
-  [Authorize(Roles = "Admin,SelfDelete")]
+  [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
   public async Task<OperationResultDto> DeleteUser(Guid userId)
   {
@@ -77,5 +77,16 @@ public class UserController : Controller
 
     await _userService.UpdateUser(user, updateDto);
     return NoContent();
+  }
+
+  [HttpPost]
+  [Authorize(Roles = "Admin")]
+  public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto)
+  {
+    if (await _userService.FindUserByUsername(createDto.Username) != null)
+      return Conflict();
+
+    await _userService.CreateUser(createDto);
+    return Created();
   }
 }
