@@ -5,9 +5,6 @@ namespace FafCarsApi.Models;
 
 public partial class FafCarsDbContext : DbContext
 {
-  public virtual DbSet<Listing> Listings { get; set; }
-  public virtual DbSet<User> Users { get; set; }
-
   public FafCarsDbContext()
   {
   }
@@ -16,6 +13,9 @@ public partial class FafCarsDbContext : DbContext
     : base(options)
   {
   }
+
+  public virtual DbSet<Listing> Listings { get; set; }
+  public virtual DbSet<User> Users { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -40,11 +40,11 @@ public partial class FafCarsDbContext : DbContext
       .WithOne(l => l.Publisher)
       .OnDelete(DeleteBehavior.Cascade);
 
-    modelBuilder.Entity<Listing>()
+    modelBuilder.Entity<User>()
       .Property(e => e.CreatedAt)
       .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-    modelBuilder.Entity<Listing>()
+    modelBuilder.Entity<User>()
       .Property(e => e.UpdatedAt)
       .HasDefaultValueSql("CURRENT_TIMESTAMP");
 

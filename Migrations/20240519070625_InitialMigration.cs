@@ -21,8 +21,8 @@ namespace FafCarsApi.Migrations
                     email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     roles = table.Column<int[]>(type: "integer[]", nullable: false),
                     deleted_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: true),
-                    created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false),
+                    created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     phone_number = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
@@ -67,7 +67,7 @@ namespace FafCarsApi.Migrations
             migrationBuilder.InsertData(
                 table: "users",
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
-                values: new object[] { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 17, 23, 18, 0, 65, DateTimeKind.Local).AddTicks(7210), null, "alexandrudobrojan@gmail.com", "$2a$13$nTigiZbg3zx1TIUUgddmwuLEgjRr7JR4x5UvY68tZyzQCIct.iRsG", "+37378009584", new[] { 0 }, new DateTime(2024, 5, 17, 23, 18, 0, 67, DateTimeKind.Local).AddTicks(3480), "admin" });
+                values: new object[] { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 19, 10, 6, 25, 137, DateTimeKind.Local).AddTicks(1756), null, "alexandrudobrojan@gmail.com", "$2a$13$kMOs8dDZPdOkb5Uctm9Dzuehxeg85LnSDroUGpum2EMfpGmyNoSca", "+37378009584", new[] { 0 }, new DateTime(2024, 5, 19, 10, 6, 25, 139, DateTimeKind.Local).AddTicks(4412), "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_listings_publisher_id",

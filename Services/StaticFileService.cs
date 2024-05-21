@@ -13,7 +13,7 @@ public class StaticFileService
       Directory.CreateDirectory(_root);
   }
 
-  public static void Init(WebApplication app)
+  public static void SetupStaticFileServing(WebApplication app)
   {
     app.UseFileServer();
     app.UseStaticFiles(new StaticFileOptions

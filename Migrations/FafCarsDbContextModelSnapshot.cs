@@ -127,8 +127,10 @@ namespace FafCarsApi.Migrations
                         .HasDefaultValueSql("uuid_generate_v4()");
 
                     b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
@@ -157,8 +159,10 @@ namespace FafCarsApi.Migrations
                         .HasColumnName("roles");
 
                     b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
-                        .HasColumnName("updated_at");
+                        .HasColumnName("updated_at")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -177,12 +181,12 @@ namespace FafCarsApi.Migrations
                         new
                         {
                             Id = new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"),
-                            CreatedAt = new DateTime(2024, 5, 17, 23, 18, 0, 65, DateTimeKind.Local).AddTicks(7210),
+                            CreatedAt = new DateTime(2024, 5, 19, 10, 6, 25, 137, DateTimeKind.Local).AddTicks(1756),
                             Email = "alexandrudobrojan@gmail.com",
-                            Password = "$2a$13$nTigiZbg3zx1TIUUgddmwuLEgjRr7JR4x5UvY68tZyzQCIct.iRsG",
+                            Password = "$2a$13$kMOs8dDZPdOkb5Uctm9Dzuehxeg85LnSDroUGpum2EMfpGmyNoSca",
                             PhoneNumber = "+37378009584",
                             Roles = new[] { 0 },
-                            UpdatedAt = new DateTime(2024, 5, 17, 23, 18, 0, 67, DateTimeKind.Local).AddTicks(3480),
+                            UpdatedAt = new DateTime(2024, 5, 19, 10, 6, 25, 139, DateTimeKind.Local).AddTicks(4412),
                             Username = "admin"
                         });
                 });
