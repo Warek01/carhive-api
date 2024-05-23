@@ -1,7 +1,6 @@
 namespace FafCarsApi.Models.Dto;
 
-public class UpdateListingDto
-{
+public class UpdateListingDto {
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
   public double Price { get; set; }
@@ -14,5 +13,6 @@ public class UpdateListingDto
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? Year { get; set; }
-  public FileDto? PreviewImage { get; set; }
+  public FileDto? Preview { get; set; }
+  public List<FileDto> Images { get; set; } = new();
 }

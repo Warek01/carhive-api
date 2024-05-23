@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -47,7 +48,8 @@ namespace FafCarsApi.Migrations
                     wheel_size = table.Column<int>(type: "integer", nullable: true),
                     mileage = table.Column<int>(type: "integer", nullable: true),
                     year = table.Column<int>(type: "integer", nullable: true),
-                    preview_file_name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    preview = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    images = table.Column<List<string>>(type: "text[]", nullable: false),
                     publisher_id = table.Column<Guid>(type: "uuid", nullable: false),
                     deleted_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: true),
                     created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -67,12 +69,22 @@ namespace FafCarsApi.Migrations
             migrationBuilder.InsertData(
                 table: "users",
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
-                values: new object[] { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 19, 10, 6, 25, 137, DateTimeKind.Local).AddTicks(1756), null, "alexandrudobrojan@gmail.com", "$2a$13$kMOs8dDZPdOkb5Uctm9Dzuehxeg85LnSDroUGpum2EMfpGmyNoSca", "+37378009584", new[] { 0 }, new DateTime(2024, 5, 19, 10, 6, 25, 139, DateTimeKind.Local).AddTicks(4412), "admin" });
+                values: new object[] { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 23, 16, 35, 50, 650, DateTimeKind.Local).AddTicks(4750), null, "alexandrudobrojan@gmail.com", "$2a$13$MeBf0FZpL2EYiGdPmw6ateVeda2mtC7kS7ujAQh2SzSdxaQ2cAtFe", "+37378009584", new[] { 0 }, new DateTime(2024, 5, 23, 16, 35, 50, 659, DateTimeKind.Local).AddTicks(8917), "admin" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_listings_created_at",
+                table: "listings",
+                column: "created_at");
 
             migrationBuilder.CreateIndex(
                 name: "IX_listings_publisher_id",
                 table: "listings",
                 column: "publisher_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_users_created_at",
+                table: "users",
+                column: "created_at");
 
             migrationBuilder.CreateIndex(
                 name: "IX_users_username",

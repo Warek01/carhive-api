@@ -3,22 +3,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Models;
 
-public partial class FafCarsDbContext : DbContext
-{
-  public FafCarsDbContext()
-  {
-  }
+public partial class FafCarsDbContext : DbContext {
+  public FafCarsDbContext() { }
 
   public FafCarsDbContext(DbContextOptions<FafCarsDbContext> options)
-    : base(options)
-  {
-  }
+    : base(options) { }
 
   public virtual DbSet<Listing> Listings { get; set; }
   public virtual DbSet<User> Users { get; set; }
 
-  protected override void OnModelCreating(ModelBuilder modelBuilder)
-  {
+  protected override void OnModelCreating(ModelBuilder modelBuilder) {
     modelBuilder.Entity<Listing>()
       .Property(e => e.Id)
       .HasDefaultValueSql("uuid_generate_v4()");
@@ -30,6 +24,9 @@ public partial class FafCarsDbContext : DbContext
     modelBuilder.Entity<Listing>()
       .Property(e => e.UpdatedAt)
       .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+    modelBuilder.Entity<Listing>()
+      .HasIndex(e => e.CreatedAt);
 
     modelBuilder.Entity<User>()
       .Property(e => e.Id)
@@ -51,6 +48,9 @@ public partial class FafCarsDbContext : DbContext
     modelBuilder.Entity<User>()
       .HasIndex(e => e.Username)
       .IsUnique();
+
+    modelBuilder.Entity<User>()
+      .HasIndex(e => e.CreatedAt);
 
     modelBuilder.Entity<User>()
       .HasData(User.InitialData);

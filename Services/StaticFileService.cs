@@ -1,23 +1,20 @@
+using System.Text;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.Extensions.FileProviders;
 
 namespace FafCarsApi.Services;
 
-public class StaticFileService
-{
+public class StaticFileService {
   private static readonly string _root = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
-  public StaticFileService()
-  {
+  public StaticFileService() {
     if (!Directory.Exists(_root))
       Directory.CreateDirectory(_root);
   }
 
-  public static void SetupStaticFileServing(WebApplication app)
-  {
+  public static void SetupStaticFileServing(WebApplication app) {
     app.UseFileServer();
-    app.UseStaticFiles(new StaticFileOptions
-    {
+    app.UseStaticFiles(new StaticFileOptions {
       RequestPath = "/api/v1/file",
       HttpsCompression = HttpsCompressionMode.Compress,
       ServeUnknownFileTypes = false,
@@ -25,10 +22,13 @@ public class StaticFileService
     });
   }
 
-  public void Create(string filename, byte[] bytes)
-  {
-    File.WriteAllBytes(
-      Path.Combine(_root, filename),
+  public static async Task Create(string fileName, string body) {
+    await Create(fileName, Encoding.UTF8.GetBytes(body));
+  }
+
+  public static async Task Create(string fileName, byte[] bytes) {
+    await File.WriteAllBytesAsync(
+      Path.Combine(_root, fileName),
       bytes
     );
   }

@@ -1,9 +1,9 @@
-﻿using FafCarsApi.Models.Entities;
+﻿using AutoMapper;
+using FafCarsApi.Models.Entities;
 
 namespace FafCarsApi.Models.Dto;
 
-public class ListingDto
-{
+public class ListingDto {
   public Guid Id { get; set; }
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
@@ -19,39 +19,28 @@ public class ListingDto
   public int? Year { get; set; }
   public DateTime UpdatedAt { get; set; }
   public DateTime CreatedAt { get; set; }
-  public DateTime? DeletedAt { get; set; }
   public UserDto? Publisher { get; set; }
-  public string? PreviewFileName { get; set; }
+  public string? Preview { get; set; }
+  public List<string> Images { get; set; } = new();
 
   // From listings -----------------------------------------
+  public static ListingDto FromListing(Listing l) {
+    var config = new MapperConfiguration(
+      cfg =>
+        cfg.CreateMap<Listing, ListingDto>()
+          .ForMember(dest => dest.Publisher, opt => opt.Ignore())
+    );
+    var mapper = config.CreateMapper();
 
-  public static ListingDto FromListing(Listing l)
-  {
-    return new ListingDto
-    {
-      Id = l.Id,
-      BrandName = l.BrandName,
-      ModelName = l.ModelName,
-      Clearance = l.Clearance,
-      Horsepower = l.Horsepower,
-      EngineType = l.EngineType,
-      EngineVolume = l.EngineVolume,
-      WheelSize = l.WheelSize,
-      Color = l.Color,
-      Mileage = l.Mileage,
-      Price = l.Price,
-      Type = l.Type,
-      Year = l.Year,
-      CreatedAt = l.CreatedAt,
-      DeletedAt = l.DeletedAt,
-      UpdatedAt = l.UpdatedAt,
-      PreviewFileName = l.PreviewFileName,
-      Publisher = UserDto.FromUser(l.Publisher)
-    };
+    var dto = new ListingDto();
+    mapper.Map(l, dto);
+
+    dto.Publisher = UserDto.FromUser(l.Publisher);
+
+    return dto;
   }
 
-  public static ListingDto FromListingWithoutPublisher(Listing l)
-  {
+  public static ListingDto FromListingWithoutPublisher(Listing l) {
     ListingDto dto = FromListing(l);
 
     dto.Publisher = null;

@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FafCarsApi.Models.Entities;
 
 [Table("listings")]
-public class Listing
-{
+public class Listing {
   [Key] [Column("id")] public Guid Id { get; set; }
 
   [Column("brand")] [StringLength(255)] public string BrandName { get; set; } = null!;
@@ -46,12 +45,14 @@ public class Listing
   [Range(0, int.MaxValue)]
   public int? Year { get; set; }
 
-  [Column("preview_file_name")]
+  [Column("preview")]
   [StringLength(255)]
-  public string? PreviewFileName { get; set; }
-  
+  public string? Preview { get; set; }
+
+  [Column("images")] public List<string> Images { get; set; } = new();
+
   [Column("publisher_id")] public Guid PublisherId { get; set; }
-  
+
   [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
 
