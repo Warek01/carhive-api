@@ -1,7 +1,6 @@
 ﻿using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
-using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,16 +11,14 @@ namespace FafCarsApi.Controllers;
 [ApiController]
 [ApiVersion(1)]
 [Route("api/v{v:apiVersion}/user")]
-public class UserController : Controller
-{
-  private readonly UserService _userService;
+public class UserController : Controller {
   private readonly ILogger<UserController> _logger;
+  private readonly UserService _userService;
 
   public UserController(
     UserService userService,
     ILogger<UserController> logger
-  )
-  {
+  ) {
     _userService = userService;
     _logger = logger;
   }
@@ -29,19 +26,17 @@ public class UserController : Controller
   [Authorize(Roles = "Admin")]
   [HttpGet]
   [Route("{userId:Guid}")]
-  public async Task<ActionResult<UserDto>> GetUser(Guid userId)
-  {
-    User? user = await _userService.FindUser(userId);
+  public async Task<ActionResult<UserDto>> GetUser(Guid userId) {
+    var user = await _userService.FindUser(userId);
     if (user == null) return NotFound();
     return Ok(UserDto.FromUser(user));
   }
 
   [Authorize(Roles = "Admin")]
   [HttpGet]
-  public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination)
-  {
-    IQueryable<User> usersQuery = _userService.GetUsers();
-    int count = await usersQuery.CountAsync();
+  public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
+    var usersQuery = _userService.GetUsers();
+    var count = await usersQuery.CountAsync();
     IList<UserDto> users = await usersQuery
       .OrderByDescending(u => u.CreatedAt)
       .Skip(pagination.Take * pagination.Page)
@@ -49,8 +44,7 @@ public class UserController : Controller
       .Select(u => UserDto.FromUser(u))
       .ToListAsync();
 
-    return Ok(new PaginatedResultDto<UserDto>
-    {
+    return Ok(new PaginatedResultDto<UserDto> {
       Items = users,
       TotalItems = count
     });
@@ -59,8 +53,7 @@ public class UserController : Controller
   [HttpDelete]
   [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
-  public async Task<OperationResultDto> DeleteUser(Guid userId)
-  {
+  public async Task<OperationResultDto> DeleteUser(Guid userId) {
     _logger.LogInformation($"Deleted user {userId}");
     return await _userService.DeleteUser(userId);
   }
@@ -68,9 +61,8 @@ public class UserController : Controller
   [HttpPatch]
   [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
-  public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto)
-  {
-    User? user = await _userService.FindUser(userId);
+  public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto) {
+    var user = await _userService.FindUser(userId);
 
     if (user == null)
       return NotFound();
@@ -81,8 +73,7 @@ public class UserController : Controller
 
   [HttpPost]
   [Authorize(Roles = "Admin")]
-  public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto)
-  {
+  public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto) {
     if (await _userService.FindUserByUsername(createDto.Username) != null)
       return Conflict();
 

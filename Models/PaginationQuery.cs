@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FafCarsApi.Models;
 
-public class PaginationQuery
-{
+public class PaginationQuery {
   [FromQuery(Name = "page")]
   [Range(0, int.MaxValue)]
   [DefaultValue(0)]
@@ -15,7 +14,6 @@ public class PaginationQuery
   [Range(0, int.MaxValue)]
   [DefaultValue(10)]
   public int Take { get; set; } = 10;
-  
-  [FromQuery(Name = "order")]
-  public string? Order { get; set; }
+
+  [FromQuery(Name = "order")] public string? Order { get; set; }
 }

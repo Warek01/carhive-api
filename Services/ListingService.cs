@@ -47,7 +47,7 @@ public partial class ListingService(
 
   public async Task UpdateListing(Listing listing, UpdateListingDto updateDto) {
     var config = new MapperConfiguration(cfg => cfg.CreateMap<UpdateListingDto, Listing>());
-    IMapper mapper = config.CreateMapper();
+    var mapper = config.CreateMapper();
     mapper.Map(updateDto, listing);
     listing.UpdatedAt = DateTime.UtcNow;
     await dbContext.SaveChangesAsync();
@@ -57,12 +57,12 @@ public partial class ListingService(
     var listing = new Listing();
 
     if (createDto.Preview != null) {
-      string generatedFileName = await CreateImage(createDto.Preview.FileName, createDto.Preview.Base64Body);
+      var generatedFileName = await CreateImage(createDto.Preview.FileName, createDto.Preview.Base64Body);
       listing.Preview = generatedFileName;
     }
 
-    foreach (FileDto image in createDto.Images) {
-      string generatedFileName = await CreateImage(image.FileName, image.Base64Body);
+    foreach (var image in createDto.Images) {
+      var generatedFileName = await CreateImage(image.FileName, image.Base64Body);
       listing.Images.Add(generatedFileName);
     }
 
@@ -73,10 +73,10 @@ public partial class ListingService(
           opt => opt.Ignore()
         )
     );
-    IMapper mapper = config.CreateMapper();
+    var mapper = config.CreateMapper();
     mapper.Map(createDto, listing);
 
-    User publisher = (await dbContext.Users.FindAsync(publisherId))!;
+    var publisher = (await dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
 
@@ -87,12 +87,12 @@ public partial class ListingService(
   private static async Task<string> CreateImage(string fileName, string base64Body) {
     var regex = Base64ImagePrefixRegex();
 
-    string b64 = regex.Replace(
+    var b64 = regex.Replace(
       base64Body,
       string.Empty
     );
 
-    string generatedFileName = $"{Guid.NewGuid()}.{Path.GetExtension(fileName)[1..]}";
+    var generatedFileName = $"{Guid.NewGuid()}.{Path.GetExtension(fileName)[1..]}";
 
     await StaticFileService.Create(generatedFileName, b64);
     return generatedFileName;

@@ -2,7 +2,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using FafCarsApi.Models;
 using FafCarsApi.Models.Entities;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -10,12 +9,9 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 
 namespace FafCarsApi.Services;
 
-public class AuthService(IConfiguration config, ILogger<AuthService> logger)
-{
-  public static TokenValidationParameters GetTokenValidationParameters(IConfiguration config)
-  {
-    return new TokenValidationParameters
-    {
+public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
+  public static TokenValidationParameters GetTokenValidationParameters(IConfiguration config) {
+    return new TokenValidationParameters {
       NameClaimType = "sub",
       RoleClaimType = "role",
       ValidIssuer = config["Jwt:Issuer"],
@@ -30,68 +26,59 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger)
       RequireExpirationTime = true,
       RequireSignedTokens = true,
       LogValidationExceptions = true,
-      LogTokenId = true,
+      LogTokenId = true
     };
   }
 
-  public bool ValidatePassword(User user, string password)
-  {
+  public bool ValidatePassword(User user, string password) {
     return BCrypt.Net.BCrypt.EnhancedVerify(password, user.Password);
   }
 
-  public ClaimsPrincipal? ValidateToken(string token)
-  {
+  public ClaimsPrincipal? ValidateToken(string token) {
     var tokenHandler = new JwtSecurityTokenHandler();
     var parameters = GetTokenValidationParameters(config);
     parameters.ValidateLifetime = false;
 
-    try
-    {
-      return tokenHandler.ValidateToken(token, parameters, out SecurityToken _);
+    try {
+      return tokenHandler.ValidateToken(token, parameters, out var _);
     }
-    catch (Exception ex)
-    {
+    catch (Exception ex) {
       logger.LogInformation(ex.ToString());
       return null;
     }
   }
 
-  public string GenerateRefreshToken()
-  {
+  public string GenerateRefreshToken() {
     var randomNumber = new byte[32];
     using var rng = RandomNumberGenerator.Create();
     rng.GetBytes(randomNumber);
     return Convert.ToBase64String(randomNumber);
   }
 
-  public List<Claim> GetUserClaims(User user)
-  {
-    var claims = new List<Claim>
-    {
-      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-      new Claim(JwtRegisteredClaimNames.Name, user.Username),
-      new Claim(JwtRegisteredClaimNames.Email, user.Email),
-      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+  public List<Claim> GetUserClaims(User user) {
+    var claims = new List<Claim> {
+      new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+      new(JwtRegisteredClaimNames.Name, user.Username),
+      new(JwtRegisteredClaimNames.Email, user.Email),
+      new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     };
 
     if (user.PhoneNumber != null)
       claims.Add(new Claim("phone", user.PhoneNumber));
 
-    foreach (UserRole role in user.Roles)
+    foreach (var role in user.Roles)
       claims.Add(new Claim("role", role.ToString()));
 
     return claims;
   }
 
-  public string GenerateAccessToken(List<Claim> claims)
-  {
-    string issuer = config["Jwt:Issuer"]!;
-    string audience = config["Jwt:Audience"]!;
+  public string GenerateAccessToken(List<Claim> claims) {
+    var issuer = config["Jwt:Issuer"]!;
+    var audience = config["Jwt:Audience"]!;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));
-    int tokenTtl = int.Parse(config["JWT:TTL"]!);
+    var tokenTtl = int.Parse(config["JWT:TTL"]!);
 
-    var tokenDescriptor = new SecurityTokenDescriptor
-    {
+    var tokenDescriptor = new SecurityTokenDescriptor {
       Subject = new ClaimsIdentity(claims),
       Expires = DateTime.UtcNow.AddMinutes(tokenTtl),
       Issuer = issuer,
@@ -99,12 +86,11 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger)
       SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature)
     };
     var tokenHandler = new JwtSecurityTokenHandler();
-    SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+    var token = tokenHandler.CreateToken(tokenDescriptor);
     return tokenHandler.WriteToken(token);
   }
 
-  public static void SetupAuthorization(WebApplication app)
-  {
+  public static void SetupAuthorization(WebApplication app) {
     app.UseAuthentication();
     app.UseRouting();
     JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();

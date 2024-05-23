@@ -41,7 +41,7 @@ public class ListingDto {
   }
 
   public static ListingDto FromListingWithoutPublisher(Listing l) {
-    ListingDto dto = FromListing(l);
+    var dto = FromListing(l);
 
     dto.Publisher = null;
 

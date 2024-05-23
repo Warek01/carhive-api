@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Models;
 
-public partial class FafCarsDbContext : DbContext {
+public class FafCarsDbContext : DbContext {
   public FafCarsDbContext() { }
 
   public FafCarsDbContext(DbContextOptions<FafCarsDbContext> options)

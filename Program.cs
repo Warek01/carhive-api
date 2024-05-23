@@ -8,17 +8,14 @@ using Serilog;
 
 namespace FafCarsApi;
 
-public static class Program
-{
+public static class Program {
   private static WebApplicationBuilder _builder = null!;
 
-  public static void Main(string[] args)
-  {
+  public static void Main(string[] args) {
     _builder = WebApplication.CreateBuilder(args);
 
     _builder.Host.UseSerilog(
-      (context, c) =>
-      {
+      (context, c) => {
         c.ReadFrom.Configuration(context.Configuration);
         c.MinimumLevel.Information();
         c.WriteTo.Console();
@@ -28,20 +25,17 @@ public static class Program
     _builder.Services.AddControllers();
     _builder.Services.AddSingleton<IConfiguration>(_builder.Configuration);
 
-    _builder.Services.AddApiVersioning(options =>
-    {
+    _builder.Services.AddApiVersioning(options => {
       options.DefaultApiVersion = new ApiVersion(1);
       options.ReportApiVersions = true;
       options.AssumeDefaultVersionWhenUnspecified = true;
       options.ApiVersionReader = new UrlSegmentApiVersionReader();
-    }).AddApiExplorer(options =>
-    {
+    }).AddApiExplorer(options => {
       options.GroupNameFormat = "'v'V";
       options.SubstituteApiVersionInUrl = true;
     });
 
-    _builder.Services.AddDbContext<FafCarsDbContext>(options =>
-    {
+    _builder.Services.AddDbContext<FafCarsDbContext>(options => {
       options.UseNpgsql(_builder.Configuration.GetConnectionString("Default"));
     });
 
@@ -56,8 +50,7 @@ public static class Program
     app.UseSwaggerUI();
     app.UseHttpsRedirection();
     StaticFileService.SetupStaticFileServing(app);
-    app.UseCors(options =>
-    {
+    app.UseCors(options => {
       options.AllowAnyOrigin();
       options.AllowAnyHeader();
       options.AllowAnyMethod();
@@ -68,63 +61,52 @@ public static class Program
     app.Run();
   }
 
-  private static void SetupAuthentication()
-  {
-    _builder.Services.AddAuthentication(options =>
-    {
+  private static void SetupAuthentication() {
+    _builder.Services.AddAuthentication(options => {
       options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
-    }).AddJwtBearer(options =>
-    {
+    }).AddJwtBearer(options => {
       options.TokenValidationParameters = AuthService.GetTokenValidationParameters(_builder.Configuration);
       options.MapInboundClaims = false;
     });
     _builder.Services.AddAuthorization();
   }
 
-  private static void SetupSwagger()
-  {
+  private static void SetupSwagger() {
     _builder.Services.AddEndpointsApiExplorer();
-    _builder.Services.AddSwaggerGen(options =>
-    {
-      options.SwaggerDoc("v1", new OpenApiInfo
-      {
+    _builder.Services.AddSwaggerGen(options => {
+      options.SwaggerDoc("v1", new OpenApiInfo {
         Version = "v1",
         Title = "FAF cars API",
         Description = "API for TUM web lab 7",
-        Contact = new OpenApiContact
-        {
+        Contact = new OpenApiContact {
           Name = "Alexandru Dobrojan",
           Email = "alexandrudobrojan@gmail.com",
           Url = new Uri("https://github.com/Warek01/faf-cars-api.git")
         }
       });
 
-      OpenApiSecurityScheme securityDefinition = new OpenApiSecurityScheme
-      {
+      var securityDefinition = new OpenApiSecurityScheme {
         Name = "Bearer",
         BearerFormat = "JWT",
         Scheme = "bearer",
         Description = "Specify the authorization token.",
         In = ParameterLocation.Header,
-        Type = SecuritySchemeType.Http,
+        Type = SecuritySchemeType.Http
       };
       options.AddSecurityDefinition("jwt_auth", securityDefinition);
 
-      OpenApiSecurityScheme securityScheme = new OpenApiSecurityScheme
-      {
-        Reference = new OpenApiReference()
-        {
+      var securityScheme = new OpenApiSecurityScheme {
+        Reference = new OpenApiReference {
           Id = "jwt_auth",
           Type = ReferenceType.SecurityScheme
         }
       };
-      OpenApiSecurityRequirement securityRequirements = new OpenApiSecurityRequirement
-      {
-        { securityScheme, new string[] { } },
+      var securityRequirements = new OpenApiSecurityRequirement {
+        { securityScheme, new string[] { } }
       };
       options.AddSecurityRequirement(securityRequirements);
     });
