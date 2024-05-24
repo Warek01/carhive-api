@@ -2,6 +2,7 @@ using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
@@ -24,6 +25,10 @@ public static class Program {
 
     _builder.Services.AddControllers();
     _builder.Services.AddSingleton<IConfiguration>(_builder.Configuration);
+    _builder.Services.Configure<KestrelServerOptions>(o => {
+      o.Limits.MaxRequestBodySize = 50_000_000;
+      o.Limits.MaxRequestLineSize = 8192;
+    });
 
     _builder.Services.AddApiVersioning(options => {
       options.DefaultApiVersion = new ApiVersion(1);
@@ -41,7 +46,7 @@ public static class Program {
 
     SetupAuthentication();
     SetupSwagger();
-    AppServices.Register(_builder);
+    AppServicesList.Register(_builder);
 
     var app = _builder.Build();
 

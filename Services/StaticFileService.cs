@@ -5,11 +5,11 @@ using Microsoft.Extensions.FileProviders;
 namespace FafCarsApi.Services;
 
 public class StaticFileService {
-  private static readonly string _root = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+  public static readonly string Root = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
 
   public StaticFileService() {
-    if (!Directory.Exists(_root))
-      Directory.CreateDirectory(_root);
+    if (!Directory.Exists(Root))
+      Directory.CreateDirectory(Root);
   }
 
   public static void SetupStaticFileServing(WebApplication app) {
@@ -18,7 +18,7 @@ public class StaticFileService {
       RequestPath = "/api/v1/file",
       HttpsCompression = HttpsCompressionMode.Compress,
       ServeUnknownFileTypes = false,
-      FileProvider = new PhysicalFileProvider(_root)
+      FileProvider = new PhysicalFileProvider(Root)
     });
   }
 
@@ -28,7 +28,7 @@ public class StaticFileService {
 
   public static async Task Create(string fileName, byte[] bytes) {
     await File.WriteAllBytesAsync(
-      Path.Combine(_root, fileName),
+      Path.Combine(Root, fileName),
       bytes
     );
   }

@@ -1,16 +1,16 @@
 ﻿namespace FafCarsApi.Services;
 
-public static class AppServices {
-  private static readonly List<Type> _services = new() {
+public static class AppServicesList {
+  private static readonly List<Type> Services = [
     typeof(ListingService),
     typeof(UserService),
     typeof(AuthService),
-    typeof(StaticFileService)
-  };
+    typeof(StaticFileService),
+  ];
 
 
   public static void Register(WebApplicationBuilder builder) {
-    foreach (var serviceType in _services)
+    foreach (var serviceType in Services)
       builder.Services.AddScoped(serviceType);
   }
 }

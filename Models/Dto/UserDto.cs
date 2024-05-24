@@ -9,14 +9,12 @@ public class UserDto {
   public string Email { get; set; } = null!;
   public DateTime CreatedAt { get; set; }
 
-  public static UserDto FromUser(User u) {
-    var config = new MapperConfiguration(
-      cfg => cfg.CreateMap<User, UserDto>()
-    );
+  public static UserDto FromUser(User user) {
+    var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDto>());
     var mapper = config.CreateMapper();
     var dto = new UserDto();
 
-    mapper.Map(u, dto);
+    mapper.Map(user, dto);
 
     return dto;
   }

@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using AutoMapper;
+﻿using AutoMapper;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
@@ -7,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Services;
 
-public partial class ListingService(
+public class ListingService(
   FafCarsDbContext dbContext,
-  ILogger<ListingService> logger,
-  StaticFileService fileService) {
+  ILogger<ListingService> logger
+) {
   public async Task<int> GetActiveListingsCount() {
     return await dbContext.Listings
       .CountAsync(l => l.DeletedAt == null);
@@ -56,25 +55,33 @@ public partial class ListingService(
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId) {
     var listing = new Listing();
 
-    if (createDto.Preview != null) {
-      var generatedFileName = await CreateImage(createDto.Preview.FileName, createDto.Preview.Base64Body);
-      listing.Preview = generatedFileName;
-    }
-
-    foreach (var image in createDto.Images) {
-      var generatedFileName = await CreateImage(image.FileName, image.Base64Body);
-      listing.Images.Add(generatedFileName);
-    }
-
     var config = new MapperConfiguration(c =>
       c.CreateMap<CreateListingDto, Listing>()
         .ForMember(
           dest => dest.Images,
           opt => opt.Ignore()
         )
+        .ForMember(
+          dest => dest.Preview,
+          opt => opt.Ignore()
+        )
     );
     var mapper = config.CreateMapper();
     mapper.Map(createDto, listing);
+
+    if (createDto.Preview != null) {
+      var (_, base64Body) = createDto.Preview;
+      string generatedFileName = Guid.NewGuid() + ".webp";
+      await ImageHelper.Create(generatedFileName, base64Body);
+      listing.Preview = generatedFileName;
+    }
+
+    foreach (var image in createDto.Images) {
+      var (_, base64Body) = image;
+      string generatedFileName = Guid.NewGuid() + ".webp";
+      await ImageHelper.Create(generatedFileName, base64Body);
+      listing.Images.Add(generatedFileName);
+    }
 
     var publisher = (await dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
@@ -83,21 +90,4 @@ public partial class ListingService(
     await dbContext.Listings.AddAsync(listing);
     await dbContext.SaveChangesAsync();
   }
-
-  private static async Task<string> CreateImage(string fileName, string base64Body) {
-    var regex = Base64ImagePrefixRegex();
-
-    var b64 = regex.Replace(
-      base64Body,
-      string.Empty
-    );
-
-    var generatedFileName = $"{Guid.NewGuid()}.{Path.GetExtension(fileName)[1..]}";
-
-    await StaticFileService.Create(generatedFileName, b64);
-    return generatedFileName;
-  }
-
-  [GeneratedRegex(@"^(data:image\/[a-zA-Z]+;base64,|base64,)", RegexOptions.IgnoreCase)]
-  private static partial Regex Base64ImagePrefixRegex();
 }

@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FafCarsApi.Migrations
 {
     /// <inheritdoc />
@@ -69,7 +71,11 @@ namespace FafCarsApi.Migrations
             migrationBuilder.InsertData(
                 table: "users",
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
-                values: new object[] { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 23, 16, 35, 50, 650, DateTimeKind.Local).AddTicks(4750), null, "alexandrudobrojan@gmail.com", "$2a$13$MeBf0FZpL2EYiGdPmw6ateVeda2mtC7kS7ujAQh2SzSdxaQ2cAtFe", "+37378009584", new[] { 0 }, new DateTime(2024, 5, 23, 16, 35, 50, 659, DateTimeKind.Local).AddTicks(8917), "admin" });
+                values: new object[,]
+                {
+                    { new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"), new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6870), null, "user@gmail.com", "$2a$13$S0rwoJ3JwL0VqumRBbct/OqWqHkJE3euNVp1zPUVROto/rIQD7jjW", "+37378111222", new[] { 0 }, new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6940), "user" },
+                    { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 24, 13, 14, 10, 761, DateTimeKind.Local).AddTicks(9051), null, "admin@gmail.com", "$2a$13$.d1SFHqpBvxOHW9U7hF2jOnNoa/8/Ya5vn55qbEcU6dgO.QSQ.FTK", "+37378000111", new[] { 0 }, new DateTime(2024, 5, 24, 13, 14, 10, 771, DateTimeKind.Local).AddTicks(3371), "admin" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_listings_created_at",
