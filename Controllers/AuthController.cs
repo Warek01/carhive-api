@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using Asp.Versioning;
 using FafCarsApi.Models.Dto;
+using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +12,7 @@ namespace FafCarsApi.Controllers;
 [ApiController]
 [ApiVersion(1)]
 [AllowAnonymous]
-[Route("api/v{v:apiVersion}/auth")]
+[Route("api/v{v:apiVersion}/[controller]")]
 public class AuthController(
   AuthService authService,
   UserService userService
@@ -19,7 +21,7 @@ public class AuthController(
 
   [HttpPost("login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
-    var user = await userService.FindUserByUsername(loginDto.Username);
+    User? user = await userService.FindUserByUsername(loginDto.Username);
 
     if (user == null)
       return NotFound();
@@ -27,9 +29,9 @@ public class AuthController(
     if (!authService.ValidatePassword(user, loginDto.Password))
       return Unauthorized();
 
-    var claims = authService.GetUserClaims(user);
-    var token = authService.GenerateAccessToken(claims);
-    var refreshToken = authService.GenerateRefreshToken();
+    List<Claim> claims = authService.GetUserClaims(user);
+    string token = authService.GenerateAccessToken(claims);
+    string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
       RefreshToken = refreshToken
@@ -42,16 +44,15 @@ public class AuthController(
 
   [HttpPost("register")]
   public async Task<ActionResult<JwtResponseDto>> Register([FromBody] RegisterDto registerDto) {
-    var user = await userService.FindUserByUsername(registerDto.Username);
+    User? user = await userService.FindUserByUsername(registerDto.Username);
 
     if (user != null)
       return Conflict();
 
-    var newUser = await userService.RegisterUser(registerDto);
-
-    var claims = authService.GetUserClaims(newUser);
-    var token = authService.GenerateAccessToken(claims);
-    var refreshToken = authService.GenerateRefreshToken();
+    User newUser = await userService.RegisterUser(registerDto);
+    List<Claim> claims = authService.GetUserClaims(newUser);
+    string token = authService.GenerateAccessToken(claims);
+    string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
       RefreshToken = refreshToken
@@ -64,13 +65,13 @@ public class AuthController(
 
   [HttpPost("refresh")]
   public async Task<ActionResult<JwtResponseDto>> Refresh([FromBody] JwtResponseDto responseDto) {
-    var principal = authService.ValidateToken(responseDto.Token);
+    ClaimsPrincipal? principal = authService.ValidateToken(responseDto.Token);
 
     if (principal == null)
       return BadRequest("invalid token");
 
-    var userId = Guid.Parse(principal.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    var user = await userService.FindUser(userId);
+    Guid userId = Guid.Parse(principal.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    User? user = await userService.FindUser(userId);
 
     if (user == null)
       return NotFound("user not found");
@@ -78,7 +79,7 @@ public class AuthController(
     if (_refreshTokens.ContainsKey(userId))
       return BadRequest("no token in tokens list");
 
-    var claims = principal.Claims
+    List<Claim> claims = principal.Claims
       .Where(c => c.Type != JwtRegisteredClaimNames.Aud &&
                   c.Type != JwtRegisteredClaimNames.Iss &&
                   c.Type != JwtRegisteredClaimNames.Nbf &&
@@ -86,7 +87,7 @@ public class AuthController(
                   c.Type != JwtRegisteredClaimNames.Exp)
       .ToList();
 
-    var newToken = authService.GenerateAccessToken(claims);
+    string newToken = authService.GenerateAccessToken(claims);
 
     return Ok(new JwtResponseDto {
       Token = newToken,

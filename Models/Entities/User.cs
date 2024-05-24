@@ -15,7 +15,8 @@ public class User {
       ),
       Email = "admin@gmail.com",
       Roles = new[] {
-        UserRole.Admin
+        UserRole.Admin,
+        UserRole.ListingCreator,
       },
       CreatedAt = DateTime.Now,
       UpdatedAt = DateTime.Now,
@@ -58,13 +59,13 @@ public class User {
 
   public ICollection<Listing> Listings { get; set; } = null!;
 
-  [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("deleted_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
 
-  [Column("created_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("created_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime CreatedAt { get; set; }
 
-  [Column("updated_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("updated_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime UpdatedAt { get; set; }
 
   [Column("phone_number")]

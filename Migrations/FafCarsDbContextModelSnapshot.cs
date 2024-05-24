@@ -48,12 +48,12 @@ namespace FafCarsApi.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("EngineType")
@@ -105,7 +105,7 @@ namespace FafCarsApi.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("updated_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -136,12 +136,12 @@ namespace FafCarsApi.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("Email")
@@ -168,7 +168,7 @@ namespace FafCarsApi.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TIMESTAMP(0) WITHOUT TIME ZONE")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("updated_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -191,23 +191,23 @@ namespace FafCarsApi.Migrations
                         new
                         {
                             Id = new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"),
-                            CreatedAt = new DateTime(2024, 5, 24, 13, 14, 10, 761, DateTimeKind.Local).AddTicks(9051),
+                            CreatedAt = new DateTime(2024, 5, 24, 17, 44, 9, 661, DateTimeKind.Local).AddTicks(9104),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$.d1SFHqpBvxOHW9U7hF2jOnNoa/8/Ya5vn55qbEcU6dgO.QSQ.FTK",
+                            Password = "$2a$13$0BU.NAZqUcvIjVx1OnwfauxE0xG6.bGHj2BJWeMloWSNWW7bsK00u",
                             PhoneNumber = "+37378000111",
-                            Roles = new[] { 0 },
-                            UpdatedAt = new DateTime(2024, 5, 24, 13, 14, 10, 771, DateTimeKind.Local).AddTicks(3371),
+                            Roles = new[] { 0, 1 },
+                            UpdatedAt = new DateTime(2024, 5, 24, 17, 44, 9, 670, DateTimeKind.Local).AddTicks(9297),
                             Username = "admin"
                         },
                         new
                         {
                             Id = new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"),
-                            CreatedAt = new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6870),
+                            CreatedAt = new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5372),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$S0rwoJ3JwL0VqumRBbct/OqWqHkJE3euNVp1zPUVROto/rIQD7jjW",
+                            Password = "$2a$13$5SHWwftBwsXulZcu.tcC.Oc./FC9gh5.PFuCif4AGoemhtXjIFgLy",
                             PhoneNumber = "+37378111222",
                             Roles = new[] { 0 },
-                            UpdatedAt = new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6940),
+                            UpdatedAt = new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5477),
                             Username = "user"
                         });
                 });

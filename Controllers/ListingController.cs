@@ -2,6 +2,7 @@
 using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
+using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,19 +12,19 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("api/v{v:apiVersion}/listing")]
+[Route("api/v{v:apiVersion}/[controller]")]
 public class ListingController(ListingService listingService) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
     [FromQuery] PaginationQuery pagination,
     [FromQuery] string[] carTypes
   ) {
-    var listings = listingService.GetActiveListings();
+    IQueryable<Listing> listings = listingService.GetActiveListings();
 
     if (carTypes.Length > 0)
       listings = listings.Where(l => carTypes.Contains(l.Type));
 
-    var totalListings = await listings.CountAsync();
+    int totalListings = await listings.CountAsync();
 
     if (pagination.Order != null)
       listings = pagination.Order switch {
@@ -38,12 +39,12 @@ public class ListingController(ListingService listingService) : Controller {
       .Skip(pagination.Page * pagination.Take)
       .Take(pagination.Take);
 
-    return Ok(
-      new PaginatedResultDto<ListingDto> {
-        Items = await listings.Select(l => ListingDto.FromListing(l)).ToListAsync(),
-        TotalItems = totalListings
-      }
-    );
+    var result = new PaginatedResultDto<ListingDto> {
+      Items = await listings.Select(l => ListingDto.FromListing(l)).ToListAsync(),
+      TotalItems = totalListings
+    };
+
+    return Ok(result);
   }
 
   [HttpGet]

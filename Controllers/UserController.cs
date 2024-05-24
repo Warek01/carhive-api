@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
+using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,32 +11,36 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("api/v{v:apiVersion}/user")]
-public class UserController : Controller {
-  private readonly ILogger<UserController> _logger;
-  private readonly UserService _userService;
-
-  public UserController(
-    UserService userService,
-    ILogger<UserController> logger
-  ) {
-    _userService = userService;
-    _logger = logger;
-  }
-
-  [Authorize(Roles = "Admin")]
+[Route("api/v{v:apiVersion}/[controller]")]
+public class UserController(
+  UserService userService,
+  ILogger<UserController> logger
+) : Controller {
   [HttpGet]
   [Route("{userId:Guid}")]
+  [Authorize]
   public async Task<ActionResult<UserDto>> GetUser(Guid userId) {
-    var user = await _userService.FindUser(userId);
-    if (user == null) return NotFound();
-    return Ok(UserDto.FromUser(user));
+    User? queriedUser = await userService.FindUser(userId);
+
+    if (queriedUser == null)
+      return NotFound();
+
+    UserDto result = UserDto.FromUser(queriedUser);
+
+    bool isAdmin = User.HasClaim(c => c is { Type: "role", Value: "Admin" });
+
+    if (!isAdmin) {
+      result.Roles = null;
+      result.Email = null;
+    }
+
+    return Ok(result);
   }
 
   [Authorize(Roles = "Admin")]
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
-    var usersQuery = _userService.GetUsers();
+    var usersQuery = userService.GetUsers();
     var count = await usersQuery.CountAsync();
     IList<UserDto> users = await usersQuery
       .OrderByDescending(u => u.CreatedAt)
@@ -54,30 +59,32 @@ public class UserController : Controller {
   [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
   public async Task<OperationResultDto> DeleteUser(Guid userId) {
-    _logger.LogInformation($"Deleted user {userId}");
-    return await _userService.DeleteUser(userId);
+    logger.LogInformation($"Deleted user {userId}");
+    return await userService.DeleteUser(userId);
   }
 
   [HttpPatch]
   [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
   public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto) {
-    var user = await _userService.FindUser(userId);
+    var user = await userService.FindUser(userId);
 
     if (user == null)
       return NotFound();
 
-    await _userService.UpdateUser(user, updateDto);
+    await userService.UpdateUser(user, updateDto);
     return NoContent();
   }
 
   [HttpPost]
   [Authorize(Roles = "Admin")]
   public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto) {
-    if (await _userService.FindUserByUsername(createDto.Username) != null)
+    User? existingUser = await userService.FindUserByUsername(createDto.Username);
+    
+    if (existingUser != null)
       return Conflict();
 
-    await _userService.CreateUser(createDto);
+    await userService.CreateUser(createDto);
     return Created();
   }
 }

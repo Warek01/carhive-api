@@ -23,9 +23,9 @@ namespace FafCarsApi.Migrations
                     password = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     roles = table.Column<int[]>(type: "integer[]", nullable: false),
-                    deleted_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: true),
-                    created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    deleted_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
+                    created_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     phone_number = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
@@ -53,9 +53,9 @@ namespace FafCarsApi.Migrations
                     preview = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     images = table.Column<List<string>>(type: "text[]", nullable: false),
                     publisher_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    deleted_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: true),
-                    created_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(0) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    deleted_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
+                    created_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -73,8 +73,8 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"), new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6870), null, "user@gmail.com", "$2a$13$S0rwoJ3JwL0VqumRBbct/OqWqHkJE3euNVp1zPUVROto/rIQD7jjW", "+37378111222", new[] { 0 }, new DateTime(2024, 5, 24, 13, 14, 11, 302, DateTimeKind.Local).AddTicks(6940), "user" },
-                    { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 24, 13, 14, 10, 761, DateTimeKind.Local).AddTicks(9051), null, "admin@gmail.com", "$2a$13$.d1SFHqpBvxOHW9U7hF2jOnNoa/8/Ya5vn55qbEcU6dgO.QSQ.FTK", "+37378000111", new[] { 0 }, new DateTime(2024, 5, 24, 13, 14, 10, 771, DateTimeKind.Local).AddTicks(3371), "admin" }
+                    { new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"), new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5372), null, "user@gmail.com", "$2a$13$5SHWwftBwsXulZcu.tcC.Oc./FC9gh5.PFuCif4AGoemhtXjIFgLy", "+37378111222", new[] { 0 }, new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5477), "user" },
+                    { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 5, 24, 17, 44, 9, 661, DateTimeKind.Local).AddTicks(9104), null, "admin@gmail.com", "$2a$13$0BU.NAZqUcvIjVx1OnwfauxE0xG6.bGHj2BJWeMloWSNWW7bsK00u", "+37378000111", new[] { 0, 1 }, new DateTime(2024, 5, 24, 17, 44, 9, 670, DateTimeKind.Local).AddTicks(9297), "admin" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -53,13 +53,13 @@ public class Listing {
 
   [Column("publisher_id")] public Guid PublisherId { get; set; }
 
-  [Column("deleted_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("deleted_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
 
-  [Column("created_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("created_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime CreatedAt { get; set; }
 
-  [Column("updated_at", TypeName = "TIMESTAMP(0) WITHOUT TIME ZONE")]
+  [Column("updated_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime UpdatedAt { get; set; }
 
   public User Publisher { get; set; } = null!;
