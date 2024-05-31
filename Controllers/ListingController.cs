@@ -1,5 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Asp.Versioning;
+using AutoMapper;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
@@ -13,7 +14,7 @@ namespace FafCarsApi.Controllers;
 [ApiController]
 [ApiVersion(1)]
 [Route("api/v{v:apiVersion}/[controller]")]
-public class ListingController(ListingService listingService) : Controller {
+public class ListingController(ListingService listingService, IMapper mapper) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
     [FromQuery] PaginationQuery pagination,
@@ -40,7 +41,7 @@ public class ListingController(ListingService listingService) : Controller {
       .Take(pagination.Take);
 
     var result = new PaginatedResultDto<ListingDto> {
-      Items = await listings.Select(l => ListingDto.FromListing(l)).ToListAsync(),
+      Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
       TotalItems = totalListings
     };
 
@@ -53,7 +54,9 @@ public class ListingController(ListingService listingService) : Controller {
     var listing = await listingService.GetListing(listingId);
     if (listing == null) return NotFound();
 
-    return Ok(ListingDto.FromListing(listing));
+    ListingDto dto = mapper.Map<ListingDto>(listing);
+
+    return Ok(dto);
   }
 
   [HttpDelete]

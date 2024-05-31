@@ -22,29 +22,4 @@ public class ListingDto {
   public UserDto? Publisher { get; set; }
   public string? Preview { get; set; }
   public List<string> Images { get; set; } = new();
-
-  // From listings -----------------------------------------
-  public static ListingDto FromListing(Listing l) {
-    var config = new MapperConfiguration(
-      cfg =>
-        cfg.CreateMap<Listing, ListingDto>()
-          .ForMember(dest => dest.Publisher, opt => opt.Ignore())
-    );
-    var mapper = config.CreateMapper();
-
-    var dto = new ListingDto();
-    mapper.Map(l, dto);
-
-    dto.Publisher = UserDto.FromUser(l.Publisher);
-
-    return dto;
-  }
-
-  public static ListingDto FromListingWithoutPublisher(Listing l) {
-    var dto = FromListing(l);
-
-    dto.Publisher = null;
-
-    return dto;
-  }
 }

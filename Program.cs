@@ -23,6 +23,7 @@ public static class Program {
       }
     );
 
+    _builder.Services.AddAutoMapper(typeof(MappingProfile));
     _builder.Services.AddControllers();
     _builder.Services.AddSingleton<IConfiguration>(_builder.Configuration);
     _builder.Services.Configure<KestrelServerOptions>(o => {
@@ -46,7 +47,7 @@ public static class Program {
 
     SetupAuthentication();
     SetupSwagger();
-    AppServicesList.Register(_builder);
+    AppServices.Register(_builder);
 
     var app = _builder.Build();
 

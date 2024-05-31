@@ -10,14 +10,4 @@ public class UserDto {
   public string? PhoneNumber { get; set; }
   public List<UserRole>? Roles { get; set; }
   public DateTime CreatedAt { get; set; }
-
-  public static UserDto FromUser(User user) {
-    var config = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDto>());
-    var mapper = config.CreateMapper();
-    var dto = new UserDto();
-
-    mapper.Map(user, dto);
-
-    return dto;
-  }
 }

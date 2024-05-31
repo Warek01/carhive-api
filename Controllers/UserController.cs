@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using AutoMapper;
 using FafCarsApi.Models;
 using FafCarsApi.Models.Dto;
 using FafCarsApi.Models.Entities;
@@ -14,7 +15,8 @@ namespace FafCarsApi.Controllers;
 [Route("api/v{v:apiVersion}/[controller]")]
 public class UserController(
   UserService userService,
-  ILogger<UserController> logger
+  ILogger<UserController> logger,
+  IMapper mapper
 ) : Controller {
   [HttpGet]
   [Route("{userId:Guid}")]
@@ -25,7 +27,7 @@ public class UserController(
     if (queriedUser == null)
       return NotFound();
 
-    UserDto result = UserDto.FromUser(queriedUser);
+    UserDto result = mapper.Map<UserDto>(queriedUser);
 
     bool isAdmin = User.HasClaim(c => c is { Type: "role", Value: "Admin" });
 
@@ -46,7 +48,7 @@ public class UserController(
       .OrderByDescending(u => u.CreatedAt)
       .Skip(pagination.Take * pagination.Page)
       .Take(pagination.Take)
-      .Select(u => UserDto.FromUser(u))
+      .Select(u => mapper.Map<UserDto>(u))
       .ToListAsync();
 
     return Ok(new PaginatedResultDto<UserDto> {

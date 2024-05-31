@@ -1,6 +1,6 @@
 ﻿namespace FafCarsApi.Services;
 
-public static class AppServicesList {
+public static class AppServices {
   private static readonly List<Type> Services = [
     typeof(ListingService),
     typeof(UserService),
