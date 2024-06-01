@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FafCarsApi", "FafCarsApi.csproj", "{FC503AA9-2E93-475C-8E08-B2C63F3EE813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FafCarsApi", "FafCarsApi\FafCarsApi.csproj", "{FC503AA9-2E93-475C-8E08-B2C63F3EE813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
