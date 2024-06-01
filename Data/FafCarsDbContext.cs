@@ -1,7 +1,7 @@
-﻿using FafCarsApi.Models.Entities;
+﻿using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FafCarsApi.Models;
+namespace FafCarsApi.Data;
 
 public class FafCarsDbContext : DbContext {
   public FafCarsDbContext() { }

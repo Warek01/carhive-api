@@ -1,4 +1,4 @@
-namespace FafCarsApi.Models.Dto;
+namespace FafCarsApi.Dto;
 
 public class JwtResponseDto {
   public string Token { get; set; } = null!;

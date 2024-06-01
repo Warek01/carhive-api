@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FafCarsApi.Enums;
 
-namespace FafCarsApi.Models.Entities;
+namespace FafCarsApi.Models;
 
 [Table("users")]
 public class User {

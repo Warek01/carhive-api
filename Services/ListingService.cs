@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
+using FafCarsApi.Data;
+using FafCarsApi.Dto;
 using FafCarsApi.Models;
-using FafCarsApi.Models.Dto;
-using FafCarsApi.Models.Entities;
 using Microsoft.EntityFrameworkCore;
+using ImageHelper = FafCarsApi.Utilities.ImageHelper;
 
 namespace FafCarsApi.Services;
 

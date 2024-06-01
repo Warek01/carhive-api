@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace FafCarsApi.Models.Dto;
+namespace FafCarsApi.Dto;
 
 public class LoginDto {
   [DefaultValue("user")]

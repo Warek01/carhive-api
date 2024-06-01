@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Models.Dto;
+namespace FafCarsApi.Dto;
 
 public class FileDto {
   private const int MaxFileSize = 5 * 1024 * 1024 * 4 / 3; // ~5 mb in base64

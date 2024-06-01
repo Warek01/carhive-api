@@ -1,9 +1,9 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
+using FafCarsApi.Dto;
 using FafCarsApi.Models;
-using FafCarsApi.Models.Dto;
-using FafCarsApi.Models.Entities;
 using FafCarsApi.Services;
+using FafCarsApi.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

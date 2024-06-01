@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-using FafCarsApi.Models.Entities;
+﻿using FafCarsApi.Enums;
+using FafCarsApi.Models;
 
-namespace FafCarsApi.Models.Dto;
+namespace FafCarsApi.Dto;
 
 public class UserDto {
   public Guid Id { get; set; }

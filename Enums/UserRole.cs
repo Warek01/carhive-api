@@ -1,4 +1,4 @@
-namespace FafCarsApi.Models;
+namespace FafCarsApi.Enums;
 
 public enum UserRole {
   Admin,

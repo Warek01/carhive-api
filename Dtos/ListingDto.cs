@@ -1,6 +1,7 @@
-namespace FafCarsApi.Models.Dto;
+﻿namespace FafCarsApi.Dto;
 
-public class UpdateListingDto {
+public class ListingDto {
+  public Guid Id { get; set; }
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
   public double Price { get; set; }
@@ -8,11 +9,14 @@ public class UpdateListingDto {
   public int? Horsepower { get; set; }
   public string? EngineType { get; set; }
   public double? EngineVolume { get; set; }
-  public string? Color { get; set; } = null!;
+  public string? Color { get; set; }
   public int? Clearance { get; set; }
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? Year { get; set; }
-  public FileDto? Preview { get; set; }
-  public List<FileDto> Images { get; set; } = new();
+  public DateTime UpdatedAt { get; set; }
+  public DateTime CreatedAt { get; set; }
+  public UserDto? Publisher { get; set; }
+  public string? Preview { get; set; }
+  public List<string> Images { get; set; } = new();
 }

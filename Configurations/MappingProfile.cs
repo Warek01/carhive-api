@@ -1,8 +1,8 @@
 using AutoMapper;
-using FafCarsApi.Models.Dto;
-using FafCarsApi.Models.Entities;
+using FafCarsApi.Dto;
+using FafCarsApi.Models;
 
-namespace FafCarsApi.Models;
+namespace FafCarsApi.Configurations;
 
 public class MappingProfile : Profile {
   public MappingProfile() {

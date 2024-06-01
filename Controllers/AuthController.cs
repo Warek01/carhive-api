@@ -1,8 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Asp.Versioning;
-using FafCarsApi.Models.Dto;
-using FafCarsApi.Models.Entities;
+using FafCarsApi.Dto;
+using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-namespace FafCarsApi.Models.Dto;
+namespace FafCarsApi.Dto;
 
 public class RegisterDto {
   public string Username { get; set; } = null!;

@@ -4,7 +4,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.Processing;
 
-namespace FafCarsApi.Models;
+namespace FafCarsApi.Utilities;
 
 public static partial class ImageHelper {
   [GeneratedRegex(@"^(data:image\/[a-zA-Z]+;base64,|base64,)", RegexOptions.IgnoreCase)]
