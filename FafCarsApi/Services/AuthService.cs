@@ -40,7 +40,7 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     parameters.ValidateLifetime = false;
 
     try {
-      return tokenHandler.ValidateToken(token, parameters, out var _);
+      return tokenHandler.ValidateToken(token, parameters, out _);
     }
     catch (Exception ex) {
       logger.LogInformation(ex.ToString());
