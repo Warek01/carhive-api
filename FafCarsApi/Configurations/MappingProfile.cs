@@ -1,5 +1,5 @@
 using AutoMapper;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 
 namespace FafCarsApi.Configurations;

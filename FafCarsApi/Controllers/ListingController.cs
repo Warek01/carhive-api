@@ -1,7 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using FafCarsApi.Utilities;
@@ -13,7 +13,7 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("api/v{v:apiVersion}/[controller]")]
+[Route("Api/v{v:apiVersion}/[controller]")]
 public class ListingController(ListingService listingService, IMapper mapper) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(

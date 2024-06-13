@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class CreateListingDto {
   [DefaultValue("Toyota")]

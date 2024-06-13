@@ -4,7 +4,6 @@ using FafCarsApi.Enums;
 
 namespace FafCarsApi.Models;
 
-[Table("users")]
 public class User {
   public static readonly User[] InitialData = [
     new User {
@@ -44,32 +43,28 @@ public class User {
     }
   ];
 
-  [Key] [Column("id")] public Guid Id { get; set; }
+  [Key] public Guid Id { get; set; }
 
-  [Column("username")]
-  [StringLength(255)]
-  public string Username { get; set; } = null!;
+  [StringLength(255)] public string Username { get; set; } = null!;
 
-  [Column("password")]
-  [StringLength(60)]
-  public string Password { get; set; } = null!;
+  [StringLength(255)] public string Password { get; set; } = null!;
 
-  [Column("email")] [StringLength(255)] public string Email { get; set; } = null!;
+  [StringLength(255)] public string Email { get; set; } = null!;
 
-  [Column("roles")] public IList<UserRole> Roles { get; set; } = null!;
+  public IList<UserRole> Roles { get; set; } = [];
 
-  public ICollection<Listing> Listings { get; set; } = null!;
+  public IList<Listing> Listings { get; set; } = [];
 
-  [Column("deleted_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
+  [Column(TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
 
-  [Column("created_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
+  [Column(TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime CreatedAt { get; set; }
 
-  [Column("updated_at", TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
+  [Column(TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime UpdatedAt { get; set; }
 
-  [Column("phone_number")]
-  [StringLength(255)]
-  public string? PhoneNumber { get; set; }
+  [StringLength(255)] public string? PhoneNumber { get; set; }
+
+  public IList<Listing> Favorites { get; set; } = [];
 }

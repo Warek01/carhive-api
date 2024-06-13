@@ -1,4 +1,4 @@
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class UpdateListingDto {
   public string BrandName { get; set; } = null!;

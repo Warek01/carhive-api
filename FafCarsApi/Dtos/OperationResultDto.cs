@@ -1,4 +1,4 @@
-﻿namespace FafCarsApi.Dto;
+﻿namespace FafCarsApi.Dtos;
 
 public class OperationResultDto {
   public bool Success { get; set; } = true;

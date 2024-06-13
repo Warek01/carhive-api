@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
-using FafCarsApi.Models;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class UpdateUserDto {
   [MinLength(1)] public string Username { get; set; } = null!;

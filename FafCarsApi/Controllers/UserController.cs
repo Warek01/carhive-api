@@ -1,18 +1,19 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using FafCarsApi.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("api/v{v:apiVersion}/[controller]")]
+[Route("Api/v{v:apiVersion}/[controller]")]
 public class UserController(
   UserService userService,
   ILogger<UserController> logger,
@@ -82,11 +83,43 @@ public class UserController(
   [Authorize(Roles = "Admin")]
   public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto) {
     User? existingUser = await userService.FindUserByUsername(createDto.Username);
-    
+
     if (existingUser != null)
       return Conflict();
 
     await userService.CreateUser(createDto);
     return Created();
+  }
+
+  [HttpPost("Favorites")]
+  [Authorize]
+  public async Task<ActionResult> SetFavorites([FromBody] IList<Guid> favorites) {
+    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    User? user = await userService.FindUser(userId);
+
+    if (user == null)
+      return new NotFoundResult();
+
+    await userService.SetFavorites(user, favorites);
+    return Ok();
+  }
+
+  [HttpGet("Favorites")]
+  [Authorize]
+  public async Task<ActionResult> GetFavorites() {
+    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    User? user = await userService.FindUser(userId);
+
+    if (user == null)
+      return new NotFoundResult();
+
+    List<ListingDto> items = user.Favorites.Select(mapper.Map<ListingDto>).ToList();
+
+    var response = new PaginatedResultDto<ListingDto> {
+      Items = items,
+      TotalItems = items.Count
+    };
+
+    return Ok(response);
   }
 }

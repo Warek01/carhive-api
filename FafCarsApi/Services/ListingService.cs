@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FafCarsApi.Data;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Utilities.ImageHelper;
@@ -11,19 +11,24 @@ public class ListingService(
   FafCarsDbContext dbContext,
   ILogger<ListingService> logger
 ) {
-  public async Task<int> GetActiveListingsCount() {
-    return await dbContext.Listings
-      .CountAsync(l => l.DeletedAt == null);
-  }
-
-  public async Task<int> GetDeletedListingsCount() {
-    return await dbContext.Listings
-      .CountAsync(l => l.DeletedAt != null);
+  public async Task<Listing?> FindListing(Guid listingId) {
+    return await dbContext.Listings.FindAsync(listingId);
   }
 
   public IQueryable<Listing> GetActiveListings() {
     return dbContext.Listings
-      .Include(l => l.Publisher);
+      .Include(l => l.Publisher)
+      .Where(l => l.DeletedAt == null);
+  }
+
+  public IQueryable<Listing> GetInactiveListings() {
+    return dbContext.Listings
+      .Include(l => l.Publisher)
+      .Where(l => l.DeletedAt != null);
+  }
+
+  public IQueryable<Listing> GetFavoriteListings(User user) {
+    return dbContext.Listings.Include(l => l.Publisher);
   }
 
   public async Task<Listing?> GetListing(Guid listingId) {

@@ -1,7 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Asp.Versioning;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -12,14 +12,14 @@ namespace FafCarsApi.Controllers;
 [ApiController]
 [ApiVersion(1)]
 [AllowAnonymous]
-[Route("api/v{v:apiVersion}/[controller]")]
+[Route("Api/v{v:apiVersion}/[controller]")]
 public class AuthController(
   AuthService authService,
   UserService userService
 ) : Controller {
   private readonly Dictionary<Guid, string> _refreshTokens = new();
 
-  [HttpPost("login")]
+  [HttpPost("Login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
     User? user = await userService.FindUserByUsername(loginDto.Username);
 
@@ -42,7 +42,7 @@ public class AuthController(
     return Ok(response);
   }
 
-  [HttpPost("register")]
+  [HttpPost("Register")]
   public async Task<ActionResult<JwtResponseDto>> Register([FromBody] RegisterDto registerDto) {
     User? user = await userService.FindUserByUsername(registerDto.Username);
 
@@ -63,7 +63,7 @@ public class AuthController(
     return Ok(response);
   }
 
-  [HttpPost("refresh")]
+  [HttpPost("Refresh")]
   public async Task<ActionResult<JwtResponseDto>> Refresh([FromBody] JwtResponseDto responseDto) {
     ClaimsPrincipal? principal = authService.ValidateToken(responseDto.Token);
 

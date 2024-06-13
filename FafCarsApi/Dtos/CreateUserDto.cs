@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 using FafCarsApi.Enums;
-using FafCarsApi.Models;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class CreateUserDto {
   [DefaultValue("warek")]

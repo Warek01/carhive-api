@@ -15,7 +15,7 @@ public class StaticFileService {
   public static void SetupStaticFileServing(WebApplication app) {
     app.UseFileServer();
     app.UseStaticFiles(new StaticFileOptions {
-      RequestPath = "/api/v1/file",
+      RequestPath = "/Api/v1/File",
       HttpsCompression = HttpsCompressionMode.Compress,
       ServeUnknownFileTypes = false,
       FileProvider = new PhysicalFileProvider(Root)

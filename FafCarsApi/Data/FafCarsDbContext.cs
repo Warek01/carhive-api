@@ -15,7 +15,7 @@ public class FafCarsDbContext : DbContext {
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     modelBuilder.Entity<Listing>()
       .Property(e => e.Id)
-      .HasDefaultValueSql("uuid_generate_v4()");
+      .HasDefaultValueSql("UUID_GENERATE_V4()");
 
     modelBuilder.Entity<Listing>()
       .Property(e => e.CreatedAt)
@@ -30,7 +30,7 @@ public class FafCarsDbContext : DbContext {
 
     modelBuilder.Entity<User>()
       .Property(e => e.Id)
-      .HasDefaultValueSql("uuid_generate_v4()");
+      .HasDefaultValueSql("UUID_GENERATE_V4()");
 
     modelBuilder.Entity<User>()
       .HasMany(u => u.Listings)

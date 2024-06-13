@@ -1,4 +1,4 @@
-﻿namespace FafCarsApi.Dto;
+﻿namespace FafCarsApi.Dtos;
 
 public class ListingDto {
   public Guid Id { get; set; }

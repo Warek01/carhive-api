@@ -1,33 +1,24 @@
 ﻿using AutoMapper;
 using FafCarsApi.Data;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Services;
 
-public class UserService {
-  private readonly IConfiguration _config;
-  private readonly FafCarsDbContext _dbContext;
-  private readonly ILogger<UserService> _logger;
-
-  public UserService(
-    FafCarsDbContext dbContext,
-    ILogger<UserService> logger,
-    IConfiguration config
-  ) {
-    _dbContext = dbContext;
-    _logger = logger;
-    _config = config;
-  }
-
+public class UserService(
+  FafCarsDbContext dbContext,
+  ILogger<UserService> logger,
+  IConfiguration config,
+  ListingService listingService
+) {
   public IQueryable<User> GetUsers() {
-    return _dbContext.Users.AsNoTracking();
+    return dbContext.Users.AsNoTracking();
   }
 
   public async Task<OperationResultDto> DeleteUser(Guid userId) {
-    var user = await _dbContext.Users.FindAsync(userId);
+    var user = await dbContext.Users.FindAsync(userId);
 
     if (user == null)
       return new OperationResultDto {
@@ -35,39 +26,46 @@ public class UserService {
         Error = "user not found"
       };
 
-    _dbContext.Remove(user);
-    await _dbContext.SaveChangesAsync();
+    dbContext.Remove(user);
+    await dbContext.SaveChangesAsync();
 
-    _logger.LogInformation($"Deleted user {user.Username} ({user.Id})");
+    logger.LogInformation($"Deleted user {user.Username} ({user.Id})");
 
     return new OperationResultDto {
       Success = true
     };
   }
+  
+  public async Task<User?> FindUser(Guid userId) {
+    return await dbContext.Users
+      .Include(u => u.Favorites)
+      .FirstOrDefaultAsync(u => u.Id == userId);
+  }
 
   public async Task<User?> FindUserByUsername(string username) {
-    return await _dbContext.Users
+    return await dbContext.Users
       .Where(u => u.Username == username)
+      .Include(u => u.Favorites)
       .FirstOrDefaultAsync();
   }
 
   public async Task<User> RegisterUser(RegisterDto registerDto) {
     var user = new User();
-    await _dbContext.Users.AddAsync(user);
+    await dbContext.Users.AddAsync(user);
 
-    var config = new MapperConfiguration(cfg => cfg.CreateMap<RegisterDto, User>());
-    var mapper = config.CreateMapper();
+    var config1 = new MapperConfiguration(cfg => cfg.CreateMap<RegisterDto, User>());
+    var mapper = config1.CreateMapper();
     mapper.Map(registerDto, user);
 
     user.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
       user.Password,
-      int.Parse(_config["BCrypt:HashRounds"]!)
+      int.Parse(config["BCrypt:HashRounds"]!)
     );
     user.Roles = new List<UserRole> {
       UserRole.ListingCreator
     };
 
-    await _dbContext.SaveChangesAsync();
+    await dbContext.SaveChangesAsync();
     return user;
   }
 
@@ -80,12 +78,8 @@ public class UserService {
       Roles = c.Roles
     };
 
-    await _dbContext.AddAsync(user);
-    await _dbContext.SaveChangesAsync();
-  }
-
-  public async Task<User?> FindUser(Guid userId) {
-    return await _dbContext.Users.FindAsync(userId);
+    await dbContext.AddAsync(user);
+    await dbContext.SaveChangesAsync();
   }
 
   public async Task UpdateUser(User user, UpdateUserDto updateDto) {
@@ -93,6 +87,21 @@ public class UserService {
     user.Email = updateDto.Email;
     user.Roles = updateDto.Roles;
     user.UpdatedAt = DateTime.Now;
-    await _dbContext.SaveChangesAsync();
+    await dbContext.SaveChangesAsync();
+  }
+
+  public async Task SetFavorites(User user, IList<Guid> favorites) {
+    user.Favorites = [];
+    
+    foreach (Guid listingId in favorites) {
+      Listing? listing = await listingService.FindListing(listingId);
+
+      if (listing == null)
+        continue;
+
+      user.Favorites.Add(listing);
+    }
+
+    await dbContext.SaveChangesAsync();
   }
 }

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using FafCarsApi.Data;
-using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -24,99 +23,80 @@ namespace FafCarsApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("FafCarsApi.Models.Entities.Listing", b =>
+            modelBuilder.Entity("FafCarsApi.Models.Listing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("uuid_generate_v4()");
+                        .HasDefaultValueSql("UUID_GENERATE_V4()");
 
                     b.Property<string>("BrandName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("brand");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<int?>("Clearance")
-                        .HasColumnType("integer")
-                        .HasColumnName("clearance");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Color")
                         .HasMaxLength(7)
-                        .HasColumnType("character varying(7)")
-                        .HasColumnName("color");
+                        .HasColumnType("character varying(7)");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("deleted_at");
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE");
 
                     b.Property<string>("EngineType")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("engine_type");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<double?>("EngineVolume")
-                        .HasColumnType("double precision")
-                        .HasColumnName("engine_volume");
+                        .HasColumnType("double precision");
 
                     b.Property<int?>("Horsepower")
-                        .HasColumnType("integer")
-                        .HasColumnName("horsepower");
+                        .HasColumnType("integer");
 
                     b.Property<List<string>>("Images")
                         .IsRequired()
-                        .HasColumnType("text[]")
-                        .HasColumnName("images");
+                        .HasColumnType("text[]");
 
                     b.Property<int?>("Mileage")
-                        .HasColumnType("integer")
-                        .HasColumnName("mileage");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("model");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("Preview")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("preview");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<double>("Price")
-                        .HasColumnType("double precision")
-                        .HasColumnName("price");
+                        .HasColumnType("double precision");
 
                     b.Property<Guid>("PublisherId")
-                        .HasColumnType("uuid")
-                        .HasColumnName("publisher_id");
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("type");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("updated_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<int?>("WheelSize")
-                        .HasColumnType("integer")
-                        .HasColumnName("wheel_size");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Year")
-                        .HasColumnType("integer")
-                        .HasColumnName("year");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -124,60 +104,51 @@ namespace FafCarsApi.Migrations
 
                     b.HasIndex("PublisherId");
 
-                    b.ToTable("listings");
+                    b.ToTable("Listings");
                 });
 
-            modelBuilder.Entity("FafCarsApi.Models.Entities.User", b =>
+            modelBuilder.Entity("FafCarsApi.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid")
-                        .HasColumnName("id")
-                        .HasDefaultValueSql("uuid_generate_v4()");
+                        .HasDefaultValueSql("UUID_GENERATE_V4()");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("deleted_at");
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("email");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(60)
-                        .HasColumnType("character varying(60)")
-                        .HasColumnName("password");
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("phone_number");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<int[]>("Roles")
                         .IsRequired()
-                        .HasColumnType("integer[]")
-                        .HasColumnName("roles");
+                        .HasColumnType("integer[]");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("updated_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("username");
+                        .HasColumnType("character varying(255)");
 
                     b.HasKey("Id");
 
@@ -186,36 +157,51 @@ namespace FafCarsApi.Migrations
                     b.HasIndex("Username")
                         .IsUnique();
 
-                    b.ToTable("users");
+                    b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"),
-                            CreatedAt = new DateTime(2024, 5, 24, 17, 44, 9, 661, DateTimeKind.Local).AddTicks(9104),
+                            CreatedAt = new DateTime(2024, 6, 13, 22, 15, 10, 780, DateTimeKind.Local).AddTicks(8263),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$0BU.NAZqUcvIjVx1OnwfauxE0xG6.bGHj2BJWeMloWSNWW7bsK00u",
+                            Password = "$2a$13$1jNFjOjBWBfLptFL.YsttecglR2sMK5.iKpyV8gefJwQKncv6vNrW",
                             PhoneNumber = "+37378000111",
                             Roles = new[] { 0, 1 },
-                            UpdatedAt = new DateTime(2024, 5, 24, 17, 44, 9, 670, DateTimeKind.Local).AddTicks(9297),
+                            UpdatedAt = new DateTime(2024, 6, 13, 22, 15, 10, 791, DateTimeKind.Local).AddTicks(1062),
                             Username = "admin"
                         },
                         new
                         {
                             Id = new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"),
-                            CreatedAt = new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5372),
+                            CreatedAt = new DateTime(2024, 6, 13, 22, 15, 11, 257, DateTimeKind.Local).AddTicks(6514),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$5SHWwftBwsXulZcu.tcC.Oc./FC9gh5.PFuCif4AGoemhtXjIFgLy",
+                            Password = "$2a$13$9vlKSuKKmE70FLa/5ujDA.U1l.QJ2N3sEPQKzpRHlvs31UWg4nSxa",
                             PhoneNumber = "+37378111222",
                             Roles = new[] { 0 },
-                            UpdatedAt = new DateTime(2024, 5, 24, 17, 44, 10, 138, DateTimeKind.Local).AddTicks(5477),
+                            UpdatedAt = new DateTime(2024, 6, 13, 22, 15, 11, 257, DateTimeKind.Local).AddTicks(6611),
                             Username = "user"
                         });
                 });
 
-            modelBuilder.Entity("FafCarsApi.Models.Entities.Listing", b =>
+            modelBuilder.Entity("ListingUser", b =>
                 {
-                    b.HasOne("FafCarsApi.Models.Entities.User", "Publisher")
+                    b.Property<Guid>("FavoritesId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("UsersFavoritesId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("FavoritesId", "UsersFavoritesId");
+
+                    b.HasIndex("UsersFavoritesId");
+
+                    b.ToTable("ListingUser");
+                });
+
+            modelBuilder.Entity("FafCarsApi.Models.Listing", b =>
+                {
+                    b.HasOne("FafCarsApi.Models.User", "Publisher")
                         .WithMany("Listings")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -224,7 +210,22 @@ namespace FafCarsApi.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("FafCarsApi.Models.Entities.User", b =>
+            modelBuilder.Entity("ListingUser", b =>
+                {
+                    b.HasOne("FafCarsApi.Models.Listing", null)
+                        .WithMany()
+                        .HasForeignKey("FavoritesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FafCarsApi.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersFavoritesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FafCarsApi.Models.User", b =>
                 {
                     b.Navigation("Listings");
                 });
