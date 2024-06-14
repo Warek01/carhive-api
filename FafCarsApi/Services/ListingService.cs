@@ -92,11 +92,10 @@ public class ListingService(
     await dbContext.SaveChangesAsync();
   }
 
-  public async Task<IList<Listing>> GetUserFavoriteListings(Guid userId) {
-    return await dbContext.Users
+  public IQueryable<Listing> GetUserFavoriteListings(Guid userId) {
+    return dbContext.Users
       .AsNoTracking()
       .Where(u => u.Id == userId)
-      .SelectMany(u => u.Favorites)
-      .ToListAsync();
+      .SelectMany(u => u.Favorites);
   }
 }

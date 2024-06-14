@@ -23,10 +23,20 @@ public class ListingController(
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
     [FromQuery] PaginationQuery pagination,
-    [FromQuery] string[] carTypes
+    [FromQuery] string[] carTypes,
+    [FromQuery] Guid? userId,
+    [FromQuery] bool favorites
   ) {
     IQueryable<Listing> listings = listingService.GetActiveListings();
 
+    if (userId != null)
+      listings = listings.Where(l => l.PublisherId == userId);
+
+    if (favorites) {
+      if (userId == null) return BadRequest("user id not provided");
+      listings = listingService.GetUserFavoriteListings(userId.Value);
+    }
+    
     if (carTypes.Length > 0)
       listings = listings.Where(l => carTypes.Contains(l.Type));
 
@@ -64,7 +74,7 @@ public class ListingController(
 
     if (User.Identity is { IsAuthenticated: true }) {
       Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-      IList<Listing> favorites = await listingService.GetUserFavoriteListings(userId);
+      IList<Listing> favorites = await listingService.GetUserFavoriteListings(userId).ToListAsync();
       dto.IsFavorite = favorites.Any(l => l.Id == listing.Id);
     }
 
@@ -145,36 +155,5 @@ public class ListingController(
     }
 
     return Ok();
-  }
-
-  [HttpGet("Favorites")]
-  [Authorize]
-  public async Task<ActionResult> GetFavorites([FromQuery] PaginationQuery pagination) {
-    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    User? user = await userService.FindUser(userId);
-
-    if (user == null)
-      return new NotFoundResult();
-
-    IList<Listing> listings = user.Favorites;
-    int totalItems = listings.Count;
-    IOrderedEnumerable<Listing> orderedListings = pagination.Order switch {
-      "createdAtDesc" => listings.OrderByDescending(l => l.CreatedAt),
-      "createdAtAsc" => listings.OrderBy(l => l.CreatedAt),
-      "priceDesc" => listings.OrderByDescending(l => l.Price),
-      "priceAsc" => listings.OrderBy(l => l.Price),
-      _ => listings.OrderByDescending(l => l.CreatedAt)
-    };
-    List<ListingDto> items = orderedListings
-      .Skip(pagination.Page * pagination.Take)
-      .Take(pagination.Take)
-      .Select(mapper.Map<ListingDto>)
-      .ToList();
-    var response = new PaginatedResultDto<ListingDto> {
-      Items = items,
-      TotalItems = totalItems,
-    };
-
-    return Ok(response);
   }
 }
