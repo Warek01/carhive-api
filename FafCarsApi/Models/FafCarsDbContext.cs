@@ -1,7 +1,6 @@
-﻿using FafCarsApi.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace FafCarsApi.Data;
+namespace FafCarsApi.Models;
 
 public class FafCarsDbContext : DbContext {
   public FafCarsDbContext() { }
@@ -27,6 +26,9 @@ public class FafCarsDbContext : DbContext {
 
     modelBuilder.Entity<Listing>()
       .HasIndex(e => e.CreatedAt);
+
+    modelBuilder.Entity<Listing>()
+      .HasIndex(e => e.Price);
 
     modelBuilder.Entity<User>()
       .Property(e => e.Id)
@@ -54,5 +56,10 @@ public class FafCarsDbContext : DbContext {
 
     modelBuilder.Entity<User>()
       .HasData(User.InitialData);
+
+    modelBuilder.Entity<User>()
+      .HasMany(u => u.Favorites)
+      .WithMany(l => l.UsersFavorites)
+      .UsingEntity("UsersFavoriteListings");
   }
 }

@@ -69,7 +69,7 @@ namespace FafCarsApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ListingUser",
+                name: "UsersFavoriteListings",
                 columns: table => new
                 {
                     FavoritesId = table.Column<Guid>(type: "uuid", nullable: false),
@@ -77,15 +77,15 @@ namespace FafCarsApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ListingUser", x => new { x.FavoritesId, x.UsersFavoritesId });
+                    table.PrimaryKey("PK_UsersFavoriteListings", x => new { x.FavoritesId, x.UsersFavoritesId });
                     table.ForeignKey(
-                        name: "FK_ListingUser_Listings_FavoritesId",
+                        name: "FK_UsersFavoriteListings_Listings_FavoritesId",
                         column: x => x.FavoritesId,
                         principalTable: "Listings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ListingUser_Users_UsersFavoritesId",
+                        name: "FK_UsersFavoriteListings_Users_UsersFavoritesId",
                         column: x => x.UsersFavoritesId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -97,8 +97,8 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "Password", "PhoneNumber", "Roles", "UpdatedAt", "Username" },
                 values: new object[,]
                 {
-                    { new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"), new DateTime(2024, 6, 13, 22, 15, 11, 257, DateTimeKind.Local).AddTicks(6514), null, "user@gmail.com", "$2a$13$9vlKSuKKmE70FLa/5ujDA.U1l.QJ2N3sEPQKzpRHlvs31UWg4nSxa", "+37378111222", new[] { 0 }, new DateTime(2024, 6, 13, 22, 15, 11, 257, DateTimeKind.Local).AddTicks(6611), "user" },
-                    { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 6, 13, 22, 15, 10, 780, DateTimeKind.Local).AddTicks(8263), null, "admin@gmail.com", "$2a$13$1jNFjOjBWBfLptFL.YsttecglR2sMK5.iKpyV8gefJwQKncv6vNrW", "+37378000111", new[] { 0, 1 }, new DateTime(2024, 6, 13, 22, 15, 10, 791, DateTimeKind.Local).AddTicks(1062), "admin" }
+                    { new Guid("5df812c8-d8be-4a9f-92f3-0cc5b3b78a1d"), new DateTime(2024, 6, 14, 19, 35, 30, 289, DateTimeKind.Local).AddTicks(6017), null, "user@gmail.com", "$2a$13$mlI669R6aGlgiZGAPw63BOAGnq9COAKHj2Ha1JIbOra15azPhdzl2", "+37378111222", new[] { 0 }, new DateTime(2024, 6, 14, 19, 35, 30, 289, DateTimeKind.Local).AddTicks(6123), "user" },
+                    { new Guid("cdb7604f-ddda-439c-8139-bffda01a8580"), new DateTime(2024, 6, 14, 19, 35, 29, 764, DateTimeKind.Local).AddTicks(2129), null, "admin@gmail.com", "$2a$13$ban5Oz4olBj8NF/7Fz8QXOWYUhSBq8eqCh/mHhvlxX87mCkMe.1CS", "+37378000111", new[] { 0, 1 }, new DateTime(2024, 6, 14, 19, 35, 29, 775, DateTimeKind.Local).AddTicks(1482), "admin" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -107,14 +107,14 @@ namespace FafCarsApi.Migrations
                 column: "CreatedAt");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Listings_Price",
+                table: "Listings",
+                column: "Price");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Listings_PublisherId",
                 table: "Listings",
                 column: "PublisherId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ListingUser_UsersFavoritesId",
-                table: "ListingUser",
-                column: "UsersFavoritesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CreatedAt",
@@ -126,13 +126,18 @@ namespace FafCarsApi.Migrations
                 table: "Users",
                 column: "Username",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersFavoriteListings_UsersFavoritesId",
+                table: "UsersFavoriteListings",
+                column: "UsersFavoritesId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ListingUser");
+                name: "UsersFavoriteListings");
 
             migrationBuilder.DropTable(
                 name: "Listings");

@@ -1,6 +1,5 @@
 using Asp.Versioning;
 using FafCarsApi.Configurations;
-using FafCarsApi.Data;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

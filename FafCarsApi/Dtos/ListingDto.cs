@@ -19,4 +19,5 @@ public class ListingDto {
   public UserDto? Publisher { get; set; }
   public string? Preview { get; set; }
   public List<string> Images { get; set; } = new();
+  public bool? IsFavorite { get; set; }
 }

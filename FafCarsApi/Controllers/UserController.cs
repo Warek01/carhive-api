@@ -7,7 +7,6 @@ using FafCarsApi.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace FafCarsApi.Controllers;
 
@@ -89,37 +88,5 @@ public class UserController(
 
     await userService.CreateUser(createDto);
     return Created();
-  }
-
-  [HttpPost("Favorites")]
-  [Authorize]
-  public async Task<ActionResult> SetFavorites([FromBody] IList<Guid> favorites) {
-    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    User? user = await userService.FindUser(userId);
-
-    if (user == null)
-      return new NotFoundResult();
-
-    await userService.SetFavorites(user, favorites);
-    return Ok();
-  }
-
-  [HttpGet("Favorites")]
-  [Authorize]
-  public async Task<ActionResult> GetFavorites() {
-    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    User? user = await userService.FindUser(userId);
-
-    if (user == null)
-      return new NotFoundResult();
-
-    List<ListingDto> items = user.Favorites.Select(mapper.Map<ListingDto>).ToList();
-
-    var response = new PaginatedResultDto<ListingDto> {
-      Items = items,
-      TotalItems = items.Count
-    };
-
-    return Ok(response);
   }
 }

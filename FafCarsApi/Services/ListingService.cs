@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FafCarsApi.Data;
 using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -25,10 +24,6 @@ public class ListingService(
     return dbContext.Listings
       .Include(l => l.Publisher)
       .Where(l => l.DeletedAt != null);
-  }
-
-  public IQueryable<Listing> GetFavoriteListings(User user) {
-    return dbContext.Listings.Include(l => l.Publisher);
   }
 
   public async Task<Listing?> GetListing(Guid listingId) {
@@ -95,5 +90,13 @@ public class ListingService(
 
     await dbContext.Listings.AddAsync(listing);
     await dbContext.SaveChangesAsync();
+  }
+
+  public async Task<IList<Listing>> GetUserFavoriteListings(Guid userId) {
+    return await dbContext.Users
+      .AsNoTracking()
+      .Where(u => u.Id == userId)
+      .SelectMany(u => u.Favorites)
+      .ToListAsync();
   }
 }

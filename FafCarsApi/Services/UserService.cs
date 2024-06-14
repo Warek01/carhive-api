@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using FafCarsApi.Data;
+﻿using System.Linq.Expressions;
+using AutoMapper;
 using FafCarsApi.Dtos;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
@@ -35,18 +35,37 @@ public class UserService(
       Success = true
     };
   }
-  
-  public async Task<User?> FindUser(Guid userId) {
-    return await dbContext.Users
-      .Include(u => u.Favorites)
-      .FirstOrDefaultAsync(u => u.Id == userId);
+
+  public async Task<User?> FindUser(
+    Guid userId,
+    bool includeFavorites = false,
+    bool includeListings = false
+  ) {
+    return await FindUser(u => u.Id == userId, includeFavorites, includeListings);
   }
 
-  public async Task<User?> FindUserByUsername(string username) {
-    return await dbContext.Users
-      .Where(u => u.Username == username)
-      .Include(u => u.Favorites)
-      .FirstOrDefaultAsync();
+  public async Task<User?> FindUserByUsername(
+    string username,
+    bool includeFavorites = false,
+    bool includeListings = false
+  ) {
+    return await FindUser(u => u.Username == username, includeFavorites, includeListings);
+  }
+
+  public async Task<User?> FindUser(
+    Expression<Func<User, bool>> conditionFn,
+    bool includeFavorites = false,
+    bool includeListings = false
+  ) {
+    IQueryable<User> query = dbContext.Users.AsQueryable();
+
+    if (includeFavorites)
+      query = query.Include(u => u.Favorites);
+
+    if (includeListings)
+      query = query.Include(u => u.Listings);
+
+    return await query.FirstOrDefaultAsync(conditionFn);
   }
 
   public async Task<User> RegisterUser(RegisterDto registerDto) {
@@ -90,18 +109,18 @@ public class UserService(
     await dbContext.SaveChangesAsync();
   }
 
-  public async Task SetFavorites(User user, IList<Guid> favorites) {
-    user.Favorites = [];
-    
-    foreach (Guid listingId in favorites) {
-      Listing? listing = await listingService.FindListing(listingId);
+  public async Task AddListingToFavorites(User user, Listing listing) {
+    user.Favorites.Add(listing);
+    await dbContext.SaveChangesAsync();
+  }
 
-      if (listing == null)
-        continue;
+  public async Task RemoveListingFromFavorites(User user, Listing listing) {
+    user.Favorites.Remove(listing);
+    await dbContext.SaveChangesAsync();
+  }
 
-      user.Favorites.Add(listing);
-    }
-
+  public async Task ClearFavorites(User user) {
+    user.Favorites.Clear();
     await dbContext.SaveChangesAsync();
   }
 }
