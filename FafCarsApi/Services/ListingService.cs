@@ -2,7 +2,7 @@
 using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
-using ImageHelper = FafCarsApi.Utilities.ImageHelper;
+using ImageHelper = FafCarsApi.Helpers.ImageHelper;
 
 namespace FafCarsApi.Services;
 
@@ -17,6 +17,7 @@ public class ListingService(
   public IQueryable<Listing> GetActiveListings() {
     return dbContext.Listings
       .Include(l => l.Publisher)
+      .Include(l => l.Brand)
       .Where(l => l.DeletedAt == null);
   }
 

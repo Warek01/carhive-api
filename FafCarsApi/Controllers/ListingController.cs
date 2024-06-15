@@ -5,7 +5,6 @@ using FafCarsApi.Dtos;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
-using FafCarsApi.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,38 +21,53 @@ public class ListingController(
 ) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
-    [FromQuery] PaginationQuery pagination,
-    [FromQuery] string[] carTypes,
-    [FromQuery] Guid? userId,
-    [FromQuery] bool favorites
+    [FromQuery] ListingsQueryDto query
   ) {
     IQueryable<Listing> listings = listingService.GetActiveListings();
 
-    if (userId != null)
-      listings = listings.Where(l => l.PublisherId == userId);
+    if (query.UserId != null)
+      listings = listings.Where(l => l.PublisherId == query.UserId);
 
-    if (favorites) {
-      if (userId == null) return BadRequest("user id not provided");
-      listings = listingService.GetUserFavoriteListings(userId.Value);
+    if (query.Favorites) {
+      if (query.UserId == null) return BadRequest("user id not provided");
+      listings = listingService.GetUserFavoriteListings(query.UserId.Value);
     }
+
+    if (query.BodyStyles?.Count > 0)
+      listings = listings.Where(l => query.BodyStyles.Contains(l.BodyStyle));
+
+    if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax)
+      return BadRequest("min price cannot be greater then max perice");
     
-    if (carTypes.Length > 0)
-      listings = listings.Where(l => carTypes.Contains(l.Type));
+    if (query.PriceMin != null)
+      listings = listings.Where(l => l.Price >= query.PriceMin);
+    
+    if (query.PriceMax != null)
+      listings = listings.Where(l => l.Price <= query.PriceMax);
+
+    if (query.BrandNames != null)
+      foreach (string brand in query.BrandNames)
+        listings = listings.Where(l => l.Brand.Name == brand);
+
+    if (query.EngineTypes != null)
+      listings = listings.Where(l => query.EngineTypes.Contains(l.EngineType));
 
     int totalListings = await listings.CountAsync();
 
-    if (pagination.Order != null)
-      listings = pagination.Order switch {
+    if (query.Order != null)
+      listings = query.Order switch {
         "createdAtDesc" => listings.OrderByDescending(l => l.CreatedAt),
         "createdAtAsc" => listings.OrderBy(l => l.CreatedAt),
         "priceDesc" => listings.OrderByDescending(l => l.Price),
         "priceAsc" => listings.OrderBy(l => l.Price),
+        "yearAsc" => listings.OrderBy(l => l.Year),
+        "yearDesc" => listings.OrderByDescending(l => l.Year),
         _ => listings.OrderByDescending(l => l.CreatedAt)
       };
 
     listings = listings
-      .Skip(pagination.Page * pagination.Take)
-      .Take(pagination.Take);
+      .Skip(query.Page * query.Take)
+      .Take(query.Take);
 
     var result = new PaginatedResultDto<ListingDto> {
       Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),

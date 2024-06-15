@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FafCarsApi.Utilities;
+namespace FafCarsApi.Helpers;
 
 public class PaginationQuery {
   [FromQuery(Name = "page")]

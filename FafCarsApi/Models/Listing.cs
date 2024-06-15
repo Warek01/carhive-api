@@ -1,26 +1,27 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FafCarsApi.Enums;
 
 namespace FafCarsApi.Models;
 
 public class Listing {
   [Key] public Guid Id { get; set; }
 
-  [StringLength(255)] public string BrandName { get; set; } = null!;
+  public Brand Brand { get; set; } = null!;
 
   [StringLength(255)] public string ModelName { get; set; } = null!;
 
   [Range(0, double.MaxValue)] public double Price { get; set; }
 
-  [StringLength(255)] public string Type { get; set; } = null!;
+  public BodyStyle BodyStyle { get; set; }
 
   [Range(0, int.MaxValue)] public int? Horsepower { get; set; }
 
-  [StringLength(255)] public string? EngineType { get; set; }
+  public EngineType EngineType { get; set; }
 
   public double? EngineVolume { get; set; }
 
-  [StringLength(7)] public string? Color { get; set; } = null!;
+  public CarColor? Color { get; set; }
 
   [Range(0, int.MaxValue)] public int? Clearance { get; set; }
 

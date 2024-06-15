@@ -1,11 +1,14 @@
+using System.Reflection;
 using Asp.Versioning;
 using FafCarsApi.Configurations;
+using FafCarsApi.Enums;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Npgsql;
 using Serilog;
 
 namespace FafCarsApi;
@@ -42,10 +45,7 @@ public static class Program {
       options.SubstituteApiVersionInUrl = true;
     });
 
-    _builder.Services.AddDbContext<FafCarsDbContext>(options => {
-      options.UseNpgsql(_builder.Configuration.GetConnectionString("Default"));
-    });
-
+    SetupDataSource();
     SetupAuthentication();
     SetupSwagger();
     AppServices.Register(_builder);
@@ -96,6 +96,9 @@ public static class Program {
         }
       });
 
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+      options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
       var securityDefinition = new OpenApiSecurityScheme {
         Name = "Bearer",
         BearerFormat = "JWT",
@@ -113,9 +116,19 @@ public static class Program {
         }
       };
       var securityRequirements = new OpenApiSecurityRequirement {
-        { securityScheme, new string[] { } }
+        [securityScheme] = []
       };
       options.AddSecurityRequirement(securityRequirements);
     });
+  }
+
+  private static void SetupDataSource() {
+    var dataSourceBuilder = new NpgsqlDataSourceBuilder(_builder.Configuration.GetConnectionString("Default"));
+    dataSourceBuilder.MapEnum<EngineType>();
+    dataSourceBuilder.MapEnum<BodyStyle>();
+    dataSourceBuilder.MapEnum<CarColor>();
+
+    NpgsqlDataSource dataSource = dataSourceBuilder.Build();
+    _builder.Services.AddDbContext<FafCarsDbContext>(options => { options.UseNpgsql(dataSource); });
   }
 }
