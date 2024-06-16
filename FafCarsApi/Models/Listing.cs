@@ -7,9 +7,11 @@ namespace FafCarsApi.Models;
 public class Listing {
   [Key] public Guid Id { get; set; }
 
+  [StringLength(255)] public string BrandName { get; set; } = null!;
   public Brand Brand { get; set; } = null!;
 
-  [StringLength(255)] public string ModelName { get; set; } = null!;
+  [StringLength(255)] public string? ModelName { get; set; }
+  public Model? Model { get; set; }
 
   [Range(0, double.MaxValue)] public double Price { get; set; }
 
@@ -33,7 +35,7 @@ public class Listing {
 
   [StringLength(255)] public string? Preview { get; set; }
 
-  public List<string> Images { get; set; } = new();
+  public List<string> Images { get; set; } = [];
 
   public Guid PublisherId { get; set; }
 
@@ -49,4 +51,10 @@ public class Listing {
   public User Publisher { get; set; } = null!;
 
   public List<User> UsersFavorites { get; set; } = [];
+
+  [StringLength(2)] public string CountryCode { get; set; } = null!;
+
+  public Country Country { get; set; } = null!;
+
+  [StringLength(255)] public string? Address { get; set; }
 }

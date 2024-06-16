@@ -9,31 +9,22 @@ namespace FafCarsApi.Services;
 
 public class UserService(
   FafCarsDbContext dbContext,
-  ILogger<UserService> logger,
-  IConfiguration config,
-  ListingService listingService
+  IConfiguration config
 ) {
   public IQueryable<User> GetUsers() {
     return dbContext.Users.AsNoTracking();
   }
 
-  public async Task<OperationResultDto> DeleteUser(Guid userId) {
+  public async Task<User?> DeleteUser(Guid userId) {
     var user = await dbContext.Users.FindAsync(userId);
 
     if (user == null)
-      return new OperationResultDto {
-        Success = false,
-        Error = "user not found"
-      };
+      return null;
 
     dbContext.Remove(user);
     await dbContext.SaveChangesAsync();
 
-    logger.LogInformation($"Deleted user {user.Username} ({user.Id})");
-
-    return new OperationResultDto {
-      Success = true
-    };
+    return user;
   }
 
   public async Task<User?> FindUser(

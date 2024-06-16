@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,13 @@ public class ListingsQueryDto : PaginationQuery {
   /// Body styles filter.
   /// </summary>
   [FromQuery(Name = "body")]
-  public IList<BodyStyle>? BodyStyles { get; set; } = null;
+  public List<BodyStyle>? BodyStyles { get; set; } = null;
 
   /// <summary>
   /// User ID to get associated listings.
   /// </summary>
   [FromQuery(Name = "user")]
-  public Guid? UserId { get; set; } = null;
+  public Guid? UserId { get; set; }
 
   /// <summary>
   /// Should return user's favorites. Requires "user" to be set.
@@ -23,8 +24,22 @@ public class ListingsQueryDto : PaginationQuery {
   [FromQuery(Name = "favorites")]
   public bool Favorites { get; set; } = false;
 
-  [FromQuery(Name = "brand")] public IList<string>? BrandNames { get; set; } = null;
-  [FromQuery(Name = "engine")] public IList<EngineType>? EngineTypes { get; set; } = null;
-  [FromQuery(Name = "priceMin")] public uint? PriceMin { get; set; } = null;
-  [FromQuery(Name = "priceMax")] public uint? PriceMax { get; set; } = null;
+  [FromQuery(Name = "brand")] public List<string>? BrandNames { get; set; } = null;
+  [FromQuery(Name = "engine")] public List<EngineType>? EngineTypes { get; set; } = null;
+
+  [FromQuery(Name = "priceMin")]
+  [Range(0, int.MaxValue)]
+  public int? PriceMin { get; set; }
+
+  [FromQuery(Name = "priceMax")]
+  [Range(0, int.MaxValue)]
+  public int? PriceMax { get; set; }
+
+  [FromQuery(Name = "country")]
+  [StringLength(2)]
+  public string? CountryCode { get; set; }
+  
+  [FromQuery(Name = "Address")]
+  [StringLength(255)]
+  public string? Address { get; set; }
 }

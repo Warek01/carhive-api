@@ -15,7 +15,6 @@ namespace FafCarsApi.Controllers;
 [Route("Api/v{v:apiVersion}/[controller]")]
 public class UserController(
   UserService userService,
-  ILogger<UserController> logger,
   IMapper mapper
 ) : Controller {
   [HttpGet]
@@ -36,7 +35,7 @@ public class UserController(
       result.Email = null;
     }
 
-    return Ok(result);
+    return result;
   }
 
   [Authorize(Roles = "Admin")]
@@ -44,25 +43,25 @@ public class UserController(
   public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
     var usersQuery = userService.GetUsers();
     var count = await usersQuery.CountAsync();
-    IList<UserDto> users = await usersQuery
+    List<UserDto> users = await usersQuery
       .OrderByDescending(u => u.CreatedAt)
       .Skip(pagination.Take * pagination.Page)
       .Take(pagination.Take)
       .Select(u => mapper.Map<UserDto>(u))
       .ToListAsync();
 
-    return Ok(new PaginatedResultDto<UserDto> {
+    return new PaginatedResultDto<UserDto> {
       Items = users,
       TotalItems = count
-    });
+    };
   }
 
   [HttpDelete]
   [Authorize(Roles = "Admin")]
   [Route("{userId:Guid}")]
-  public async Task<OperationResultDto> DeleteUser(Guid userId) {
-    logger.LogInformation($"Deleted user {userId}");
-    return await userService.DeleteUser(userId);
+  public async Task<ActionResult> DeleteUser(Guid userId) {
+    User? user = await userService.DeleteUser(userId);
+    return user == null ? NotFound() : Ok();
   }
 
   [HttpPatch]

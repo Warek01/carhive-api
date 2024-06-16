@@ -127,7 +127,9 @@ public static class Program {
     dataSourceBuilder.MapEnum<EngineType>();
     dataSourceBuilder.MapEnum<BodyStyle>();
     dataSourceBuilder.MapEnum<CarColor>();
-
+    dataSourceBuilder.MapEnum<UserRole>();
+    dataSourceBuilder.EnableParameterLogging();
+    
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();
     _builder.Services.AddDbContext<FafCarsDbContext>(options => { options.UseNpgsql(dataSource); });
   }

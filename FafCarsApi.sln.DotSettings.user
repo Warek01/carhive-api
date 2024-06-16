@@ -1,12 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/BuildTool/MsBuildSolutionLoadingNodeCount/@EntryValue">12</s:Int64>
 	<s:Boolean x:Key="/Default/Environment/Hierarchy/Build/SolutionBuilderNext/LogToFile/@EntryValue">False</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=04dccccb_002De315_002D4fa6_002D877c_002Def9775771951/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AuthServiceTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=04dccccb_002De315_002D4fa6_002D877c_002Def9775771951/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AuthServiceTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::5D9DBBD1-C692-4DEC-A1E6-8DDD65E82EFA::net8.0::FafCarsApi.Tests.AuthServiceTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=21c5752a_002Dfa9f_002D4037_002Db88c_002D58511013a031/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AuthServiceTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=21c5752a_002Dfa9f_002D4037_002Db88c_002D58511013a031/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AuthServiceTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::5D9DBBD1-C692-4DEC-A1E6-8DDD65E82EFA::net8.0::FafCarsApi.Tests.AuthServiceTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;

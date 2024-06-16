@@ -1,5 +1,4 @@
 ﻿using FafCarsApi.Enums;
-using FafCarsApi.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Models;
@@ -15,11 +14,21 @@ public class FafCarsDbContext : DbContext {
   public virtual DbSet<Listing> Listings { get; set; }
   public virtual DbSet<User> Users { get; set; }
   public virtual DbSet<Brand> Brands { get; set; }
+  public virtual DbSet<Country> Countries { get; set; }
+
+  public virtual DbSet<City> Cities { get; set; }
+  public virtual DbSet<Model> Models { get; set; }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     modelBuilder.HasPostgresEnum<BodyStyle>();
     modelBuilder.HasPostgresEnum<EngineType>();
     modelBuilder.HasPostgresEnum<CarColor>();
+    modelBuilder.HasPostgresEnum<UserRole>();
+
+    modelBuilder.Entity<Brand>()
+      .HasMany(e => e.Models)
+      .WithMany(e => e.Brands)
+      .UsingEntity("ModelsBrands");
 
     modelBuilder.Entity<Listing>()
       .Property(e => e.Id)
@@ -70,7 +79,5 @@ public class FafCarsDbContext : DbContext {
       .HasMany(u => u.Favorites)
       .WithMany(l => l.UsersFavorites)
       .UsingEntity("UsersFavoriteListings");
-
-    DbInitializer.Initialize(modelBuilder);
   }
 }

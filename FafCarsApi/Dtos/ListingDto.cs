@@ -5,7 +5,7 @@ public class ListingDto {
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
   public double Price { get; set; }
-  public string Type { get; set; } = null!;
+  public string BodyStyle { get; set; } = null!;
   public int? Horsepower { get; set; }
   public string? EngineType { get; set; }
   public double? EngineVolume { get; set; }
@@ -18,6 +18,8 @@ public class ListingDto {
   public DateTime CreatedAt { get; set; }
   public UserDto? Publisher { get; set; }
   public string? Preview { get; set; }
-  public List<string> Images { get; set; } = new();
+  public List<string> Images { get; set; } = [];
+  public string CountryCode { get; set; } = null!;
+  public string Address { get; set; } = null!;
   public bool? IsFavorite { get; set; }
 }

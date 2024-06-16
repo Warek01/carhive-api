@@ -5,8 +5,6 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace FafCarsApi.Migrations
 {
     /// <inheritdoc />
@@ -18,17 +16,30 @@ namespace FafCarsApi.Migrations
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:body_style", "sedan,suv,crossover,van,minivan,hatchback,wagon,coupe,pickup_truck,convertible,other")
                 .Annotation("Npgsql:Enum:car_color", "black,white,silver,gray,blue,red,brown,green,beige,yellow,gold,orange,purple,pink,burgundy,turquoise,ivory,bronze,teal,navy")
-                .Annotation("Npgsql:Enum:engine_type", "gas,diesel,hybrid,electric,other");
+                .Annotation("Npgsql:Enum:engine_type", "petrol,diesel,hybrid,electric,other")
+                .Annotation("Npgsql:Enum:user_role", "admin,listing_creator");
 
             migrationBuilder.CreateTable(
-                name: "Brands",
+                name: "Countries",
+                columns: table => new
+                {
+                    Code = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
+                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Code);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Models",
                 columns: table => new
                 {
                     Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brands", x => x.Name);
+                    table.PrimaryKey("PK_Models", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,7 +50,7 @@ namespace FafCarsApi.Migrations
                     Username = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Password = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     Email = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
-                    Roles = table.Column<int[]>(type: "integer[]", nullable: false),
+                    Roles = table.Column<List<UserRole>>(type: "user_role[]", nullable: false),
                     DeletedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UpdatedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
@@ -51,12 +62,72 @@ namespace FafCarsApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Brands",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brands", x => x.Name);
+                    table.ForeignKey(
+                        name: "FK_Brands_Countries_CountryCode",
+                        column: x => x.CountryCode,
+                        principalTable: "Countries",
+                        principalColumn: "Code",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cities",
+                columns: table => new
+                {
+                    Name = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cities", x => x.Name);
+                    table.ForeignKey(
+                        name: "FK_Cities_Countries_CountryCode",
+                        column: x => x.CountryCode,
+                        principalTable: "Countries",
+                        principalColumn: "Code",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModelsBrands",
+                columns: table => new
+                {
+                    BrandsName = table.Column<string>(type: "character varying(255)", nullable: false),
+                    ModelsName = table.Column<string>(type: "character varying(255)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModelsBrands", x => new { x.BrandsName, x.ModelsName });
+                    table.ForeignKey(
+                        name: "FK_ModelsBrands_Brands_BrandsName",
+                        column: x => x.BrandsName,
+                        principalTable: "Brands",
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ModelsBrands_Models_ModelsName",
+                        column: x => x.ModelsName,
+                        principalTable: "Models",
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Listings",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "UUID_GENERATE_V4()"),
-                    BrandName = table.Column<string>(type: "character varying(255)", nullable: true),
-                    ModelName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    BrandName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
+                    ModelName = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     Price = table.Column<double>(type: "double precision", nullable: false),
                     BodyStyle = table.Column<BodyStyle>(type: "body_style", nullable: false),
                     Horsepower = table.Column<int>(type: "integer", nullable: true),
@@ -72,7 +143,10 @@ namespace FafCarsApi.Migrations
                     PublisherId = table.Column<Guid>(type: "uuid", nullable: false),
                     DeletedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    UpdatedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                    UpdatedAt = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CountryCode = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
+                    Address = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    CityName = table.Column<string>(type: "character varying(255)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -81,6 +155,23 @@ namespace FafCarsApi.Migrations
                         name: "FK_Listings_Brands_BrandName",
                         column: x => x.BrandName,
                         principalTable: "Brands",
+                        principalColumn: "Name",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Listings_Cities_CityName",
+                        column: x => x.CityName,
+                        principalTable: "Cities",
+                        principalColumn: "Name");
+                    table.ForeignKey(
+                        name: "FK_Listings_Countries_CountryCode",
+                        column: x => x.CountryCode,
+                        principalTable: "Countries",
+                        principalColumn: "Code",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Listings_Models_ModelName",
+                        column: x => x.ModelName,
+                        principalTable: "Models",
                         principalColumn: "Name");
                     table.ForeignKey(
                         name: "FK_Listings_Users_PublisherId",
@@ -114,80 +205,15 @@ namespace FafCarsApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.InsertData(
+            migrationBuilder.CreateIndex(
+                name: "IX_Brands_CountryCode",
                 table: "Brands",
-                column: "Name",
-                values: new object[]
-                {
-                    "Acura",
-                    "Alfa Romeo",
-                    "Audi",
-                    "Bentley",
-                    "BMW",
-                    "Bugatti",
-                    "Buick",
-                    "BYD",
-                    "Cadillac",
-                    "Chery",
-                    "Chevrolet",
-                    "Chrysler",
-                    "Daihatsu",
-                    "Dodge",
-                    "Ferrari",
-                    "Fiat",
-                    "Ford",
-                    "Geely",
-                    "Genesis",
-                    "GMC",
-                    "Honda",
-                    "Hummer",
-                    "Hyundai",
-                    "Infiniti",
-                    "Jaguar",
-                    "Jeep",
-                    "Kia",
-                    "Koenigsegg",
-                    "Lada",
-                    "Lamborghini",
-                    "Land Rover",
-                    "Lexus",
-                    "Lincoln",
-                    "Lotus",
-                    "Maserati",
-                    "Maybach",
-                    "Mazda",
-                    "McLaren",
-                    "Mercedes-Benz",
-                    "Mini",
-                    "Mitsubishi",
-                    "Nissan",
-                    "Oldsmobile",
-                    "Pagani",
-                    "Pontiac",
-                    "Porsche",
-                    "Proton",
-                    "Ram",
-                    "Rolls-Royce",
-                    "Saab",
-                    "Saturn",
-                    "Smart",
-                    "Spyker",
-                    "Subaru",
-                    "Suzuki",
-                    "Tesla",
-                    "Toyota",
-                    "Volkswagen",
-                    "Volvo"
-                });
+                column: "CountryCode");
 
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "CreatedAt", "DeletedAt", "Email", "Password", "PhoneNumber", "Roles", "UpdatedAt", "Username" },
-                values: new object[,]
-                {
-                    { new Guid("57c6566c-b3fb-495c-a03e-7472029e2e56"), new DateTime(2024, 6, 15, 15, 5, 20, 34, DateTimeKind.Local).AddTicks(7955), null, "admin@gmail.com", "$2a$13$IfjFOJc3.FR9.qnXU2hxWeyUubYzrD2Tr7KYYa4FFR5XQ0AlOn8mG", "+37378000111", new[] { 0, 1 }, new DateTime(2024, 6, 15, 15, 5, 20, 43, DateTimeKind.Local).AddTicks(8683), "admin" },
-                    { new Guid("c1e0a155-e3cf-4380-b7d6-ad0c3e5fa511"), new DateTime(2024, 6, 15, 15, 5, 20, 508, DateTimeKind.Local).AddTicks(6957), null, "user@gmail.com", "$2a$13$3TaTDVjNj2CZAH8hODNV6O.W3X3o/75E6vbM5mRx3SV7d3exE/E8y", "+37378111222", new[] { 0 }, new DateTime(2024, 6, 15, 15, 5, 20, 508, DateTimeKind.Local).AddTicks(7012), "user" }
-                });
+            migrationBuilder.CreateIndex(
+                name: "IX_Cities_CountryCode",
+                table: "Cities",
+                column: "CountryCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Listings_BrandName",
@@ -195,9 +221,24 @@ namespace FafCarsApi.Migrations
                 column: "BrandName");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Listings_CityName",
+                table: "Listings",
+                column: "CityName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Listings_CountryCode",
+                table: "Listings",
+                column: "CountryCode");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Listings_CreatedAt",
                 table: "Listings",
                 column: "CreatedAt");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Listings_ModelName",
+                table: "Listings",
+                column: "ModelName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Listings_Price",
@@ -213,6 +254,11 @@ namespace FafCarsApi.Migrations
                 name: "IX_Listings_Year",
                 table: "Listings",
                 column: "Year");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ModelsBrands_ModelsName",
+                table: "ModelsBrands",
+                column: "ModelsName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_CreatedAt",
@@ -235,6 +281,9 @@ namespace FafCarsApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ModelsBrands");
+
+            migrationBuilder.DropTable(
                 name: "UsersFavoriteListings");
 
             migrationBuilder.DropTable(
@@ -244,7 +293,16 @@ namespace FafCarsApi.Migrations
                 name: "Brands");
 
             migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Models");
+
+            migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

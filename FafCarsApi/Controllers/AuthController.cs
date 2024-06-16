@@ -39,7 +39,7 @@ public class AuthController(
 
     _refreshTokens.Add(user.Id, refreshToken);
 
-    return Ok(response);
+    return response;
   }
 
   [HttpPost("Register")]
@@ -60,7 +60,7 @@ public class AuthController(
 
     _refreshTokens.Add(newUser.Id, refreshToken);
 
-    return Ok(response);
+    return response;
   }
 
   [HttpPost("Refresh")]
@@ -80,18 +80,20 @@ public class AuthController(
       return BadRequest("no token in tokens list");
 
     List<Claim> claims = principal.Claims
-      .Where(c => c.Type != JwtRegisteredClaimNames.Aud &&
-                  c.Type != JwtRegisteredClaimNames.Iss &&
-                  c.Type != JwtRegisteredClaimNames.Nbf &&
-                  c.Type != JwtRegisteredClaimNames.Iat &&
-                  c.Type != JwtRegisteredClaimNames.Exp)
+      .Where(
+        c => c.Type != JwtRegisteredClaimNames.Aud &&
+             c.Type != JwtRegisteredClaimNames.Iss &&
+             c.Type != JwtRegisteredClaimNames.Nbf &&
+             c.Type != JwtRegisteredClaimNames.Iat &&
+             c.Type != JwtRegisteredClaimNames.Exp
+      )
       .ToList();
 
     string newToken = authService.GenerateAccessToken(claims);
 
-    return Ok(new JwtResponseDto {
+    return new JwtResponseDto {
       Token = newToken,
       RefreshToken = responseDto.RefreshToken
-    });
+    };
   }
 }

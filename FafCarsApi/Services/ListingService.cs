@@ -16,14 +16,17 @@ public class ListingService(
 
   public IQueryable<Listing> GetActiveListings() {
     return dbContext.Listings
+      .AsNoTracking()
       .Include(l => l.Publisher)
-      .Include(l => l.Brand)
       .Where(l => l.DeletedAt == null);
   }
 
   public IQueryable<Listing> GetInactiveListings() {
     return dbContext.Listings
+      .AsNoTracking()
       .Include(l => l.Publisher)
+      .Include(l => l.Brand)
+      .Include(l => l.Country)
       .Where(l => l.DeletedAt != null);
   }
 

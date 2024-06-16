@@ -13,9 +13,9 @@ public class User {
 
   [StringLength(255)] public string Email { get; set; } = null!;
 
-  public IList<UserRole> Roles { get; set; } = [];
+  public List<UserRole> Roles { get; set; } = [];
 
-  public IList<Listing> Listings { get; set; } = [];
+  public List<Listing> Listings { get; set; } = [];
 
   [Column(TypeName = "TIMESTAMP(1) WITHOUT TIME ZONE")]
   public DateTime? DeletedAt { get; set; }
@@ -28,5 +28,5 @@ public class User {
 
   [StringLength(255)] public string? PhoneNumber { get; set; }
 
-  public IList<Listing> Favorites { get; set; } = [];
+  public List<Listing> Favorites { get; set; } = [];
 }

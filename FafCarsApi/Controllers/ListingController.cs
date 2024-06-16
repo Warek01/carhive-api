@@ -38,10 +38,10 @@ public class ListingController(
 
     if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax)
       return BadRequest("min price cannot be greater then max perice");
-    
+
     if (query.PriceMin != null)
       listings = listings.Where(l => l.Price >= query.PriceMin);
-    
+
     if (query.PriceMax != null)
       listings = listings.Where(l => l.Price <= query.PriceMax);
 
@@ -49,10 +49,17 @@ public class ListingController(
       foreach (string brand in query.BrandNames)
         listings = listings.Where(l => l.Brand.Name == brand);
 
+    if (query.CountryCode != null)
+      listings = listings.Where(l => l.Country.Code == query.CountryCode);
+
     if (query.EngineTypes != null)
       listings = listings.Where(l => query.EngineTypes.Contains(l.EngineType));
 
-    int totalListings = await listings.CountAsync();
+    // TODO: perform fuzzy search
+    if (query.Address != null)
+      listings = listings.Where(
+        l => l.Address != null && l.Address.ToLower().Contains(query.Address.ToLower())
+      );
 
     if (query.Order != null)
       listings = query.Order switch {
@@ -65,21 +72,21 @@ public class ListingController(
         _ => listings.OrderByDescending(l => l.CreatedAt)
       };
 
+    int totalListings = await listings.CountAsync();
+
     listings = listings
       .Skip(query.Page * query.Take)
       .Take(query.Take);
 
-    var result = new PaginatedResultDto<ListingDto> {
+    return new PaginatedResultDto<ListingDto> {
       Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
       TotalItems = totalListings
     };
-
-    return Ok(result);
   }
 
   [HttpGet]
   [Route("{listingId:guid}")]
-  public async Task<ActionResult> GetListingDetails(Guid listingId) {
+  public async Task<ActionResult<ListingDto>> GetListingDetails(Guid listingId) {
     Listing? listing = await listingService.GetListing(listingId);
     if (listing == null)
       return NotFound();
@@ -88,11 +95,11 @@ public class ListingController(
 
     if (User.Identity is { IsAuthenticated: true }) {
       Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-      IList<Listing> favorites = await listingService.GetUserFavoriteListings(userId).ToListAsync();
+      List<Listing> favorites = await listingService.GetUserFavoriteListings(userId).ToListAsync();
       dto.IsFavorite = favorites.Any(l => l.Id == listing.Id);
     }
 
-    return Ok(dto);
+    return dto;
   }
 
   [HttpDelete]
