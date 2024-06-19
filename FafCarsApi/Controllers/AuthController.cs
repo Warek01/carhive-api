@@ -17,7 +17,7 @@ public class AuthController(
   AuthService authService,
   UserService userService
 ) : Controller {
-  private readonly Dictionary<Guid, string> _refreshTokens = new();
+  private readonly Dictionary<Guid, string> _refreshTokens = [];
 
   [HttpPost("Login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
@@ -29,7 +29,7 @@ public class AuthController(
     if (!authService.ValidatePassword(user, loginDto.Password))
       return Unauthorized();
 
-    List<Claim> claims = authService.GetUserClaims(user);
+    IEnumerable<Claim> claims = authService.GetUserClaims(user);
     string token = authService.GenerateAccessToken(claims);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
@@ -50,7 +50,7 @@ public class AuthController(
       return Conflict();
 
     User newUser = await userService.RegisterUser(registerDto);
-    List<Claim> claims = authService.GetUserClaims(newUser);
+    IEnumerable<Claim> claims = authService.GetUserClaims(newUser);
     string token = authService.GenerateAccessToken(claims);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
@@ -79,15 +79,14 @@ public class AuthController(
     if (_refreshTokens.ContainsKey(userId))
       return BadRequest("no token in tokens list");
 
-    List<Claim> claims = principal.Claims
+    IEnumerable<Claim> claims = principal.Claims
       .Where(
         c => c.Type != JwtRegisteredClaimNames.Aud &&
              c.Type != JwtRegisteredClaimNames.Iss &&
              c.Type != JwtRegisteredClaimNames.Nbf &&
              c.Type != JwtRegisteredClaimNames.Iat &&
              c.Type != JwtRegisteredClaimNames.Exp
-      )
-      .ToList();
+      );
 
     string newToken = authService.GenerateAccessToken(claims);
 

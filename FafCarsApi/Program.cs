@@ -2,6 +2,7 @@ using System.Reflection;
 using Asp.Versioning;
 using FafCarsApi.Configurations;
 using FafCarsApi.Enums;
+using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -35,6 +36,9 @@ public static class Program {
       o.Limits.MaxRequestLineSize = 8192;
     });
 
+    _builder.Services.AddProblemDetails();
+    _builder.Services.AddExceptionHandler<HttpExceptionHandler>();
+
     _builder.Services.AddApiVersioning(options => {
       options.DefaultApiVersion = new ApiVersion(1);
       options.ReportApiVersions = true;
@@ -56,6 +60,7 @@ public static class Program {
     app.UseSwagger();
     app.UseSwaggerUI();
     app.UseHttpsRedirection();
+    app.UseExceptionHandler();
     StaticFileService.SetupStaticFileServing(app);
     app.UseCors(options => {
       options.AllowAnyOrigin();
@@ -129,7 +134,7 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarColor>();
     dataSourceBuilder.MapEnum<UserRole>();
     dataSourceBuilder.EnableParameterLogging();
-    
+
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();
     _builder.Services.AddDbContext<FafCarsDbContext>(options => { options.UseNpgsql(dataSource); });
   }

@@ -1,32 +1,62 @@
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using FafCarsApi.Enums;
 
 namespace FafCarsApi.Dtos;
 
 public class CreateListingDto {
   [DefaultValue("Toyota")]
   public string BrandName { get; set; } = null!;
+  
   [DefaultValue("Camry")]
   public string ModelName { get; set; } = null!;
+  
   [DefaultValue(12500)]
+  [Range(0, double.MaxValue)]
   public double Price { get; set; }
-  [DefaultValue("Sedan")]
-  public string Type { get; set; } = null!;
+  
+  [DefaultValue(BodyStyle.Sedan)]
+  public BodyStyle BodyStyle { get; set; }
+  
   [DefaultValue(220)]
+  [Range(0, int.MaxValue)]
   public int? Horsepower { get; set; }
-  [DefaultValue("Hybrid")]
-  public string? EngineType { get; set; }
+  
+  [DefaultValue(EngineType.Hybrid)]
+  public EngineType EngineType { get; set; }
+  
   [DefaultValue(3.5)]
+  [Range(0, double.MaxValue)]
   public double? EngineVolume { get; set; }
-  [DefaultValue("#000000")]
-  public string? Color { get; set; }
+  
+  [DefaultValue(CarColor.Black)]
+  public CarColor Color { get; set; }
+  
   [DefaultValue(20)]
+  [Range(0, int.MaxValue)]
   public int? Clearance { get; set; }
+  
   [DefaultValue(20)]
+  [Range(0, int.MaxValue)]
   public int? WheelSize { get; set; }
+  
   [DefaultValue(80000)]
+  [Range(0, int.MaxValue)]
   public int? Mileage { get; set; }
+  
   [DefaultValue(2019)]
-  public int? Year { get; set; }
-  public FileDto? Preview { get; set; }
-  public List<FileDto> Images { get; set; } = new();
+  [Range(0, int.MaxValue)]
+  public int? ProductionYear { get; set; }
+
+  [Length(2, 2)]
+  [DefaultValue("DE")]
+  public string CountryCode { get; set; } = null!;
+  
+  [StringLength(255)]
+  [DefaultValue("789 Oak Rd, Berlin, DE")]
+  public string? SellAddress { get; set; }
+  
+  public FileDto? PreviewFile { get; set; }
+  
+  public List<FileDto> ImagesFiles { get; set; } = [];
 }

@@ -27,23 +27,23 @@ public class UserService(
     return user;
   }
 
-  public async Task<User?> FindUser(
+  public Task<User?> FindUser(
     Guid userId,
     bool includeFavorites = false,
     bool includeListings = false
   ) {
-    return await FindUser(u => u.Id == userId, includeFavorites, includeListings);
+    return FindUser(u => u.Id == userId, includeFavorites, includeListings);
   }
 
-  public async Task<User?> FindUserByUsername(
+  public Task<User?> FindUserByUsername(
     string username,
     bool includeFavorites = false,
     bool includeListings = false
   ) {
-    return await FindUser(u => u.Username == username, includeFavorites, includeListings);
+    return FindUser(u => u.Username == username, includeFavorites, includeListings);
   }
 
-  public async Task<User?> FindUser(
+  public Task<User?> FindUser(
     Expression<Func<User, bool>> conditionFn,
     bool includeFavorites = false,
     bool includeListings = false
@@ -56,7 +56,7 @@ public class UserService(
     if (includeListings)
       query = query.Include(u => u.Listings);
 
-    return await query.FirstOrDefaultAsync(conditionFn);
+    return query.FirstOrDefaultAsync(conditionFn);
   }
 
   public async Task<User> RegisterUser(RegisterDto registerDto) {

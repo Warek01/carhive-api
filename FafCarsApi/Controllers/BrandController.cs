@@ -33,7 +33,7 @@ public class BrandController(
         .ToList();
     }
 
-    return Ok(brandNames);
+    return brandNames;
   }
 
   [HttpPost]

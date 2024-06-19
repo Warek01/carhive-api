@@ -14,17 +14,22 @@ public class ModelService(FafCarsDbContext dbContext) {
     return brand?.Models;
   }
 
-  public async Task AddModel(List<string> brandNames, string modelName) {
-    List<Brand> brands = await dbContext.Brands
-      .Where(b => brandNames.Contains(b.Name))
-      .ToListAsync();
+  public async Task<Model?> AddModel(string brandName, string modelName) {
+    Brand? brand = await dbContext.Brands
+      .Where(b => b.Name == brandName)
+      .FirstOrDefaultAsync();
 
+    if (brand == null)
+      return null;
+    
     var model = new Model {
       Name = modelName,
-      Brands = brands
+      Brand = brand
     };
-
+    
     await dbContext.AddAsync(model);
     await dbContext.SaveChangesAsync();
+
+    return model;
   }
 }

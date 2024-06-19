@@ -28,13 +28,6 @@ public class UserController(
 
     UserDto result = mapper.Map<UserDto>(queriedUser);
 
-    bool isAdmin = User.HasClaim(c => c is { Type: "role", Value: "Admin" });
-
-    if (!isAdmin) {
-      result.Roles = null;
-      result.Email = null;
-    }
-
     return result;
   }
 

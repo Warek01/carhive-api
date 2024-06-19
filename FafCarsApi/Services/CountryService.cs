@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 namespace FafCarsApi.Services;
 
 public class CountryService(FafCarsDbContext dbContext) {
-  public Task<List<Country>> GetCountries() {
-    return dbContext.Countries
+  public async Task<List<Country>> GetCountries() {
+    return await dbContext.Countries
       .AsNoTracking()
       .ToListAsync();
   }

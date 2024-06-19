@@ -24,8 +24,11 @@ public class ListingsQueryDto : PaginationQuery {
   [FromQuery(Name = "favorites")]
   public bool Favorites { get; set; } = false;
 
-  [FromQuery(Name = "brand")] public List<string>? BrandNames { get; set; } = null;
-  [FromQuery(Name = "engine")] public List<EngineType>? EngineTypes { get; set; } = null;
+  [FromQuery(Name = "brand")] 
+  public List<string>? BrandNames { get; set; } = null;
+  
+  [FromQuery(Name = "engine")] 
+  public List<EngineType>? EngineTypes { get; set; } = null;
 
   [FromQuery(Name = "priceMin")]
   [Range(0, int.MaxValue)]
@@ -36,10 +39,10 @@ public class ListingsQueryDto : PaginationQuery {
   public int? PriceMax { get; set; }
 
   [FromQuery(Name = "country")]
-  [StringLength(2)]
+  [Length(2, 2)]
   public string? CountryCode { get; set; }
   
-  [FromQuery(Name = "Address")]
-  [StringLength(255)]
+  [FromQuery(Name = "SellAddress")]
+  [Length(1, 255)]
   public string? Address { get; set; }
 }

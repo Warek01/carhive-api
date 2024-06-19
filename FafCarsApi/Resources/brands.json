@@ -1,0 +1,366 @@
+[
+  {
+    "name": "Abarth",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Alfa Romeo",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Aston Martin",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Audi",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Bentley",
+    "countryCode": "GB"
+  },
+  {
+    "name": "BMW",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Bugatti",
+    "countryCode": "FR"
+  },
+  {
+    "name": "Cadillac",
+    "countryCode": "US"
+  },
+  {
+    "name": "Chevrolet",
+    "countryCode": "US"
+  },
+  {
+    "name": "Chrysler",
+    "countryCode": "US"
+  },
+  {
+    "name": "Citroën",
+    "countryCode": "FR"
+  },
+  {
+    "name": "Dacia",
+    "countryCode": "RO"
+  },
+  {
+    "name": "Daewoo",
+    "countryCode": "KR"
+  },
+  {
+    "name": "Daihatsu",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Dodge",
+    "countryCode": "US"
+  },
+  {
+    "name": "Donkervoort",
+    "countryCode": "NL"
+  },
+  {
+    "name": "DS",
+    "countryCode": "FR"
+  },
+  {
+    "name": "Ferrari",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Fiat",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Fisker",
+    "countryCode": "DK"
+  },
+  {
+    "name": "Ford",
+    "countryCode": "US"
+  },
+  {
+    "name": "Honda",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Hummer",
+    "countryCode": "US"
+  },
+  {
+    "name": "Hyundai",
+    "countryCode": "KR"
+  },
+  {
+    "name": "Infiniti",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Iveco",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Jaguar",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Jeep",
+    "countryCode": "US"
+  },
+  {
+    "name": "Kia",
+    "countryCode": "KR"
+  },
+  {
+    "name": "KTM",
+    "countryCode": "AT"
+  },
+  {
+    "name": "Lada",
+    "countryCode": "RU"
+  },
+  {
+    "name": "Lamborghini",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Lancia",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Land Rover",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Landwind",
+    "countryCode": "CN"
+  },
+  {
+    "name": "Lexus",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Lotus",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Maserati",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Maybach",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Mazda",
+    "countryCode": "JP"
+  },
+  {
+    "name": "McLaren",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Mercedes-Benz",
+    "countryCode": "DE"
+  },
+  {
+    "name": "MG",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Mini",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Mitsubishi",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Morgan",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Nissan",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Opel",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Peugeot",
+    "countryCode": "FR"
+  },
+  {
+    "name": "Porsche",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Renault",
+    "countryCode": "FR"
+  },
+  {
+    "name": "Rolls-Royce",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Rover",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Saab",
+    "countryCode": "SE"
+  },
+  {
+    "name": "Seat",
+    "countryCode": "ES"
+  },
+  {
+    "name": "Skoda",
+    "countryCode": "CZ"
+  },
+  {
+    "name": "Smart",
+    "countryCode": "DE"
+  },
+  {
+    "name": "SsangYong",
+    "countryCode": "KR"
+  },
+  {
+    "name": "Subaru",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Suzuki",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Tesla",
+    "countryCode": "US"
+  },
+  {
+    "name": "Toyota",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Volkswagen",
+    "countryCode": "DE"
+  },
+  {
+    "name": "Volvo",
+    "countryCode": "SE"
+  },
+  {
+    "name": "Acura",
+    "countryCode": "JP"
+  },
+  {
+    "name": "AMC",
+    "countryCode": "US"
+  },
+  {
+    "name": "Avanti",
+    "countryCode": "US"
+  },
+  {
+    "name": "Buick",
+    "countryCode": "US"
+  },
+  {
+    "name": "Datsun",
+    "countryCode": "JP"
+  },
+  {
+    "name": "DeLorean",
+    "countryCode": "US"
+  },
+  {
+    "name": "Eagle",
+    "countryCode": "US"
+  },
+  {
+    "name": "FIAT",
+    "countryCode": "IT"
+  },
+  {
+    "name": "Freightliner",
+    "countryCode": "US"
+  },
+  {
+    "name": "Geo",
+    "countryCode": "US"
+  },
+  {
+    "name": "GMC",
+    "countryCode": "US"
+  },
+  {
+    "name": "HUMMER",
+    "countryCode": "US"
+  },
+  {
+    "name": "Isuzu",
+    "countryCode": "JP"
+  },
+  {
+    "name": "Lincoln",
+    "countryCode": "US"
+  },
+  {
+    "name": "Mercury",
+    "countryCode": "US"
+  },
+  {
+    "name": "Merkur",
+    "countryCode": "DE"
+  },
+  {
+    "name": "MINI",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Oldsmobile",
+    "countryCode": "US"
+  },
+  {
+    "name": "Plymouth",
+    "countryCode": "US"
+  },
+  {
+    "name": "Pontiac",
+    "countryCode": "US"
+  },
+  {
+    "name": "RAM",
+    "countryCode": "US"
+  },
+  {
+    "name": "Saturn",
+    "countryCode": "US"
+  },
+  {
+    "name": "Scion",
+    "countryCode": "JP"
+  },
+  {
+    "name": "SRT",
+    "countryCode": "US"
+  },
+  {
+    "name": "Sterling",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Triumph",
+    "countryCode": "GB"
+  },
+  {
+    "name": "Yugo",
+    "countryCode": "YU"
+  }
+]

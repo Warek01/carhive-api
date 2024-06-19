@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FafCarsApi.Dtos;
+using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Helpers.ImageHelper;
@@ -8,8 +9,74 @@ namespace FafCarsApi.Services;
 
 public class ListingService(
   FafCarsDbContext dbContext,
-  ILogger<ListingService> logger
+  ILogger<ListingService> logger,
+  IMapper mapper
 ) {
+  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingsQueryDto query) {
+    IQueryable<Listing> listings;
+
+    if (query.Favorites) {
+      if (query.UserId == null) throw new BadRequestException("user id not provided");
+      listings = GetUserFavoriteListings(query.UserId.Value);
+    }
+    else {
+      listings = GetActiveListings();
+    }
+    
+    if (query.UserId != null)
+      listings = listings.Where(l => l.PublisherId == query.UserId);
+
+    if (query.BodyStyles?.Count > 0)
+      listings = listings.Where(l => query.BodyStyles.Contains(l.BodyStyle));
+
+    if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax)
+      throw new BadRequestException("min price cannot be greater then max perice");
+
+    if (query.PriceMin != null)
+      listings = listings.Where(l => l.Price >= query.PriceMin);
+
+    if (query.PriceMax != null)
+      listings = listings.Where(l => l.Price <= query.PriceMax);
+
+    if (query.BrandNames != null)
+      foreach (string brand in query.BrandNames)
+        listings = listings.Where(l => l.Brand.Name == brand);
+
+    if (query.CountryCode != null)
+      listings = listings.Where(l => l.Country.Code == query.CountryCode);
+
+    if (query.EngineTypes != null)
+      listings = listings.Where(l => query.EngineTypes.Contains(l.EngineType));
+
+    // TODO: perform fuzzy search
+    if (query.Address != null)
+      listings = listings.Where(
+        l => l.SellAddress != null && l.SellAddress.ToLower().Contains(query.Address.ToLower())
+      );
+
+    if (query.Order != null)
+      listings = query.Order switch {
+        "createdAtDesc" => listings.OrderByDescending(l => l.CreatedAt),
+        "createdAtAsc" => listings.OrderBy(l => l.CreatedAt),
+        "priceDesc" => listings.OrderByDescending(l => l.Price),
+        "priceAsc" => listings.OrderBy(l => l.Price),
+        "yearAsc" => listings.OrderBy(l => l.ProductionYear),
+        "yearDesc" => listings.OrderByDescending(l => l.ProductionYear),
+        _ => listings.OrderByDescending(l => l.CreatedAt)
+      };
+
+    int totalListings = await listings.CountAsync();
+
+    listings = listings
+      .Skip(query.Page * query.Take)
+      .Take(query.Take);
+
+    return new PaginatedResultDto<ListingDto> {
+      Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
+      TotalItems = totalListings
+    };
+  }
+
   public async Task<Listing?> FindListing(Guid listingId) {
     return await dbContext.Listings.FindAsync(listingId);
   }
@@ -58,34 +125,20 @@ public class ListingService(
   }
 
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId) {
-    var listing = new Listing();
+    Listing listing = mapper.Map<Listing>(createDto);
 
-    var config = new MapperConfiguration(c =>
-      c.CreateMap<CreateListingDto, Listing>()
-        .ForMember(
-          dest => dest.Images,
-          opt => opt.Ignore()
-        )
-        .ForMember(
-          dest => dest.Preview,
-          opt => opt.Ignore()
-        )
-    );
-    var mapper = config.CreateMapper();
-    mapper.Map(createDto, listing);
-
-    if (createDto.Preview != null) {
-      var (_, base64Body) = createDto.Preview;
+    if (createDto.PreviewFile != null) {
+      var (_, base64Body) = createDto.PreviewFile;
       string generatedFileName = Guid.NewGuid() + ".webp";
       await ImageHelper.Create(generatedFileName, base64Body);
-      listing.Preview = generatedFileName;
+      listing.PreviewFilename = generatedFileName;
     }
 
-    foreach (var image in createDto.Images) {
+    foreach (var image in createDto.ImagesFiles) {
       var (_, base64Body) = image;
       string generatedFileName = Guid.NewGuid() + ".webp";
       await ImageHelper.Create(generatedFileName, base64Body);
-      listing.Images.Add(generatedFileName);
+      listing.ImagesFilenames.Add(generatedFileName);
     }
 
     var publisher = (await dbContext.Users.FindAsync(publisherId))!;

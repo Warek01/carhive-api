@@ -56,10 +56,10 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
   }
 
   public List<Claim> GetUserClaims(User user) {
-    var claims = new List<Claim> {
+    List<Claim> claims = [
       new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
       new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    };
+    ];
 
     foreach (var role in user.Roles)
       claims.Add(new Claim("role", role.ToString()));
@@ -67,7 +67,7 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     return claims;
   }
 
-  public string GenerateAccessToken(List<Claim> claims) {
+  public string GenerateAccessToken(IEnumerable<Claim> claims) {
     var issuer = config["Jwt:Issuer"]!;
     var audience = config["Jwt:Audience"]!;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));

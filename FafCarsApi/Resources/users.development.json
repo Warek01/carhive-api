@@ -1,0 +1,35 @@
+[
+  {
+    "id": "e00e715a-fe5e-4814-b595-6cc3cd316fca",
+    "username": "admin",
+    "password": "admin",
+    "email": "admin@gmai.com",
+    "roles": ["Admin"],
+    "createdAt": "2024-06-15T00:00:00",
+    "deletedAt": null,
+    "updatedAt": "2024-06-15T00:00:00",
+    "phoneNumber": "+37378000111"
+  },
+  {
+    "id": "7e4d9d9b-97d8-4e5c-ad49-abe09837c70c",
+    "username": "alex",
+    "password": "alex",
+    "email": "alex@gmai.com",
+    "roles": ["ListingCreator"],
+    "createdAt": "2024-06-14T00:00:00",
+    "deletedAt": null,
+    "updatedAt": "2024-06-14T00:00:00",
+    "phoneNumber": "+37378222111"
+  },
+  {
+    "id": "29aa0b25-d42a-4877-8b4c-3c359e5bee77",
+    "username": "user",
+    "password": "user",
+    "email": "user@gmai.com",
+    "roles": ["ListingCreator"],
+    "createdAt": "2024-06-13T00:00:00",
+    "deletedAt": null,
+    "updatedAt": "2024-06-13T00:00:00",
+    "phoneNumber": "+37378222444"
+  }
+]

@@ -72,7 +72,7 @@ public partial class AuthServiceTest {
       "password", "Password"
     ];
 
-    List<Claim> claims = _authService.GetUserClaims(user);
+    IEnumerable<Claim> claims = _authService.GetUserClaims(user);
 
     claims.Should().Contain(c => requiredClaims.Contains(c.Type));
     claims.Should().NotContain(c => forbiddenClaims.Contains(c.Type));
