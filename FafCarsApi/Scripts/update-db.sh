@@ -8,16 +8,12 @@ set -e
 # print command on execution
 set -x
 
-export BASE='..'
-export PROJECT='FafCarsApi'
-export DB_HOST='localhost'
-export DB_USER='warek'
-export DB_NAME='faf_cars'
-DEFAULT_DB_PASSWORD='warek'
-export PGPASSWORD="${1:-$DEFAULT_DB_PASSWORD}"
+PROJECT=FafCarsApi.csproj
+MIGRATIONS_DIR=Data/Migrations/
+CONTEXT=FafCarsApi.Data.FafCarsDbContext
 
-rm -rf $BASE/Migrations/
-dotnet ef database drop --force --verbose --startup-project $BASE/$PROJECT.csproj --project $BASE/$PROJECT.csproj
-dotnet ef migrations add InitialMigration --project $BASE/$PROJECT.csproj
-dotnet ef database update --project $BASE/$PROJECT.csproj
+rm -rf $MIGRATIONS_DIR
+dotnet ef database drop --force --startup-project $PROJECT --project $PROJECT
+dotnet ef migrations add InitialMigration --project $PROJECT --output-dir $MIGRATIONS_DIR --context $CONTEXT
+dotnet ef database update --project $PROJECT
 echo 'Database updated successfully.'

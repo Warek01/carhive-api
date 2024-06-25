@@ -6,12 +6,12 @@ namespace FafCarsApi.Models;
 
 [Table("brands")]
 public class Brand {
-  [Key] 
-  [StringLength(255)] 
+  [Key]
+  [StringLength(255)]
   [Column("name")]
   public string Name { get; set; } = null!;
 
-  [StringLength(2)] 
+  [StringLength(2)]
   [Column("country_code")]
   public string CountryCode { get; set; } = null!;
 

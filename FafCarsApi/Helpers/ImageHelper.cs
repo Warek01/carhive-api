@@ -23,9 +23,7 @@ public static partial class ImageHelper {
 
     using Image image = await Image.LoadAsync(stream);
 
-    image.Mutate(ctx => {
-      ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height));
-    });
+    image.Mutate(ctx => { ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height)); });
 
     var encoder = new WebpEncoder {
       Quality = 80,

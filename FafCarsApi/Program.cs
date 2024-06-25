@@ -1,9 +1,9 @@
 using System.Reflection;
 using Asp.Versioning;
-using FafCarsApi.Configurations;
+using FafCarsApi.Config;
+using FafCarsApi.Data;
 using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
-using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -137,5 +137,6 @@ public static class Program {
 
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();
     _builder.Services.AddDbContext<FafCarsDbContext>(options => { options.UseNpgsql(dataSource); });
+    _builder.Services.AddScoped<DbContext, FafCarsDbContext>();
   }
 }

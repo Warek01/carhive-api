@@ -1,8 +1,9 @@
 ﻿using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
+using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FafCarsApi.Models;
+namespace FafCarsApi.Data;
 
 public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHostEnvironment env)
   : DbContext(options) {
@@ -75,7 +76,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
       .HasMany(u => u.Favorites)
       .WithMany(l => l.UsersFavorites)
       .UsingEntity<ListingUserFavorite>();
-    
+
     var initializer = new DbInitializer(modelBuilder, env);
     initializer.Initialize();
   }

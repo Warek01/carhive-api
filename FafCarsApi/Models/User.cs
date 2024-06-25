@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using FafCarsApi.Data;
 using FafCarsApi.Enums;
 
 namespace FafCarsApi.Models;

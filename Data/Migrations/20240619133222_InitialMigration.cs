@@ -421,9 +421,9 @@ namespace FafCarsApi.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmai.com", "$2a$13$4NwwMIJXpmDD0Hdq9NGX7e3H4msxwGhBkpSQChWq0fijNdFO/qHFO", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmai.com", "$2a$13$4vwllbaveeojsaT41P2mtO942VJTZ2vORnKBueoUFHpZIPrFmx.li", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmai.com", "$2a$13$/JMd1EFxERUc0OEvprzmI.mrUHFDGPxlsJubzk8D5yl9pmWEOtjra", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmai.com", "$2a$13$7qny3C85BdvPoeFRrjxNw.R6JCqAY7WiOOic9.tJwzW4rL7QToOXK", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmai.com", "$2a$13$ihzU3sNVF4tWkzueudBQLuBVaiRg5o/t64G.BG8AE4fmSWC7toq5i", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmai.com", "$2a$13$2djJc.fXR.wKjQpZXc3Xj.MxDizXPWUlmRD71HC4KAW1MKOTR9IUe", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(

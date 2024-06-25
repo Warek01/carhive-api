@@ -7,8 +7,8 @@ namespace FafCarsApi.Models;
 [PrimaryKey(nameof(Name), nameof(BrandName))]
 [Table("models")]
 public class Model {
-  [Key] 
-  [StringLength(255)] 
+  [Key]
+  [StringLength(255)]
   [Column("name")]
   public string Name { get; set; } = null!;
 
@@ -20,7 +20,7 @@ public class Model {
   [ForeignKey(nameof(BrandName))]
   [InverseProperty(nameof(Brand.Models))]
   public Brand Brand { get; set; } = null!;
-  
+
   [InverseProperty(nameof(Listing.Model))]
   public List<Listing> Listings { get; set; } = [];
 }

@@ -6,7 +6,8 @@ namespace FafCarsApi.Services;
 
 public class StaticFileService {
   public static readonly string Root = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-  public static readonly PathString RequestPath = new PathString("/api/v1/file");
+  public static readonly PathString RelativeRequestPath = new PathString("/file");
+  public static readonly PathString FullRequestPath = new PathString(Path.Join("/api/v1", RelativeRequestPath));
 
   public StaticFileService() {
     if (!Directory.Exists(Root))
@@ -16,7 +17,7 @@ public class StaticFileService {
   public static void SetupStaticFileServing(WebApplication app) {
     app.UseFileServer();
     app.UseStaticFiles(new StaticFileOptions {
-      RequestPath = RequestPath,
+      RequestPath = FullRequestPath,
       HttpsCompression = HttpsCompressionMode.Compress,
       ServeUnknownFileTypes = false,
       FileProvider = new PhysicalFileProvider(Root)

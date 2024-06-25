@@ -3,7 +3,7 @@ using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dto;
 
 public class ListingsQueryDto : PaginationQuery {
   /// <summary>
@@ -24,10 +24,10 @@ public class ListingsQueryDto : PaginationQuery {
   [FromQuery(Name = "favorites")]
   public bool Favorites { get; set; } = false;
 
-  [FromQuery(Name = "brand")] 
+  [FromQuery(Name = "brand")]
   public List<string>? BrandNames { get; set; } = null;
-  
-  [FromQuery(Name = "engine")] 
+
+  [FromQuery(Name = "engine")]
   public List<EngineType>? EngineTypes { get; set; } = null;
 
   [FromQuery(Name = "priceMin")]
@@ -41,7 +41,7 @@ public class ListingsQueryDto : PaginationQuery {
   [FromQuery(Name = "country")]
   [Length(2, 2)]
   public string? CountryCode { get; set; }
-  
+
   [FromQuery(Name = "SellAddress")]
   [Length(1, 255)]
   public string? Address { get; set; }

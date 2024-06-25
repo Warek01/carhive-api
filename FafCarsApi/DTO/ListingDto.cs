@@ -1,6 +1,6 @@
 ﻿using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dto;
 
 public class ListingDto {
   public Guid Id { get; set; }

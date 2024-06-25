@@ -1,5 +1,4 @@
 using Asp.Versioning;
-using AutoMapper;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Services;

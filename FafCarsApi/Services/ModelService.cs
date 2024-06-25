@@ -1,3 +1,4 @@
+using FafCarsApi.Data;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,12 +22,12 @@ public class ModelService(FafCarsDbContext dbContext) {
 
     if (brand == null)
       return null;
-    
+
     var model = new Model {
       Name = modelName,
       Brand = brand
     };
-    
+
     await dbContext.AddAsync(model);
     await dbContext.SaveChangesAsync();
 

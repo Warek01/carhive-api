@@ -1,26 +1,29 @@
 using AutoMapper;
-using FafCarsApi.Dtos;
+using FafCarsApi.Dto;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 
-namespace FafCarsApi.Configurations;
+namespace FafCarsApi.Config;
 
 public class MappingProfile : Profile {
   public MappingProfile() {
+    CreateMap<User, UserAdminDto>();
     CreateMap<User, UserDto>();
+    CreateMap<Country, CountryDto>();
+    CreateMap<Brand, BrandDto>();
+
     CreateMap<Listing, ListingDto>()
       .ForMember(dto => dto.PreviewUrl,
         o => o.MapFrom(l => l.PreviewFilename == null
           ? null
-          : Path.Combine(StaticFileService.RequestPath, l.PreviewFilename))
+          : Path.Combine(StaticFileService.RelativeRequestPath, l.PreviewFilename))
       )
       .ForMember(dto => dto.ImagesUrls,
         o => o.MapFrom(
-          l => l.ImagesFilenames.Select(f => Path.Combine(StaticFileService.RequestPath, f)).ToList()
+          l => l.ImagesFilenames.Select(f => Path.Combine(StaticFileService.RelativeRequestPath, f)).ToList()
         )
       );
-    CreateMap<Country, CountryDto>();
-    CreateMap<Brand, BrandDto>();
+
     CreateMap<CreateListingDto, Listing>()
       .ForMember(
         dest => dest.ImagesFilenames,

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
-using FafCarsApi.Dtos;
+using FafCarsApi.Dto;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Mvc;

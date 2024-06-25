@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using FafCarsApi.Dtos;
+using FafCarsApi.Data;
+using FafCarsApi.Dto;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,7 @@ public class ListingService(
     else {
       listings = GetActiveListings();
     }
-    
+
     if (query.UserId != null)
       listings = listings.Where(l => l.PublisherId == query.UserId);
 

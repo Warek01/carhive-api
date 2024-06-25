@@ -1,7 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dtos;
+using FafCarsApi.Dto;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
 using FafCarsApi.Services;

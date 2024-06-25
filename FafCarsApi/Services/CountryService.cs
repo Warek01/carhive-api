@@ -1,3 +1,4 @@
+using FafCarsApi.Data;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 

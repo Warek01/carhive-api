@@ -15,6 +15,6 @@ public class PaginationQuery {
   [DefaultValue(10)]
   public int Take { get; set; } = 10;
 
-  [FromQuery(Name = "order")] 
+  [FromQuery(Name = "order")]
   public string? Order { get; set; }
 }

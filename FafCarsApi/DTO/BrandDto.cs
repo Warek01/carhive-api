@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dto;
 
-public class CountryDto {
+public class BrandDto {
   [Length(1, 255)]
   public string Name { get; set; } = null!;
-  
+
   [Length(2, 2)]
-  public string Code { get; set; } = null!;
+  public string CountryCode { get; set; } = null!;
 }

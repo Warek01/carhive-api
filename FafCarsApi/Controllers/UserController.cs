@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dtos;
+using FafCarsApi.Dto;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
@@ -20,30 +20,30 @@ public class UserController(
   [HttpGet]
   [Route("{userId:Guid}")]
   [Authorize]
-  public async Task<ActionResult<UserDto>> GetUser(Guid userId) {
+  public async Task<ActionResult<UserAdminDto>> GetUser(Guid userId) {
     User? queriedUser = await userService.FindUser(userId);
 
     if (queriedUser == null)
       return NotFound();
 
-    UserDto result = mapper.Map<UserDto>(queriedUser);
+    UserAdminDto result = mapper.Map<UserAdminDto>(queriedUser);
 
     return result;
   }
 
   [Authorize(Roles = "Admin")]
   [HttpGet]
-  public async Task<ActionResult<PaginatedResultDto<UserDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
+  public async Task<ActionResult<PaginatedResultDto<UserAdminDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
     var usersQuery = userService.GetUsers();
     var count = await usersQuery.CountAsync();
-    List<UserDto> users = await usersQuery
+    List<UserAdminDto> users = await usersQuery
       .OrderByDescending(u => u.CreatedAt)
       .Skip(pagination.Take * pagination.Page)
       .Take(pagination.Take)
-      .Select(u => mapper.Map<UserDto>(u))
+      .Select(u => mapper.Map<UserAdminDto>(u))
       .ToListAsync();
 
-    return new PaginatedResultDto<UserDto> {
+    return new PaginatedResultDto<UserAdminDto> {
       Items = users,
       TotalItems = count
     };
