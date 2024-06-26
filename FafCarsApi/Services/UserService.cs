@@ -10,7 +10,8 @@ namespace FafCarsApi.Services;
 
 public class UserService(
   FafCarsDbContext dbContext,
-  IConfiguration config
+  IConfiguration config,
+  IMapper mapper
 ) {
   public IQueryable<User> GetUsers() {
     return dbContext.Users.AsNoTracking();
@@ -61,33 +62,23 @@ public class UserService(
   }
 
   public async Task<User> RegisterUser(RegisterDto registerDto) {
-    var user = new User();
-    await dbContext.Users.AddAsync(user);
-
-    var config1 = new MapperConfiguration(cfg => cfg.CreateMap<RegisterDto, User>());
-    var mapper = config1.CreateMapper();
-    mapper.Map(registerDto, user);
+    User user = mapper.Map<User>(registerDto);
 
     user.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
       user.Password,
       int.Parse(config["BCrypt:HashRounds"]!)
     );
-    user.Roles = new List<UserRole> {
-      UserRole.ListingCreator
-    };
+    
+    user.Roles = [UserRole.ListingCreator];
 
+    await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();
     return user;
   }
 
   // To be called by admin when creating users in dashboard
-  public async Task CreateUser(CreateUserDto c) {
-    var user = new User {
-      Username = c.Username,
-      Password = c.Password,
-      Email = c.Email,
-      Roles = c.Roles
-    };
+  public async Task CreateUser(CreateUserDto createDto) {
+    User user = mapper.Map<User>(createDto);
 
     await dbContext.AddAsync(user);
     await dbContext.SaveChangesAsync();

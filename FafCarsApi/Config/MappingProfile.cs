@@ -11,6 +11,8 @@ public class MappingProfile : Profile {
     CreateMap<User, UserDto>();
     CreateMap<Country, CountryDto>();
     CreateMap<Brand, BrandDto>();
+    CreateMap<RegisterDto, User>();
+    CreateMap<CreateUserDto, User>();
 
     CreateMap<Listing, ListingDto>()
       .ForMember(dto => dto.PreviewUrl,

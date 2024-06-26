@@ -57,12 +57,13 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
 
   public List<Claim> GetUserClaims(User user) {
     List<Claim> claims = [
-      new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-      new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
     ];
-
-    foreach (var role in user.Roles)
-      claims.Add(new Claim("role", role.ToString()));
+    
+    claims.AddRange(
+      user.Roles.Select(role => new Claim("role", role.ToString()))
+    );
 
     return claims;
   }
