@@ -1,11 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
-using FafCarsApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Queries;
 
-public class ListingsQueryDto : PaginationQuery {
+public class ListingsQuery : PaginationQuery {
   /// <summary>
   /// Body styles filter.
   /// </summary>

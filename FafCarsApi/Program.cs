@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Reflection;
 using Asp.Versioning;
 using FafCarsApi.Config;
@@ -18,6 +19,12 @@ public static class Program {
   private static WebApplicationBuilder _builder = null!;
 
   public static void Main(string[] args) {
+    var culture = CultureInfo.InvariantCulture;
+    CultureInfo.DefaultThreadCurrentCulture = culture;
+    CultureInfo.DefaultThreadCurrentUICulture = culture;
+    Thread.CurrentThread.CurrentCulture = culture;
+    Thread.CurrentThread.CurrentUICulture = culture;
+    
     _builder = WebApplication.CreateBuilder(args);
 
     _builder.Host.UseSerilog(

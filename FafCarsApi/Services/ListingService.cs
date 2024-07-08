@@ -3,6 +3,7 @@ using FafCarsApi.Data;
 using FafCarsApi.Dto;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
+using FafCarsApi.Queries;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Helpers.ImageHelper;
 
@@ -13,7 +14,7 @@ public class ListingService(
   ILogger<ListingService> logger,
   IMapper mapper
 ) {
-  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingsQueryDto query) {
+  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingsQuery query) {
     IQueryable<Listing> listings;
 
     if (query.Favorites) {
@@ -80,6 +81,10 @@ public class ListingService(
 
   public async Task<Listing?> FindListing(Guid listingId) {
     return await dbContext.Listings.FindAsync(listingId);
+  }
+
+  public IQueryable<Listing> GetTotalListings() {
+    return dbContext.Listings.AsNoTracking();
   }
 
   public IQueryable<Listing> GetActiveListings() {

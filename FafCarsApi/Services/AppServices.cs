@@ -8,6 +8,7 @@ public static class AppServices {
     typeof(BrandService),
     typeof(CountryService),
     typeof(ModelService),
+    typeof(StatisticsService),
   ];
 
   private static readonly List<Type> SingletonServices = [

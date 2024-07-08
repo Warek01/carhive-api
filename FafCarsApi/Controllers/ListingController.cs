@@ -4,6 +4,7 @@ using AutoMapper;
 using FafCarsApi.Dto;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
+using FafCarsApi.Queries;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ public class ListingController(
 ) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
-    [FromQuery] ListingsQueryDto query
+    [FromQuery] ListingsQuery query
   ) {
     PaginatedResultDto<ListingDto> listings = await listingService.GetFilteredListingsAsync(query);
     return listings;
