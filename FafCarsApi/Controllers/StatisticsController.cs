@@ -15,6 +15,10 @@ public class StatisticsController(StatisticsService statisticsService) : Control
   [HttpGet]
   [Route("Market")]
   public async Task<ActionResult<MarketStatisticsDto>> GetMarketStatistics([FromQuery] MarketStatisticsQuery query) {
+    if (query.IncludeStats && (query.Year == null || query.Month == null)) {
+      return BadRequest("year and month should not be null");
+    }
+
     return await statisticsService.GenerateMarketStatistics(query);
   }
 }

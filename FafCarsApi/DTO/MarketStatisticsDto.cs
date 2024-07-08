@@ -5,7 +5,7 @@ public class MarketStatisticsDto {
 
   public int CreatedToday { get; set; }
 
-  public List<CountPerDateDto>? TotalListingsStats { get; set; }
+  public List<int>? TotalListingsStats { get; set; }
 
-  public List<CountPerDateDto>? CreatedListingsStats { get; set; }
+  public List<int>? CreatedListingsStats { get; set; }
 }
