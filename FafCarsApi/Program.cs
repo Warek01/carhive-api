@@ -136,8 +136,8 @@ public static class Program {
 
   private static void SetupDataSource() {
     var dataSourceBuilder = new NpgsqlDataSourceBuilder(_builder.Configuration.GetConnectionString("Default"));
-    dataSourceBuilder.MapEnum<EngineType>();
-    dataSourceBuilder.MapEnum<BodyStyle>();
+    dataSourceBuilder.MapEnum<CarFuelType>();
+    dataSourceBuilder.MapEnum<CarBodyStyle>();
     dataSourceBuilder.MapEnum<CarColor>();
     dataSourceBuilder.MapEnum<UserRole>();
     dataSourceBuilder.EnableParameterLogging();

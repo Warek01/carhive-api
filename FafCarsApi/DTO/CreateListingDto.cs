@@ -13,25 +13,25 @@ public class CreateListingDto {
 
   [DefaultValue(12500)]
   [Range(0, double.MaxValue)]
-  public double Price { get; set; }
+  public double? Price { get; set; }
 
-  [DefaultValue(BodyStyle.Sedan)]
-  [EnumDataType(typeof(BodyStyle))]
-  public BodyStyle BodyStyle { get; set; }
-
+  [DefaultValue(CarBodyStyle.Sedan)]
+  public CarBodyStyle? BodyStyle { get; set; }
+  
   [DefaultValue(220)]
   [Range(0, int.MaxValue)]
   public int? Horsepower { get; set; }
 
-  [DefaultValue(EngineType.Hybrid)]
-  public EngineType EngineType { get; set; }
-
+  [DefaultValue(CarFuelType.Hybrid)]
+  public CarFuelType? FuelType { get; set; }
+  
   [DefaultValue(3.5)]
   [Range(0, double.MaxValue)]
   public double? EngineVolume { get; set; }
-
+    
   [DefaultValue(CarColor.Black)]
-  public CarColor Color { get; set; }
+  public CarColor? Color { get; set; }
+
 
   [DefaultValue(20)]
   [Range(0, int.MaxValue)]
@@ -48,16 +48,21 @@ public class CreateListingDto {
   [DefaultValue(2019)]
   [Range(0, int.MaxValue)]
   public int? ProductionYear { get; set; }
-
+  
+  public FileDto? PreviewFile { get; set; }
+  
+  public List<FileDto> ImagesFiles { get; set; } = [];
+  
   [Length(2, 2)]
   [DefaultValue("DE")]
-  public string CountryCode { get; set; } = null!;
+  public string? CountryCode { get; set; }
+  
+  [StringLength(255)]
+  [DefaultValue("Belin")]
+  public string? City { get; set; }
 
   [StringLength(255)]
   [DefaultValue("789 Oak Rd, Berlin, DE")]
   public string? SellAddress { get; set; }
-
-  public FileDto? PreviewFile { get; set; }
-
-  public List<FileDto> ImagesFiles { get; set; } = [];
+  
 }

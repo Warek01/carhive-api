@@ -22,8 +22,8 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     modelBuilder.HasPostgresExtension("uuid-ossp");
 
-    modelBuilder.HasPostgresEnum<BodyStyle>();
-    modelBuilder.HasPostgresEnum<EngineType>();
+    modelBuilder.HasPostgresEnum<CarBodyStyle>();
+    modelBuilder.HasPostgresEnum<CarFuelType>();
     modelBuilder.HasPostgresEnum<CarColor>();
     modelBuilder.HasPostgresEnum<UserRole>();
 

@@ -19,7 +19,7 @@ public class UpdateListingDto {
   [Range(0, int.MaxValue)]
   public int? Horsepower { get; set; }
 
-  public EngineType EngineType { get; set; }
+  public CarFuelType CarFuelType { get; set; }
 
   [Range(0, double.MaxValue)]
   public double? EngineVolume { get; set; }

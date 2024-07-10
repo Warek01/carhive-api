@@ -1,6 +1,7 @@
 namespace FafCarsApi.Enums;
 
-public enum EngineType {
+public enum CarFuelType {
+  Undefined,
   Petrol,
   Diesel,
   Hybrid,

@@ -48,7 +48,7 @@ public class ListingService(
       listings = listings.Where(l => l.Country.Code == query.CountryCode);
 
     if (query.EngineTypes != null)
-      listings = listings.Where(l => query.EngineTypes.Contains(l.EngineType));
+      listings = listings.Where(l => query.EngineTypes.Contains(l.FuelType));
 
     // TODO: perform fuzzy search
     if (query.Address != null)

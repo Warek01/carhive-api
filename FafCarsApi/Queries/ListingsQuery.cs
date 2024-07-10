@@ -9,7 +9,7 @@ public class ListingsQuery : PaginationQuery {
   /// Body styles filter.
   /// </summary>
   [FromQuery(Name = "body")]
-  public List<BodyStyle>? BodyStyles { get; set; } = null;
+  public List<CarBodyStyle>? BodyStyles { get; set; } = null;
 
   /// <summary>
   /// User ID to get associated listings.
@@ -27,7 +27,7 @@ public class ListingsQuery : PaginationQuery {
   public List<string>? BrandNames { get; set; } = null;
 
   [FromQuery(Name = "engine")]
-  public List<EngineType>? EngineTypes { get; set; } = null;
+  public List<CarFuelType>? EngineTypes { get; set; } = null;
 
   [FromQuery(Name = "priceMin")]
   [Range(0, int.MaxValue)]

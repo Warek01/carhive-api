@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240624132442_InitialMigration")]
+    [Migration("20240710100344_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -25,9 +25,9 @@ namespace FafCarsApi.Data.Migrations
                 .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_color", new[] { "black", "white", "silver", "gray", "blue", "red", "brown", "green", "beige", "yellow", "gold", "orange", "purple", "pink", "burgundy", "turquoise", "ivory", "bronze", "teal", "navy" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "engine_type", new[] { "petrol", "diesel", "hybrid", "electric", "other" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "undefined", "petrol", "diesel", "hybrid", "electric", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "admin", "listing_creator" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1742,8 +1742,8 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("UUID_GENERATE_V4()");
 
-                    b.Property<BodyStyle>("BodyStyle")
-                        .HasColumnType("body_style")
+                    b.Property<CarBodyStyle>("BodyStyle")
+                        .HasColumnType("car_body_style")
                         .HasColumnName("body_style");
 
                     b.Property<string>("BrandName")
@@ -1781,13 +1781,13 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("deleted_at");
 
-                    b.Property<EngineType>("EngineType")
-                        .HasColumnType("engine_type")
-                        .HasColumnName("engine_type");
-
                     b.Property<double?>("EngineVolume")
                         .HasColumnType("double precision")
                         .HasColumnName("engine_volume");
+
+                    b.Property<CarFuelType>("FuelType")
+                        .HasColumnType("car_fuel_type")
+                        .HasColumnName("fuel_type");
 
                     b.Property<int?>("Horsepower")
                         .HasColumnType("integer")
@@ -1861,15 +1861,15 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Id = new Guid("68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1"),
-                            BodyStyle = BodyStyle.Sedan,
+                            BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Audi",
                             City = "Berlin",
                             Clearance = 150,
                             Color = CarColor.Black,
                             CountryCode = "DE",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
-                            EngineType = EngineType.Petrol,
                             EngineVolume = 2.0,
+                            FuelType = CarFuelType.Petrol,
                             Horsepower = 190,
                             ImagesFilenames = new List<string>(),
                             Mileage = 30000,
@@ -1885,15 +1885,15 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Id = new Guid("dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f"),
-                            BodyStyle = BodyStyle.SUV,
+                            BodyStyle = CarBodyStyle.SUV,
                             BrandName = "BMW",
                             City = "Berlin",
                             Clearance = 200,
                             Color = CarColor.White,
                             CountryCode = "DE",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
-                            EngineType = EngineType.Diesel,
                             EngineVolume = 3.0,
+                            FuelType = CarFuelType.Diesel,
                             Horsepower = 300,
                             ImagesFilenames = new List<string>(),
                             Mileage = 25000,
@@ -1909,15 +1909,15 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Id = new Guid("7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b"),
-                            BodyStyle = BodyStyle.Coupe,
+                            BodyStyle = CarBodyStyle.Coupe,
                             BrandName = "Mercedes-Benz",
                             City = "Berlin",
                             Clearance = 140,
                             Color = CarColor.Blue,
                             CountryCode = "DE",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
-                            EngineType = EngineType.Petrol,
                             EngineVolume = 2.5,
+                            FuelType = CarFuelType.Petrol,
                             Horsepower = 250,
                             ImagesFilenames = new List<string>(),
                             Mileage = 35000,
@@ -1933,15 +1933,15 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Id = new Guid("f3e6e478-3a21-4b05-9926-6fe29f4a58c0"),
-                            BodyStyle = BodyStyle.Sedan,
+                            BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Toyota",
                             City = "Tokyo",
                             Clearance = 160,
                             Color = CarColor.Silver,
                             CountryCode = "JP",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
-                            EngineType = EngineType.Hybrid,
                             EngineVolume = 2.5,
+                            FuelType = CarFuelType.Hybrid,
                             Horsepower = 180,
                             ImagesFilenames = new List<string>(),
                             Mileage = 40000,
@@ -1957,15 +1957,15 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Id = new Guid("b78f7f22-07af-4dee-8c96-ed34d7b9bb95"),
-                            BodyStyle = BodyStyle.PickupTruck,
+                            BodyStyle = CarBodyStyle.PickupTruck,
                             BrandName = "Ford",
                             City = "New York",
                             Clearance = 180,
                             Color = CarColor.Red,
                             CountryCode = "US",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
-                            EngineType = EngineType.Petrol,
                             EngineVolume = 5.0,
+                            FuelType = CarFuelType.Petrol,
                             Horsepower = 350,
                             ImagesFilenames = new List<string>(),
                             Mileage = 20000,
@@ -8037,7 +8037,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$w7OPBuEpcuvv6McfteXYhuRkN9zoBXlrEcOqE3sH8CSjzV6azln0.",
+                            Password = "$2a$13$fF48ajSpBzFr9csIwj147uOgja1K/UhEIvU6xXW0o50OQ1KmA5ZS6",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.Admin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8048,7 +8048,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$JHWs5DwiT59hRlcxPWLg/.mpAd40KvJvrWrh9JsscAsk9HDXoJ9Xq",
+                            Password = "$2a$13$.PpfkcPaqRrug5XhwDH.2eQxJDWHw7CU6hWqILFoS4.ZZytTL/6i6",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8059,7 +8059,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$wdFol16W8eh6iqdAlYT3SOkA/ym/qhA6hu3y0pt2iqTo4qCHb3.Ma",
+                            Password = "$2a$13$20UfUIR9ASR7gszQ7uQIeeEmvkkuAv8hTk9ws83anhMMiLvz13amW",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

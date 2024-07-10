@@ -27,20 +27,25 @@ public class Listing {
   [InverseProperty(nameof(Model.Listings))]
   public Model? Model { get; set; }
 
+  [Column("created_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  public DateTime CreatedAt { get; set; }
+
+  [Column("updated_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  public DateTime UpdatedAt { get; set; }
+
   [Range(0, double.MaxValue)]
   [Column("price")]
   public double Price { get; set; }
 
   [Column("body_style")]
-  public BodyStyle BodyStyle { get; set; }
-
+  public CarBodyStyle BodyStyle { get; set; }
 
   [Range(0, int.MaxValue)]
   [Column("horsepower")]
   public int? Horsepower { get; set; }
 
-  [Column("engine_type")]
-  public EngineType EngineType { get; set; }
+  [Column("fuel_type")]
+  public CarFuelType FuelType { get; set; }
 
   [Column("engine_volume")]
   public double? EngineVolume { get; set; }
@@ -73,12 +78,6 @@ public class Listing {
 
   [Column("deleted_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
   public DateTime? DeletedAt { get; set; }
-
-  [Column("created_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
-  public DateTime CreatedAt { get; set; }
-
-  [Column("updated_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
-  public DateTime UpdatedAt { get; set; }
 
   [Column("publisher_id")]
   public Guid PublisherId { get; set; }

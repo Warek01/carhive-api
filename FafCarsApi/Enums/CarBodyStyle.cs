@@ -1,6 +1,6 @@
 namespace FafCarsApi.Enums;
 
-public enum BodyStyle {
+public enum CarBodyStyle {
   Sedan,
   SUV,
   Crossover,
