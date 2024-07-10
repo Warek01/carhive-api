@@ -131,27 +131,32 @@ public class ListingService(
   }
 
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId) {
+    var model = await dbContext.Models.FindAsync(createDto.BrandName, createDto.ModelName);
+    if (model == null) {
+      throw new BadRequestException("model not found");
+    }
+
     Listing listing = mapper.Map<Listing>(createDto);
-
-    if (createDto.PreviewFile != null) {
-      var (_, base64Body) = createDto.PreviewFile;
-      string generatedFileName = Guid.NewGuid() + ".webp";
-      await ImageHelper.Create(generatedFileName, base64Body);
-      listing.PreviewFilename = generatedFileName;
-    }
-
-    foreach (var image in createDto.ImagesFiles) {
-      var (_, base64Body) = image;
-      string generatedFileName = Guid.NewGuid() + ".webp";
-      await ImageHelper.Create(generatedFileName, base64Body);
-      listing.ImagesFilenames.Add(generatedFileName);
-    }
 
     var publisher = (await dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
 
     await dbContext.Listings.AddAsync(listing);
+    await dbContext.SaveChangesAsync();
+
+    if (createDto.Preview != null) {
+      string generatedFileName = Guid.NewGuid() + ".webp";
+      await ImageHelper.Create(generatedFileName, createDto.Preview);
+      listing.PreviewFilename = generatedFileName;
+    }
+
+    foreach (IFormFile image in createDto.Images) {
+      string generatedFileName = Guid.NewGuid() + ".webp";
+      await ImageHelper.Create(generatedFileName, image);
+      listing.ImagesFilenames.Add(generatedFileName);
+    }
+
     await dbContext.SaveChangesAsync();
   }
 

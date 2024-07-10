@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 using FafCarsApi.Enums;
 
 namespace FafCarsApi.Dto;
@@ -32,7 +33,6 @@ public class CreateListingDto {
   [DefaultValue(CarColor.Black)]
   public CarColor? Color { get; set; }
 
-
   [DefaultValue(20)]
   [Range(0, int.MaxValue)]
   public int? Clearance { get; set; }
@@ -49,9 +49,9 @@ public class CreateListingDto {
   [Range(0, int.MaxValue)]
   public int? ProductionYear { get; set; }
   
-  public FileDto? PreviewFile { get; set; }
+  public IFormFile? Preview { get; set; }
   
-  public List<FileDto> ImagesFiles { get; set; } = [];
+  public List<IFormFile> Images { get; set; } = [];
   
   [Length(2, 2)]
   [DefaultValue("DE")]

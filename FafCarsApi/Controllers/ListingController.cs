@@ -78,7 +78,7 @@ public class ListingController(
 
   [Authorize(Roles = "Admin, ListingCreator")]
   [HttpPost]
-  public async Task<ActionResult> CreateListing([FromBody] CreateListingDto createDto) {
+  public async Task<ActionResult> CreateListing([FromForm] CreateListingDto createDto) {
     var publisherId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
     await listingService.CreateListing(createDto, publisherId);
     return Created();
