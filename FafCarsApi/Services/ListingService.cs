@@ -131,7 +131,7 @@ public class ListingService(
   }
 
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId) {
-    var model = await dbContext.Models.FindAsync(createDto.BrandName, createDto.ModelName);
+    var model = await dbContext.Models.FindAsync(createDto.ModelName, createDto.BrandName);
     if (model == null) {
       throw new BadRequestException("model not found");
     }
