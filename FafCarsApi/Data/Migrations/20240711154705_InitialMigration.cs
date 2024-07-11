@@ -18,7 +18,7 @@ namespace FafCarsApi.Data.Migrations
             migrationBuilder.AlterDatabase()
                 .Annotation("Npgsql:Enum:car_body_style", "sedan,suv,crossover,van,minivan,hatchback,wagon,coupe,pickup_truck,convertible,other")
                 .Annotation("Npgsql:Enum:car_color", "black,white,silver,gray,blue,red,brown,green,beige,yellow,gold,orange,purple,pink,burgundy,turquoise,ivory,bronze,teal,navy")
-                .Annotation("Npgsql:Enum:car_fuel_type", "undefined,petrol,diesel,hybrid,electric,other")
+                .Annotation("Npgsql:Enum:car_fuel_type", "petrol,diesel,hybrid,plugin_hybrid,electric,other")
                 .Annotation("Npgsql:Enum:user_role", "admin,listing_creator")
                 .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
 
@@ -421,9 +421,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$20UfUIR9ASR7gszQ7uQIeeEmvkkuAv8hTk9ws83anhMMiLvz13amW", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$.PpfkcPaqRrug5XhwDH.2eQxJDWHw7CU6hWqILFoS4.ZZytTL/6i6", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$fF48ajSpBzFr9csIwj147uOgja1K/UhEIvU6xXW0o50OQ1KmA5ZS6", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$tRGvIb7q3eN5bN3uFEZTv.DRS/ySEjS2ypYy5DLxw9.H11rSHmZge", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$Culv1foRL1uQRUTX6Wmiu.ytbEwBCbdrfd0d/hq5SxLodcst/Q8Mm", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$19WT3c85ZARGdxczqqvnnepql5uV/jhO8l1QqORM8t.D2IMkKLEKy", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -442,6 +442,7 @@ namespace FafCarsApi.Data.Migrations
                     { "BMW", "DE" },
                     { "Bugatti", "FR" },
                     { "Buick", "US" },
+                    { "BYD", "CN" },
                     { "Cadillac", "US" },
                     { "Chevrolet", "US" },
                     { "Chrysler", "US" },

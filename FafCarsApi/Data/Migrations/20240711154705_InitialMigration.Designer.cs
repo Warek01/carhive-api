@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240710100344_InitialMigration")]
+    [Migration("20240711154705_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -27,7 +27,7 @@ namespace FafCarsApi.Data.Migrations
 
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_color", new[] { "black", "white", "silver", "gray", "blue", "red", "brown", "green", "beige", "yellow", "gold", "orange", "purple", "pink", "burgundy", "turquoise", "ivory", "bronze", "teal", "navy" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "undefined", "petrol", "diesel", "hybrid", "electric", "other" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "petrol", "diesel", "hybrid", "plugin_hybrid", "electric", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "admin", "listing_creator" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -86,6 +86,11 @@ namespace FafCarsApi.Data.Migrations
                         {
                             Name = "Bugatti",
                             CountryCode = "FR"
+                        },
+                        new
+                        {
+                            Name = "BYD",
+                            CountryCode = "CN"
                         },
                         new
                         {
@@ -8037,7 +8042,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$fF48ajSpBzFr9csIwj147uOgja1K/UhEIvU6xXW0o50OQ1KmA5ZS6",
+                            Password = "$2a$13$19WT3c85ZARGdxczqqvnnepql5uV/jhO8l1QqORM8t.D2IMkKLEKy",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.Admin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8048,7 +8053,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$.PpfkcPaqRrug5XhwDH.2eQxJDWHw7CU6hWqILFoS4.ZZytTL/6i6",
+                            Password = "$2a$13$Culv1foRL1uQRUTX6Wmiu.ytbEwBCbdrfd0d/hq5SxLodcst/Q8Mm",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8059,7 +8064,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$20UfUIR9ASR7gszQ7uQIeeEmvkkuAv8hTk9ws83anhMMiLvz13amW",
+                            Password = "$2a$13$tRGvIb7q3eN5bN3uFEZTv.DRS/ySEjS2ypYy5DLxw9.H11rSHmZge",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
