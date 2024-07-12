@@ -25,6 +25,8 @@ namespace FafCarsApi.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_color", new[] { "black", "white", "silver", "gray", "blue", "red", "brown", "green", "beige", "yellow", "gold", "orange", "purple", "pink", "burgundy", "turquoise", "ivory", "bronze", "teal", "navy" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "petrol", "diesel", "hybrid", "plugin_hybrid", "electric", "other" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_status", new[] { "new", "used", "rent" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "admin", "listing_creator" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -1744,6 +1746,10 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnName("id")
                         .HasDefaultValueSql("UUID_GENERATE_V4()");
 
+                    b.Property<DateTime?>("BlockedAt")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("blocked_at");
+
                     b.Property<CarBodyStyle>("BodyStyle")
                         .HasColumnType("car_body_style")
                         .HasColumnName("body_style");
@@ -1753,6 +1759,10 @@ namespace FafCarsApi.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("brand_name");
+
+                    b.Property<CarStatus?>("CarStatus")
+                        .HasColumnType("car_status")
+                        .HasColumnName("car_status");
 
                     b.Property<string>("City")
                         .HasMaxLength(255)
@@ -1782,6 +1792,10 @@ namespace FafCarsApi.Data.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("deleted_at");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text")
+                        .HasColumnName("description");
 
                     b.Property<double?>("EngineVolume")
                         .HasColumnType("double precision")
@@ -1830,6 +1844,14 @@ namespace FafCarsApi.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("sell_address");
+
+                    b.Property<DateTime?>("SoldAt")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("sold_at");
+
+                    b.Property<ListingStatus>("Status")
+                        .HasColumnType("listing_status")
+                        .HasColumnName("status");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
@@ -1881,6 +1903,7 @@ namespace FafCarsApi.Data.Migrations
                             ProductionYear = 2019,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "123 Main St, Berlin, DE",
+                            Status = ListingStatus.Available,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             WheelSize = 18
                         },
@@ -1905,6 +1928,7 @@ namespace FafCarsApi.Data.Migrations
                             ProductionYear = 2020,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "456 Elm Ave, Berlin, DE",
+                            Status = ListingStatus.Available,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             WheelSize = 20
                         },
@@ -1929,6 +1953,7 @@ namespace FafCarsApi.Data.Migrations
                             ProductionYear = 2018,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "789 Oak Rd, Berlin, DE",
+                            Status = ListingStatus.Available,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             WheelSize = 17
                         },
@@ -1953,6 +1978,7 @@ namespace FafCarsApi.Data.Migrations
                             ProductionYear = 2021,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             SellAddress = "101 Pine Blvd, Tokyo, JP",
+                            Status = ListingStatus.Available,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             WheelSize = 16
                         },
@@ -1977,6 +2003,7 @@ namespace FafCarsApi.Data.Migrations
                             ProductionYear = 2019,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             SellAddress = "222 Maple Ln, New York, NY",
+                            Status = ListingStatus.Available,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             WheelSize = 22
                         });
@@ -8039,7 +8066,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$19WT3c85ZARGdxczqqvnnepql5uV/jhO8l1QqORM8t.D2IMkKLEKy",
+                            Password = "$2a$13$.ib2nl/YNoE3lbrsNeOxFORDXuPFixPMp1AM5XZcu1Onpy0hIsvdW",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.Admin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8050,7 +8077,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$Culv1foRL1uQRUTX6Wmiu.ytbEwBCbdrfd0d/hq5SxLodcst/Q8Mm",
+                            Password = "$2a$13$5ArrwZhsfYFrDhEhcmA4seq65xq1.QDnI9SwSpVirBwMArN2ctRiS",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8061,7 +8088,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$tRGvIb7q3eN5bN3uFEZTv.DRS/ySEjS2ypYy5DLxw9.H11rSHmZge",
+                            Password = "$2a$13$m.TbyqRm1/7lgxK6BLtNJ.qCZLAAe0D5ae12cY/kGXWhgnwG246W6",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

@@ -19,6 +19,8 @@ namespace FafCarsApi.Data.Migrations
                 .Annotation("Npgsql:Enum:car_body_style", "sedan,suv,crossover,van,minivan,hatchback,wagon,coupe,pickup_truck,convertible,other")
                 .Annotation("Npgsql:Enum:car_color", "black,white,silver,gray,blue,red,brown,green,beige,yellow,gold,orange,purple,pink,burgundy,turquoise,ivory,bronze,teal,navy")
                 .Annotation("Npgsql:Enum:car_fuel_type", "petrol,diesel,hybrid,plugin_hybrid,electric,other")
+                .Annotation("Npgsql:Enum:car_status", "new,used,rent")
+                .Annotation("Npgsql:Enum:listing_status", "available,sold,deleted,blocked")
                 .Annotation("Npgsql:Enum:user_role", "admin,listing_creator")
                 .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
 
@@ -114,7 +116,12 @@ namespace FafCarsApi.Data.Migrations
                     publisher_id = table.Column<Guid>(type: "uuid", nullable: false),
                     country_code = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
                     city = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
-                    sell_address = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
+                    sell_address = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    car_status = table.Column<CarStatus>(type: "car_status", nullable: true),
+                    description = table.Column<string>(type: "text", nullable: true),
+                    status = table.Column<ListingStatus>(type: "listing_status", nullable: false),
+                    blocked_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
+                    sold_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -421,9 +428,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$tRGvIb7q3eN5bN3uFEZTv.DRS/ySEjS2ypYy5DLxw9.H11rSHmZge", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$Culv1foRL1uQRUTX6Wmiu.ytbEwBCbdrfd0d/hq5SxLodcst/Q8Mm", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$19WT3c85ZARGdxczqqvnnepql5uV/jhO8l1QqORM8t.D2IMkKLEKy", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$m.TbyqRm1/7lgxK6BLtNJ.qCZLAAe0D5ae12cY/kGXWhgnwG246W6", "+37378222444", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$5ArrwZhsfYFrDhEhcmA4seq65xq1.QDnI9SwSpVirBwMArN2ctRiS", "+37378222111", new List<UserRole> { UserRole.ListingCreator }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$.ib2nl/YNoE3lbrsNeOxFORDXuPFixPMp1AM5XZcu1Onpy0hIsvdW", "+37378000111", new List<UserRole> { UserRole.Admin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -1722,14 +1729,14 @@ namespace FafCarsApi.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "listings",
-                columns: new[] { "id", "body_style", "brand_name", "city", "clearance", "color", "country_code", "created_at", "deleted_at", "engine_volume", "fuel_type", "horsepower", "images_filenames", "mileage", "model_name", "preview_filename", "price", "production_year", "publisher_id", "sell_address", "updated_at", "wheel_size" },
+                columns: new[] { "id", "blocked_at", "body_style", "brand_name", "car_status", "city", "clearance", "color", "country_code", "created_at", "deleted_at", "description", "engine_volume", "fuel_type", "horsepower", "images_filenames", "mileage", "model_name", "preview_filename", "price", "production_year", "publisher_id", "sell_address", "sold_at", "status", "updated_at", "wheel_size" },
                 values: new object[,]
                 {
-                    { new Guid("68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1"), CarBodyStyle.Sedan, "Audi", "Berlin", 150, CarColor.Black, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, 2.0, CarFuelType.Petrol, 190, new List<string>(), 30000, "A4", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 35000.0, 2019, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "123 Main St, Berlin, DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 18 },
-                    { new Guid("7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b"), CarBodyStyle.Coupe, "Mercedes-Benz", "Berlin", 140, CarColor.Blue, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, 2.5, CarFuelType.Petrol, 250, new List<string>(), 35000, "C63 AMG", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 40000.0, 2018, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "789 Oak Rd, Berlin, DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 17 },
-                    { new Guid("b78f7f22-07af-4dee-8c96-ed34d7b9bb95"), CarBodyStyle.PickupTruck, "Ford", "New York", 180, CarColor.Red, "US", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, 5.0, CarFuelType.Petrol, 350, new List<string>(), 20000, "F150", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 45000.0, 2019, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "222 Maple Ln, New York, NY", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 22 },
-                    { new Guid("dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f"), CarBodyStyle.SUV, "BMW", "Berlin", 200, CarColor.White, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, 3.0, CarFuelType.Diesel, 300, new List<string>(), 25000, "X5", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 55000.0, 2020, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "456 Elm Ave, Berlin, DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 20 },
-                    { new Guid("f3e6e478-3a21-4b05-9926-6fe29f4a58c0"), CarBodyStyle.Sedan, "Toyota", "Tokyo", 160, CarColor.Silver, "JP", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, 2.5, CarFuelType.Hybrid, 180, new List<string>(), 40000, "Camry", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 30000.0, 2021, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "101 Pine Blvd, Tokyo, JP", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 16 }
+                    { new Guid("68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1"), null, CarBodyStyle.Sedan, "Audi", null, "Berlin", 150, CarColor.Black, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, 2.0, CarFuelType.Petrol, 190, new List<string>(), 30000, "A4", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 35000.0, 2019, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "123 Main St, Berlin, DE", null, ListingStatus.Available, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 18 },
+                    { new Guid("7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b"), null, CarBodyStyle.Coupe, "Mercedes-Benz", null, "Berlin", 140, CarColor.Blue, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, 2.5, CarFuelType.Petrol, 250, new List<string>(), 35000, "C63 AMG", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 40000.0, 2018, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "789 Oak Rd, Berlin, DE", null, ListingStatus.Available, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 17 },
+                    { new Guid("b78f7f22-07af-4dee-8c96-ed34d7b9bb95"), null, CarBodyStyle.PickupTruck, "Ford", null, "New York", 180, CarColor.Red, "US", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, 5.0, CarFuelType.Petrol, 350, new List<string>(), 20000, "F150", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 45000.0, 2019, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "222 Maple Ln, New York, NY", null, ListingStatus.Available, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 22 },
+                    { new Guid("dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f"), null, CarBodyStyle.SUV, "BMW", null, "Berlin", 200, CarColor.White, "DE", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, 3.0, CarFuelType.Diesel, 300, new List<string>(), 25000, "X5", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 55000.0, 2020, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "456 Elm Ave, Berlin, DE", null, ListingStatus.Available, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 20 },
+                    { new Guid("f3e6e478-3a21-4b05-9926-6fe29f4a58c0"), null, CarBodyStyle.Sedan, "Toyota", null, "Tokyo", 160, CarColor.Silver, "JP", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, 2.5, CarFuelType.Hybrid, 180, new List<string>(), 40000, "Camry", "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp", 30000.0, 2021, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "101 Pine Blvd, Tokyo, JP", null, ListingStatus.Available, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 16 }
                 });
 
             migrationBuilder.InsertData(

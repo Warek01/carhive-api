@@ -140,6 +140,8 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarBodyStyle>();
     dataSourceBuilder.MapEnum<CarColor>();
     dataSourceBuilder.MapEnum<UserRole>();
+    dataSourceBuilder.MapEnum<CarStatus>();
+    dataSourceBuilder.MapEnum<ListingStatus>();
     dataSourceBuilder.EnableParameterLogging();
 
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();

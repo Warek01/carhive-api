@@ -26,9 +26,11 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<CarFuelType>();
     modelBuilder.HasPostgresEnum<CarColor>();
     modelBuilder.HasPostgresEnum<UserRole>();
+    modelBuilder.HasPostgresEnum<CarStatus>();
+    modelBuilder.HasPostgresEnum<ListingStatus>();
 
     modelBuilder.Entity<Listing>()
-      .Property(e => e.Id)
+      .Property(e => e.Id)  
       .HasDefaultValueSql(UUID_GEN_SQL);
 
     modelBuilder.Entity<Listing>()

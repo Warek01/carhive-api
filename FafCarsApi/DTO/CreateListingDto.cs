@@ -65,4 +65,10 @@ public class CreateListingDto {
   [DefaultValue("789 Oak Rd, Berlin, DE")]
   public string? SellAddress { get; set; }
   
+  [DefaultValue(FafCarsApi.Enums.CarStatus.Used)]
+  public CarStatus? CarStatus { get; set; }
+  
+  [StringLength(5000)]
+  [DefaultValue("Random Text")]
+  public string? Description { get; set; }
 }

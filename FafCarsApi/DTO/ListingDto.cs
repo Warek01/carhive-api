@@ -26,4 +26,9 @@ public class ListingDto {
   public string? City { get; set; }
   public string? SellAddress { get; set; }
   public bool? IsFavorite { get; set; }
+  public string? Description { get; set; }
+  public CarStatus? CarStatus { get; set; }
+  public ListingStatus Status { get; set; }
+  public DateTime? BlockedAt { get; set; }
+  public DateTime? SoldAt { get; set; }
 }

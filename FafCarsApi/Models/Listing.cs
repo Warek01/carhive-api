@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using FafCarsApi.Data;
 using FafCarsApi.Enums;
@@ -104,4 +105,20 @@ public class Listing {
   [StringLength(255)]
   [Column("sell_address")]
   public string? SellAddress { get; set; }
+
+  [Column("car_status")]
+  public CarStatus? CarStatus { get; set; }
+
+  [Column("description")]
+  public string? Description { get; set; }
+
+  [Column("status")]
+  [DefaultValue(ListingStatus.Available)]
+  public ListingStatus Status { get; set; }
+
+  [Column("blocked_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  public DateTime? BlockedAt { get; set; }
+
+  [Column("sold_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  public DateTime? SoldAt { get; set; }
 }
