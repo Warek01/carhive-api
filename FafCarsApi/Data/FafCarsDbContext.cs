@@ -19,6 +19,13 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   public virtual DbSet<Model> Models { get; set; }
   public virtual DbSet<ListingUserFavorite> ListingUserFavorites { get; set; }
 
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+  {
+    optionsBuilder
+      .UseNpgsql()
+      .EnableSensitiveDataLogging();
+  }
+
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
     modelBuilder.HasPostgresExtension("uuid-ossp");
 

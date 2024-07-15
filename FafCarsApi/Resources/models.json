@@ -708,6 +708,46 @@
     "name": "Z8"
   },
   {
+    "brandName": "Bugatti",
+    "name": "Veyron"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Chiron"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Divo"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Centodieci"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "La Voiture Noire"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "EB110"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Bolide"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 35"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 57"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 41 Royale"
+  },
+  {
     "brandName": "Buick",
     "name": "Century"
   },
@@ -2909,6 +2949,22 @@
   },
   {
     "brandName": "Mercedes-Benz",
+    "name": "C200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C250d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C300e"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C300h"
+  },
+  {
+    "brandName": "Mercedes-Benz",
     "name": "C220"
   },
   {
@@ -3046,6 +3102,26 @@
   {
     "brandName": "Mercedes-Benz",
     "name": "500E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E300 Hybrid"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E350e"
   },
   {
     "brandName": "Mercedes-Benz",
@@ -3422,6 +3498,150 @@
   {
     "brandName": "Mercedes-Benz",
     "name": "Sprinter"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A160"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A45 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G350d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA45 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC300"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC350e"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC43 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE300d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE43 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE450"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS350d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS450"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS580"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "EQC400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "Maybach S560"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "Maybach S650"
   },
   {
     "brandName": "Mercury",
