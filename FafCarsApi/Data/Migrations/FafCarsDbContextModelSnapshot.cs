@@ -1823,7 +1823,7 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("model_name");
 
-                    b.Property<double>("Price")
+                    b.Property<double?>("Price")
                         .HasColumnType("double precision")
                         .HasColumnName("price");
 
@@ -8056,7 +8056,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$aWjKzBTn85KzKrw3edrvguRBg6r4kzhbbi9gTIxYdVZIoznJdagoe",
+                            Password = "$2a$13$0yV8LpuPL1BoSGl/Go5rUeBX7kv7QWAEC/b..bxDCNI527juJa756",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.Admin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8067,7 +8067,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$0KI/d/DE.0vg5XAPxyWLCO99336u7jKe3wLvXkKfLmWDar1QHJwGC",
+                            Password = "$2a$13$9AbfZtBIuct9.vmDCGZ.TeVWvadvvT81Hh.vgoQh2pl./fM/4x4Xm",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8078,7 +8078,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$/k4Jshf4i8xidfj02zGiSuHrYl9m82kja5Wwvu6pl48DtM8frgURq",
+                            Password = "$2a$13$kWpYNky/jOv0aYJs5Mbx5.4XGXaAsomBIC1mQEyE92TEi32wzI5jG",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

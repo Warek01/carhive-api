@@ -36,7 +36,7 @@ public class Listing {
 
   [Range(0, double.MaxValue)]
   [Column("price")]
-  public double Price { get; set; }
+  public double? Price { get; set; }
 
   [Column("body_style")]
   public CarBodyStyle BodyStyle { get; set; }
