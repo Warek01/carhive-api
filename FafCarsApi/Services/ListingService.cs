@@ -123,8 +123,6 @@ public class ListingService(
   }
 
   public async Task UpdateListing(Listing listing, UpdateListingDto updateDto) {
-    var config = new MapperConfiguration(cfg => cfg.CreateMap<UpdateListingDto, Listing>());
-    var mapper = config.CreateMapper();
     mapper.Map(updateDto, listing);
     listing.UpdatedAt = DateTime.UtcNow;
     await dbContext.SaveChangesAsync();
@@ -137,13 +135,9 @@ public class ListingService(
     }
 
     Listing listing = mapper.Map<Listing>(createDto);
-
     var publisher = (await dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
-
-    await dbContext.Listings.AddAsync(listing);
-    await dbContext.SaveChangesAsync();
 
     foreach (IFormFile image in createDto.Images) {
       string generatedFileName = Guid.NewGuid() + ".webp";
@@ -151,6 +145,7 @@ public class ListingService(
       listing.Images.Add(generatedFileName);
     }
 
+    await dbContext.Listings.AddAsync(listing);
     await dbContext.SaveChangesAsync();
   }
 
