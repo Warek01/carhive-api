@@ -49,8 +49,6 @@ public class CreateListingDto {
   [Range(0, int.MaxValue)]
   public int? ProductionYear { get; set; }
   
-  public IFormFile? Preview { get; set; }
-  
   public List<IFormFile> Images { get; set; } = [];
   
   [Length(2, 2)]

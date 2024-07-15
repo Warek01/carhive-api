@@ -15,24 +15,15 @@ public class MappingProfile : Profile {
     CreateMap<CreateUserDto, User>();
 
     CreateMap<Listing, ListingDto>()
-      .ForMember(dto => dto.PreviewUrl,
-        o => o.MapFrom(l => l.PreviewFilename == null
-          ? null
-          : Path.Combine(StaticFileService.RelativeRequestPath, l.PreviewFilename))
-      )
       .ForMember(dto => dto.ImagesUrls,
         o => o.MapFrom(
-          l => l.ImagesFilenames.Select(f => Path.Combine(StaticFileService.RelativeRequestPath, f)).ToList()
+          l => l.Images.Select(f => Path.Combine(StaticFileService.RelativeRequestPath, f)).ToList()
         )
       );
 
     CreateMap<CreateListingDto, Listing>()
       .ForMember(
-        dest => dest.ImagesFilenames,
-        opt => opt.Ignore()
-      )
-      .ForMember(
-        dest => dest.PreviewFilename,
+        dest => dest.Images,
         opt => opt.Ignore()
       );
   }

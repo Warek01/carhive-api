@@ -70,12 +70,8 @@ public class Listing {
   [Column("production_year")]
   public int? ProductionYear { get; set; }
 
-  [StringLength(255)]
-  [Column("preview_filename")]
-  public string? PreviewFilename { get; set; }
-
-  [Column("images_filenames")]
-  public List<string> ImagesFilenames { get; set; } = [];
+  [Column("images")]
+  public List<string> Images { get; set; } = [];
 
   [Column("deleted_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
   public DateTime? DeletedAt { get; set; }

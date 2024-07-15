@@ -1809,10 +1809,10 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("horsepower");
 
-                    b.Property<List<string>>("ImagesFilenames")
+                    b.Property<List<string>>("Images")
                         .IsRequired()
                         .HasColumnType("text[]")
-                        .HasColumnName("images_filenames");
+                        .HasColumnName("images");
 
                     b.Property<int?>("Mileage")
                         .HasColumnType("integer")
@@ -1822,11 +1822,6 @@ namespace FafCarsApi.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("model_name");
-
-                    b.Property<string>("PreviewFilename")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)")
-                        .HasColumnName("preview_filename");
 
                     b.Property<double>("Price")
                         .HasColumnType("double precision")
@@ -1895,10 +1890,9 @@ namespace FafCarsApi.Data.Migrations
                             EngineVolume = 2.0,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 190,
-                            ImagesFilenames = new List<string>(),
+                            Images = new List<string> { "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp" },
                             Mileage = 30000,
                             ModelName = "A4",
-                            PreviewFilename = "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp",
                             Price = 35000.0,
                             ProductionYear = 2019,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
@@ -1920,10 +1914,9 @@ namespace FafCarsApi.Data.Migrations
                             EngineVolume = 3.0,
                             FuelType = CarFuelType.Diesel,
                             Horsepower = 300,
-                            ImagesFilenames = new List<string>(),
+                            Images = new List<string> { "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp" },
                             Mileage = 25000,
                             ModelName = "X5",
-                            PreviewFilename = "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp",
                             Price = 55000.0,
                             ProductionYear = 2020,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
@@ -1945,10 +1938,9 @@ namespace FafCarsApi.Data.Migrations
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 250,
-                            ImagesFilenames = new List<string>(),
+                            Images = new List<string> { "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp" },
                             Mileage = 35000,
                             ModelName = "C63 AMG",
-                            PreviewFilename = "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp",
                             Price = 40000.0,
                             ProductionYear = 2018,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
@@ -1970,10 +1962,9 @@ namespace FafCarsApi.Data.Migrations
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Hybrid,
                             Horsepower = 180,
-                            ImagesFilenames = new List<string>(),
+                            Images = new List<string> { "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp" },
                             Mileage = 40000,
                             ModelName = "Camry",
-                            PreviewFilename = "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp",
                             Price = 30000.0,
                             ProductionYear = 2021,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
@@ -1995,10 +1986,9 @@ namespace FafCarsApi.Data.Migrations
                             EngineVolume = 5.0,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 350,
-                            ImagesFilenames = new List<string>(),
+                            Images = new List<string> { "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp" },
                             Mileage = 20000,
                             ModelName = "F150",
-                            PreviewFilename = "8e788b4e-2c4d-4337-8dbb-eb848485f98d.webp",
                             Price = 45000.0,
                             ProductionYear = 2019,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
@@ -8066,7 +8056,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$.ib2nl/YNoE3lbrsNeOxFORDXuPFixPMp1AM5XZcu1Onpy0hIsvdW",
+                            Password = "$2a$13$aWjKzBTn85KzKrw3edrvguRBg6r4kzhbbi9gTIxYdVZIoznJdagoe",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.Admin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8077,7 +8067,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$5ArrwZhsfYFrDhEhcmA4seq65xq1.QDnI9SwSpVirBwMArN2ctRiS",
+                            Password = "$2a$13$0KI/d/DE.0vg5XAPxyWLCO99336u7jKe3wLvXkKfLmWDar1QHJwGC",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8088,7 +8078,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$m.TbyqRm1/7lgxK6BLtNJ.qCZLAAe0D5ae12cY/kGXWhgnwG246W6",
+                            Password = "$2a$13$/k4Jshf4i8xidfj02zGiSuHrYl9m82kja5Wwvu6pl48DtM8frgURq",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.ListingCreator },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

@@ -51,7 +51,6 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public int WheelSize { get; set; }
     public int Mileage { get; set; }
     public int ProductionYear { get; set; }
-    public string? PreviewFilename { get; set; }
     public List<string> Images { get; set; } = [];
     public string PublisherId { get; set; } = null!;
     public string? DeletedAt { get; set; } = null!;
@@ -178,7 +177,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         UpdatedAt = DateTime.Parse(l.UpdatedAt),
         DeletedAt = l.DeletedAt == null ? null : DateTime.Parse(l.DeletedAt),
         BrandName = l.BrandName,
-        ImagesFilenames = l.Images,
+        Images = l.Images,
         Clearance = l.Clearance,
         WheelSize = l.WheelSize,
         Mileage = l.Mileage,
@@ -191,7 +190,6 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         SellAddress = l.Address,
         PublisherId = new Guid(l.PublisherId),
         ProductionYear = l.ProductionYear,
-        PreviewFilename = l.PreviewFilename,
         ModelName = l.ModelName,
         City = l.City,
         EngineVolume = l.EngineVolume,

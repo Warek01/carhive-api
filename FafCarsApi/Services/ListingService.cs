@@ -145,16 +145,10 @@ public class ListingService(
     await dbContext.Listings.AddAsync(listing);
     await dbContext.SaveChangesAsync();
 
-    if (createDto.Preview != null) {
-      string generatedFileName = Guid.NewGuid() + ".webp";
-      await ImageHelper.Create(generatedFileName, createDto.Preview);
-      listing.PreviewFilename = generatedFileName;
-    }
-
     foreach (IFormFile image in createDto.Images) {
       string generatedFileName = Guid.NewGuid() + ".webp";
       await ImageHelper.Create(generatedFileName, image);
-      listing.ImagesFilenames.Add(generatedFileName);
+      listing.Images.Add(generatedFileName);
     }
 
     await dbContext.SaveChangesAsync();

@@ -18,7 +18,6 @@ public class ListingDto {
   public int? WheelSize { get; set; }
   public int? Mileage { get; set; }
   public int? ProductionYear { get; set; }
-  public string? PreviewUrl { get; set; }
   public List<string> ImagesUrls { get; set; } = [];
   public DateTime? DeletedAt { get; set; }
   public UserDto? Publisher { get; set; }
