@@ -24,10 +24,10 @@ public class ListingsQuery : PaginationQuery {
   public bool Favorites { get; set; } = false;
 
   [FromQuery(Name = "brand")]
-  public List<string>? BrandNames { get; set; } = null;
+  public List<string>? BrandNames { get; set; }
 
   [FromQuery(Name = "engine")]
-  public List<CarFuelType>? EngineTypes { get; set; } = null;
+  public List<CarFuelType>? FuelTypes { get; set; }
 
   [FromQuery(Name = "priceMin")]
   [Range(0, int.MaxValue)]

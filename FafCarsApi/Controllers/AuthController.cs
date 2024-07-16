@@ -23,14 +23,15 @@ public class AuthController(
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
     User? user = await userService.FindUserByUsername(loginDto.Username);
 
-    if (user == null)
+    if (user == null) {
       return NotFound();
+    }
 
-    if (!authService.ValidatePassword(user, loginDto.Password))
+    if (!authService.ValidatePassword(user, loginDto.Password)) {
       return Unauthorized();
+    }
 
-    IEnumerable<Claim> claims = authService.GetUserClaims(user);
-    string token = authService.GenerateAccessToken(claims);
+    string token = authService.GenerateAccessToken(user);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
@@ -46,12 +47,12 @@ public class AuthController(
   public async Task<ActionResult<JwtResponseDto>> Register([FromBody] RegisterDto registerDto) {
     User? user = await userService.FindUserByUsername(registerDto.Username);
 
-    if (user != null)
+    if (user != null) {
       return Conflict();
+    }
 
     User newUser = await userService.RegisterUser(registerDto);
-    IEnumerable<Claim> claims = authService.GetUserClaims(newUser);
-    string token = authService.GenerateAccessToken(claims);
+    string token = authService.GenerateAccessToken(user);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
@@ -67,28 +68,22 @@ public class AuthController(
   public async Task<ActionResult<JwtResponseDto>> Refresh([FromBody] JwtResponseDto responseDto) {
     ClaimsPrincipal? principal = authService.ValidateToken(responseDto.Token);
 
-    if (principal == null)
+    if (principal == null) {
       return BadRequest("invalid token");
+    }
 
     Guid userId = Guid.Parse(principal.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
     User? user = await userService.FindUser(userId);
 
-    if (user == null)
+    if (user == null) {
       return NotFound("user not found");
+    }
 
-    if (_refreshTokens.ContainsKey(userId))
+    if (_refreshTokens.ContainsKey(userId)) {
       return BadRequest("no token in tokens list");
+    }
 
-    IEnumerable<Claim> claims = principal.Claims
-      .Where(
-        c => c.Type != JwtRegisteredClaimNames.Aud &&
-             c.Type != JwtRegisteredClaimNames.Iss &&
-             c.Type != JwtRegisteredClaimNames.Nbf &&
-             c.Type != JwtRegisteredClaimNames.Iat &&
-             c.Type != JwtRegisteredClaimNames.Exp
-      );
-
-    string newToken = authService.GenerateAccessToken(claims);
+    string newToken = authService.GenerateAccessToken(user);
 
     return new JwtResponseDto {
       Token = newToken,

@@ -55,27 +55,18 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     return Convert.ToBase64String(randomNumber);
   }
 
-  public List<Claim> GetUserClaims(User user) {
-    List<Claim> claims = [
-      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
-      new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-    ];
-    
-    claims.AddRange(
-      user.Roles.Select(role => new Claim("role", role.ToString()))
-    );
-
-    return claims;
-  }
-
-  public string GenerateAccessToken(IEnumerable<Claim> claims) {
+  public string GenerateAccessToken(User user) {
     var issuer = config["Jwt:Issuer"]!;
     var audience = config["Jwt:Audience"]!;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));
     var tokenTtl = int.Parse(config["JWT:TTL"]!);
+    var identity = new ClaimsIdentity();
+
+    identity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
+    identity.AddClaim(new Claim("role", user.Role.ToString()));
 
     var tokenDescriptor = new SecurityTokenDescriptor {
-      Subject = new ClaimsIdentity(claims),
+      Subject = identity,
       Expires = DateTime.UtcNow.AddMinutes(tokenTtl),
       Issuer = issuer,
       Audience = audience,

@@ -69,7 +69,7 @@ public class UserService(
       int.Parse(config["BCrypt:HashRounds"]!)
     );
     
-    user.Roles = [UserRole.ListingCreator];
+    user.Role = UserRole.User;
 
     await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();
@@ -87,7 +87,7 @@ public class UserService(
   public async Task UpdateUser(User user, UpdateUserDto updateDto) {
     user.Username = updateDto.Username;
     user.Email = updateDto.Email;
-    user.Roles = updateDto.Roles;
+    user.Role = updateDto.Role;
     user.UpdatedAt = DateTime.Now;
     await dbContext.SaveChangesAsync();
   }

@@ -25,38 +25,48 @@ public class ListingService(
       listings = GetActiveListings();
     }
 
-    if (query.UserId != null)
+    if (query.UserId != null) {
       listings = listings.Where(l => l.PublisherId == query.UserId);
+    }
 
-    if (query.BodyStyles?.Count > 0)
-      listings = listings.Where(l => query.BodyStyles.Contains(l.BodyStyle));
+    if (query.BodyStyles?.Count > 0) {
+      listings = listings.Where(l => l.BodyStyle != null && query.BodyStyles.Contains(l.BodyStyle.Value));
+    }
 
-    if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax)
+    if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax) {
       throw new BadRequestException("min price cannot be greater then max perice");
+    }
 
-    if (query.PriceMin != null)
+    if (query.PriceMin != null) {
       listings = listings.Where(l => l.Price >= query.PriceMin);
+    }
 
-    if (query.PriceMax != null)
+    if (query.PriceMax != null) {
       listings = listings.Where(l => l.Price <= query.PriceMax);
+    }
 
-    if (query.BrandNames != null)
-      foreach (string brand in query.BrandNames)
+    if (query.BrandNames != null) {
+      foreach (string brand in query.BrandNames) {
         listings = listings.Where(l => l.Brand.Name == brand);
+      }
+    }
 
-    if (query.CountryCode != null)
+    if (query.CountryCode != null) {
       listings = listings.Where(l => l.Country.Code == query.CountryCode);
+    }
 
-    if (query.EngineTypes != null)
-      listings = listings.Where(l => query.EngineTypes.Contains(l.FuelType));
+    if (query.FuelTypes != null) {
+      listings = listings.Where(l => l.FuelType != null && query.FuelTypes.Contains(l.FuelType.Value));
+    }
 
     // TODO: perform fuzzy search
-    if (query.Address != null)
+    if (query.Address != null) {
       listings = listings.Where(
         l => l.SellAddress != null && l.SellAddress.ToLower().Contains(query.Address.ToLower())
       );
+    }
 
-    if (query.Order != null)
+    if (query.Order != null) {
       listings = query.Order switch {
         "createdAtDesc" => listings.OrderByDescending(l => l.CreatedAt),
         "createdAtAsc" => listings.OrderBy(l => l.CreatedAt),
@@ -66,6 +76,7 @@ public class ListingService(
         "yearDesc" => listings.OrderByDescending(l => l.ProductionYear),
         _ => listings.OrderByDescending(l => l.CreatedAt)
       };
+    }
 
     int totalListings = await listings.CountAsync();
 

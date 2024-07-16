@@ -27,7 +27,7 @@ namespace FafCarsApi.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "petrol", "diesel", "hybrid", "plugin_hybrid", "electric", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_status", new[] { "new", "used", "rent" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "admin", "listing_creator" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
@@ -1750,7 +1750,7 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("blocked_at");
 
-                    b.Property<CarBodyStyle>("BodyStyle")
+                    b.Property<CarBodyStyle?>("BodyStyle")
                         .HasColumnType("car_body_style")
                         .HasColumnName("body_style");
 
@@ -1801,7 +1801,7 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("engine_volume");
 
-                    b.Property<CarFuelType>("FuelType")
+                    b.Property<CarFuelType?>("FuelType")
                         .HasColumnType("car_fuel_type")
                         .HasColumnName("fuel_type");
 
@@ -1882,6 +1882,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1"),
                             BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Audi",
+                            CarStatus = CarStatus.Used,
                             City = "Berlin",
                             Clearance = 150,
                             Color = CarColor.Black,
@@ -1906,6 +1907,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f"),
                             BodyStyle = CarBodyStyle.SUV,
                             BrandName = "BMW",
+                            CarStatus = CarStatus.Used,
                             City = "Berlin",
                             Clearance = 200,
                             Color = CarColor.White,
@@ -1930,6 +1932,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b"),
                             BodyStyle = CarBodyStyle.Coupe,
                             BrandName = "Mercedes-Benz",
+                            CarStatus = CarStatus.New,
                             City = "Berlin",
                             Clearance = 140,
                             Color = CarColor.Blue,
@@ -1954,6 +1957,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("f3e6e478-3a21-4b05-9926-6fe29f4a58c0"),
                             BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Toyota",
+                            CarStatus = CarStatus.Used,
                             City = "Tokyo",
                             Clearance = 160,
                             Color = CarColor.Silver,
@@ -1978,11 +1982,13 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("b78f7f22-07af-4dee-8c96-ed34d7b9bb95"),
                             BodyStyle = CarBodyStyle.PickupTruck,
                             BrandName = "Ford",
+                            CarStatus = CarStatus.Used,
                             City = "New York",
                             Clearance = 180,
                             Color = CarColor.Red,
                             CountryCode = "US",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Description = "Test description for Ford F150",
                             EngineVolume = 5.0,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 350,
@@ -2931,6 +2937,56 @@ namespace FafCarsApi.Data.Migrations
                         {
                             Name = "Z8",
                             BrandName = "BMW"
+                        },
+                        new
+                        {
+                            Name = "Veyron",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Chiron",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Divo",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Centodieci",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "La Voiture Noire",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "EB110",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Bolide",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Type 35",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Type 57",
+                            BrandName = "Bugatti"
+                        },
+                        new
+                        {
+                            Name = "Type 41 Royale",
+                            BrandName = "Bugatti"
                         },
                         new
                         {
@@ -5684,6 +5740,26 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Name = "C200",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "C250d",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "C300e",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "C300h",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
                             Name = "C220",
                             BrandName = "Mercedes-Benz"
                         },
@@ -5855,6 +5931,31 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Name = "500E",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "E200",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "E220",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "E250",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "E300 Hybrid",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "E350e",
                             BrandName = "Mercedes-Benz"
                         },
                         new
@@ -6325,6 +6426,186 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Name = "Sprinter",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A160",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A180",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A200",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A220",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A250",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "A45 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "B180",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "B200",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "B250",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "G350d",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLA180",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLA200",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLA220",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLA250",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLA45 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLC250",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLC300",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLC350e",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLC43 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLC63 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE300d",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE350",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE400",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE43 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE450",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLE63 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS350d",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS400",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS450",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS500",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS550",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS580",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "GLS63 AMG",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "EQC400",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "Maybach S560",
+                            BrandName = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Name = "Maybach S650",
                             BrandName = "Mercedes-Benz"
                         },
                         new
@@ -8024,9 +8305,8 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("phone_number");
 
-                    b.Property<List<UserRole>>("Roles")
-                        .IsRequired()
-                        .HasColumnType("user_role[]")
+                    b.Property<UserRole>("Role")
+                        .HasColumnType("user_role")
                         .HasColumnName("roles");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -8056,9 +8336,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$0yV8LpuPL1BoSGl/Go5rUeBX7kv7QWAEC/b..bxDCNI527juJa756",
+                            Password = "$2a$13$g3dWJ0X73IYCAwq/raksoelcZLAwA.QVOWRr.Svkx2R0/cuCqnXBC",
                             PhoneNumber = "+37378000111",
-                            Roles = new List<UserRole> { UserRole.Admin },
+                            Role = UserRole.SuperAdmin,
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "admin"
                         },
@@ -8067,9 +8347,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$9AbfZtBIuct9.vmDCGZ.TeVWvadvvT81Hh.vgoQh2pl./fM/4x4Xm",
+                            Password = "$2a$13$5Q/krlIc5FIfPs6v455cW.cg6YkXTwkdpCojkIRhaxaQ29osiGCkK",
                             PhoneNumber = "+37378222111",
-                            Roles = new List<UserRole> { UserRole.ListingCreator },
+                            Role = UserRole.User,
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "alex"
                         },
@@ -8078,9 +8358,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$kWpYNky/jOv0aYJs5Mbx5.4XGXaAsomBIC1mQEyE92TEi32wzI5jG",
+                            Password = "$2a$13$5pdwK3FKGXr06hveUPwHBOXgxxhN2ys55qgM0BGivY7bh9tGdCEIi",
                             PhoneNumber = "+37378222444",
-                            Roles = new List<UserRole> { UserRole.ListingCreator },
+                            Role = UserRole.User,
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "user"
                         });

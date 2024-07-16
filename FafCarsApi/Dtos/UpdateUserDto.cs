@@ -10,5 +10,5 @@ public class UpdateUserDto {
   [Length(1, 255)]
   public string Email { get; set; } = null!;
 
-  public List<UserRole> Roles { get; set; } = [];
+  public UserRole Role { get; set; }
 }

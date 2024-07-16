@@ -4,9 +4,7 @@
     "username": "admin",
     "password": "admin",
     "email": "admin@gmail.com",
-    "roles": [
-      "Admin"
-    ],
+    "role": "SuperAdmin",
     "createdAt": "2024-06-15T00:00:00",
     "deletedAt": null,
     "updatedAt": "2024-06-15T00:00:00",
@@ -17,9 +15,7 @@
     "username": "alex",
     "password": "alex",
     "email": "alex@gmail.com",
-    "roles": [
-      "ListingCreator"
-    ],
+    "role": "User",
     "createdAt": "2024-06-14T00:00:00",
     "deletedAt": null,
     "updatedAt": "2024-06-14T00:00:00",
@@ -30,9 +26,7 @@
     "username": "user",
     "password": "user",
     "email": "user@gmail.com",
-    "roles": [
-      "ListingCreator"
-    ],
+    "role":"User",
     "createdAt": "2024-06-13T00:00:00",
     "deletedAt": null,
     "updatedAt": "2024-06-13T00:00:00",

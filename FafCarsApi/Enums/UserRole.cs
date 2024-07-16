@@ -1,6 +1,7 @@
 namespace FafCarsApi.Enums;
 
 public enum UserRole {
+  User,
   Admin,
-  ListingCreator
+  SuperAdmin,
 }

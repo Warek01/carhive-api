@@ -6,7 +6,7 @@
     "price": 35000.00,
     "bodyStyle": "sedan",
     "horsepower": 190,
-    "engineType": "petrol",
+    "fuelType": "petrol",
     "engineVolume": 2.0,
     "color": "black",
     "clearance": 150,
@@ -20,6 +20,8 @@
     "updatedAt": "2024-06-15T15:53:58.594",
     "countryCode": "DE",
     "address": "123 Main St, Berlin, DE",
+    "carStatus": "used",
+    "status": "available",
     "city": "Berlin"
   },
   {
@@ -29,7 +31,7 @@
     "price": 55000.00,
     "bodyStyle": "suv",
     "horsepower": 300,
-    "engineType": "diesel",
+    "fuelType": "diesel",
     "engineVolume": 3.0,
     "color": "white",
     "clearance": 200,
@@ -43,6 +45,8 @@
     "updatedAt": "2024-06-15T15:53:58.594",
     "countryCode": "DE",
     "address": "456 Elm Ave, Berlin, DE",
+    "carStatus": "used",
+    "status": "available",
     "city": "Berlin"
   },
   {
@@ -52,7 +56,7 @@
     "price": 40000.00,
     "bodyStyle": "coupe",
     "horsepower": 250,
-    "engineType": "petrol",
+    "fuelType": "petrol",
     "engineVolume": 2.5,
     "color": "blue",
     "clearance": 140,
@@ -66,6 +70,8 @@
     "updatedAt": "2024-06-15T15:53:58.594",
     "countryCode": "DE",
     "address": "789 Oak Rd, Berlin, DE",
+    "carStatus": "new",
+    "status": "available",
     "city": "Berlin"
   },
   {
@@ -75,7 +81,7 @@
     "price": 30000.00,
     "bodyStyle": "sedan",
     "horsepower": 180,
-    "engineType": "hybrid",
+    "fuelType": "hybrid",
     "engineVolume": 2.5,
     "color": "silver",
     "clearance": 160,
@@ -89,6 +95,8 @@
     "updatedAt": "2024-06-15T15:53:58.594",
     "countryCode": "JP",
     "address": "101 Pine Blvd, Tokyo, JP",
+    "carStatus": "used",
+    "status": "available",
     "city": "Tokyo"
   },
   {
@@ -98,7 +106,7 @@
     "price": 45000.00,
     "bodyStyle": "pickupTruck",
     "horsepower": 350,
-    "engineType": "petrol",
+    "fuelType": "petrol",
     "engineVolume": 5.0,
     "color": "red",
     "clearance": 180,
@@ -112,6 +120,9 @@
     "updatedAt": "2024-06-15T15:53:58.594",
     "countryCode": "US",
     "address": "222 Maple Ln, New York, NY",
+    "carStatus": "used",
+    "description": "Test description for Ford F150",
+    "status": "available",
     "city": "New York"
   }
 ]

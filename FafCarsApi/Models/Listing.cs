@@ -39,14 +39,14 @@ public class Listing {
   public double? Price { get; set; }
 
   [Column("body_style")]
-  public CarBodyStyle BodyStyle { get; set; }
+  public CarBodyStyle? BodyStyle { get; set; }
 
   [Range(0, int.MaxValue)]
   [Column("horsepower")]
   public int? Horsepower { get; set; }
 
   [Column("fuel_type")]
-  public CarFuelType FuelType { get; set; }
+  public CarFuelType? FuelType { get; set; }
 
   [Column("engine_volume")]
   public double? EngineVolume { get; set; }

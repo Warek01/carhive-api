@@ -15,7 +15,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public string Username { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string Email { get; set; } = null!;
-    public List<string> Roles { get; set; } = null!;
+    public string Role { get; set; } = null!;
     public string CreatedAt { get; set; } = null!;
     public string? DeletedAt { get; set; }
     public string UpdatedAt { get; set; } = null!;
@@ -41,24 +41,29 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public string Id { get; set; } = null!;
     public string BrandName { get; set; } = null!;
     public string ModelName { get; set; } = null!;
-    public double Price { get; set; }
-    public string BodyStyle { get; set; } = null!;
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public double? Price { get; set; }
+    public string? BodyStyle { get; set; }
     public int? Horsepower { get; set; }
     public double? EngineVolume { get; set; }
-    public string EngineType { get; set; } = null!;
-    public string Color { get; set; } = null!;
-    public int Clearance { get; set; }
-    public int WheelSize { get; set; }
-    public int Mileage { get; set; }
-    public int ProductionYear { get; set; }
+    public string? FuelType { get; set; }
+    public string? Color { get; set; }
+    public int? Clearance { get; set; }
+    public int? WheelSize { get; set; }
+    public int? Mileage { get; set; }
+    public int? ProductionYear { get; set; }
     public List<string> Images { get; set; } = [];
     public string PublisherId { get; set; } = null!;
-    public string? DeletedAt { get; set; } = null!;
-    public string CreatedAt { get; set; } = null!;
-    public string UpdatedAt { get; set; } = null!;
+    public DateTime? DeletedAt { get; set; }
     public string CountryCode { get; set; } = null!;
-    public string Address { get; set; } = null!;
-    public string City { get; set; } = null!;
+    public string? Address { get; set; }
+    public string? City { get; set; }
+    public string? CarStatus { get; set; }
+    public string? Description { get; set; }
+    public string Status { get; set; } = null!;
+    public DateTime? BlockedAt { get; set; }
+    public DateTime? SoldAt { get; set; }
   }
 
   private class JsonResourceListingUserFavorite : JsonResource {
@@ -116,12 +121,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         Username = u.Username,
         Email = u.Email,
         Password = EnhancedHashPassword(u.Password, 13),
-        Roles = u.Roles.Select(role => role switch {
-            "Admin" => UserRole.Admin,
-            "ListingCreator" => UserRole.ListingCreator,
-            _ => throw new ArgumentOutOfRangeException(nameof(role), role, null)
-          })
-          .ToList(),
+        Role = Enum.Parse<UserRole>(u.Role),
       }
     );
 
@@ -173,19 +173,19 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     var listings = resourceListings.Select(
       l => new Listing {
         Id = new Guid(l.Id),
-        CreatedAt = DateTime.Parse(l.CreatedAt),
-        UpdatedAt = DateTime.Parse(l.UpdatedAt),
-        DeletedAt = l.DeletedAt == null ? null : DateTime.Parse(l.DeletedAt),
+        CreatedAt = l.CreatedAt,
+        UpdatedAt = l.UpdatedAt,
+        DeletedAt = l.DeletedAt,
         BrandName = l.BrandName,
         Images = l.Images,
         Clearance = l.Clearance,
         WheelSize = l.WheelSize,
         Mileage = l.Mileage,
         Price = l.Price,
-        Color = Enum.Parse<CarColor>(l.Color, ignoreCase: true),
-        BodyStyle = Enum.Parse<CarBodyStyle>(l.BodyStyle, ignoreCase: true),
+        Color = l.Color != null ? Enum.Parse<CarColor>(l.Color, ignoreCase: true) : null,
+        BodyStyle = l.BodyStyle != null ? Enum.Parse<CarBodyStyle>(l.BodyStyle, ignoreCase: true) : null,
         CountryCode = l.CountryCode,
-        FuelType = Enum.Parse<CarFuelType>(l.EngineType, ignoreCase: true),
+        FuelType = l.FuelType != null ? Enum.Parse<CarFuelType>(l.FuelType, ignoreCase: true) : null,
         Horsepower = l.Horsepower,
         SellAddress = l.Address,
         PublisherId = new Guid(l.PublisherId),
@@ -193,6 +193,11 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         ModelName = l.ModelName,
         City = l.City,
         EngineVolume = l.EngineVolume,
+        Description = l.Description,
+        BlockedAt = l.BlockedAt,
+        Status = Enum.Parse<ListingStatus>(l.Status, ignoreCase: true),
+        SoldAt = l.SoldAt,
+        CarStatus = l.CarStatus != null ? Enum.Parse<CarStatus>(l.CarStatus, ignoreCase: true) : null,
       }
     );
 
