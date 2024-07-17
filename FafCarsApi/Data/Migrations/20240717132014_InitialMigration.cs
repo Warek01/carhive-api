@@ -114,7 +114,7 @@ namespace FafCarsApi.Data.Migrations
                     deleted_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: true),
                     publisher_id = table.Column<Guid>(type: "uuid", nullable: false),
                     country_code = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
-                    city = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    city = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: false),
                     sell_address = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
                     car_status = table.Column<CarStatus>(type: "car_status", nullable: true),
                     description = table.Column<string>(type: "text", nullable: true),
@@ -427,9 +427,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$PSWRfG5L9ZF.J6Uty8vqwuWuv0Fa2kaPqNM5hMzH0Efrf1tlZWxhy", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$nvBpA7NRZrDnD6z0LUWqmO6ub6aprQrwnpvcGu1WR4MA/9Mk48V7C", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$oNUA40YKD5re7ZetVoDI4ucu42o64y0N5QASu3dPf5VW4UKDDkTLu", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$IbnQqHr7J3NGFsCNCnRmUu/6fKoRK.5J7QKI1nhMKJbohcKNGCF8.", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$E1T4nPU168ihJdb7O4Geo.h8nxkhtWFgZI7Qq1qW3TUo9WNjgxEvi", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$87Qw.ZzWqm2i6BXOY/PfEOKP4fHnJBDAgSsBI7ABeCH2BxbcQzLEW", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(

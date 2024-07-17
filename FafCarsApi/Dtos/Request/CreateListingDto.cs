@@ -10,6 +10,16 @@ public class CreateListingDto {
 
   [DefaultValue("Camry")]
   public string ModelName { get; set; } = null!;
+  
+  [StringLength(255)]
+  [DefaultValue("Belin")]
+  public string City { get; set; } = null!;
+  
+  public List<IFormFile> Images { get; set; } = [];
+
+  [Length(2, 2)]
+  [DefaultValue("DE")]
+  public string CountryCode { get; set; } = null!;
 
   [DefaultValue(12500)]
   [Range(0, double.MaxValue)]
@@ -47,16 +57,6 @@ public class CreateListingDto {
   [DefaultValue(2019)]
   [Range(0, int.MaxValue)]
   public int? ProductionYear { get; set; }
-  
-  public List<IFormFile> Images { get; set; } = [];
-  
-  [Length(2, 2)]
-  [DefaultValue("DE")]
-  public string? CountryCode { get; set; }
-  
-  [StringLength(255)]
-  [DefaultValue("Belin")]
-  public string? City { get; set; }
 
   [StringLength(255)]
   [DefaultValue("789 Oak Rd, Berlin, DE")]

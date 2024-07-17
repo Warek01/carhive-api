@@ -96,7 +96,7 @@ public class Listing {
 
   [StringLength(255)]
   [Column("city")]
-  public string? City { get; set; }
+  public string City { get; set; } = null!;
 
   [StringLength(255)]
   [Column("sell_address")]
