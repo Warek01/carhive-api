@@ -4,3 +4,4 @@ build
 obj
 wwwroot/*.webp
 .idea
+venv

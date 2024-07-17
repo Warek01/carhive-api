@@ -546,6 +546,10 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("character varying(2)")
                         .HasColumnName("code");
 
+                    b.Property<bool>("IsSupported")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_supported");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -560,1206 +564,1447 @@ namespace FafCarsApi.Data.Migrations
                         new
                         {
                             Code = "AF",
+                            IsSupported = false,
                             Name = "Afghanistan"
                         },
                         new
                         {
                             Code = "AX",
+                            IsSupported = false,
                             Name = "Åland Islands"
                         },
                         new
                         {
                             Code = "AL",
+                            IsSupported = false,
                             Name = "Albania"
                         },
                         new
                         {
                             Code = "DZ",
+                            IsSupported = false,
                             Name = "Algeria"
                         },
                         new
                         {
                             Code = "AS",
+                            IsSupported = false,
                             Name = "American Samoa"
                         },
                         new
                         {
                             Code = "AD",
+                            IsSupported = false,
                             Name = "Andorra"
                         },
                         new
                         {
                             Code = "AO",
+                            IsSupported = false,
                             Name = "Angola"
                         },
                         new
                         {
                             Code = "AI",
+                            IsSupported = false,
                             Name = "Anguilla"
                         },
                         new
                         {
                             Code = "AQ",
+                            IsSupported = false,
                             Name = "Antarctica"
                         },
                         new
                         {
                             Code = "AG",
+                            IsSupported = false,
                             Name = "Antigua and Barbuda"
                         },
                         new
                         {
                             Code = "AR",
+                            IsSupported = false,
                             Name = "Argentina"
                         },
                         new
                         {
                             Code = "AM",
+                            IsSupported = false,
                             Name = "Armenia"
                         },
                         new
                         {
                             Code = "AW",
+                            IsSupported = false,
                             Name = "Aruba"
                         },
                         new
                         {
                             Code = "AU",
+                            IsSupported = false,
                             Name = "Australia"
                         },
                         new
                         {
                             Code = "AT",
+                            IsSupported = false,
                             Name = "Austria"
                         },
                         new
                         {
                             Code = "AZ",
+                            IsSupported = false,
                             Name = "Azerbaijan"
                         },
                         new
                         {
                             Code = "BS",
+                            IsSupported = false,
                             Name = "Bahamas"
                         },
                         new
                         {
                             Code = "BH",
+                            IsSupported = false,
                             Name = "Bahrain"
                         },
                         new
                         {
                             Code = "BD",
+                            IsSupported = false,
                             Name = "Bangladesh"
                         },
                         new
                         {
                             Code = "BB",
+                            IsSupported = false,
                             Name = "Barbados"
                         },
                         new
                         {
                             Code = "BY",
+                            IsSupported = false,
                             Name = "Belarus"
                         },
                         new
                         {
                             Code = "BE",
+                            IsSupported = false,
                             Name = "Belgium"
                         },
                         new
                         {
                             Code = "BZ",
+                            IsSupported = false,
                             Name = "Belize"
                         },
                         new
                         {
                             Code = "BJ",
+                            IsSupported = false,
                             Name = "Benin"
                         },
                         new
                         {
                             Code = "BM",
+                            IsSupported = false,
                             Name = "Bermuda"
                         },
                         new
                         {
                             Code = "BT",
+                            IsSupported = false,
                             Name = "Bhutan"
                         },
                         new
                         {
                             Code = "BO",
+                            IsSupported = false,
                             Name = "Bolivia"
                         },
                         new
                         {
                             Code = "BA",
+                            IsSupported = false,
                             Name = "Bosnia and Herzegovina"
                         },
                         new
                         {
                             Code = "BW",
+                            IsSupported = false,
                             Name = "Botswana"
                         },
                         new
                         {
                             Code = "BV",
+                            IsSupported = false,
                             Name = "Bouvet Island"
                         },
                         new
                         {
                             Code = "BR",
+                            IsSupported = false,
                             Name = "Brazil"
                         },
                         new
                         {
                             Code = "IO",
+                            IsSupported = false,
                             Name = "British Indian Ocean Territory"
                         },
                         new
                         {
                             Code = "BN",
+                            IsSupported = false,
                             Name = "Brunei Darussalam"
                         },
                         new
                         {
                             Code = "BG",
+                            IsSupported = false,
                             Name = "Bulgaria"
                         },
                         new
                         {
                             Code = "BF",
+                            IsSupported = false,
                             Name = "Burkina Faso"
                         },
                         new
                         {
                             Code = "BI",
+                            IsSupported = false,
                             Name = "Burundi"
                         },
                         new
                         {
                             Code = "KH",
+                            IsSupported = false,
                             Name = "Cambodia"
                         },
                         new
                         {
                             Code = "CM",
+                            IsSupported = false,
                             Name = "Cameroon"
                         },
                         new
                         {
                             Code = "CA",
+                            IsSupported = false,
                             Name = "Canada"
                         },
                         new
                         {
                             Code = "CV",
+                            IsSupported = false,
                             Name = "Cape Verde"
                         },
                         new
                         {
                             Code = "KY",
+                            IsSupported = false,
                             Name = "Cayman Islands"
                         },
                         new
                         {
                             Code = "CF",
+                            IsSupported = false,
                             Name = "Central African Republic"
                         },
                         new
                         {
                             Code = "TD",
+                            IsSupported = false,
                             Name = "Chad"
                         },
                         new
                         {
                             Code = "CL",
+                            IsSupported = false,
                             Name = "Chile"
                         },
                         new
                         {
                             Code = "CN",
+                            IsSupported = false,
                             Name = "China"
                         },
                         new
                         {
                             Code = "CX",
+                            IsSupported = false,
                             Name = "Christmas Island"
                         },
                         new
                         {
                             Code = "CC",
+                            IsSupported = false,
                             Name = "Cocos (Keeling) Islands"
                         },
                         new
                         {
                             Code = "CO",
+                            IsSupported = false,
                             Name = "Colombia"
                         },
                         new
                         {
                             Code = "KM",
+                            IsSupported = false,
                             Name = "Comoros"
                         },
                         new
                         {
                             Code = "CG",
+                            IsSupported = false,
                             Name = "Congo"
                         },
                         new
                         {
                             Code = "CD",
+                            IsSupported = false,
                             Name = "Congo, The Democratic Republic of the"
                         },
                         new
                         {
                             Code = "CK",
+                            IsSupported = false,
                             Name = "Cook Islands"
                         },
                         new
                         {
                             Code = "CR",
+                            IsSupported = false,
                             Name = "Costa Rica"
                         },
                         new
                         {
                             Code = "HR",
+                            IsSupported = false,
                             Name = "Croatia"
                         },
                         new
                         {
                             Code = "CU",
+                            IsSupported = false,
                             Name = "Cuba"
                         },
                         new
                         {
                             Code = "CY",
+                            IsSupported = false,
                             Name = "Cyprus"
                         },
                         new
                         {
                             Code = "CZ",
+                            IsSupported = false,
                             Name = "Czech Republic"
                         },
                         new
                         {
                             Code = "DK",
+                            IsSupported = false,
                             Name = "Denmark"
                         },
                         new
                         {
                             Code = "DJ",
+                            IsSupported = false,
                             Name = "Djibouti"
                         },
                         new
                         {
                             Code = "DM",
+                            IsSupported = false,
                             Name = "Dominica"
                         },
                         new
                         {
                             Code = "DO",
+                            IsSupported = false,
                             Name = "Dominican Republic"
                         },
                         new
                         {
                             Code = "EC",
+                            IsSupported = false,
                             Name = "Ecuador"
                         },
                         new
                         {
                             Code = "EG",
+                            IsSupported = false,
                             Name = "Egypt"
                         },
                         new
                         {
                             Code = "SV",
+                            IsSupported = false,
                             Name = "El Salvador"
                         },
                         new
                         {
                             Code = "GQ",
+                            IsSupported = false,
                             Name = "Equatorial Guinea"
                         },
                         new
                         {
                             Code = "ER",
+                            IsSupported = false,
                             Name = "Eritrea"
                         },
                         new
                         {
                             Code = "EE",
+                            IsSupported = false,
                             Name = "Estonia"
                         },
                         new
                         {
                             Code = "ET",
+                            IsSupported = false,
                             Name = "Ethiopia"
                         },
                         new
                         {
                             Code = "FK",
+                            IsSupported = false,
                             Name = "Falkland Islands (Malvinas)"
                         },
                         new
                         {
                             Code = "FO",
+                            IsSupported = false,
                             Name = "Faroe Islands"
                         },
                         new
                         {
                             Code = "FJ",
+                            IsSupported = false,
                             Name = "Fiji"
                         },
                         new
                         {
                             Code = "FI",
+                            IsSupported = false,
                             Name = "Finland"
                         },
                         new
                         {
                             Code = "FR",
+                            IsSupported = false,
                             Name = "France"
                         },
                         new
                         {
                             Code = "GF",
+                            IsSupported = false,
                             Name = "French Guiana"
                         },
                         new
                         {
                             Code = "PF",
+                            IsSupported = false,
                             Name = "French Polynesia"
                         },
                         new
                         {
                             Code = "TF",
+                            IsSupported = false,
                             Name = "French Southern Territories"
                         },
                         new
                         {
                             Code = "GA",
+                            IsSupported = false,
                             Name = "Gabon"
                         },
                         new
                         {
                             Code = "GM",
+                            IsSupported = false,
                             Name = "Gambia"
                         },
                         new
                         {
                             Code = "GE",
+                            IsSupported = false,
                             Name = "Georgia"
                         },
                         new
                         {
                             Code = "DE",
+                            IsSupported = false,
                             Name = "Germany"
                         },
                         new
                         {
                             Code = "GH",
+                            IsSupported = false,
                             Name = "Ghana"
                         },
                         new
                         {
                             Code = "GI",
+                            IsSupported = false,
                             Name = "Gibraltar"
                         },
                         new
                         {
                             Code = "GR",
+                            IsSupported = false,
                             Name = "Greece"
                         },
                         new
                         {
                             Code = "GL",
+                            IsSupported = false,
                             Name = "Greenland"
                         },
                         new
                         {
                             Code = "GD",
+                            IsSupported = false,
                             Name = "Grenada"
                         },
                         new
                         {
                             Code = "GP",
+                            IsSupported = false,
                             Name = "Guadeloupe"
                         },
                         new
                         {
                             Code = "GU",
+                            IsSupported = false,
                             Name = "Guam"
                         },
                         new
                         {
                             Code = "GT",
+                            IsSupported = false,
                             Name = "Guatemala"
                         },
                         new
                         {
                             Code = "GG",
+                            IsSupported = false,
                             Name = "Guernsey"
                         },
                         new
                         {
                             Code = "GN",
+                            IsSupported = false,
                             Name = "Guinea"
                         },
                         new
                         {
                             Code = "GW",
+                            IsSupported = false,
                             Name = "Guinea-Bissau"
                         },
                         new
                         {
                             Code = "GY",
+                            IsSupported = false,
                             Name = "Guyana"
                         },
                         new
                         {
                             Code = "HT",
+                            IsSupported = false,
                             Name = "Haiti"
                         },
                         new
                         {
                             Code = "HM",
+                            IsSupported = false,
                             Name = "Heard Island and Mcdonald Islands"
                         },
                         new
                         {
                             Code = "VA",
+                            IsSupported = false,
                             Name = "Holy See (Vatican City State)"
                         },
                         new
                         {
                             Code = "HN",
+                            IsSupported = false,
                             Name = "Honduras"
                         },
                         new
                         {
                             Code = "HK",
+                            IsSupported = false,
                             Name = "Hong Kong"
                         },
                         new
                         {
                             Code = "HU",
+                            IsSupported = false,
                             Name = "Hungary"
                         },
                         new
                         {
                             Code = "IS",
+                            IsSupported = false,
                             Name = "Iceland"
                         },
                         new
                         {
                             Code = "IN",
+                            IsSupported = false,
                             Name = "India"
                         },
                         new
                         {
                             Code = "ID",
+                            IsSupported = false,
                             Name = "Indonesia"
                         },
                         new
                         {
                             Code = "IR",
+                            IsSupported = false,
                             Name = "Iran, Islamic Republic Of"
                         },
                         new
                         {
                             Code = "IQ",
+                            IsSupported = false,
                             Name = "Iraq"
                         },
                         new
                         {
                             Code = "IE",
+                            IsSupported = false,
                             Name = "Ireland"
                         },
                         new
                         {
                             Code = "IM",
+                            IsSupported = false,
                             Name = "Isle of Man"
                         },
                         new
                         {
                             Code = "IL",
+                            IsSupported = false,
                             Name = "Israel"
                         },
                         new
                         {
                             Code = "IT",
+                            IsSupported = false,
                             Name = "Italy"
                         },
                         new
                         {
                             Code = "JM",
+                            IsSupported = false,
                             Name = "Jamaica"
                         },
                         new
                         {
                             Code = "JP",
+                            IsSupported = false,
                             Name = "Japan"
                         },
                         new
                         {
                             Code = "JE",
+                            IsSupported = false,
                             Name = "Jersey"
                         },
                         new
                         {
                             Code = "JO",
+                            IsSupported = false,
                             Name = "Jordan"
                         },
                         new
                         {
                             Code = "KZ",
+                            IsSupported = false,
                             Name = "Kazakhstan"
                         },
                         new
                         {
                             Code = "KE",
+                            IsSupported = false,
                             Name = "Kenya"
                         },
                         new
                         {
                             Code = "KI",
+                            IsSupported = false,
                             Name = "Kiribati"
                         },
                         new
                         {
                             Code = "KR",
+                            IsSupported = false,
                             Name = "Korea, Republic of"
                         },
                         new
                         {
                             Code = "KW",
+                            IsSupported = false,
                             Name = "Kuwait"
                         },
                         new
                         {
                             Code = "KG",
+                            IsSupported = false,
                             Name = "Kyrgyzstan"
                         },
                         new
                         {
                             Code = "LV",
+                            IsSupported = false,
                             Name = "Latvia"
                         },
                         new
                         {
                             Code = "LB",
+                            IsSupported = false,
                             Name = "Lebanon"
                         },
                         new
                         {
                             Code = "LS",
+                            IsSupported = false,
                             Name = "Lesotho"
                         },
                         new
                         {
                             Code = "LR",
+                            IsSupported = false,
                             Name = "Liberia"
                         },
                         new
                         {
                             Code = "LY",
+                            IsSupported = false,
                             Name = "Libyan Arab Jamahiriya"
                         },
                         new
                         {
                             Code = "LI",
+                            IsSupported = false,
                             Name = "Liechtenstein"
                         },
                         new
                         {
                             Code = "LT",
+                            IsSupported = false,
                             Name = "Lithuania"
                         },
                         new
                         {
                             Code = "LU",
+                            IsSupported = false,
                             Name = "Luxembourg"
                         },
                         new
                         {
                             Code = "MO",
+                            IsSupported = false,
                             Name = "Macao"
                         },
                         new
                         {
                             Code = "MK",
+                            IsSupported = false,
                             Name = "North Macedonia"
                         },
                         new
                         {
                             Code = "MG",
+                            IsSupported = false,
                             Name = "Madagascar"
                         },
                         new
                         {
                             Code = "MW",
+                            IsSupported = false,
                             Name = "Malawi"
                         },
                         new
                         {
                             Code = "MY",
+                            IsSupported = false,
                             Name = "Malaysia"
                         },
                         new
                         {
                             Code = "MV",
+                            IsSupported = false,
                             Name = "Maldives"
                         },
                         new
                         {
                             Code = "ML",
+                            IsSupported = false,
                             Name = "Mali"
                         },
                         new
                         {
                             Code = "MT",
+                            IsSupported = false,
                             Name = "Malta"
                         },
                         new
                         {
                             Code = "MH",
+                            IsSupported = false,
                             Name = "Marshall Islands"
                         },
                         new
                         {
                             Code = "MQ",
+                            IsSupported = false,
                             Name = "Martinique"
                         },
                         new
                         {
                             Code = "MR",
+                            IsSupported = false,
                             Name = "Mauritania"
                         },
                         new
                         {
                             Code = "MU",
+                            IsSupported = false,
                             Name = "Mauritius"
                         },
                         new
                         {
                             Code = "YT",
+                            IsSupported = false,
                             Name = "Mayotte"
                         },
                         new
                         {
                             Code = "YU",
+                            IsSupported = false,
                             Name = "Yugoslavia"
                         },
                         new
                         {
                             Code = "MX",
+                            IsSupported = false,
                             Name = "Mexico"
                         },
                         new
                         {
                             Code = "FM",
+                            IsSupported = false,
                             Name = "Micronesia, Federated States of"
                         },
                         new
                         {
                             Code = "MD",
+                            IsSupported = false,
                             Name = "Moldova, Republic of"
                         },
                         new
                         {
                             Code = "MC",
+                            IsSupported = false,
                             Name = "Monaco"
                         },
                         new
                         {
                             Code = "MN",
+                            IsSupported = false,
                             Name = "Mongolia"
                         },
                         new
                         {
                             Code = "MS",
+                            IsSupported = false,
                             Name = "Montserrat"
                         },
                         new
                         {
                             Code = "MA",
+                            IsSupported = false,
                             Name = "Morocco"
                         },
                         new
                         {
                             Code = "MZ",
+                            IsSupported = false,
                             Name = "Mozambique"
                         },
                         new
                         {
                             Code = "MM",
+                            IsSupported = false,
                             Name = "Myanmar"
                         },
                         new
                         {
                             Code = "NA",
+                            IsSupported = false,
                             Name = "Namibia"
                         },
                         new
                         {
                             Code = "NR",
+                            IsSupported = false,
                             Name = "Nauru"
                         },
                         new
                         {
                             Code = "NP",
+                            IsSupported = false,
                             Name = "Nepal"
                         },
                         new
                         {
                             Code = "NL",
+                            IsSupported = false,
                             Name = "Netherlands"
                         },
                         new
                         {
                             Code = "AN",
+                            IsSupported = false,
                             Name = "Netherlands Antilles"
                         },
                         new
                         {
                             Code = "NC",
+                            IsSupported = false,
                             Name = "New Caledonia"
                         },
                         new
                         {
                             Code = "NZ",
+                            IsSupported = false,
                             Name = "New Zealand"
                         },
                         new
                         {
                             Code = "NI",
+                            IsSupported = false,
                             Name = "Nicaragua"
                         },
                         new
                         {
                             Code = "NE",
+                            IsSupported = false,
                             Name = "Niger"
                         },
                         new
                         {
                             Code = "NG",
+                            IsSupported = false,
                             Name = "Nigeria"
                         },
                         new
                         {
                             Code = "NU",
+                            IsSupported = false,
                             Name = "Niue"
                         },
                         new
                         {
                             Code = "NF",
+                            IsSupported = false,
                             Name = "Norfolk Island"
                         },
                         new
                         {
                             Code = "MP",
+                            IsSupported = false,
                             Name = "Northern Mariana Islands"
                         },
                         new
                         {
                             Code = "NO",
+                            IsSupported = false,
                             Name = "Norway"
                         },
                         new
                         {
                             Code = "OM",
+                            IsSupported = false,
                             Name = "Oman"
                         },
                         new
                         {
                             Code = "PK",
+                            IsSupported = false,
                             Name = "Pakistan"
                         },
                         new
                         {
                             Code = "PW",
+                            IsSupported = false,
                             Name = "Palau"
                         },
                         new
                         {
                             Code = "PS",
+                            IsSupported = false,
                             Name = "Palestinian Territory, Occupied"
                         },
                         new
                         {
                             Code = "PA",
+                            IsSupported = false,
                             Name = "Panama"
                         },
                         new
                         {
                             Code = "PG",
+                            IsSupported = false,
                             Name = "Papua New Guinea"
                         },
                         new
                         {
                             Code = "PY",
+                            IsSupported = false,
                             Name = "Paraguay"
                         },
                         new
                         {
                             Code = "PE",
+                            IsSupported = false,
                             Name = "Peru"
                         },
                         new
                         {
                             Code = "PH",
+                            IsSupported = false,
                             Name = "Philippines"
                         },
                         new
                         {
                             Code = "PN",
+                            IsSupported = false,
                             Name = "Pitcairn Islands"
                         },
                         new
                         {
                             Code = "PL",
+                            IsSupported = false,
                             Name = "Poland"
                         },
                         new
                         {
                             Code = "PT",
+                            IsSupported = false,
                             Name = "Portugal"
                         },
                         new
                         {
                             Code = "PR",
+                            IsSupported = false,
                             Name = "Puerto Rico"
                         },
                         new
                         {
                             Code = "QA",
+                            IsSupported = false,
                             Name = "Qatar"
                         },
                         new
                         {
                             Code = "RE",
+                            IsSupported = false,
                             Name = "Reunion"
                         },
                         new
                         {
                             Code = "RO",
+                            IsSupported = false,
                             Name = "Romania"
                         },
                         new
                         {
                             Code = "RU",
+                            IsSupported = false,
                             Name = "Russian Federation"
                         },
                         new
                         {
                             Code = "RW",
+                            IsSupported = false,
                             Name = "Rwanda"
                         },
                         new
                         {
                             Code = "SH",
+                            IsSupported = false,
                             Name = "Saint Helena"
                         },
                         new
                         {
                             Code = "KN",
+                            IsSupported = false,
                             Name = "Saint Kitts and Nevis"
                         },
                         new
                         {
                             Code = "LC",
+                            IsSupported = false,
                             Name = "Saint Lucia"
                         },
                         new
                         {
                             Code = "PM",
+                            IsSupported = false,
                             Name = "Saint Pierre and Miquelon"
                         },
                         new
                         {
                             Code = "VC",
+                            IsSupported = false,
                             Name = "Saint Vincent and the Grenadines"
                         },
                         new
                         {
                             Code = "WS",
+                            IsSupported = false,
                             Name = "Samoa"
                         },
                         new
                         {
                             Code = "SM",
+                            IsSupported = false,
                             Name = "San Marino"
                         },
                         new
                         {
                             Code = "ST",
+                            IsSupported = false,
                             Name = "Sao Tome and Principe"
                         },
                         new
                         {
                             Code = "SA",
+                            IsSupported = false,
                             Name = "Saudi Arabia"
                         },
                         new
                         {
                             Code = "SN",
+                            IsSupported = false,
                             Name = "Senegal"
                         },
                         new
                         {
                             Code = "CS",
+                            IsSupported = false,
                             Name = "Serbia and Montenegro"
                         },
                         new
                         {
                             Code = "SC",
+                            IsSupported = false,
                             Name = "Seychelles"
                         },
                         new
                         {
                             Code = "SL",
+                            IsSupported = false,
                             Name = "Sierra Leone"
                         },
                         new
                         {
                             Code = "SG",
+                            IsSupported = false,
                             Name = "Singapore"
                         },
                         new
                         {
                             Code = "SK",
+                            IsSupported = false,
                             Name = "Slovakia"
                         },
                         new
                         {
                             Code = "SI",
+                            IsSupported = false,
                             Name = "Slovenia"
                         },
                         new
                         {
                             Code = "SB",
+                            IsSupported = false,
                             Name = "Solomon Islands"
                         },
                         new
                         {
                             Code = "SO",
+                            IsSupported = false,
                             Name = "Somalia"
                         },
                         new
                         {
                             Code = "ZA",
+                            IsSupported = false,
                             Name = "South Africa"
                         },
                         new
                         {
                             Code = "GS",
+                            IsSupported = false,
                             Name = "South Georgia and the South Sandwich Islands"
                         },
                         new
                         {
                             Code = "ES",
+                            IsSupported = false,
                             Name = "Spain"
                         },
                         new
                         {
                             Code = "LK",
+                            IsSupported = false,
                             Name = "Sri Lanka"
                         },
                         new
                         {
                             Code = "SD",
+                            IsSupported = false,
                             Name = "Sudan"
                         },
                         new
                         {
                             Code = "SR",
+                            IsSupported = false,
                             Name = "Suriname"
                         },
                         new
                         {
                             Code = "SJ",
+                            IsSupported = false,
                             Name = "Svalbard and Jan Mayen"
                         },
                         new
                         {
                             Code = "SZ",
+                            IsSupported = false,
                             Name = "Swaziland"
                         },
                         new
                         {
                             Code = "SE",
+                            IsSupported = false,
                             Name = "Sweden"
                         },
                         new
                         {
                             Code = "CH",
+                            IsSupported = false,
                             Name = "Switzerland"
                         },
                         new
                         {
                             Code = "SY",
+                            IsSupported = false,
                             Name = "Syrian Arab Republic"
                         },
                         new
                         {
                             Code = "TW",
+                            IsSupported = false,
                             Name = "Taiwan"
                         },
                         new
                         {
                             Code = "TJ",
+                            IsSupported = false,
                             Name = "Tajikistan"
                         },
                         new
                         {
                             Code = "TZ",
+                            IsSupported = false,
                             Name = "Tanzania, United Republic of"
                         },
                         new
                         {
                             Code = "TH",
+                            IsSupported = false,
                             Name = "Thailand"
                         },
                         new
                         {
                             Code = "TL",
+                            IsSupported = false,
                             Name = "Timor-Leste"
                         },
                         new
                         {
                             Code = "TG",
+                            IsSupported = false,
                             Name = "Togo"
                         },
                         new
                         {
                             Code = "TK",
+                            IsSupported = false,
                             Name = "Tokelau"
                         },
                         new
                         {
                             Code = "TO",
+                            IsSupported = false,
                             Name = "Tonga"
                         },
                         new
                         {
                             Code = "TT",
+                            IsSupported = false,
                             Name = "Trinidad and Tobago"
                         },
                         new
                         {
                             Code = "TN",
+                            IsSupported = false,
                             Name = "Tunisia"
                         },
                         new
                         {
                             Code = "TR",
+                            IsSupported = false,
                             Name = "Turkey"
                         },
                         new
                         {
                             Code = "TM",
+                            IsSupported = false,
                             Name = "Turkmenistan"
                         },
                         new
                         {
                             Code = "TC",
+                            IsSupported = false,
                             Name = "Turks and Caicos Islands"
                         },
                         new
                         {
                             Code = "TV",
+                            IsSupported = false,
                             Name = "Tuvalu"
                         },
                         new
                         {
                             Code = "UG",
+                            IsSupported = false,
                             Name = "Uganda"
                         },
                         new
                         {
                             Code = "UA",
+                            IsSupported = false,
                             Name = "Ukraine"
                         },
                         new
                         {
                             Code = "AE",
+                            IsSupported = false,
                             Name = "United Arab Emirates"
                         },
                         new
                         {
                             Code = "GB",
+                            IsSupported = false,
                             Name = "United Kingdom"
                         },
                         new
                         {
                             Code = "US",
+                            IsSupported = false,
                             Name = "United States"
                         },
                         new
                         {
                             Code = "UM",
+                            IsSupported = false,
                             Name = "United States Minor Outlying Islands"
                         },
                         new
                         {
                             Code = "UY",
+                            IsSupported = false,
                             Name = "Uruguay"
                         },
                         new
                         {
                             Code = "UZ",
+                            IsSupported = false,
                             Name = "Uzbekistan"
                         },
                         new
                         {
                             Code = "VU",
+                            IsSupported = false,
                             Name = "Vanuatu"
                         },
                         new
                         {
                             Code = "VE",
+                            IsSupported = false,
                             Name = "Venezuela"
                         },
                         new
                         {
                             Code = "VN",
+                            IsSupported = false,
                             Name = "Vietnam"
                         },
                         new
                         {
                             Code = "VG",
+                            IsSupported = false,
                             Name = "Virgin Islands, British"
                         },
                         new
                         {
                             Code = "VI",
+                            IsSupported = false,
                             Name = "Virgin Islands, U.S."
                         },
                         new
                         {
                             Code = "WF",
+                            IsSupported = false,
                             Name = "Wallis and Futuna"
                         },
                         new
                         {
                             Code = "EH",
+                            IsSupported = false,
                             Name = "Western Sahara"
                         },
                         new
                         {
                             Code = "YE",
+                            IsSupported = false,
                             Name = "Yemen"
                         },
                         new
                         {
                             Code = "ZM",
+                            IsSupported = false,
                             Name = "Zambia"
                         },
                         new
                         {
                             Code = "ZN",
+                            IsSupported = false,
                             Name = "Zimbabwe"
                         });
                 });
@@ -8367,7 +8612,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$WLyVQ1HPUGCG.JoOYBR0O.Tkbxf8XyNsRLWm8z/l3lnT4Nz5PLzua",
+                            Password = "$2a$13$hmCPRCq4k1VQDea77j.Uy.eABHE9pKR1IrR52QDHlKO/Uonxloe0y",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8378,7 +8623,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$TnI6qY6zr.YAdRXHHS6DUed.id3uGtM0psKs6HX.apAOiHFuBeNj6",
+                            Password = "$2a$13$PtZnQq.udZ8RFpQhODJiCuEp3rW77XQw7FpTVxxOsyjKPEb.RuPJK",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8389,7 +8634,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$m3bXz8EQVr8zbb4bpJMRPeuf3UdSV9Tl6nTrIH23JL0eZU.1R2d4m",
+                            Password = "$2a$13$tWTjMi6XMKQgIBJoy.OC/eetbk7.WLMcbbp9XXyhwrqk8VN2K5KKm",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

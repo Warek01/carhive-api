@@ -10,6 +10,9 @@ public class Country {
   [Column("code")]
   public string Code { get; set; } = null!;
 
+  [Column("is_supported")]
+  public bool IsSupported { get; set; } = false;
+
   [StringLength(255)]
   [Column("name")]
   public string Name { get; set; } = null!;
