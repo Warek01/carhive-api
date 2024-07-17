@@ -32,6 +32,12 @@ public class ListingController(
   }
 
   [HttpGet]
+  [Route("Count")]
+  public async Task<ActionResult<int>> GetTotalListingsCount() {
+    return await listingService.GetTotalListings().CountAsync();
+  }
+
+  [HttpGet]
   [Route("{listingId:guid}")]
   public async Task<ActionResult<ListingDto>> GetListingDetails(Guid listingId) {
     Listing? listing = await listingService.GetListing(listingId);

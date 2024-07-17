@@ -97,6 +97,7 @@ public class ListingService(
     return await dbContext.Listings.FindAsync(listingId);
   }
 
+  // Total registered listings, regardless of their status
   public IQueryable<Listing> GetTotalListings() {
     return dbContext.Listings.AsNoTracking();
   }
