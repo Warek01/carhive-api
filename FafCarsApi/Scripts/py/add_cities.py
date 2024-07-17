@@ -3,7 +3,7 @@
 import psycopg2
 import pandas as pd
 
-COUNTRY = input('Country code: ')
+COUNTRY = input('Country code: ').upper()
 HOST = input('Host (localhost): ') or 'localhost'
 PORT = input('Port (5432): ') or '5432'
 DATABASE = input('Database (faf_cars): ') or 'faf_cars'
@@ -21,6 +21,7 @@ for index, row in df.iterrows():
   city = row['city_ascii']
 
   if code == COUNTRY:
+    city = str(city).replace("'", "''").replace('"', '""')
     sql_str += f"('{city}', '{code}'),"
 
 sql_str = sql_str[:-1] + ' ON CONFLICT DO NOTHING;'
