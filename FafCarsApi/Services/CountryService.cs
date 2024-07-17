@@ -12,12 +12,12 @@ public class CountryService(FafCarsDbContext dbContext) {
   }
 
   public async Task<List<Brand>> GetCountryBrands(string code) {
-    Country country = await dbContext.Countries
+    Country? country = await dbContext.Countries
       .AsNoTracking()
       .Include(c => c.Brands)
       .Where(c => c.Code.ToLower() == code.ToLower())
-      .FirstAsync();
+      .FirstOrDefaultAsync();
 
-    return country.Brands;
+    return country?.Brands ?? [];
   }
 }
