@@ -10,6 +10,7 @@ using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.JsonWebTokens;
 
 namespace FafCarsApi.Controllers;
 
@@ -85,5 +86,16 @@ public class UserController(
 
     await userService.CreateUser(createDto);
     return Created();
+  }
+  
+  
+  [HttpPost]
+  [Route("Clear-Favorites")]
+  [Authorize(Roles = AuthRoles.User)]
+  public async Task<ActionResult> ClearFavorites() {
+    Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    User user = (await userService.FindUser(userId, includeFavorites: true))!;
+    
+    return await userService.ClearFavorites(user);
   }
 }

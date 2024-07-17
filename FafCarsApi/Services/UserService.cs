@@ -5,6 +5,7 @@ using FafCarsApi.Dtos;
 using FafCarsApi.Dtos.Request;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Services;
@@ -69,7 +70,7 @@ public class UserService(
       user.Password,
       int.Parse(config["BCrypt:HashRounds"]!)
     );
-    
+
     user.Roles = [UserRole.User];
 
     await dbContext.Users.AddAsync(user);
@@ -93,18 +94,9 @@ public class UserService(
     await dbContext.SaveChangesAsync();
   }
 
-  public async Task AddListingToFavorites(User user, Listing listing) {
-    user.Favorites.Add(listing);
-    await dbContext.SaveChangesAsync();
-  }
-
-  public async Task RemoveListingFromFavorites(User user, Listing listing) {
-    user.Favorites.Remove(listing);
-    await dbContext.SaveChangesAsync();
-  }
-
-  public async Task ClearFavorites(User user) {
+  public async Task<ActionResult> ClearFavorites(User user) {
     user.Favorites.Clear();
     await dbContext.SaveChangesAsync();
+    return new OkResult();
   }
 }

@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using FafCarsApi.Data;
-using FafCarsApi.Dtos;
 using FafCarsApi.Dtos.Request;
 using FafCarsApi.Dtos.Response;
+using FafCarsApi.Enums;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Helpers.ImageHelper;
 
@@ -167,5 +168,38 @@ public class ListingService(
       .AsNoTracking()
       .Where(u => u.Id == userId)
       .SelectMany(u => u.Favorites);
+  }
+
+  public async Task<ActionResult> AddToFavorites(User user, Guid id) {
+    Listing? listing = await GetListing(id);
+    
+    if (listing == null) {
+      return new NotFoundObjectResult("listing not found");
+    }
+
+    if (user.Favorites.Contains(listing)) {
+      return new OkResult();
+    }
+    
+    user.Favorites.Add(listing);
+    await dbContext.SaveChangesAsync();
+    return new OkResult();
+  }
+
+  public async Task<ActionResult> RemoveFromFavorites(User user, Guid id) {
+    Listing? listing = await GetListing(id);
+    
+    if (listing == null) {
+      return new NotFoundObjectResult("listing not found");
+    }
+
+    user.Favorites.Remove(listing);
+    await dbContext.SaveChangesAsync();
+    return new OkResult();
+  }
+
+  public async Task SetListingStatus(Listing listing, ListingStatus status) {
+    listing.Status = status;
+    await dbContext.SaveChangesAsync();
   }
 }

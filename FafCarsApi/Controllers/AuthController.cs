@@ -54,7 +54,7 @@ public class AuthController(
     }
 
     User newUser = await userService.RegisterUser(registerDto);
-    string token = authService.GenerateAccessToken(user);
+    string token = authService.GenerateAccessToken(user!);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
