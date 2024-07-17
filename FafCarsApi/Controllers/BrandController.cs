@@ -2,13 +2,15 @@ using Asp.Versioning;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("Api/v{v:apiVersion}/[controller]")]
+[AllowAnonymous]
+[Route("Api/v{v:apiVersion}/Brand")]
 public class BrandController(
   BrandService brandService,
   CacheService cache

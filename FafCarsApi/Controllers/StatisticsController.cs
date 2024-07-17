@@ -1,5 +1,6 @@
 using Asp.Versioning;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
+using FafCarsApi.Helpers;
 using FafCarsApi.Queries;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -9,8 +10,8 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Authorize(Roles = "Admin")]
-[Route("/Api/v{v:apiVersion}/[controller]")]
+[Authorize(Roles = AuthRoles.Admin)]
+[Route("/Api/v{v:apiVersion}/Statistics")]
 public class StatisticsController(StatisticsService statisticsService) : Controller {
   [HttpGet]
   [Route("Market")]

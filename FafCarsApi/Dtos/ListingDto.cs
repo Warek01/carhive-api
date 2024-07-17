@@ -1,4 +1,5 @@
-﻿using FafCarsApi.Enums;
+﻿using FafCarsApi.Dtos;
+using FafCarsApi.Enums;
 
 namespace FafCarsApi.Dto;
 

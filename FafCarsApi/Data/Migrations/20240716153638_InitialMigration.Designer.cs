@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240716130559_InitialMigration")]
+    [Migration("20240716153638_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -8308,8 +8308,9 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("phone_number");
 
-                    b.Property<UserRole>("Role")
-                        .HasColumnType("user_role")
+                    b.Property<List<UserRole>>("Roles")
+                        .IsRequired()
+                        .HasColumnType("user_role[]")
                         .HasColumnName("roles");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -8339,9 +8340,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$g3dWJ0X73IYCAwq/raksoelcZLAwA.QVOWRr.Svkx2R0/cuCqnXBC",
+                            Password = "$2a$13$oNUA40YKD5re7ZetVoDI4ucu42o64y0N5QASu3dPf5VW4UKDDkTLu",
                             PhoneNumber = "+37378000111",
-                            Role = UserRole.SuperAdmin,
+                            Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "admin"
                         },
@@ -8350,9 +8351,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$5Q/krlIc5FIfPs6v455cW.cg6YkXTwkdpCojkIRhaxaQ29osiGCkK",
+                            Password = "$2a$13$nvBpA7NRZrDnD6z0LUWqmO6ub6aprQrwnpvcGu1WR4MA/9Mk48V7C",
                             PhoneNumber = "+37378222111",
-                            Role = UserRole.User,
+                            Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "alex"
                         },
@@ -8361,9 +8362,9 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$5pdwK3FKGXr06hveUPwHBOXgxxhN2ys55qgM0BGivY7bh9tGdCEIi",
+                            Password = "$2a$13$PSWRfG5L9ZF.J6Uty8vqwuWuv0Fa2kaPqNM5hMzH0Efrf1tlZWxhy",
                             PhoneNumber = "+37378222444",
-                            Role = UserRole.User,
+                            Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "user"
                         });

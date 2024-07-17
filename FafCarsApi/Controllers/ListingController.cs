@@ -2,7 +2,9 @@
 using Asp.Versioning;
 using AutoMapper;
 using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Enums;
+using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
 using FafCarsApi.Services;
@@ -14,7 +16,8 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("Api/v{v:apiVersion}/[controller]")]
+[AllowAnonymous]
+[Route("Api/v{v:apiVersion}/Listing")]
 public class ListingController(
   ListingService listingService,
   IMapper mapper,
@@ -47,7 +50,7 @@ public class ListingController(
   }
 
   [HttpDelete]
-  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = AuthRoles.Admin)]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> DeleteListing(Guid listingId) {
     var listing = await listingService.GetListing(listingId);
@@ -63,7 +66,7 @@ public class ListingController(
   }
 
   [HttpPatch]
-  [Authorize(Roles = "Admin, ListingCreator")]
+  [Authorize(Roles = AuthRoles.User)]
   [Route("{listingId:guid}")]
   public async Task<ActionResult> UpdateListing(Guid listingId, [FromBody] UpdateListingDto updateDto) {
     return Ok();
@@ -77,7 +80,7 @@ public class ListingController(
     // return Unauthorized();
   }
 
-  [Authorize(Roles = "Admin, ListingCreator")]
+  [Authorize(Roles = AuthRoles.User)]
   [HttpPost]
   public async Task<ActionResult> CreateListing([FromForm] CreateListingDto createDto) {
     var publisherId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
@@ -85,7 +88,7 @@ public class ListingController(
     return Created();
   }
 
-  [Authorize]
+  [Authorize(Roles = AuthRoles.User)]
   [HttpPost("Favorites")]
   public async Task<IActionResult> UpdateFavorites([FromBody] FavoriteListingActionDto actionDto) {
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);

@@ -1,7 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-using FafCarsApi.Enums;
-
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class UpdateListingDto {
 }

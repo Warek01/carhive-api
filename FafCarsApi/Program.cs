@@ -2,6 +2,7 @@ using System.Globalization;
 using System.Reflection;
 using Asp.Versioning;
 using FafCarsApi.Config;
+using FafCarsApi.Controllers;
 using FafCarsApi.Data;
 using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
@@ -27,6 +28,7 @@ public static class Program {
     
     _builder = WebApplication.CreateBuilder(args);
 
+    _builder.WebHost.UseKestrel();
     _builder.Host.UseSerilog(
       (context, c) => {
         c.ReadFrom.Configuration(context.Configuration);
@@ -131,11 +133,13 @@ public static class Program {
         [securityScheme] = []
       };
       options.AddSecurityRequirement(securityRequirements);
+      options.OperationFilter<CustomSwaggerOperationFilter>();
     });
   }
 
   private static void SetupDataSource() {
     var dataSourceBuilder = new NpgsqlDataSourceBuilder(_builder.Configuration.GetConnectionString("Default"));
+    
     dataSourceBuilder.MapEnum<CarFuelType>();
     dataSourceBuilder.MapEnum<CarBodyStyle>();
     dataSourceBuilder.MapEnum<CarColor>();

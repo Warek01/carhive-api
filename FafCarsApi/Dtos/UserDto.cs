@@ -1,4 +1,4 @@
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 /// <summary>
 ///  Dto of user account for non admins

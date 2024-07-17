@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class BrandDto {
   [Length(1, 255)]

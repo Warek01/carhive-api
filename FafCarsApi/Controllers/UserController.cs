@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
+using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
 using FafCarsApi.Services;
@@ -12,30 +13,31 @@ namespace FafCarsApi.Controllers;
 
 [ApiController]
 [ApiVersion(1)]
-[Route("Api/v{v:apiVersion}/[controller]")]
+[Authorize(Roles = AuthRoles.User)]
+[Route("Api/v{v:apiVersion}/User")]
 public class UserController(
   UserService userService,
   IMapper mapper
 ) : Controller {
   [HttpGet]
   [Route("{userId:Guid}")]
-  [Authorize]
   public async Task<ActionResult<UserAdminDto>> GetUser(Guid userId) {
     User? queriedUser = await userService.FindUser(userId);
 
-    if (queriedUser == null)
+    if (queriedUser == null) {
       return NotFound();
+    }
 
-    UserAdminDto result = mapper.Map<UserAdminDto>(queriedUser);
+    var result = mapper.Map<UserAdminDto>(queriedUser);
 
     return result;
   }
 
-  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = AuthRoles.Admin)]
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<UserAdminDto>>> GetUsers([FromQuery] PaginationQuery pagination) {
-    var usersQuery = userService.GetUsers();
-    var count = await usersQuery.CountAsync();
+    IQueryable<User> usersQuery = userService.GetUsers();
+    int count = await usersQuery.CountAsync();
     List<UserAdminDto> users = await usersQuery
       .OrderByDescending(u => u.CreatedAt)
       .Skip(pagination.Take * pagination.Page)
@@ -50,7 +52,7 @@ public class UserController(
   }
 
   [HttpDelete]
-  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = AuthRoles.Admin)]
   [Route("{userId:Guid}")]
   public async Task<ActionResult> DeleteUser(Guid userId) {
     User? user = await userService.DeleteUser(userId);
@@ -58,20 +60,21 @@ public class UserController(
   }
 
   [HttpPatch]
-  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = AuthRoles.Admin)]
   [Route("{userId:Guid}")]
   public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto) {
     var user = await userService.FindUser(userId);
 
-    if (user == null)
+    if (user == null) {
       return NotFound();
+    }
 
     await userService.UpdateUser(user, updateDto);
     return NoContent();
   }
 
   [HttpPost]
-  [Authorize(Roles = "Admin")]
+  [Authorize(Roles = AuthRoles.SuperAdmin)]
   public async Task<ActionResult> CreateUser([FromBody] CreateUserDto createDto) {
     User? existingUser = await userService.FindUserByUsername(createDto.Username);
 

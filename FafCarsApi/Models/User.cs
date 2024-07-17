@@ -24,7 +24,7 @@ public class User {
   public string Email { get; set; } = null!;
 
   [Column("roles")]
-  public UserRole Role { get; set; } = UserRole.User;
+  public List<UserRole> Roles { get; set; } = [UserRole.User];
 
   public List<Listing> Listings { get; set; } = [];
 

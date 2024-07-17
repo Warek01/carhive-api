@@ -1,4 +1,4 @@
-﻿namespace FafCarsApi.Dto;
+﻿namespace FafCarsApi.Dtos;
 
 public class PaginatedResultDto<T> {
   public List<T> Items { get; set; } = null!;

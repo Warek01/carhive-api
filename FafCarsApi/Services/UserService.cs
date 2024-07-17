@@ -2,6 +2,7 @@
 using AutoMapper;
 using FafCarsApi.Data;
 using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Enums;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -69,7 +70,7 @@ public class UserService(
       int.Parse(config["BCrypt:HashRounds"]!)
     );
     
-    user.Role = UserRole.User;
+    user.Roles = [UserRole.User];
 
     await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();
@@ -87,7 +88,7 @@ public class UserService(
   public async Task UpdateUser(User user, UpdateUserDto updateDto) {
     user.Username = updateDto.Username;
     user.Email = updateDto.Email;
-    user.Role = updateDto.Role;
+    user.Roles = updateDto.Roles;
     user.UpdatedAt = DateTime.Now;
     await dbContext.SaveChangesAsync();
   }

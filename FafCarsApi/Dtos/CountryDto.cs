@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class CountryDto {
   [Length(1, 255)]

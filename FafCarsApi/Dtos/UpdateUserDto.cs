@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class UpdateUserDto {
   [Length(1, 255)]
@@ -10,5 +10,5 @@ public class UpdateUserDto {
   [Length(1, 255)]
   public string Email { get; set; } = null!;
 
-  public UserRole Role { get; set; }
+  public List<UserRole> Roles { get; set; } = [];
 }

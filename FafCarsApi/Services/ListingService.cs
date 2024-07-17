@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FafCarsApi.Data;
 using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;

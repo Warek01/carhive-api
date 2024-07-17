@@ -2,9 +2,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using FafCarsApi.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using JsonClaimValueTypes = System.IdentityModel.Tokens.Jwt.JsonClaimValueTypes;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
 namespace FafCarsApi.Services;
@@ -60,10 +62,14 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     var audience = config["Jwt:Audience"]!;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));
     var tokenTtl = int.Parse(config["JWT:TTL"]!);
-    var identity = new ClaimsIdentity();
-
-    identity.AddClaim(new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()));
-    identity.AddClaim(new Claim("role", user.Role.ToString()));
+    var identity = new ClaimsIdentity([
+      new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+      new Claim(
+        ClaimTypes.Role,
+        JsonSerializer.Serialize(user.Roles.Select(r => r.ToString())),
+        JsonClaimValueTypes.JsonArray
+      )
+    ]);
 
     var tokenDescriptor = new SecurityTokenDescriptor {
       Subject = identity,

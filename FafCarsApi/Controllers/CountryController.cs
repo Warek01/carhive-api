@@ -1,14 +1,18 @@
 using System.ComponentModel.DataAnnotations;
+using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dto;
+using FafCarsApi.Dtos;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FafCarsApi.Controllers;
 
 [ApiController]
-[Route("Api/v{v:apiVersion}/[controller]")]
+[AllowAnonymous]
+[ApiVersion(1)]
+[Route("Api/v{v:apiVersion}/Country")]
 public class CountryController(
   IMapper mapper,
   CountryService countryService

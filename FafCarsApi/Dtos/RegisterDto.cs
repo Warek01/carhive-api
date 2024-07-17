@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dto;
+namespace FafCarsApi.Dtos;
 
 public class RegisterDto {
   [DefaultValue("new_user")]

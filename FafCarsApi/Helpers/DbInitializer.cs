@@ -15,9 +15,9 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public string Username { get; set; } = null!;
     public string Password { get; set; } = null!;
     public string Email { get; set; } = null!;
-    public string Role { get; set; } = null!;
-    public string CreatedAt { get; set; } = null!;
-    public string? DeletedAt { get; set; }
+    public List<string> Roles { get; set; } = null!;
+    public DateTime CreatedAt { get; set; }
+    public DateTime? DeletedAt { get; set; }
     public string UpdatedAt { get; set; } = null!;
     public string? PhoneNumber { get; set; }
   }
@@ -114,14 +114,14 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     var users = resourceUsers.Select(
       u => new User {
         Id = new Guid(u.Id),
-        CreatedAt = DateTime.Parse(u.CreatedAt),
-        UpdatedAt = DateTime.Parse(u.CreatedAt),
-        DeletedAt = u.DeletedAt == null ? null : DateTime.Parse(u.DeletedAt),
+        CreatedAt = u.CreatedAt,
+        UpdatedAt = u.CreatedAt,
+        DeletedAt = u.DeletedAt,
         PhoneNumber = u.PhoneNumber,
         Username = u.Username,
         Email = u.Email,
         Password = EnhancedHashPassword(u.Password, 13),
-        Role = Enum.Parse<UserRole>(u.Role),
+        Roles = u.Roles.Select(r => Enum.Parse<UserRole>(r, ignoreCase: true)).ToList(),
       }
     );
 
