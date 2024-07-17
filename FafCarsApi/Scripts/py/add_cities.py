@@ -1,3 +1,5 @@
+#!./venv/bin/python
+
 import psycopg2
 import pandas as pd
 

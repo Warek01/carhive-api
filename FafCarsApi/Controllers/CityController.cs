@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,9 +11,9 @@ namespace FafCarsApi.Controllers;
 [ApiVersion(1)]
 [Route("Api/v{v:apiVersion}/City")]
 public class CityController(CityService cityService) : Controller {
-  // [HttpGet]
-  // public async Task<ActionResult<List<string>>> GetCities() {
-  //   List<string> cities = await cityService.GetAllCities();
-  //   return Ok(cities);
-  // }
+  [HttpGet]
+  public async Task<ActionResult<List<string>>> GetCities([FromQuery] string countryCode, [FromQuery] string search) {
+    List<string> cities = await cityService.FindCities(countryCode, search);
+    return Ok(cities);
+  }
 }
