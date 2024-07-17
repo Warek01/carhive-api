@@ -46,5 +46,5 @@ public class ListingQuery : PaginationQuery {
 
   [FromQuery(Name = "city")]
   [Length(1, 255)]
-  public string? City { get; set; }
+  public string? CityName { get; set; }
 }

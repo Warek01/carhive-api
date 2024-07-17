@@ -19,4 +19,7 @@ public class Country {
 
   [InverseProperty(nameof(Brand.Country))]
   public List<Brand> Brands { get; set; } = [];
+
+  [InverseProperty(nameof(City.Country))]
+  public List<City> Cities { get; set; } = [];
 }

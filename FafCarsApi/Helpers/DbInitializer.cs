@@ -41,6 +41,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public string Id { get; set; } = null!;
     public string BrandName { get; set; } = null!;
     public string ModelName { get; set; } = null!;
+    public string City { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
     public double? Price { get; set; }
@@ -58,7 +59,6 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public DateTime? DeletedAt { get; set; }
     public string CountryCode { get; set; } = null!;
     public string? Address { get; set; }
-    public string? City { get; set; }
     public string? CarStatus { get; set; }
     public string? Description { get; set; }
     public string Status { get; set; } = null!;
@@ -87,8 +87,12 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
       ? populateFunctions.Concat(devPopulateFunctions).ToList()
       : populateFunctions;
 
-    foreach (var fn in all)
+    foreach (var fn in all) {
       fn(modelBuilder);
+    }
+
+    modelBuilder.Entity<City>()
+      .HasData(new City { Name = "Chisinau", CountryCode = "MD" });
   }
 
   private static List<T> ReadArrayResourceFile<T>(string fileName) where T : JsonResource {
@@ -191,7 +195,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         PublisherId = new Guid(l.PublisherId),
         ProductionYear = l.ProductionYear,
         ModelName = l.ModelName,
-        City = l.City,
+        CityName = l.City,
         EngineVolume = l.EngineVolume,
         Description = l.Description,
         BlockedAt = l.BlockedAt,

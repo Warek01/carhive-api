@@ -95,8 +95,12 @@ public class Listing {
   public Country Country { get; set; } = null!;
 
   [StringLength(255)]
-  [Column("city")]
-  public string City { get; set; } = null!;
+  [Column("city_name")]
+  public string CityName { get; set; } = null!;
+
+  [InverseProperty(nameof(City.Listings))]
+  [ForeignKey($"{nameof(CityName)},{nameof(CountryCode)}")]
+  public City City { get; set; } = null!;
 
   [StringLength(255)]
   [Column("sell_address")]
@@ -106,6 +110,7 @@ public class Listing {
   public CarStatus? CarStatus { get; set; }
 
   [Column("description")]
+  [StringLength(5000)]
   public string? Description { get; set; }
 
   [Column("status")]

@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240717132014_InitialMigration")]
+    [Migration("20240717143326_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -513,6 +513,32 @@ namespace FafCarsApi.Data.Migrations
                         {
                             Name = "Yugo",
                             CountryCode = "YU"
+                        });
+                });
+
+            modelBuilder.Entity("FafCarsApi.Models.City", b =>
+                {
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("name");
+
+                    b.Property<string>("CountryCode")
+                        .HasMaxLength(2)
+                        .HasColumnType("character varying(2)")
+                        .HasColumnName("country");
+
+                    b.HasKey("Name", "CountryCode");
+
+                    b.HasIndex("CountryCode");
+
+                    b.ToTable("cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Name = "Chisinau",
+                            CountryCode = "MD"
                         });
                 });
 
@@ -1767,11 +1793,11 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("car_status")
                         .HasColumnName("car_status");
 
-                    b.Property<string>("City")
+                    b.Property<string>("CityName")
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
-                        .HasColumnName("city");
+                        .HasColumnName("city_name");
 
                     b.Property<int?>("Clearance")
                         .HasColumnType("integer")
@@ -1798,7 +1824,8 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnName("deleted_at");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text")
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)")
                         .HasColumnName("description");
 
                     b.Property<double?>("EngineVolume")
@@ -1876,6 +1903,8 @@ namespace FafCarsApi.Data.Migrations
 
                     b.HasIndex("PublisherId");
 
+                    b.HasIndex("CityName", "CountryCode");
+
                     b.HasIndex("ModelName", "BrandName");
 
                     b.ToTable("listings");
@@ -1887,10 +1916,10 @@ namespace FafCarsApi.Data.Migrations
                             BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Audi",
                             CarStatus = CarStatus.Used,
-                            City = "Berlin",
+                            CityName = "Chisinau",
                             Clearance = 150,
                             Color = CarColor.Black,
-                            CountryCode = "DE",
+                            CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             EngineVolume = 2.0,
                             FuelType = CarFuelType.Petrol,
@@ -1912,10 +1941,10 @@ namespace FafCarsApi.Data.Migrations
                             BodyStyle = CarBodyStyle.SUV,
                             BrandName = "BMW",
                             CarStatus = CarStatus.Used,
-                            City = "Berlin",
+                            CityName = "Chisinau",
                             Clearance = 200,
                             Color = CarColor.White,
-                            CountryCode = "DE",
+                            CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             EngineVolume = 3.0,
                             FuelType = CarFuelType.Diesel,
@@ -1937,10 +1966,10 @@ namespace FafCarsApi.Data.Migrations
                             BodyStyle = CarBodyStyle.Coupe,
                             BrandName = "Mercedes-Benz",
                             CarStatus = CarStatus.New,
-                            City = "Berlin",
+                            CityName = "Chisinau",
                             Clearance = 140,
                             Color = CarColor.Blue,
-                            CountryCode = "DE",
+                            CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Petrol,
@@ -1962,10 +1991,10 @@ namespace FafCarsApi.Data.Migrations
                             BodyStyle = CarBodyStyle.Sedan,
                             BrandName = "Toyota",
                             CarStatus = CarStatus.Used,
-                            City = "Tokyo",
+                            CityName = "Chisinau",
                             Clearance = 160,
                             Color = CarColor.Silver,
-                            CountryCode = "JP",
+                            CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Hybrid,
@@ -1987,10 +2016,10 @@ namespace FafCarsApi.Data.Migrations
                             BodyStyle = CarBodyStyle.PickupTruck,
                             BrandName = "Ford",
                             CarStatus = CarStatus.Used,
-                            City = "New York",
+                            CityName = "Chisinau",
                             Clearance = 180,
                             Color = CarColor.Red,
-                            CountryCode = "US",
+                            CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Description = "Test description for Ford F150",
                             EngineVolume = 5.0,
@@ -8341,7 +8370,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$87Qw.ZzWqm2i6BXOY/PfEOKP4fHnJBDAgSsBI7ABeCH2BxbcQzLEW",
+                            Password = "$2a$13$WLyVQ1HPUGCG.JoOYBR0O.Tkbxf8XyNsRLWm8z/l3lnT4Nz5PLzua",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8352,7 +8381,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$E1T4nPU168ihJdb7O4Geo.h8nxkhtWFgZI7Qq1qW3TUo9WNjgxEvi",
+                            Password = "$2a$13$TnI6qY6zr.YAdRXHHS6DUed.id3uGtM0psKs6HX.apAOiHFuBeNj6",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8363,7 +8392,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$IbnQqHr7J3NGFsCNCnRmUu/6fKoRK.5J7QKI1nhMKJbohcKNGCF8.",
+                            Password = "$2a$13$m3bXz8EQVr8zbb4bpJMRPeuf3UdSV9Tl6nTrIH23JL0eZU.1R2d4m",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8375,6 +8404,17 @@ namespace FafCarsApi.Data.Migrations
                 {
                     b.HasOne("FafCarsApi.Models.Country", "Country")
                         .WithMany("Brands")
+                        .HasForeignKey("CountryCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("FafCarsApi.Models.City", b =>
+                {
+                    b.HasOne("FafCarsApi.Models.Country", "Country")
+                        .WithMany("Cities")
                         .HasForeignKey("CountryCode")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -8402,11 +8442,19 @@ namespace FafCarsApi.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FafCarsApi.Models.City", "City")
+                        .WithMany("Listings")
+                        .HasForeignKey("CityName", "CountryCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FafCarsApi.Models.Model", "Model")
                         .WithMany("Listings")
                         .HasForeignKey("ModelName", "BrandName");
 
                     b.Navigation("Brand");
+
+                    b.Navigation("City");
 
                     b.Navigation("Country");
 
@@ -8452,9 +8500,16 @@ namespace FafCarsApi.Data.Migrations
                     b.Navigation("Models");
                 });
 
+            modelBuilder.Entity("FafCarsApi.Models.City", b =>
+                {
+                    b.Navigation("Listings");
+                });
+
             modelBuilder.Entity("FafCarsApi.Models.Country", b =>
                 {
                     b.Navigation("Brands");
+
+                    b.Navigation("Cities");
 
                     b.Navigation("Listings");
                 });

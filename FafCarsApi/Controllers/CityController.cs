@@ -10,9 +10,9 @@ namespace FafCarsApi.Controllers;
 [ApiVersion(1)]
 [Route("Api/v{v:apiVersion}/City")]
 public class CityController(CityService cityService) : Controller {
-  [HttpGet]
-  public async Task<ActionResult<List<string>>> GetCities() {
-    List<string> cities = await cityService.GetAllCities();
-    return Ok(cities);
-  }
+  // [HttpGet]
+  // public async Task<ActionResult<List<string>>> GetCities() {
+  //   List<string> cities = await cityService.GetAllCities();
+  //   return Ok(cities);
+  // }
 }

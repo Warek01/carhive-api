@@ -1,14 +1,13 @@
 using FafCarsApi.Data;
+using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Services;
 
 public class CityService(FafCarsDbContext dbContext) {
-  public async Task<List<string>> GetAllCities() {
-    return await dbContext.Listings
+  public async Task<List<City>> GetAllCities() {
+    return await dbContext.Cities
       .AsNoTracking()
-      .Select(l => l.City.ToLower())
-      .Distinct()
       .ToListAsync();
   }
 }

@@ -18,11 +18,11 @@
     "deletedAt": null,
     "createdAt": "2024-06-15T15:53:58.594",
     "updatedAt": "2024-06-15T15:53:58.594",
-    "countryCode": "DE",
+    "countryCode": "MD",
     "address": "123 Main St, Berlin, DE",
     "carStatus": "used",
     "status": "available",
-    "city": "Berlin"
+    "city": "Chisinau"
   },
   {
     "id": "dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f",
@@ -43,11 +43,11 @@
     "deletedAt": null,
     "createdAt": "2024-06-15T15:53:58.594",
     "updatedAt": "2024-06-15T15:53:58.594",
-    "countryCode": "DE",
+    "countryCode": "MD",
     "address": "456 Elm Ave, Berlin, DE",
     "carStatus": "used",
     "status": "available",
-    "city": "Berlin"
+    "city": "Chisinau"
   },
   {
     "id": "7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b",
@@ -68,11 +68,11 @@
     "deletedAt": null,
     "createdAt": "2024-06-15T15:53:58.594",
     "updatedAt": "2024-06-15T15:53:58.594",
-    "countryCode": "DE",
+    "countryCode": "MD",
     "address": "789 Oak Rd, Berlin, DE",
     "carStatus": "new",
     "status": "available",
-    "city": "Berlin"
+    "city": "Chisinau"
   },
   {
     "id": "f3e6e478-3a21-4b05-9926-6fe29f4a58c0",
@@ -93,11 +93,11 @@
     "deletedAt": null,
     "createdAt": "2024-06-15T15:53:58.594",
     "updatedAt": "2024-06-15T15:53:58.594",
-    "countryCode": "JP",
+    "countryCode": "MD",
     "address": "101 Pine Blvd, Tokyo, JP",
     "carStatus": "used",
     "status": "available",
-    "city": "Tokyo"
+    "city": "Chisinau"
   },
   {
     "id": "b78f7f22-07af-4dee-8c96-ed34d7b9bb95",
@@ -118,11 +118,11 @@
     "deletedAt": null,
     "createdAt": "2024-06-15T15:53:58.594",
     "updatedAt": "2024-06-15T15:53:58.594",
-    "countryCode": "US",
+    "countryCode": "MD",
     "address": "222 Maple Ln, New York, NY",
     "carStatus": "used",
     "description": "Test description for Ford F150",
     "status": "available",
-    "city": "New York"
+    "city": "Chisinau"
   }
 ]

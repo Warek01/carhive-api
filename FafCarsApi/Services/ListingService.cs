@@ -69,8 +69,8 @@ public class ListingService(
       listings = listings.Where(l => l.FuelType != null && query.FuelTypes.Contains(l.FuelType.Value));
     }
 
-    if (query.City != null) {
-      listings = listings.Where(l => l.City == query.City);
+    if (query.CityName != null) {
+      listings = listings.Where(l => l.CityName == query.CityName);
     }
 
     if (query.Order != null) {

@@ -4,24 +4,23 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Models;
 
-[Table("brands")]
-public class Brand {
+[Table("cities")]
+[PrimaryKey(nameof(Name), nameof(CountryCode))]
+public class City {
   [Key]
-  [StringLength(255)]
   [Column("name")]
+  [StringLength(255)]
   public string Name { get; set; } = null!;
 
+  [Key]
+  [ForeignKey(nameof(CountryCode))]
+  [Column("country")]
   [StringLength(2)]
-  [Column("country_code")]
   public string CountryCode { get; set; } = null!;
 
-  [ForeignKey(nameof(CountryCode))]
-  [InverseProperty(nameof(Country.Brands))]
-  public Country? Country { get; set; }
+  [InverseProperty(nameof(Country.Cities))]
+  public Country Country { get; set; } = null!;
 
-  [InverseProperty(nameof(Listing.Brand))]
+  [InverseProperty(nameof(Listing.City))]
   public List<Listing> Listings { get; set; } = [];
-
-  [InverseProperty(nameof(Model.Brand))]
-  public List<Model> Models { get; set; } = [];
 }
