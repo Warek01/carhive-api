@@ -1,4 +1,6 @@
 using FafCarsApi.Data;
+using FafCarsApi.Dtos.Request;
+using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,22 +17,21 @@ public class ModelService(FafCarsDbContext dbContext) {
     return brand?.Models;
   }
 
-  public async Task<Model?> AddModel(string brandName, string modelName) {
+  public async Task CreateModel(CreateModelDto dto) {
     Brand? brand = await dbContext.Brands
-      .Where(b => b.Name == brandName)
+      .Where(b => b.Name == dto.BrandName)
       .FirstOrDefaultAsync();
 
-    if (brand == null)
-      return null;
+    if (brand == null) {
+      throw new NotFoundException("brand not found");
+    }
 
     var model = new Model {
-      Name = modelName,
+      Name = dto.Name,
       Brand = brand
     };
 
     await dbContext.AddAsync(model);
     await dbContext.SaveChangesAsync();
-
-    return model;
   }
 }

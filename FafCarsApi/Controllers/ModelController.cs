@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using FafCarsApi.Dtos.Request;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -20,5 +21,11 @@ public class ModelController(ModelService modelService) : Controller {
     }
 
     return models.Select(m => m.Name).ToList();
+  }
+
+  [HttpPost]
+  public async Task<ActionResult> CreateModel(CreateModelDto dto) {
+    await modelService.CreateModel(dto);
+    return Created();
   }
 }
