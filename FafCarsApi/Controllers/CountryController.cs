@@ -1,6 +1,5 @@
 using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dtos;
 using FafCarsApi.Dtos.Response;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
@@ -27,17 +26,5 @@ public class CountryController(
     };
 
     return result;
-  }
-
-  [HttpGet]
-  [Route("{code:length(2)}/Brands")]
-  public async Task<ActionResult<PaginatedResultDto<BrandDto>>> GetCountryBrands(string code) {
-    List<Brand> brands = await countryService.GetCountryBrands(code);
-    List<BrandDto> dtos = brands.Select(mapper.Map<BrandDto>).ToList();
-
-    return new PaginatedResultDto<BrandDto> {
-      Items = dtos,
-      TotalItems = dtos.Count,
-    };
   }
 }
