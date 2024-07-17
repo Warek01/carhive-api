@@ -15,7 +15,7 @@ public class CountryService(FafCarsDbContext dbContext) {
     Country? country = await dbContext.Countries
       .AsNoTracking()
       .Include(c => c.Brands)
-      .Where(c => c.Code.ToLower() == code.ToLower())
+      .Where(c => c.Code == code)
       .FirstOrDefaultAsync();
 
     return country?.Brands ?? [];

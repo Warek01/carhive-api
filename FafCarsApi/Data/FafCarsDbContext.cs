@@ -7,10 +7,9 @@ namespace FafCarsApi.Data;
 
 public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHostEnvironment env)
   : DbContext(options) {
-  public const string TIMESTAMP_NO_TIMEZONE_SQL = "TIMESTAMP(1) WITHOUT TIME ZONE";
-
-  private const string CURRENT_TIMESTAMP_SQL = "CURRENT_TIMESTAMP";
-  private const string UUID_GEN_SQL = "UUID_GENERATE_V4()";
+  public const string TimestampNoTimezoneSql = "TIMESTAMP(1) WITHOUT TIME ZONE";
+  private const string CurrentTimestampSql = "CURRENT_TIMESTAMP";
+  private const string UuidGenSql = "UUID_GENERATE_V4()";
 
   public virtual DbSet<Listing> Listings { get; set; }
   public virtual DbSet<User> Users { get; set; }
@@ -19,8 +18,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   public virtual DbSet<Model> Models { get; set; }
   public virtual DbSet<ListingUserFavorite> ListingUserFavorites { get; set; }
 
-  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-  {
+  protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder
       .UseNpgsql()
       .EnableSensitiveDataLogging();
@@ -37,16 +35,16 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<ListingStatus>();
 
     modelBuilder.Entity<Listing>()
-      .Property(e => e.Id)  
-      .HasDefaultValueSql(UUID_GEN_SQL);
+      .Property(e => e.Id)
+      .HasDefaultValueSql(UuidGenSql);
 
     modelBuilder.Entity<Listing>()
       .Property(e => e.CreatedAt)
-      .HasDefaultValueSql(CURRENT_TIMESTAMP_SQL);
+      .HasDefaultValueSql(CurrentTimestampSql);
 
     modelBuilder.Entity<Listing>()
       .Property(e => e.UpdatedAt)
-      .HasDefaultValueSql(CURRENT_TIMESTAMP_SQL);
+      .HasDefaultValueSql(CurrentTimestampSql);
 
     modelBuilder.Entity<Listing>()
       .HasIndex(e => e.CreatedAt);
@@ -59,7 +57,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
 
     modelBuilder.Entity<User>()
       .Property(e => e.Id)
-      .HasDefaultValueSql(UUID_GEN_SQL);
+      .HasDefaultValueSql(UuidGenSql);
 
     modelBuilder.Entity<User>()
       .HasMany(u => u.Listings)
@@ -68,11 +66,11 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
 
     modelBuilder.Entity<User>()
       .Property(e => e.CreatedAt)
-      .HasDefaultValueSql(CURRENT_TIMESTAMP_SQL);
+      .HasDefaultValueSql(CurrentTimestampSql);
 
     modelBuilder.Entity<User>()
       .Property(e => e.UpdatedAt)
-      .HasDefaultValueSql(CURRENT_TIMESTAMP_SQL);
+      .HasDefaultValueSql(CurrentTimestampSql);
 
     modelBuilder.Entity<User>()
       .HasIndex(e => e.Username)

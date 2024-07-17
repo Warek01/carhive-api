@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using FafCarsApi.Data;
-using FafCarsApi.Dto;
 using FafCarsApi.Dtos;
+using FafCarsApi.Dtos.Request;
+using FafCarsApi.Dtos.Response;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
@@ -15,7 +16,7 @@ public class ListingService(
   ILogger<ListingService> logger,
   IMapper mapper
 ) {
-  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingsQuery query) {
+  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingQuery query) {
     IQueryable<Listing> listings;
 
     if (query.Favorites) {

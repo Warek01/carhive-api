@@ -1,6 +1,8 @@
 ﻿using Asp.Versioning;
 using AutoMapper;
 using FafCarsApi.Dtos;
+using FafCarsApi.Dtos.Request;
+using FafCarsApi.Dtos.Response;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;

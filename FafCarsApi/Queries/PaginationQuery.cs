@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FafCarsApi.Queries;
 
-public class PaginationQuery {
+public abstract class PaginationQuery {
   [FromQuery(Name = "page")]
   [Range(0, int.MaxValue)]
   [DefaultValue(0)]

@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
 using Asp.Versioning;
 using AutoMapper;
 using FafCarsApi.Dtos;
+using FafCarsApi.Dtos.Response;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -30,8 +30,8 @@ public class CountryController(
   }
 
   [HttpGet]
-  [Route("{code}/Brands")]
-  public async Task<ActionResult<PaginatedResultDto<BrandDto>>> GetCountryBrands([StringLength(2)] string code) {
+  [Route("{code:length(2)}/Brands")]
+  public async Task<ActionResult<PaginatedResultDto<BrandDto>>> GetCountryBrands(string code) {
     List<Brand> brands = await countryService.GetCountryBrands(code);
     List<BrandDto> dtos = brands.Select(mapper.Map<BrandDto>).ToList();
 

@@ -1,8 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using Asp.Versioning;
 using AutoMapper;
-using FafCarsApi.Dto;
 using FafCarsApi.Dtos;
+using FafCarsApi.Dtos.Request;
+using FafCarsApi.Dtos.Response;
 using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
@@ -25,7 +26,7 @@ public class ListingController(
 ) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
-    [FromQuery] ListingsQuery query
+    [FromQuery] ListingQuery query
   ) {
     PaginatedResultDto<ListingDto> listings = await listingService.GetFilteredListingsAsync(query);
     return listings;

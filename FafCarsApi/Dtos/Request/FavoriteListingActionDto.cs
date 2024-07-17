@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Request;
 
 public class FavoriteListingActionDto {
   [DefaultValue(FavoriteListingAction.Add)]

@@ -28,10 +28,10 @@ public class Listing {
   [InverseProperty(nameof(Model.Listings))]
   public Model? Model { get; set; }
 
-  [Column("created_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("created_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime CreatedAt { get; set; }
 
-  [Column("updated_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("updated_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime UpdatedAt { get; set; }
 
   [Range(0, double.MaxValue)]
@@ -73,7 +73,7 @@ public class Listing {
   [Column("images")]
   public List<string> Images { get; set; } = [];
 
-  [Column("deleted_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("deleted_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime? DeletedAt { get; set; }
 
   [Column("publisher_id")]
@@ -112,9 +112,9 @@ public class Listing {
   [DefaultValue(ListingStatus.Available)]
   public ListingStatus Status { get; set; }
 
-  [Column("blocked_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("blocked_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime? BlockedAt { get; set; }
 
-  [Column("sold_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("sold_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime? SoldAt { get; set; }
 }

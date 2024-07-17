@@ -1,4 +1,4 @@
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Request;
 
 public class UpdateListingDto {
 }

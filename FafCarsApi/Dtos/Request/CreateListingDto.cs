@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Request;
 
 public class CreateListingDto {
   [DefaultValue("Toyota")]

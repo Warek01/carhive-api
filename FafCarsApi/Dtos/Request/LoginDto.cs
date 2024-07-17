@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Request;
 
 public class LoginDto {
   [DefaultValue("user")]

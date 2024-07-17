@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Response;
 
 public class CityDto {
-  [Length(1, 255)]
   public string Name { get; set; } = null!;
 }

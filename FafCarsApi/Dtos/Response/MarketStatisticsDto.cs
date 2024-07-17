@@ -1,4 +1,4 @@
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Response;
 
 public class MarketStatisticsDto {
   public int TotalListings { get; set; }

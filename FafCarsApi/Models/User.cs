@@ -28,13 +28,13 @@ public class User {
 
   public List<Listing> Listings { get; set; } = [];
 
-  [Column("deleted_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("deleted_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime? DeletedAt { get; set; }
 
-  [Column("created_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("created_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime CreatedAt { get; set; }
 
-  [Column("updated_at", TypeName = FafCarsDbContext.TIMESTAMP_NO_TIMEZONE_SQL)]
+  [Column("updated_at", TypeName = FafCarsDbContext.TimestampNoTimezoneSql)]
   public DateTime UpdatedAt { get; set; }
 
   [StringLength(255)]

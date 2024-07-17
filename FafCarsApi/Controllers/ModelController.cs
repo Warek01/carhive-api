@@ -1,5 +1,4 @@
 using Asp.Versioning;
-using FafCarsApi.Dto;
 using FafCarsApi.Models;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;

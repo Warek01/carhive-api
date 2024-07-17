@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FafCarsApi.Queries;
 
-public class ListingsQuery : PaginationQuery {
+public class ListingQuery : PaginationQuery {
   /// <summary>
   /// Body styles filter.
   /// </summary>

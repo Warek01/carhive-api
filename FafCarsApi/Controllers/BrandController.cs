@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using FafCarsApi.Helpers;
 using FafCarsApi.Models;
+using FafCarsApi.Queries;
 using FafCarsApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,24 +13,20 @@ namespace FafCarsApi.Controllers;
 [AllowAnonymous]
 [Route("Api/v{v:apiVersion}/Brand")]
 public class BrandController(
-  BrandService brandService,
-  CacheService cache
+  BrandService brandService
 ) : Controller {
   [HttpGet]
-  public async Task<ActionResult<List<string>>> GetBrands([FromQuery] string? search) {
-    List<string> brandNames;
+  public async Task<ActionResult<List<string>>> GetBrands([FromQuery] BrandQuery query) {
+    IEnumerable<Brand> brands = await brandService.GetBrands();
 
-    if (cache.BrandNamesCache != null) {
-      brandNames = cache.BrandNamesCache;
-    }
-    else {
-      List<Brand> brands = await brandService.GetBrands();
-      brandNames = brands.Select(b => b.Name).ToList();
-      cache.BrandNamesCache = brandNames;
+    if (query.CountryCode != null) {
+      brands = brands.Where(b => b.CountryCode == query.CountryCode);
     }
 
-    if (search != null) {
-      brandNames = FuzzySearchHelper.Sort(brandNames, search)
+    List<string> brandNames = brands.Select(b => b.Name).ToList();
+
+    if (query.Search != null) {
+      brandNames = FuzzySearchHelper.Sort(brandNames, query.Search)
         .Take(10)
         .ToList();
     }
@@ -40,7 +37,6 @@ public class BrandController(
   [HttpPost]
   public async Task<ActionResult> AddBrand([FromBody] string brandName) {
     await brandService.AddBrand(brandName);
-    cache.BrandNamesCache = null;
     return Created();
   }
 }

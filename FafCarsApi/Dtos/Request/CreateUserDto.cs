@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Request;
 
 /// <summary>
 /// Dto for creation of a user by admin

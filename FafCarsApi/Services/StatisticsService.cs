@@ -1,5 +1,5 @@
-using FafCarsApi.Dto;
 using FafCarsApi.Dtos;
+using FafCarsApi.Dtos.Response;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
 using Microsoft.EntityFrameworkCore;

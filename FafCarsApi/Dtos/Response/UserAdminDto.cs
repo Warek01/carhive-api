@@ -1,6 +1,6 @@
 ﻿using FafCarsApi.Enums;
 
-namespace FafCarsApi.Dtos;
+namespace FafCarsApi.Dtos.Response;
 
 /// <summary>
 /// Dto of user accounts for admins
