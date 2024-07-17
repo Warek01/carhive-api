@@ -6,6 +6,7 @@ using FafCarsApi.Enums;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Helpers.ImageHelper;
@@ -17,7 +18,7 @@ public class ListingService(
   ILogger<ListingService> logger,
   IMapper mapper
 ) {
-  public async Task<PaginatedResultDto<ListingDto>> GetFilteredListingsAsync(ListingQuery query) {
+  public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetFilteredListingsAsync(ListingQuery query) {
     IQueryable<Listing> listings;
 
     if (query.Favorites) {
@@ -50,7 +51,13 @@ public class ListingService(
 
     if (query.BrandNames != null) {
       foreach (string brand in query.BrandNames) {
-        listings = listings.Where(l => l.Brand.Name == brand);
+        listings = listings.Where(l => l.BrandName == brand);
+      }
+    }
+
+    if (query.ModelNames != null) {
+      foreach (string model in query.ModelNames) {
+        listings = listings.Where(l => l.ModelName == model);
       }
     }
 
@@ -62,11 +69,8 @@ public class ListingService(
       listings = listings.Where(l => l.FuelType != null && query.FuelTypes.Contains(l.FuelType.Value));
     }
 
-    // TODO: perform fuzzy search
-    if (query.Address != null) {
-      listings = listings.Where(
-        l => l.SellAddress != null && l.SellAddress.ToLower().Contains(query.Address.ToLower())
-      );
+    if (query.City != null) {
+      listings = listings.Where(l => l.City == query.City);
     }
 
     if (query.Order != null) {
@@ -87,10 +91,12 @@ public class ListingService(
       .Skip(query.Page * query.Take)
       .Take(query.Take);
 
-    return new PaginatedResultDto<ListingDto> {
+    var result = new PaginatedResultDto<ListingDto> {
       Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
       TotalItems = totalListings
     };
+
+    return new OkObjectResult(result);
   }
 
   public async Task<Listing?> FindListing(Guid listingId) {
@@ -173,7 +179,7 @@ public class ListingService(
 
   public async Task<ActionResult> AddToFavorites(User user, Guid id) {
     Listing? listing = await GetListing(id);
-    
+
     if (listing == null) {
       return new NotFoundObjectResult("listing not found");
     }
@@ -181,7 +187,7 @@ public class ListingService(
     if (user.Favorites.Contains(listing)) {
       return new OkResult();
     }
-    
+
     user.Favorites.Add(listing);
     await dbContext.SaveChangesAsync();
     return new OkResult();
@@ -189,7 +195,7 @@ public class ListingService(
 
   public async Task<ActionResult> RemoveFromFavorites(User user, Guid id) {
     Listing? listing = await GetListing(id);
-    
+
     if (listing == null) {
       return new NotFoundObjectResult("listing not found");
     }

@@ -24,11 +24,10 @@ public class ListingController(
   UserService userService
 ) : Controller {
   [HttpGet]
-  public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
+  public Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
     [FromQuery] ListingQuery query
   ) {
-    PaginatedResultDto<ListingDto> listings = await listingService.GetFilteredListingsAsync(query);
-    return listings;
+    return listingService.GetFilteredListingsAsync(query);
   }
 
   [HttpGet]

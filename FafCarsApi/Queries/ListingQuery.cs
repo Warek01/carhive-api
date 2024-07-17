@@ -26,6 +26,9 @@ public class ListingQuery : PaginationQuery {
   [FromQuery(Name = "brand")]
   public List<string>? BrandNames { get; set; }
 
+  [FromQuery(Name = "model")]
+  public List<string>? ModelNames { get; set; }
+
   [FromQuery(Name = "engine")]
   public List<CarFuelType>? FuelTypes { get; set; }
 
@@ -41,7 +44,7 @@ public class ListingQuery : PaginationQuery {
   [Length(2, 2)]
   public string? CountryCode { get; set; }
 
-  [FromQuery(Name = "SellAddress")]
+  [FromQuery(Name = "city")]
   [Length(1, 255)]
-  public string? Address { get; set; }
+  public string? City { get; set; }
 }
