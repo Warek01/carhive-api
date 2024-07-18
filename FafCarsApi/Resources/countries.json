@@ -156,6 +156,10 @@
     "name": "Canada"
   },
   {
+    "code": "CI",
+    "name": "Abidjan"
+  },
+  {
     "code": "CV",
     "name": "Cape Verde"
   },
@@ -468,6 +472,10 @@
     "name": "Kyrgyzstan"
   },
   {
+    "code": "LA",
+    "name": "Laos"
+  },
+  {
     "code": "LV",
     "name": "Latvia"
   },
@@ -728,6 +736,10 @@
     "name": "Saint Kitts and Nevis"
   },
   {
+    "code": "KP",
+    "name": "North Korea"
+  },
+  {
     "code": "LC",
     "name": "Saint Lucia"
   },
@@ -762,6 +774,10 @@
   {
     "code": "CS",
     "name": "Serbia and Montenegro"
+  },
+  {
+    "code": "RS",
+    "name": "Serbia"
   },
   {
     "code": "SC",
@@ -834,6 +850,10 @@
   {
     "code": "SY",
     "name": "Syrian Arab Republic"
+  },
+  {
+    "code": "SS",
+    "name": "South Sudan"
   },
   {
     "code": "TW",
@@ -956,11 +976,51 @@
     "name": "Yemen"
   },
   {
+    "code": "XG",
+    "name": "Gaza Strip"
+  },
+  {
+    "code": "XK",
+    "name": "Kosovo"
+  },
+  {
     "code": "ZM",
     "name": "Zambia"
   },
   {
-    "code": "ZN",
+    "code": "ZW",
     "name": "Zimbabwe"
+  },
+  {
+    "code": "ME",
+    "name": "Montenegro"
+  },
+  {
+    "code": "CW",
+    "name": "Curaçao"
+  },
+  {
+    "code": "BQ",
+    "name": "Bonaire, Sint Eustatius, and Saba"
+  },
+  {
+    "code": "MF",
+    "name": "Saint Martin"
+  },
+  {
+    "code": "BL",
+    "name": "Saint Barthelemy"
+  },
+  {
+    "code": "XR",
+    "name": "Svalbard"
+  },
+  {
+    "code": "SX",
+    "name": "Sint Maarten"
+  },
+  {
+    "code": "XW",
+    "name": "West Bank"
   }
 ]
