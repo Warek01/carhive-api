@@ -13,7 +13,7 @@ public class CreateListingDto {
   
   [StringLength(255)]
   [DefaultValue("Belin")]
-  public string City { get; set; } = null!;
+  public string CityName { get; set; } = null!;
   
   public List<IFormFile> Images { get; set; } = [];
 
