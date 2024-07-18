@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240717205403_InitialMigration")]
+    [Migration("20240718123743_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -801,6 +801,12 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Code = "CI",
+                            IsSupported = false,
+                            Name = "Abidjan"
+                        },
+                        new
+                        {
                             Code = "CV",
                             IsSupported = false,
                             Name = "Cape Verde"
@@ -1269,6 +1275,12 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Code = "LA",
+                            IsSupported = false,
+                            Name = "Laos"
+                        },
+                        new
+                        {
                             Code = "LV",
                             IsSupported = false,
                             Name = "Latvia"
@@ -1659,6 +1671,12 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Code = "KP",
+                            IsSupported = false,
+                            Name = "North Korea"
+                        },
+                        new
+                        {
                             Code = "LC",
                             IsSupported = false,
                             Name = "Saint Lucia"
@@ -1710,6 +1728,12 @@ namespace FafCarsApi.Data.Migrations
                             Code = "CS",
                             IsSupported = false,
                             Name = "Serbia and Montenegro"
+                        },
+                        new
+                        {
+                            Code = "RS",
+                            IsSupported = false,
+                            Name = "Serbia"
                         },
                         new
                         {
@@ -1818,6 +1842,12 @@ namespace FafCarsApi.Data.Migrations
                             Code = "SY",
                             IsSupported = false,
                             Name = "Syrian Arab Republic"
+                        },
+                        new
+                        {
+                            Code = "SS",
+                            IsSupported = false,
+                            Name = "South Sudan"
                         },
                         new
                         {
@@ -2001,15 +2031,75 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Code = "XG",
+                            IsSupported = false,
+                            Name = "Gaza Strip"
+                        },
+                        new
+                        {
+                            Code = "XK",
+                            IsSupported = false,
+                            Name = "Kosovo"
+                        },
+                        new
+                        {
                             Code = "ZM",
                             IsSupported = false,
                             Name = "Zambia"
                         },
                         new
                         {
-                            Code = "ZN",
+                            Code = "ZW",
                             IsSupported = false,
                             Name = "Zimbabwe"
+                        },
+                        new
+                        {
+                            Code = "ME",
+                            IsSupported = false,
+                            Name = "Montenegro"
+                        },
+                        new
+                        {
+                            Code = "CW",
+                            IsSupported = false,
+                            Name = "Curaçao"
+                        },
+                        new
+                        {
+                            Code = "BQ",
+                            IsSupported = false,
+                            Name = "Bonaire, Sint Eustatius, and Saba"
+                        },
+                        new
+                        {
+                            Code = "MF",
+                            IsSupported = false,
+                            Name = "Saint Martin"
+                        },
+                        new
+                        {
+                            Code = "BL",
+                            IsSupported = false,
+                            Name = "Saint Barthelemy"
+                        },
+                        new
+                        {
+                            Code = "XR",
+                            IsSupported = false,
+                            Name = "Svalbard"
+                        },
+                        new
+                        {
+                            Code = "SX",
+                            IsSupported = false,
+                            Name = "Sint Maarten"
+                        },
+                        new
+                        {
+                            Code = "XW",
+                            IsSupported = false,
+                            Name = "West Bank"
                         });
                 });
 
@@ -8616,7 +8706,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$73c5Rfvb.ev61BRXYuIgZOA6ahBi7C6qhUcpFSNvuhkNxwwXEzjhO",
+                            Password = "$2a$13$zxxQCgWRqoJlKjnH5EFVBud2z4EM63nX26/PPiNXd3pjM4y8Jw746",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8627,7 +8717,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$oekfeWmr25b3DyT1TZr6.ei5PCnEZaiCroaKf.rEFEsNLX56oZjY6",
+                            Password = "$2a$13$nCRuZUj4UrV9enjJAG8KUenGcFzOLi7ylGmhtKLVIQyOANOonw.gG",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8638,7 +8728,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$NyDN.QDxUuMaoMlYcbUFReRcnRFxq4IS34Zb/yIA4rmvPL46GvecC",
+                            Password = "$2a$13$mSQTY.UjeLCiACfm0D0QhuoSgohX7Q8mTFKn6QIJSk5ZwAFciaDkW",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

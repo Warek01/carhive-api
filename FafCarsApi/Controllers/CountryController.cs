@@ -18,7 +18,7 @@ public class CountryController(
 ) : Controller {
   [HttpGet]
   public async Task<ActionResult<PaginatedResultDto<CountryDto>>> GetCountries() {
-    List<Country> countries = await countryService.GetCountries();
+    List<Country> countries = await countryService.GetSupportedCountries();
     List<CountryDto> dtos = countries.Select(mapper.Map<CountryDto>).ToList();
     var result = new PaginatedResultDto<CountryDto> {
       Items = dtos,
@@ -26,5 +26,11 @@ public class CountryController(
     };
 
     return result;
+  }
+
+  [HttpGet]
+  [Route("Count")]
+  public async Task<ActionResult<int>> GetSupportedCountriesCount() {
+    return await countryService.GetSupportedCountriesCount();
   }
 }

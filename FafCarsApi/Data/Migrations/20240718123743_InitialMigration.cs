@@ -231,9 +231,11 @@ namespace FafCarsApi.Data.Migrations
                     { "BH", false, "Bahrain" },
                     { "BI", false, "Burundi" },
                     { "BJ", false, "Benin" },
+                    { "BL", false, "Saint Barthelemy" },
                     { "BM", false, "Bermuda" },
                     { "BN", false, "Brunei Darussalam" },
                     { "BO", false, "Bolivia" },
+                    { "BQ", false, "Bonaire, Sint Eustatius, and Saba" },
                     { "BR", false, "Brazil" },
                     { "BS", false, "Bahamas" },
                     { "BT", false, "Bhutan" },
@@ -247,6 +249,7 @@ namespace FafCarsApi.Data.Migrations
                     { "CF", false, "Central African Republic" },
                     { "CG", false, "Congo" },
                     { "CH", false, "Switzerland" },
+                    { "CI", false, "Abidjan" },
                     { "CK", false, "Cook Islands" },
                     { "CL", false, "Chile" },
                     { "CM", false, "Cameroon" },
@@ -256,6 +259,7 @@ namespace FafCarsApi.Data.Migrations
                     { "CS", false, "Serbia and Montenegro" },
                     { "CU", false, "Cuba" },
                     { "CV", false, "Cape Verde" },
+                    { "CW", false, "Curaçao" },
                     { "CX", false, "Christmas Island" },
                     { "CY", false, "Cyprus" },
                     { "CZ", false, "Czech Republic" },
@@ -323,10 +327,12 @@ namespace FafCarsApi.Data.Migrations
                     { "KI", false, "Kiribati" },
                     { "KM", false, "Comoros" },
                     { "KN", false, "Saint Kitts and Nevis" },
+                    { "KP", false, "North Korea" },
                     { "KR", false, "Korea, Republic of" },
                     { "KW", false, "Kuwait" },
                     { "KY", false, "Cayman Islands" },
                     { "KZ", false, "Kazakhstan" },
+                    { "LA", false, "Laos" },
                     { "LB", false, "Lebanon" },
                     { "LC", false, "Saint Lucia" },
                     { "LI", false, "Liechtenstein" },
@@ -340,6 +346,8 @@ namespace FafCarsApi.Data.Migrations
                     { "MA", false, "Morocco" },
                     { "MC", false, "Monaco" },
                     { "MD", false, "Moldova, Republic of" },
+                    { "ME", false, "Montenegro" },
+                    { "MF", false, "Saint Martin" },
                     { "MG", false, "Madagascar" },
                     { "MH", false, "Marshall Islands" },
                     { "MK", false, "North Macedonia" },
@@ -388,6 +396,7 @@ namespace FafCarsApi.Data.Migrations
                     { "QA", false, "Qatar" },
                     { "RE", false, "Reunion" },
                     { "RO", false, "Romania" },
+                    { "RS", false, "Serbia" },
                     { "RU", false, "Russian Federation" },
                     { "RW", false, "Rwanda" },
                     { "SA", false, "Saudi Arabia" },
@@ -405,8 +414,10 @@ namespace FafCarsApi.Data.Migrations
                     { "SN", false, "Senegal" },
                     { "SO", false, "Somalia" },
                     { "SR", false, "Suriname" },
+                    { "SS", false, "South Sudan" },
                     { "ST", false, "Sao Tome and Principe" },
                     { "SV", false, "El Salvador" },
+                    { "SX", false, "Sint Maarten" },
                     { "SY", false, "Syrian Arab Republic" },
                     { "SZ", false, "Swaziland" },
                     { "TC", false, "Turks and Caicos Islands" },
@@ -440,12 +451,16 @@ namespace FafCarsApi.Data.Migrations
                     { "VU", false, "Vanuatu" },
                     { "WF", false, "Wallis and Futuna" },
                     { "WS", false, "Samoa" },
+                    { "XG", false, "Gaza Strip" },
+                    { "XK", false, "Kosovo" },
+                    { "XR", false, "Svalbard" },
+                    { "XW", false, "West Bank" },
                     { "YE", false, "Yemen" },
                     { "YT", false, "Mayotte" },
                     { "YU", false, "Yugoslavia" },
                     { "ZA", false, "South Africa" },
                     { "ZM", false, "Zambia" },
-                    { "ZN", false, "Zimbabwe" }
+                    { "ZW", false, "Zimbabwe" }
                 });
 
             migrationBuilder.InsertData(
@@ -453,9 +468,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$NyDN.QDxUuMaoMlYcbUFReRcnRFxq4IS34Zb/yIA4rmvPL46GvecC", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$oekfeWmr25b3DyT1TZr6.ei5PCnEZaiCroaKf.rEFEsNLX56oZjY6", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$73c5Rfvb.ev61BRXYuIgZOA6ahBi7C6qhUcpFSNvuhkNxwwXEzjhO", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$mSQTY.UjeLCiACfm0D0QhuoSgohX7Q8mTFKn6QIJSk5ZwAFciaDkW", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$nCRuZUj4UrV9enjJAG8KUenGcFzOLi7ylGmhtKLVIQyOANOonw.gG", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$zxxQCgWRqoJlKjnH5EFVBud2z4EM63nX26/PPiNXd3pjM4y8Jw746", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(

@@ -14,4 +14,10 @@ public class CityService(FafCarsDbContext dbContext) {
       .Select(c => c.Name)
       .ToListAsync();
   }
+
+  public async Task<int> GetCitiesCount() {
+    return await dbContext.Cities
+      .AsNoTracking()
+      .CountAsync();
+  }
 }

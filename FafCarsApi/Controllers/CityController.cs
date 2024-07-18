@@ -16,4 +16,10 @@ public class CityController(CityService cityService) : Controller {
     List<string> cities = await cityService.FindCities(countryCode, search);
     return Ok(cities);
   }
+
+  [HttpGet]
+  [Route("Count")]
+  public async Task<ActionResult<int>> GetCitiesCount() {
+    return await cityService.GetCitiesCount();
+  }
 }
