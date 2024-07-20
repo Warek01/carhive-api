@@ -90,6 +90,15 @@ public class Listing {
   [Column("country_code")]
   public string CountryCode { get; set; } = null!;
 
+  [Column("views")]
+  public int Views { get; set; } = 0;
+  
+  [Column("drivetrain")]
+  public CarDrivetrain? Drivetrain { get; set; }
+  
+  [Column("transmission")]
+  public CarTransmission? Transmission { get; set; }
+
   [ForeignKey(nameof(CountryCode))]
   [InverseProperty(nameof(Country.Listings))]
   public Country Country { get; set; } = null!;

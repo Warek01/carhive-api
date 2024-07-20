@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240718123743_InitialMigration")]
+    [Migration("20240720031741_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -27,8 +27,10 @@ namespace FafCarsApi.Data.Migrations
 
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_color", new[] { "black", "white", "silver", "gray", "blue", "red", "brown", "green", "beige", "yellow", "gold", "orange", "purple", "pink", "burgundy", "turquoise", "ivory", "bronze", "teal", "navy" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_drivetrain", new[] { "front_wheel_drive", "rear_wheel_drive", "all_wheel_drive", "four_wheel_drive" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "petrol", "diesel", "hybrid", "plugin_hybrid", "electric", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_status", new[] { "new", "used", "rent" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_transmission", new[] { "manual", "automatic", "continuously_variable" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
@@ -2164,6 +2166,10 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("character varying(5000)")
                         .HasColumnName("description");
 
+                    b.Property<CarDrivetrain?>("Drivetrain")
+                        .HasColumnType("car_drivetrain")
+                        .HasColumnName("drivetrain");
+
                     b.Property<double?>("EngineVolume")
                         .HasColumnType("double precision")
                         .HasColumnName("engine_volume");
@@ -2215,11 +2221,19 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnType("listing_status")
                         .HasColumnName("status");
 
+                    b.Property<CarTransmission?>("Transmission")
+                        .HasColumnType("car_transmission")
+                        .HasColumnName("transmission");
+
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
                         .HasColumnName("updated_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<int>("Views")
+                        .HasColumnType("integer")
+                        .HasColumnName("views");
 
                     b.Property<int?>("WheelSize")
                         .HasColumnType("integer")
@@ -2257,6 +2271,7 @@ namespace FafCarsApi.Data.Migrations
                             Color = CarColor.Black,
                             CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
                             EngineVolume = 2.0,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 190,
@@ -2268,7 +2283,9 @@ namespace FafCarsApi.Data.Migrations
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "123 Main St, Berlin, DE",
                             Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 20000,
                             WheelSize = 18
                         },
                         new
@@ -2282,6 +2299,7 @@ namespace FafCarsApi.Data.Migrations
                             Color = CarColor.White,
                             CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
                             EngineVolume = 3.0,
                             FuelType = CarFuelType.Diesel,
                             Horsepower = 300,
@@ -2293,7 +2311,9 @@ namespace FafCarsApi.Data.Migrations
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "456 Elm Ave, Berlin, DE",
                             Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 0,
                             WheelSize = 20
                         },
                         new
@@ -2307,6 +2327,7 @@ namespace FafCarsApi.Data.Migrations
                             Color = CarColor.Blue,
                             CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.RearWheelDrive,
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 250,
@@ -2318,7 +2339,9 @@ namespace FafCarsApi.Data.Migrations
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             SellAddress = "789 Oak Rd, Berlin, DE",
                             Status = ListingStatus.Available,
+                            Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 160,
                             WheelSize = 17
                         },
                         new
@@ -2332,6 +2355,7 @@ namespace FafCarsApi.Data.Migrations
                             Color = CarColor.Silver,
                             CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.RearWheelDrive,
                             EngineVolume = 2.5,
                             FuelType = CarFuelType.Hybrid,
                             Horsepower = 180,
@@ -2343,7 +2367,9 @@ namespace FafCarsApi.Data.Migrations
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             SellAddress = "101 Pine Blvd, Tokyo, JP",
                             Status = ListingStatus.Available,
+                            Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 0,
                             WheelSize = 16
                         },
                         new
@@ -2358,6 +2384,7 @@ namespace FafCarsApi.Data.Migrations
                             CountryCode = "MD",
                             CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Description = "Test description for Ford F150",
+                            Drivetrain = CarDrivetrain.FourWheelDrive,
                             EngineVolume = 5.0,
                             FuelType = CarFuelType.Petrol,
                             Horsepower = 350,
@@ -2369,7 +2396,9 @@ namespace FafCarsApi.Data.Migrations
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             SellAddress = "222 Maple Ln, New York, NY",
                             Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 0,
                             WheelSize = 22
                         });
                 });
@@ -8706,7 +8735,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$zxxQCgWRqoJlKjnH5EFVBud2z4EM63nX26/PPiNXd3pjM4y8Jw746",
+                            Password = "$2a$13$0NCKTsUIPwpXVmSSN.ktLunrBwH/HHaYdmy.hBMxaDfq.jumdnTTa",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8717,7 +8746,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$nCRuZUj4UrV9enjJAG8KUenGcFzOLi7ylGmhtKLVIQyOANOonw.gG",
+                            Password = "$2a$13$IFeqQY4AChsuv6uU6xFY5OU2TFCLUbfj7ZhzSq0c0W1BJYuNfBoGe",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8728,7 +8757,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$mSQTY.UjeLCiACfm0D0QhuoSgohX7Q8mTFKn6QIJSk5ZwAFciaDkW",
+                            Password = "$2a$13$M7NJpm5utSlzHtSagAtexO7Yoh3ltNh4cvT6oLOtg6zGCFJApkjfm",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

@@ -44,6 +44,9 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     public string City { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
+    public string? Drivetrain { get; set; }
+    public string? Transmission { get; set; }
+    public int? Views { get; set; }
     public double? Price { get; set; }
     public string? BodyStyle { get; set; }
     public int? Horsepower { get; set; }
@@ -202,6 +205,9 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         Status = Enum.Parse<ListingStatus>(l.Status, ignoreCase: true),
         SoldAt = l.SoldAt,
         CarStatus = l.CarStatus != null ? Enum.Parse<CarStatus>(l.CarStatus, ignoreCase: true) : null,
+        Drivetrain = l.Drivetrain != null ? Enum.Parse<CarDrivetrain>(l.Drivetrain, ignoreCase: true) : null,
+        Views = l.Views ?? 0,
+        Transmission = l.Transmission != null ? Enum.Parse<CarTransmission>(l.Transmission, ignoreCase: true) : null,
       }
     );
 

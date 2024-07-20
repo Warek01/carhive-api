@@ -36,6 +36,8 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<CarColor>();
     modelBuilder.HasPostgresEnum<UserRole>();
     modelBuilder.HasPostgresEnum<CarStatus>();
+    modelBuilder.HasPostgresEnum<CarDrivetrain>();
+    modelBuilder.HasPostgresEnum<CarTransmission>();
     modelBuilder.HasPostgresEnum<ListingStatus>();
 
     modelBuilder.Entity<Listing>()

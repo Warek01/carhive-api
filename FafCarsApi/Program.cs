@@ -145,6 +145,8 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarColor>();
     dataSourceBuilder.MapEnum<UserRole>();
     dataSourceBuilder.MapEnum<CarStatus>();
+    dataSourceBuilder.MapEnum<CarDrivetrain>();
+    dataSourceBuilder.MapEnum<CarTransmission>();
     dataSourceBuilder.MapEnum<ListingStatus>();
     dataSourceBuilder.EnableParameterLogging();
 

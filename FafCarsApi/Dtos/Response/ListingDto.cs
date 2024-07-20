@@ -9,8 +9,10 @@ public class ListingDto {
   public DateTime UpdatedAt { get; set; }
   public DateTime CreatedAt { get; set; }
   public string City { get; set; } = null!;
+  public int Views { get; set; }
   public List<string> ImagesUrls { get; set; } = [];
   public ListingStatus Status { get; set; }
+  public CarDrivetrain Drivetrain { get; set; }
   public double? Price { get; set; }
   public CarBodyStyle? BodyStyle { get; set; }
   public int? Horsepower { get; set; }

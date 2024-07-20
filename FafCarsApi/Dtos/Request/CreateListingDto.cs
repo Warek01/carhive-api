@@ -20,6 +20,12 @@ public class CreateListingDto {
   [Length(2, 2)]
   [DefaultValue("DE")]
   public string CountryCode { get; set; } = null!;
+  
+  [DefaultValue(CarDrivetrain.RearWheelDrive)]
+  public CarDrivetrain? Drivetrain { get; set; }
+  
+  [DefaultValue(CarTransmission.Automatic)]
+  public CarTransmission? Transmission { get; set; }
 
   [DefaultValue(12500)]
   [Range(0, double.MaxValue)]
