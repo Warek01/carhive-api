@@ -6,7 +6,6 @@ using FafCarsApi.Enums;
 using FafCarsApi.Exceptions;
 using FafCarsApi.Models;
 using FafCarsApi.Queries;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ImageHelper = FafCarsApi.Helpers.ImageHelper;
@@ -15,7 +14,6 @@ namespace FafCarsApi.Services;
 
 public class ListingService(
   FafCarsDbContext dbContext,
-  ILogger<ListingService> logger,
   IMapper mapper
 ) {
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetFilteredListingsAsync(ListingQuery query) {
@@ -133,19 +131,38 @@ public class ListingService(
 
   public async Task DeleteListing(Listing listing) {
     listing.DeletedAt = DateTime.UtcNow;
+    listing.Status = ListingStatus.Deleted;
+    var activity = new ListingActivity {
+      Type = ListingAction.Delete,
+      Listing = listing,
+    };
+
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.SaveChangesAsync();
-    logger.LogInformation($"Deleted listing {listing.Id}");
   }
 
   public async Task RestoreListing(Listing listing) {
     listing.DeletedAt = null;
+    listing.Status = ListingStatus.Available;
+    
+    var activity = new ListingActivity {
+      Type = ListingAction.Restore,
+      Listing = listing,
+    };
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.SaveChangesAsync();
-    logger.LogInformation($"Restored listing {listing.Id}");
   }
 
   public async Task UpdateListing(Listing listing, UpdateListingDto updateDto) {
     mapper.Map(updateDto, listing);
     listing.UpdatedAt = DateTime.UtcNow;
+    
+    var activity = new ListingActivity {
+      Type = ListingAction.Update,
+      Listing = listing,
+    };
+
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.SaveChangesAsync();
   }
 
@@ -166,6 +183,12 @@ public class ListingService(
       listing.Images.Add(generatedFileName);
     }
 
+    var activity = new ListingActivity {
+      Type = ListingAction.Create,
+      Listing = listing,
+    };
+
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.Listings.AddAsync(listing);
     await dbContext.SaveChangesAsync();
   }
@@ -189,6 +212,14 @@ public class ListingService(
     }
 
     user.Favorites.Add(listing);
+    
+    var activity = new ListingActivity {
+      Type = ListingAction.AddToFavorites,
+      ListingId = id,
+      User = user,
+    };
+
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.SaveChangesAsync();
     return new OkResult();
   }
@@ -201,6 +232,14 @@ public class ListingService(
     }
 
     user.Favorites.Remove(listing);
+    
+    var activity = new ListingActivity {
+      Type = ListingAction.RemoveFromFavorites,
+      ListingId = id,
+      User = user,
+    };
+
+    await dbContext.ListingActivities.AddAsync(activity);
     await dbContext.SaveChangesAsync();
     return new OkResult();
   }

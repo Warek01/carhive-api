@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace FafCarsApi.Data.Migrations
+namespace FafCarsApi.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration
@@ -22,6 +22,7 @@ namespace FafCarsApi.Data.Migrations
                 .Annotation("Npgsql:Enum:car_fuel_type", "petrol,diesel,hybrid,plugin_hybrid,electric,other")
                 .Annotation("Npgsql:Enum:car_status", "new,used,rent")
                 .Annotation("Npgsql:Enum:car_transmission", "manual,automatic,continuously_variable")
+                .Annotation("Npgsql:Enum:listing_action", "create,delete,report,sell,add_to_favorites,restore,block")
                 .Annotation("Npgsql:Enum:listing_status", "available,sold,deleted,blocked")
                 .Annotation("Npgsql:Enum:user_role", "user,admin,super_admin")
                 .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,")
@@ -179,6 +180,32 @@ namespace FafCarsApi.Data.Migrations
                         principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "listing_activity",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "UUID_GENERATE_V4()"),
+                    type = table.Column<ListingAction>(type: "listing_action", nullable: false),
+                    user_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    listing_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    timestamp = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_listing_activity", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_listing_activity_listings_listing_id",
+                        column: x => x.listing_id,
+                        principalTable: "listings",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_listing_activity_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateTable(
@@ -473,9 +500,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$M7NJpm5utSlzHtSagAtexO7Yoh3ltNh4cvT6oLOtg6zGCFJApkjfm", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$IFeqQY4AChsuv6uU6xFY5OU2TFCLUbfj7ZhzSq0c0W1BJYuNfBoGe", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$0NCKTsUIPwpXVmSSN.ktLunrBwH/HHaYdmy.hBMxaDfq.jumdnTTa", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$NKyn1Xqb87Hs.tqHvQFUAeMm.qflL8D6d7m2aA.v4s4A0l11JQMxS", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$4trySFBMVQW0b2YR3cRFU.svzAQhVE8wbn8p36ntsI3vV.uabqHRW", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$HmwzZri4buezan2Ha75RaOEdb8O3NdWCozbZJR3P6Aq7Ny.tdmyda", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -1864,6 +1891,16 @@ namespace FafCarsApi.Data.Migrations
                 column: "country");
 
             migrationBuilder.CreateIndex(
+                name: "IX_listing_activity_listing_id",
+                table: "listing_activity",
+                column: "listing_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_listing_activity_user_id",
+                table: "listing_activity",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_listing_user_favorite_listing_id",
                 table: "listing_user_favorite",
                 column: "listing_id");
@@ -1928,6 +1965,9 @@ namespace FafCarsApi.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "listing_activity");
+
             migrationBuilder.DropTable(
                 name: "listing_user_favorite");
 

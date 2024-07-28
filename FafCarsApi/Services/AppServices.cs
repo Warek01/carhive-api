@@ -17,10 +17,12 @@ public static class AppServices {
   ];
 
   public static void Register(WebApplicationBuilder builder) {
-    foreach (var serviceType in ScopedServices)
+    foreach (var serviceType in ScopedServices) {
       builder.Services.AddScoped(serviceType);
+    }
 
-    foreach (var serviceType in SingletonServices)
+    foreach (var serviceType in SingletonServices) {
       builder.Services.AddSingleton(serviceType);
+    }
   }
 }

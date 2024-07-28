@@ -5,17 +5,20 @@ using FafCarsApi.Data;
 using FafCarsApi.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace FafCarsApi.Data.Migrations
+namespace FafCarsApi.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    partial class FafCarsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240728144051_InitialMigration")]
+    partial class InitialMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +31,7 @@ namespace FafCarsApi.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_fuel_type", new[] { "petrol", "diesel", "hybrid", "plugin_hybrid", "electric", "other" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_status", new[] { "new", "used", "rent" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_transmission", new[] { "manual", "automatic", "continuously_variable" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_action", new[] { "create", "delete", "report", "sell", "add_to_favorites", "remove_from_favorites", "restore", "block", "update" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_action", new[] { "create", "delete", "report", "sell", "add_to_favorites", "restore", "block" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
@@ -2414,10 +2417,8 @@ namespace FafCarsApi.Data.Migrations
                         .HasColumnName("listing_id");
 
                     b.Property<DateTime>("Timestamp")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
-                        .HasColumnName("timestamp")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasColumnName("timestamp");
 
                     b.Property<ListingAction>("Type")
                         .HasColumnType("listing_action")
@@ -8768,7 +8769,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$/dBWIqC7SwMrlPJL9obAou9UI.pOuEalUeyFQ4b8sUUAXhK02zz0S",
+                            Password = "$2a$13$mXV1SNGhk1mB2Wf4v0cNg.1At2NMVmof2LUd1jimljuuUE2okdxTe",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8779,7 +8780,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$2rh4I88hgFJWeaGDfCYNXepXVmyH7DFfGf1cJNLqaH89cBAM8zWmW",
+                            Password = "$2a$13$j/a5Cm2kmctG2tAwpQ7oRe5T8c/DiuXCdUFLqnhpY7/2BVpcVoHA.",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8790,7 +8791,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$ZPCvwbJHm9zuy9.iMyNP4euBanrlk9tgx8MKPaANr7PnubwR3ETCC",
+                            Password = "$2a$13$iwReoUaVaAj6u43/qvaU0uTR102.YnyNKV25M84gTyX85Q8zJRq8C",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

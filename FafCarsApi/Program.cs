@@ -148,6 +148,7 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarDrivetrain>();
     dataSourceBuilder.MapEnum<CarTransmission>();
     dataSourceBuilder.MapEnum<ListingStatus>();
+    dataSourceBuilder.MapEnum<ListingAction>();
     dataSourceBuilder.EnableParameterLogging();
 
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();

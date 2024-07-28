@@ -17,6 +17,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   public virtual DbSet<Country> Countries { get; set; }
   public virtual DbSet<Model> Models { get; set; }
   public virtual DbSet<ListingUserFavorite> ListingUserFavorites { get; set; }
+  public virtual DbSet<ListingActivity> ListingActivities { get; set; }
   public virtual DbSet<City> Cities { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
@@ -39,7 +40,16 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<CarDrivetrain>();
     modelBuilder.HasPostgresEnum<CarTransmission>();
     modelBuilder.HasPostgresEnum<ListingStatus>();
+    modelBuilder.HasPostgresEnum<ListingAction>();
 
+    modelBuilder.Entity<ListingActivity>()
+      .Property(e => e.Id)
+      .HasDefaultValueSql(UuidGenSql);
+    
+    modelBuilder.Entity<ListingActivity>()
+      .Property(e => e.Timestamp)
+      .HasDefaultValueSql(CurrentTimestampSql);
+    
     modelBuilder.Entity<Listing>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);

@@ -1,5 +1,3 @@
-#!./venv/bin/python
-
 import psycopg2
 import pandas as pd
 
@@ -40,6 +38,7 @@ print('Inserting into database')
 print(sql_str[:300] + '...')
 
 cursor.execute(sql_str)
+cursor.execute(f"UPDATE countries SET is_supported = TRUE WHERE code = '{COUNTRY}';")
 conn.commit()
 conn.close()
 print('Done')
