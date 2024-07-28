@@ -8,7 +8,7 @@ public class ListingDto {
   public string ModelName { get; set; } = null!;
   public DateTime UpdatedAt { get; set; }
   public DateTime CreatedAt { get; set; }
-  public string City { get; set; } = null!;
+  public string CityName { get; set; } = null!;
   public int Views { get; set; }
   public List<string> ImagesUrls { get; set; } = [];
   public ListingStatus Status { get; set; }
