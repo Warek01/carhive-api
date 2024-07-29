@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240728192241_InitialMigration")]
+    [Migration("20240729164125_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -2104,6 +2104,29 @@ namespace FafCarsApi.Data.Migrations
                             IsSupported = false,
                             Name = "West Bank"
                         });
+                });
+
+            modelBuilder.Entity("FafCarsApi.Models.Currency", b =>
+                {
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("timestamp");
+
+                    b.Property<double>("Eur")
+                        .HasColumnType("double precision")
+                        .HasColumnName("eur");
+
+                    b.Property<double>("Mdl")
+                        .HasColumnType("double precision")
+                        .HasColumnName("mdl");
+
+                    b.Property<double>("Ron")
+                        .HasColumnType("double precision")
+                        .HasColumnName("ron");
+
+                    b.HasKey("Timestamp");
+
+                    b.ToTable("currencies");
                 });
 
             modelBuilder.Entity("FafCarsApi.Models.Listing", b =>
@@ -8771,7 +8794,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$7kuJF94FcO5KYbqZReviRee4FGTwtLonZ8/3yzxYyvOu7Q4t2mXS.",
+                            Password = "$2a$13$bGg2QPhoK2DrheUt/TWWdO.3sIzrUO1wYL33PHrFhyX3k8oFVaBCy",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8782,7 +8805,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$eLgtuDnHBWho8IyrBpyTIO9YiYeObpcSY1ouYbc1pklD0jvc7E7U.",
+                            Password = "$2a$13$gPlY1g3k4uEQY7FBVuGi4eT/v2nEvEJAa7V/f414ipXD/UCFoS4bW",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8793,7 +8816,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$dPa3bLxqt3xQt5f6b06eUO6tdmECNjhni.Ef7ZGWF3YqlG.Ftai6u",
+                            Password = "$2a$13$yDSaVATz/5OQdE.AnJZA0eVKc1/Z3H8mAsT39c6CbOgmMeSMxQ8dW",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

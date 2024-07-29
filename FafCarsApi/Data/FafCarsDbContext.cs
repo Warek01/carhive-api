@@ -19,6 +19,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   public virtual DbSet<ListingUserFavorite> ListingUserFavorites { get; set; }
   public virtual DbSet<ListingActivity> ListingActivities { get; set; }
   public virtual DbSet<City> Cities { get; set; }
+  public virtual DbSet<Currency> Currencies { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder.UseNpgsql();
