@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240728153016_InitialMigration")]
+    [Migration("20240728192241_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -2282,7 +2282,7 @@ namespace FafCarsApi.Data.Migrations
                             Price = 35000.0,
                             ProductionYear = 2019,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
-                            SellAddress = "123 Main St, Berlin, DE",
+                            SellAddress = "Burebista 144",
                             Status = ListingStatus.Available,
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
@@ -2310,7 +2310,7 @@ namespace FafCarsApi.Data.Migrations
                             Price = 55000.0,
                             ProductionYear = 2020,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
-                            SellAddress = "456 Elm Ave, Berlin, DE",
+                            SellAddress = "Ciuflea 22",
                             Status = ListingStatus.Available,
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
@@ -2338,7 +2338,7 @@ namespace FafCarsApi.Data.Migrations
                             Price = 40000.0,
                             ProductionYear = 2018,
                             PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
-                            SellAddress = "789 Oak Rd, Berlin, DE",
+                            SellAddress = "bd. Mircea cel Batran 1/1",
                             Status = ListingStatus.Available,
                             Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
@@ -2366,7 +2366,7 @@ namespace FafCarsApi.Data.Migrations
                             Price = 30000.0,
                             ProductionYear = 2021,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
-                            SellAddress = "101 Pine Blvd, Tokyo, JP",
+                            SellAddress = "Stefan cel Mare 28",
                             Status = ListingStatus.Available,
                             Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
@@ -2395,7 +2395,7 @@ namespace FafCarsApi.Data.Migrations
                             Price = 45000.0,
                             ProductionYear = 2019,
                             PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
-                            SellAddress = "222 Maple Ln, New York, NY",
+                            SellAddress = "Cuza Voda 25/2",
                             Status = ListingStatus.Available,
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
@@ -8771,7 +8771,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$/dBWIqC7SwMrlPJL9obAou9UI.pOuEalUeyFQ4b8sUUAXhK02zz0S",
+                            Password = "$2a$13$7kuJF94FcO5KYbqZReviRee4FGTwtLonZ8/3yzxYyvOu7Q4t2mXS.",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8782,7 +8782,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$2rh4I88hgFJWeaGDfCYNXepXVmyH7DFfGf1cJNLqaH89cBAM8zWmW",
+                            Password = "$2a$13$eLgtuDnHBWho8IyrBpyTIO9YiYeObpcSY1ouYbc1pklD0jvc7E7U.",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8793,7 +8793,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$ZPCvwbJHm9zuy9.iMyNP4euBanrlk9tgx8MKPaANr7PnubwR3ETCC",
+                            Password = "$2a$13$dPa3bLxqt3xQt5f6b06eUO6tdmECNjhni.Ef7ZGWF3YqlG.Ftai6u",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
