@@ -29,17 +29,23 @@ public class ListingController(
   ) {
     return listingService.GetFilteredListingsAsync(query);
   }
+  
+  [HttpPost]
+  [Authorize(Roles = AuthRoles.User)]
+  public async Task<ActionResult> CreateListing([FromForm] CreateListingDto createDto) {
+    var publisherId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    await listingService.CreateListing(createDto, publisherId);
+    return Created();
+  }
 
-  [HttpGet]
-  [Route("Count")]
+  [HttpGet("Count")]
   public async Task<ActionResult<int>> GetTotalListingsCount() {
     return await listingService.GetTotalListings().CountAsync();
   }
 
-  [HttpGet]
-  [Route("{listingId:guid}")]
-  public async Task<ActionResult<ListingDto>> GetListingDetails(Guid listingId) {
-    Listing? listing = await listingService.GetListing(listingId);
+  [HttpGet("{id:guid}")]
+  public async Task<ActionResult<ListingDto>> GetListingDetails(Guid id) {
+    Listing? listing = await listingService.GetListing(id);
     if (listing == null)
       return NotFound();
 
@@ -54,15 +60,14 @@ public class ListingController(
     return dto;
   }
 
-  [HttpDelete]
+  [HttpDelete("{id:guid}")]
   [Authorize(Roles = AuthRoles.Admin)]
-  [Route("{listingId:guid}")]
-  public async Task<ActionResult> DeleteListing(Guid listingId) {
-    var listing = await listingService.GetListing(listingId);
+  public async Task<ActionResult> DeleteListing(Guid id) {
+    var listing = await listingService.GetListing(id);
     if (listing == null) return NotFound();
     var publisherId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
 
-    if (User.IsInRole("Admin") || (User.IsInRole("RemoveListing") && publisherId == listingId)) {
+    if (User.IsInRole("Admin") || (User.IsInRole("RemoveListing") && publisherId == id)) {
       await listingService.DeleteListing(listing);
       return Ok();
     }
@@ -70,13 +75,12 @@ public class ListingController(
     return Unauthorized();
   }
 
-  [HttpPatch]
+  [HttpPatch("{id:guid}")]
   [Authorize(Roles = AuthRoles.User)]
-  [Route("{listingId:guid}")]
-  public ActionResult UpdateListing(Guid listingId, [FromBody] UpdateListingDto updateDto) {
+  public ActionResult UpdateListing(Guid id, [FromBody] UpdateListingDto updateDto) {
     return Ok();
     // if (User.IsInRole("Admin") || User.IsInRole("ListingCreator")) {
-    //   var listing = await listingService.GetListing(listingId);
+    //   var listing = await listingService.GetListing(id);
     //   if (listing == null) return NotFound();
     //   await listingService.UpdateListing(listing, updateDto);
     //   return Ok();
@@ -85,16 +89,7 @@ public class ListingController(
     // return Unauthorized();
   }
 
-  [Authorize(Roles = AuthRoles.User)]
-  [HttpPost]
-  public async Task<ActionResult> CreateListing([FromForm] CreateListingDto createDto) {
-    var publisherId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    await listingService.CreateListing(createDto, publisherId);
-    return Created();
-  }
-
-  [HttpPost]
-  [Route("{id:guid}/Add-To-Favorites")]
+  [HttpPost("{id:guid}/Add-To-Favorites")]
   [Authorize(Roles = AuthRoles.User)]
   public async Task<ActionResult> AddToFavorites(Guid id) {
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
@@ -103,8 +98,7 @@ public class ListingController(
     return await listingService.AddToFavorites(user, id);
   }
 
-  [HttpPost]
-  [Route("{id:guid}/Remove-From-Favorites")]
+  [HttpPost("{id:guid}/Remove-From-Favorites")]
   [Authorize(Roles = AuthRoles.User)]
   public async Task<ActionResult> RemoveFromFavorites(Guid id) {
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
@@ -113,29 +107,30 @@ public class ListingController(
     return await listingService.RemoveFromFavorites(user, id);
   }
 
-  [HttpPost]
-  [Route("{id:guid}/Set-Status-Sold")]
+  [HttpPost("{id:guid}/Increment-Views")]
+  public Task<ActionResult> IncrementViews(Guid id) {
+    return listingService.IncrementViews(id);
+  }
+  
+  [HttpPost("{id:guid}/Set-Status-Sold")]
   [Authorize(Roles = AuthRoles.User)]
   public Task<ActionResult> SetStatusSold(Guid id) {
     return SetStatusAction(id, ListingStatus.Sold);
   }
 
-  [HttpPost]
-  [Route("{id:guid}/Set-Status-Deleted")]
+  [HttpPost("{id:guid}/Set-Status-Deleted")]
   [Authorize(Roles = AuthRoles.User)]
   public Task<ActionResult> SetStatusDeleted(Guid id) {
     return SetStatusAction(id, ListingStatus.Deleted);
   }
 
-  [HttpPost]
-  [Route("{id:guid}/Set-Status-Blocked")]
+  [HttpPost("{id:guid}/Set-Status-Blocked")]
   [Authorize(Roles = AuthRoles.Admin)]
   public Task<ActionResult> SetStatusBlocked(Guid id) {
     return SetStatusAction(id, ListingStatus.Blocked);
   }
 
-  [HttpPost]
-  [Route("{id:guid}/Set-Status-Available")]
+  [HttpPost("{id:guid}/Set-Status-Available")]
   [Authorize(Roles = AuthRoles.Admin)]
   public Task<ActionResult> SetStatusRestored(Guid id) {
     return SetStatusAction(id, ListingStatus.Available);

@@ -19,6 +19,8 @@ public class ListingService(
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetFilteredListingsAsync(ListingQuery query) {
     IQueryable<Listing> listings;
 
+    #region Filtering
+
     if (query.Favorites) {
       if (query.UserId == null) throw new BadRequestException("user id not provided");
       listings = GetUserFavoriteListings(query.UserId.Value);
@@ -29,10 +31,6 @@ public class ListingService(
 
     if (query.UserId != null) {
       listings = listings.Where(l => l.PublisherId == query.UserId);
-    }
-
-    if (query.BodyStyles?.Count > 0) {
-      listings = listings.Where(l => l.BodyStyle != null && query.BodyStyles.Contains(l.BodyStyle.Value));
     }
 
     if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax) {
@@ -47,28 +45,80 @@ public class ListingService(
       listings = listings.Where(l => l.Price <= query.PriceMax);
     }
 
-    if (query.BrandNames != null) {
-      foreach (string brand in query.BrandNames) {
-        listings = listings.Where(l => l.BrandName == brand);
-      }
+    if (query is { MileageMin: not null, MileageMax: not null } && query.MileageMin > query.MileageMax) {
+      throw new BadRequestException("min mileage cannot be greater then max mileage");
     }
 
-    if (query.ModelNames != null) {
-      foreach (string model in query.ModelNames) {
-        listings = listings.Where(l => l.ModelName == model);
-      }
+    if (query.MileageMin != null) {
+      listings = listings.Where(l => l.Mileage >= query.MileageMin);
+    }
+
+    if (query.MileageMax != null) {
+      listings = listings.Where(l => l.Mileage <= query.MileageMax);
+    }
+
+    if (query is { WheelSizeMin: not null, WheelSizeMax: not null } && query.WheelSizeMin > query.WheelSizeMax) {
+      throw new BadRequestException("min wheel size cannot be greater then max wheel size");
+    }
+
+    if (query.WheelSizeMin != null) {
+      listings = listings.Where(l => l.WheelSize >= query.WheelSizeMin);
+    }
+
+    if (query.WheelSizeMax != null) {
+      listings = listings.Where(l => l.WheelSize <= query.WheelSizeMax);
+    }
+
+    if (query is { ClearanceMin: not null, ClearanceMax: not null } && query.ClearanceMin > query.ClearanceMax) {
+      throw new BadRequestException("min clearance cannot be greater then max clearance");
+    }
+
+    foreach (string brand in query.BrandNames) {
+      listings = listings.Where(l => l.BrandName == brand);
+    }
+
+    foreach (string model in query.ModelNames) {
+      listings = listings.Where(l => l.ModelName == model);
+    }
+
+    foreach (CarBodyStyle bodyStyle in query.BodyStyles) {
+      listings = listings.Where(l => l.BodyStyle == bodyStyle);
+    }
+
+    foreach (CarFuelType fuelType in query.FuelTypes) {
+      listings = listings.Where(l => l.FuelType == fuelType);
+    }
+
+    foreach (CarTransmission transmission in query.Transmissions) {
+      listings = listings.Where(l => l.Transmission == transmission);
+    }
+
+    foreach (CarDrivetrain drivetrain in query.Drivetrains) {
+      listings = listings.Where(l => l.Drivetrain == drivetrain);
+    }
+
+    foreach (CarColor color in query.Colors) {
+      listings = listings.Where(l => l.Color == color);
+    }
+    
+    foreach (CarStatus status in query.Statuses) {
+      listings = listings.Where(l => l.CarStatus == status);
     }
 
     if (query.CountryCode != null) {
       listings = listings.Where(l => l.Country.Code == query.CountryCode);
     }
 
-    if (query.FuelTypes != null) {
-      listings = listings.Where(l => l.FuelType != null && query.FuelTypes.Contains(l.FuelType.Value));
-    }
-
     if (query.CityName != null) {
       listings = listings.Where(l => l.CityName == query.CityName);
+    }
+
+    if (query.ClearanceMin != null) {
+      listings = listings.Where(l => l.Clearance >= query.ClearanceMin);
+    }
+
+    if (query.ClearanceMax != null) {
+      listings = listings.Where(l => l.Clearance <= query.ClearanceMax);
     }
 
     if (query.Order != null) {
@@ -83,18 +133,18 @@ public class ListingService(
       };
     }
 
+    #endregion
+
     int totalListings = await listings.CountAsync();
 
     listings = listings
       .Skip(query.Page * query.Take)
       .Take(query.Take);
 
-    var result = new PaginatedResultDto<ListingDto> {
+    return new PaginatedResultDto<ListingDto> {
       Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
       TotalItems = totalListings
     };
-
-    return new OkObjectResult(result);
   }
 
   public async Task<Listing?> FindListing(Guid listingId) {
@@ -144,7 +194,7 @@ public class ListingService(
   public async Task RestoreListing(Listing listing) {
     listing.DeletedAt = null;
     listing.Status = ListingStatus.Available;
-    
+
     var activity = new ListingActivity {
       Type = ListingAction.Restore,
       Listing = listing,
@@ -156,7 +206,7 @@ public class ListingService(
   public async Task UpdateListing(Listing listing, UpdateListingDto updateDto) {
     mapper.Map(updateDto, listing);
     listing.UpdatedAt = DateTime.UtcNow;
-    
+
     var activity = new ListingActivity {
       Type = ListingAction.Update,
       Listing = listing,
@@ -212,7 +262,7 @@ public class ListingService(
     }
 
     user.Favorites.Add(listing);
-    
+
     var activity = new ListingActivity {
       Type = ListingAction.AddToFavorites,
       ListingId = id,
@@ -232,7 +282,7 @@ public class ListingService(
     }
 
     user.Favorites.Remove(listing);
-    
+
     var activity = new ListingActivity {
       Type = ListingAction.RemoveFromFavorites,
       ListingId = id,
@@ -247,5 +297,18 @@ public class ListingService(
   public async Task SetListingStatus(Listing listing, ListingStatus status) {
     listing.Status = status;
     await dbContext.SaveChangesAsync();
+  }
+
+  public async Task<ActionResult> IncrementViews(Guid id) {
+    Listing? listing = await FindListing(id);
+
+    if (listing == null) {
+      return new NotFoundResult();
+    }
+
+    listing.Views++;
+    await dbContext.SaveChangesAsync();
+    
+    return new OkResult();
   }
 }
