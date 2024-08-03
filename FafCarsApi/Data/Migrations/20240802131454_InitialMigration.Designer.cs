@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FafCarsApi.Data.Migrations
 {
     [DbContext(typeof(FafCarsDbContext))]
-    [Migration("20240729164125_InitialMigration")]
+    [Migration("20240802131454_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -2424,6 +2424,371 @@ namespace FafCarsApi.Data.Migrations
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 0,
                             WheelSize = 22
+                        },
+                        new
+                        {
+                            Id = new Guid("b78f7f22-07ae-4dee-8c96-ed34d7b9bb95"),
+                            BodyStyle = CarBodyStyle.Sedan,
+                            BrandName = "Skoda",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 180,
+                            Color = CarColor.Blue,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Description = "Test description for Ford F150",
+                            Drivetrain = CarDrivetrain.FourWheelDrive,
+                            EngineVolume = 5.0,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 200,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 0,
+                            ModelName = "Fabia",
+                            Price = 90000.0,
+                            ProductionYear = 2019,
+                            PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
+                            SellAddress = "Cuza Voda 27/2",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
+                            UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
+                            Views = 0,
+                            WheelSize = 22
+                        },
+                        new
+                        {
+                            Id = new Guid("8a7b1c5f-6b52-42d9-9c89-3489b87e25f0"),
+                            BodyStyle = CarBodyStyle.Sedan,
+                            BrandName = "Skoda",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 155,
+                            Color = CarColor.Gray,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
+                            EngineVolume = 2.0,
+                            FuelType = CarFuelType.Diesel,
+                            Horsepower = 150,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 45000,
+                            ModelName = "Octavia",
+                            Price = 28000.0,
+                            ProductionYear = 2021,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Stefan cel Mare 123",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 300,
+                            WheelSize = 17
+                        },
+                        new
+                        {
+                            Id = new Guid("e0a3b5c7-65b4-420f-9b5d-21c6c456d0f1"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Skoda",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 200,
+                            Color = CarColor.Blue,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.0,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 200,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 10000,
+                            ModelName = "Kodiaq",
+                            Price = 45000.0,
+                            ProductionYear = 2023,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Stefan cel Mare 124",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
+                            UpdatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 150,
+                            WheelSize = 19
+                        },
+                        new
+                        {
+                            Id = new Guid("b60a4b8e-3f0b-490d-9b84-767d8f5eb0f3"),
+                            BodyStyle = CarBodyStyle.Sedan,
+                            BrandName = "Skoda",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 160,
+                            Color = CarColor.White,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
+                            EngineVolume = 1.8,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 170,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 40000,
+                            ModelName = "Superb",
+                            Price = 32000.0,
+                            ProductionYear = 2020,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Stefan cel Mare 125",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 400,
+                            WheelSize = 18
+                        },
+                        new
+                        {
+                            Id = new Guid("c36d4f9a-3e5b-48a7-9b0f-8f0a7c5e5d2b"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Skoda",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 185,
+                            Color = CarColor.Black,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.0,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 190,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 15000,
+                            ModelName = "Karoq",
+                            Price = 35000.0,
+                            ProductionYear = 2022,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Stefan cel Mare 126",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
+                            UpdatedAt = new DateTime(2024, 8, 2, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            Views = 250,
+                            WheelSize = 19
+                        },
+                        new
+                        {
+                            Id = new Guid("a1b2c3d4-5e6f-7a8b-9c0d-ef1a2b3c4d5e"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Honda",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 190,
+                            Color = CarColor.Red,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.3999999999999999,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 190,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 30000,
+                            ModelName = "CR-V",
+                            Price = 32000.0,
+                            ProductionYear = 2021,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Burebista 145",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 350,
+                            WheelSize = 18
+                        },
+                        new
+                        {
+                            Id = new Guid("c8b3deae-9ab3-4e52-830a-34266afa39af"),
+                            BodyStyle = CarBodyStyle.Hatchback,
+                            BrandName = "Volkswagen",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 140,
+                            Color = CarColor.Green,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
+                            EngineVolume = 1.5,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 150,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 25000,
+                            ModelName = "Golf",
+                            Price = 27000.0,
+                            ProductionYear = 2022,
+                            PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
+                            SellAddress = "Cuza Voda 30",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
+                            UpdatedAt = new DateTime(2024, 8, 2, 12, 30, 0, 0, DateTimeKind.Unspecified),
+                            Views = 200,
+                            WheelSize = 17
+                        },
+                        new
+                        {
+                            Id = new Guid("3b8519ee-2286-4512-8ff3-87bc1db7d385"),
+                            BodyStyle = CarBodyStyle.Sedan,
+                            BrandName = "Nissan",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 155,
+                            Color = CarColor.Silver,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
+                            EngineVolume = 2.5,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 180,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 22000,
+                            ModelName = "Altima",
+                            Price = 29000.0,
+                            ProductionYear = 2023,
+                            PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
+                            SellAddress = "bd. Mircea cel Batran 2/2",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 180,
+                            WheelSize = 17
+                        },
+                        new
+                        {
+                            Id = new Guid("b5d49d6e-4a6b-4c56-bb2d-d7e3b0f547b4"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Hyundai",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 190,
+                            Color = CarColor.Orange,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.0,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 180,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 22000,
+                            ModelName = "Tucson",
+                            Price = 34000.0,
+                            ProductionYear = 2022,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Alba Iulia 8",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 13, 30, 0, 0, DateTimeKind.Unspecified),
+                            Views = 300,
+                            WheelSize = 18
+                        },
+                        new
+                        {
+                            Id = new Guid("a4d7e4f5-9b3e-4a99-8b6c-5d6e7f8a9b0c"),
+                            BodyStyle = CarBodyStyle.Sedan,
+                            BrandName = "Chevrolet",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 150,
+                            Color = CarColor.Blue,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.FrontWheelDrive,
+                            EngineVolume = 1.5,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 160,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 30000,
+                            ModelName = "Malibu",
+                            Price = 28000.0,
+                            ProductionYear = 2021,
+                            PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
+                            SellAddress = "Puskin 3",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Manual,
+                            UpdatedAt = new DateTime(2024, 8, 2, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 250,
+                            WheelSize = 17
+                        },
+                        new
+                        {
+                            Id = new Guid("b8a9d0f3-2b5e-4c1a-80a7-9b3d6c8e0a1b"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Kia",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 200,
+                            Color = CarColor.Silver,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.3999999999999999,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 200,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 15000,
+                            ModelName = "Sportage",
+                            Price = 32000.0,
+                            ProductionYear = 2022,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Stefan cel Mare 130",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Views = 350,
+                            WheelSize = 19
+                        },
+                        new
+                        {
+                            Id = new Guid("c2e1d3f4-5a6b-4c7d-b8a9-0d1e2f3a4b5c"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Mazda",
+                            CarStatus = CarStatus.Used,
+                            CityName = "Chisinau",
+                            Clearance = 185,
+                            Color = CarColor.White,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.5,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 190,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 20000,
+                            ModelName = "CX-5",
+                            Price = 33000.0,
+                            ProductionYear = 2022,
+                            PublisherId = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
+                            SellAddress = "Bd. Dacia 12",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 15, 0, 0, 0, DateTimeKind.Unspecified),
+                            Views = 400,
+                            WheelSize = 18
+                        },
+                        new
+                        {
+                            Id = new Guid("d3e4f5b6-7a8b-4c9d-8e1f-0a2b3c4d5e6f"),
+                            BodyStyle = CarBodyStyle.SUV,
+                            BrandName = "Subaru",
+                            CarStatus = CarStatus.New,
+                            CityName = "Chisinau",
+                            Clearance = 210,
+                            Color = CarColor.Green,
+                            CountryCode = "MD",
+                            CreatedAt = new DateTime(2024, 8, 2, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Drivetrain = CarDrivetrain.AllWheelDrive,
+                            EngineVolume = 2.5,
+                            FuelType = CarFuelType.Petrol,
+                            Horsepower = 185,
+                            Images = new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" },
+                            Mileage = 18000,
+                            ModelName = "Outback",
+                            Price = 34000.0,
+                            ProductionYear = 2023,
+                            PublisherId = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
+                            SellAddress = "Bd. Grigore Vieru 14",
+                            Status = ListingStatus.Available,
+                            Transmission = CarTransmission.Automatic,
+                            UpdatedAt = new DateTime(2024, 8, 2, 15, 30, 0, 0, DateTimeKind.Unspecified),
+                            Views = 280,
+                            WheelSize = 18
                         });
                 });
 
@@ -8117,6 +8482,71 @@ namespace FafCarsApi.Data.Migrations
                         },
                         new
                         {
+                            Name = "Fabia",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Octavia",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Superb",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Kodiaq",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Karoq",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Kamiq",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Scala",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Citigo",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Rapid",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Enyaq",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Roomster",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Yeti",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
+                            Name = "Felicia",
+                            BrandName = "Skoda"
+                        },
+                        new
+                        {
                             Name = "Viper",
                             BrandName = "SRT"
                         },
@@ -8794,7 +9224,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$bGg2QPhoK2DrheUt/TWWdO.3sIzrUO1wYL33PHrFhyX3k8oFVaBCy",
+                            Password = "$2a$13$93CusaJmgC9Mxkn7sZTiq.so1GOFq4empvewB/9q2y2LZ3ZhgH0cu",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8805,7 +9235,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$gPlY1g3k4uEQY7FBVuGi4eT/v2nEvEJAa7V/f414ipXD/UCFoS4bW",
+                            Password = "$2a$13$0t.AYBxF.8DMkXVgelEvYeCPVgelRYWqD4UZv46B4Whc.hTY/KTK2",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -8816,7 +9246,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$yDSaVATz/5OQdE.AnJZA0eVKc1/Z3H8mAsT39c6CbOgmMeSMxQ8dW",
+                            Password = "$2a$13$QKyVQ4iv3NrwXF7Wq0SZteAWBx41V3Q3vlTUUGolsI3emue9e3mcW",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

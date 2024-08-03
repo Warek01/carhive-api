@@ -514,9 +514,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$yDSaVATz/5OQdE.AnJZA0eVKc1/Z3H8mAsT39c6CbOgmMeSMxQ8dW", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$gPlY1g3k4uEQY7FBVuGi4eT/v2nEvEJAa7V/f414ipXD/UCFoS4bW", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$bGg2QPhoK2DrheUt/TWWdO.3sIzrUO1wYL33PHrFhyX3k8oFVaBCy", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$QKyVQ4iv3NrwXF7Wq0SZteAWBx41V3Q3vlTUUGolsI3emue9e3mcW", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$0t.AYBxF.8DMkXVgelEvYeCPVgelRYWqD4UZv46B4Whc.hTY/KTK2", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$93CusaJmgC9Mxkn7sZTiq.so1GOFq4empvewB/9q2y2LZ3ZhgH0cu", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -978,6 +978,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Cadillac", "Cimarron" },
                     { "Chrysler", "Cirrus" },
                     { "Chevrolet", "Citation" },
+                    { "Skoda", "Citigo" },
                     { "Honda", "Civic" },
                     { "Jeep", "CJ" },
                     { "Mercedes-Benz", "CL500" },
@@ -1123,6 +1124,7 @@ namespace FafCarsApi.Data.Migrations
                     { "GMC", "Envoy" },
                     { "GMC", "Envoy XL" },
                     { "GMC", "Envoy XUV" },
+                    { "Skoda", "Enyaq" },
                     { "Ferrari", "Enzo" },
                     { "Volkswagen", "Eos" },
                     { "Mercedes-Benz", "EQC400" },
@@ -1164,7 +1166,9 @@ namespace FafCarsApi.Data.Migrations
                     { "Ferrari", "F430" },
                     { "Ford", "F450" },
                     { "Ferrari", "F50" },
+                    { "Skoda", "Fabia" },
                     { "Ford", "Fairmont" },
+                    { "Skoda", "Felicia" },
                     { "Ford", "Festiva" },
                     { "Ferrari", "FF" },
                     { "Pontiac", "Fiero" },
@@ -1323,9 +1327,12 @@ namespace FafCarsApi.Data.Migrations
                     { "Nissan", "Juke" },
                     { "Subaru", "Justy" },
                     { "Infiniti", "JX35" },
+                    { "Skoda", "Kamiq" },
                     { "Fisker", "Karma" },
+                    { "Skoda", "Karoq" },
                     { "Suzuki", "Kizashi" },
                     { "Chevrolet", "Kodiak C4500" },
+                    { "Skoda", "Kodiaq" },
                     { "Subaru", "L Series" },
                     { "Saturn", "L100" },
                     { "Saturn", "L200" },
@@ -1472,6 +1479,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Nissan", "NV" },
                     { "Nissan", "NX" },
                     { "Isuzu", "Oasis" },
+                    { "Skoda", "Octavia" },
                     { "Honda", "Odyssey" },
                     { "Oldsmobile", "Omega" },
                     { "Dodge", "Omni" },
@@ -1557,6 +1565,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Land Rover", "Range Rover Evoque" },
                     { "Land Rover", "Range Rover Sport" },
                     { "Ford", "Ranger" },
+                    { "Skoda", "Rapid" },
                     { "Aston Martin", "Rapide" },
                     { "Toyota", "RAV4" },
                     { "Acura", "RDX" },
@@ -1578,6 +1587,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Isuzu", "Rodeo" },
                     { "Nissan", "Rogue" },
                     { "Kia", "Rondo" },
+                    { "Skoda", "Roomster" },
                     { "Volkswagen", "Routan" },
                     { "Audi", "RS 4" },
                     { "Audi", "RS 5" },
@@ -1630,6 +1640,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Lexus", "SC 430" },
                     { "Saturn", "SC1" },
                     { "Saturn", "SC2" },
+                    { "Skoda", "Scala" },
                     { "Plymouth", "Scamp" },
                     { "Volkswagen", "Scirocco" },
                     { "Merkur", "Scorpio" },
@@ -1725,6 +1736,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Pontiac", "Sunbird" },
                     { "Plymouth", "Sundance" },
                     { "Pontiac", "Sunfire" },
+                    { "Skoda", "Superb" },
                     { "Toyota", "Supra" },
                     { "Subaru", "SVX" },
                     { "Saturn", "SW1" },
@@ -1861,6 +1873,7 @@ namespace FafCarsApi.Data.Migrations
                     { "Cadillac", "XTS" },
                     { "Subaru", "XV Crosstrek" },
                     { "Toyota", "Yaris" },
+                    { "Skoda", "Yeti" },
                     { "GMC", "Yukon" },
                     { "GMC", "Yukon XL" },
                     { "BMW", "Z3" },
@@ -1878,10 +1891,23 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "blocked_at", "body_style", "brand_name", "car_status", "city_name", "clearance", "color", "country_code", "created_at", "deleted_at", "description", "drivetrain", "engine_volume", "fuel_type", "horsepower", "images", "mileage", "model_name", "price", "production_year", "publisher_id", "sell_address", "sold_at", "status", "transmission", "updated_at", "views", "wheel_size" },
                 values: new object[,]
                 {
+                    { new Guid("3b8519ee-2286-4512-8ff3-87bc1db7d385"), null, CarBodyStyle.Sedan, "Nissan", CarStatus.New, "Chisinau", 155, CarColor.Silver, "MD", new DateTime(2024, 8, 2, 13, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 2.5, CarFuelType.Petrol, 180, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 22000, "Altima", 29000.0, 2023, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "bd. Mircea cel Batran 2/2", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 13, 0, 0, 0, DateTimeKind.Unspecified), 180, 17 },
                     { new Guid("68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1"), null, CarBodyStyle.Sedan, "Audi", CarStatus.Used, "Chisinau", 150, CarColor.Black, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 2.0, CarFuelType.Petrol, 190, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 30000, "A4", 35000.0, 2019, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Burebista 144", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 20000, 18 },
                     { new Guid("7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b"), null, CarBodyStyle.Coupe, "Mercedes-Benz", CarStatus.New, "Chisinau", 140, CarColor.Blue, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, CarDrivetrain.RearWheelDrive, 2.5, CarFuelType.Petrol, 250, new List<string> { "TestImage2.webp", "TestImage1.webp", "TestImage3.webp" }, 35000, "C63 AMG", 40000.0, 2018, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "bd. Mircea cel Batran 1/1", null, ListingStatus.Available, CarTransmission.ContinuouslyVariable, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 160, 17 },
+                    { new Guid("8a7b1c5f-6b52-42d9-9c89-3489b87e25f0"), null, CarBodyStyle.Sedan, "Skoda", CarStatus.Used, "Chisinau", 155, CarColor.Gray, "MD", new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 2.0, CarFuelType.Diesel, 150, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 45000, "Octavia", 28000.0, 2021, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Stefan cel Mare 123", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), 300, 17 },
+                    { new Guid("a1b2c3d4-5e6f-7a8b-9c0d-ef1a2b3c4d5e"), null, CarBodyStyle.SUV, "Honda", CarStatus.Used, "Chisinau", 190, CarColor.Red, "MD", new DateTime(2024, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.3999999999999999, CarFuelType.Petrol, 190, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 30000, "CR-V", 32000.0, 2021, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Burebista 145", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified), 350, 18 },
+                    { new Guid("a4d7e4f5-9b3e-4a99-8b6c-5d6e7f8a9b0c"), null, CarBodyStyle.Sedan, "Chevrolet", CarStatus.Used, "Chisinau", 150, CarColor.Blue, "MD", new DateTime(2024, 8, 2, 14, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 1.5, CarFuelType.Petrol, 160, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 30000, "Malibu", 28000.0, 2021, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Puskin 3", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 8, 2, 14, 0, 0, 0, DateTimeKind.Unspecified), 250, 17 },
+                    { new Guid("b5d49d6e-4a6b-4c56-bb2d-d7e3b0f547b4"), null, CarBodyStyle.SUV, "Hyundai", CarStatus.Used, "Chisinau", 190, CarColor.Orange, "MD", new DateTime(2024, 8, 2, 13, 30, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.0, CarFuelType.Petrol, 180, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 22000, "Tucson", 34000.0, 2022, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Alba Iulia 8", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 13, 30, 0, 0, DateTimeKind.Unspecified), 300, 18 },
+                    { new Guid("b60a4b8e-3f0b-490d-9b84-767d8f5eb0f3"), null, CarBodyStyle.Sedan, "Skoda", CarStatus.Used, "Chisinau", 160, CarColor.White, "MD", new DateTime(2024, 8, 2, 11, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 1.8, CarFuelType.Petrol, 170, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 40000, "Superb", 32000.0, 2020, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Stefan cel Mare 125", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 11, 0, 0, 0, DateTimeKind.Unspecified), 400, 18 },
+                    { new Guid("b78f7f22-07ae-4dee-8c96-ed34d7b9bb95"), null, CarBodyStyle.Sedan, "Skoda", CarStatus.New, "Chisinau", 180, CarColor.Blue, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, "Test description for Ford F150", CarDrivetrain.FourWheelDrive, 5.0, CarFuelType.Petrol, 200, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 0, "Fabia", 90000.0, 2019, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Cuza Voda 27/2", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 0, 22 },
                     { new Guid("b78f7f22-07af-4dee-8c96-ed34d7b9bb95"), null, CarBodyStyle.PickupTruck, "Ford", CarStatus.Used, "Chisinau", 180, CarColor.Red, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, "Test description for Ford F150", CarDrivetrain.FourWheelDrive, 5.0, CarFuelType.Petrol, 350, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 20000, "F150", 45000.0, 2019, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Cuza Voda 25/2", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 0, 22 },
+                    { new Guid("b8a9d0f3-2b5e-4c1a-80a7-9b3d6c8e0a1b"), null, CarBodyStyle.SUV, "Kia", CarStatus.New, "Chisinau", 200, CarColor.Silver, "MD", new DateTime(2024, 8, 2, 14, 30, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.3999999999999999, CarFuelType.Petrol, 200, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 15000, "Sportage", 32000.0, 2022, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Stefan cel Mare 130", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 14, 30, 0, 0, DateTimeKind.Unspecified), 350, 19 },
+                    { new Guid("c2e1d3f4-5a6b-4c7d-b8a9-0d1e2f3a4b5c"), null, CarBodyStyle.SUV, "Mazda", CarStatus.Used, "Chisinau", 185, CarColor.White, "MD", new DateTime(2024, 8, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.5, CarFuelType.Petrol, 190, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 20000, "CX-5", 33000.0, 2022, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Bd. Dacia 12", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 15, 0, 0, 0, DateTimeKind.Unspecified), 400, 18 },
+                    { new Guid("c36d4f9a-3e5b-48a7-9b0f-8f0a7c5e5d2b"), null, CarBodyStyle.SUV, "Skoda", CarStatus.New, "Chisinau", 185, CarColor.Black, "MD", new DateTime(2024, 8, 2, 11, 30, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.0, CarFuelType.Petrol, 190, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 15000, "Karoq", 35000.0, 2022, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Stefan cel Mare 126", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 8, 2, 11, 30, 0, 0, DateTimeKind.Unspecified), 250, 19 },
+                    { new Guid("c8b3deae-9ab3-4e52-830a-34266afa39af"), null, CarBodyStyle.Hatchback, "Volkswagen", CarStatus.Used, "Chisinau", 140, CarColor.Green, "MD", new DateTime(2024, 8, 2, 12, 30, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.FrontWheelDrive, 1.5, CarFuelType.Petrol, 150, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 25000, "Golf", 27000.0, 2022, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Cuza Voda 30", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 8, 2, 12, 30, 0, 0, DateTimeKind.Unspecified), 200, 17 },
+                    { new Guid("d3e4f5b6-7a8b-4c9d-8e1f-0a2b3c4d5e6f"), null, CarBodyStyle.SUV, "Subaru", CarStatus.New, "Chisinau", 210, CarColor.Green, "MD", new DateTime(2024, 8, 2, 15, 30, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.5, CarFuelType.Petrol, 185, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 18000, "Outback", 34000.0, 2023, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Bd. Grigore Vieru 14", null, ListingStatus.Available, CarTransmission.Automatic, new DateTime(2024, 8, 2, 15, 30, 0, 0, DateTimeKind.Unspecified), 280, 18 },
                     { new Guid("dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f"), null, CarBodyStyle.SUV, "BMW", CarStatus.Used, "Chisinau", 200, CarColor.White, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 3.0, CarFuelType.Diesel, 300, new List<string> { "TestImage3.webp" }, 25000, "X5", 55000.0, 2020, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Ciuflea 22", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 0, 20 },
+                    { new Guid("e0a3b5c7-65b4-420f-9b5d-21c6c456d0f1"), null, CarBodyStyle.SUV, "Skoda", CarStatus.New, "Chisinau", 200, CarColor.Blue, "MD", new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), null, null, CarDrivetrain.AllWheelDrive, 2.0, CarFuelType.Petrol, 200, new List<string> { "TestImage1.webp", "TestImage2.webp", "TestImage3.webp" }, 10000, "Kodiaq", 45000.0, 2023, new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), "Stefan cel Mare 124", null, ListingStatus.Available, CarTransmission.Manual, new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified), 150, 19 },
                     { new Guid("f3e6e478-3a21-4b05-9926-6fe29f4a58c0"), null, CarBodyStyle.Sedan, "Toyota", CarStatus.Used, "Chisinau", 160, CarColor.Silver, "MD", new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), null, null, CarDrivetrain.RearWheelDrive, 2.5, CarFuelType.Hybrid, 180, new List<string> { "TestImage2.webp" }, 40000, "Camry", 30000.0, 2021, new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), "Stefan cel Mare 28", null, ListingStatus.Available, CarTransmission.ContinuouslyVariable, new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified), 0, 16 }
                 });
 
