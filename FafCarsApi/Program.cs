@@ -2,7 +2,6 @@ using System.Globalization;
 using System.Reflection;
 using Asp.Versioning;
 using FafCarsApi.Config;
-using FafCarsApi.Controllers;
 using FafCarsApi.Data;
 using FafCarsApi.Enums;
 using FafCarsApi.Helpers;
@@ -13,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using Serilog;
+using StackExchange.Redis;
 
 namespace FafCarsApi;
 
@@ -25,7 +25,7 @@ public static class Program {
     CultureInfo.DefaultThreadCurrentUICulture = culture;
     Thread.CurrentThread.CurrentCulture = culture;
     Thread.CurrentThread.CurrentUICulture = culture;
-    
+
     _builder = WebApplication.CreateBuilder(args);
 
     _builder.WebHost.UseKestrel();
@@ -44,10 +44,9 @@ public static class Program {
       o.Limits.MaxRequestBodySize = 50_000_000;
       o.Limits.MaxRequestLineSize = 8192;
     });
-
+    _builder.Services.AddHttpClient();
     _builder.Services.AddProblemDetails();
     _builder.Services.AddExceptionHandler<HttpExceptionHandler>();
-
     _builder.Services.AddApiVersioning(options => {
       options.DefaultApiVersion = new ApiVersion(1);
       options.ReportApiVersions = true;
@@ -61,6 +60,7 @@ public static class Program {
     SetupDataSource();
     SetupAuthentication();
     SetupSwagger();
+    SetupCache();
     AppServices.Register(_builder);
 
     var app = _builder.Build();
@@ -139,7 +139,7 @@ public static class Program {
 
   private static void SetupDataSource() {
     var dataSourceBuilder = new NpgsqlDataSourceBuilder(_builder.Configuration.GetConnectionString("Default"));
-    
+
     dataSourceBuilder.MapEnum<CarFuelType>();
     dataSourceBuilder.MapEnum<CarBodyStyle>();
     dataSourceBuilder.MapEnum<CarColor>();
@@ -149,10 +149,21 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarTransmission>();
     dataSourceBuilder.MapEnum<ListingStatus>();
     dataSourceBuilder.MapEnum<ListingAction>();
+    dataSourceBuilder.EnableDynamicJson();
     dataSourceBuilder.EnableParameterLogging();
 
     NpgsqlDataSource dataSource = dataSourceBuilder.Build();
     _builder.Services.AddDbContext<FafCarsDbContext>(options => { options.UseNpgsql(dataSource); });
     _builder.Services.AddScoped<DbContext, FafCarsDbContext>();
+  }
+
+  private static void SetupCache() {
+    _builder.Services.AddStackExchangeRedisCache(options => {
+      options.Configuration = _builder.Configuration.GetConnectionString("Redis")!;
+      options.ConfigurationOptions = new ConfigurationOptions {
+        AbortOnConnectFail = true,
+        EndPoints = { options.Configuration }
+      };
+    });
   }
 }

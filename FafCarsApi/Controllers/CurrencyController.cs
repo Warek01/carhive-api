@@ -12,7 +12,14 @@ namespace FafCarsApi.Controllers;
 [Route("Api/v{v:apiVersion}/Currency")]
 public class CurrencyController(CurrencyService currencyService) : Controller {
   [HttpGet]
-  public async Task<ActionResult<Currency>> GetLatestCurrency() {
-    return await currencyService.GetCurrentCurrency();
+  public async Task<ActionResult<CurrencyData>> GetLatestCurrency([FromQuery] string code) {
+    var currency = await currencyService.GetCurrency();
+    currency.Data.TryGetValue(code.ToLower(), out CurrencyData? data);
+
+    if (data == null) {
+      return NotFound();
+    }
+
+    return data;
   }
 }
