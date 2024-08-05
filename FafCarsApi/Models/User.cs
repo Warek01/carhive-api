@@ -43,4 +43,7 @@ public class User {
 
   [InverseProperty(nameof(Listing.UsersFavorites))]
   public List<Listing> Favorites { get; set; } = [];
+
+  [InverseProperty(nameof(Report.User))]
+  public List<Report> Reports { get; set; } = [];
 }

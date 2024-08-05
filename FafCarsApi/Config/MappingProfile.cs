@@ -15,6 +15,7 @@ public class MappingProfile : Profile {
     CreateMap<Brand, BrandDto>();
     CreateMap<RegisterDto, User>();
     CreateMap<CreateUserDto, User>();
+    CreateMap<CreateReportDto, Report>();
 
     CreateMap<Listing, ListingDto>()
       .ForMember(dto => dto.ImagesUrls,

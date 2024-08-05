@@ -24,6 +24,7 @@ namespace FafCarsApi.Data.Migrations
                 .Annotation("Npgsql:Enum:car_transmission", "manual,automatic,continuously_variable")
                 .Annotation("Npgsql:Enum:listing_action", "create,delete,report,sell,add_to_favorites,remove_from_favorites,restore,block,update")
                 .Annotation("Npgsql:Enum:listing_status", "available,sold,deleted,blocked")
+                .Annotation("Npgsql:Enum:report_type", "listing,user,application")
                 .Annotation("Npgsql:Enum:user_role", "user,admin,super_admin")
                 .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,")
                 .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
@@ -105,6 +106,27 @@ namespace FafCarsApi.Data.Migrations
                         column: x => x.country,
                         principalTable: "countries",
                         principalColumn: "code",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "reports",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "UUID_GENERATE_V4()"),
+                    type = table.Column<ReportType>(type: "report_type", nullable: false),
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    reason = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
+                    created_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_reports", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_reports_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -512,9 +534,9 @@ namespace FafCarsApi.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "password", "phone_number", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$DOlqFk87J9aDLZySvrhovOIQcnDRZSM4Zhqwy1QuAEZ/TLxSfmQfy", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$f3FRTVlCecXfozJdD55Pse3DnP.WQYOtpRq4U9jS9LmFSZOEk1XAu", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$xtktfp/3MS/mBl9LRuDrNuqbw9nnLCpl6pJyN5ogtJ0nSLy0YVoWK", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", "$2a$13$lutlldHQdB5torlaS7gdPeZF3uk3nlcKQuDvEy5ymWOi6VkGdqyL2", "+37378222444", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", "$2a$13$bwi5jheOfnP6Vn2WyNlgGuWjii8neIxkgG/GjQtbOtjgvnzo/x5jC", "+37378222111", new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", "$2a$13$rtdYlFfsnPC8Z1y13pZZC.kZyqnE80660Ig4rflciPPYEi9kjgCkq", "+37378000111", new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -1989,6 +2011,11 @@ namespace FafCarsApi.Data.Migrations
                 column: "brand_name");
 
             migrationBuilder.CreateIndex(
+                name: "IX_reports_user_id",
+                table: "reports",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_users_created_at",
                 table: "users",
                 column: "created_at");
@@ -2011,6 +2038,9 @@ namespace FafCarsApi.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "listing_user_favorite");
+
+            migrationBuilder.DropTable(
+                name: "reports");
 
             migrationBuilder.DropTable(
                 name: "listings");

@@ -12,6 +12,7 @@ public static class AppServices {
     typeof(CityService),
     typeof(CurrencyService),
     typeof(CacheService),
+    typeof(ReportService),
   ];
 
   private static readonly List<Type> SingletonServices = [

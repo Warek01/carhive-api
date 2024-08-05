@@ -20,6 +20,7 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
   public virtual DbSet<ListingActivity> ListingActivities { get; set; }
   public virtual DbSet<City> Cities { get; set; }
   public virtual DbSet<Currency> Currencies { get; set; }
+  public virtual DbSet<Report> Reports { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder.UseNpgsql();
@@ -42,6 +43,15 @@ public class FafCarsDbContext(DbContextOptions<FafCarsDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<CarTransmission>();
     modelBuilder.HasPostgresEnum<ListingStatus>();
     modelBuilder.HasPostgresEnum<ListingAction>();
+    modelBuilder.HasPostgresEnum<ReportType>();
+
+    modelBuilder.Entity<Report>()
+      .Property(e => e.Id)
+      .HasDefaultValueSql(UuidGenSql);
+    
+    modelBuilder.Entity<Report>()
+      .Property(e => e.CreatedAt)
+      .HasDefaultValueSql(CurrentTimestampSql);
 
     modelBuilder.Entity<ListingActivity>()
       .Property(e => e.Id)

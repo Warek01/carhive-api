@@ -19,7 +19,7 @@ namespace FafCarsApi.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "8.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_body_style", new[] { "sedan", "suv", "crossover", "van", "minivan", "hatchback", "wagon", "coupe", "pickup_truck", "convertible", "other" });
@@ -30,6 +30,7 @@ namespace FafCarsApi.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_transmission", new[] { "manual", "automatic", "continuously_variable" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_action", new[] { "create", "delete", "report", "sell", "add_to_favorites", "remove_from_favorites", "restore", "block", "update" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "report_type", new[] { "listing", "user", "application" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
@@ -9147,6 +9148,40 @@ namespace FafCarsApi.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("FafCarsApi.Models.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("UUID_GENERATE_V4()");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Reason")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("reason");
+
+                    b.Property<ReportType>("Type")
+                        .HasColumnType("report_type")
+                        .HasColumnName("type");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("reports");
+                });
+
             modelBuilder.Entity("FafCarsApi.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -9214,7 +9249,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$xtktfp/3MS/mBl9LRuDrNuqbw9nnLCpl6pJyN5ogtJ0nSLy0YVoWK",
+                            Password = "$2a$13$rtdYlFfsnPC8Z1y13pZZC.kZyqnE80660Ig4rflciPPYEi9kjgCkq",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9225,7 +9260,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$f3FRTVlCecXfozJdD55Pse3DnP.WQYOtpRq4U9jS9LmFSZOEk1XAu",
+                            Password = "$2a$13$bwi5jheOfnP6Vn2WyNlgGuWjii8neIxkgG/GjQtbOtjgvnzo/x5jC",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9236,7 +9271,7 @@ namespace FafCarsApi.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$DOlqFk87J9aDLZySvrhovOIQcnDRZSM4Zhqwy1QuAEZ/TLxSfmQfy",
+                            Password = "$2a$13$lutlldHQdB5torlaS7gdPeZF3uk3nlcKQuDvEy5ymWOi6VkGdqyL2",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9354,6 +9389,17 @@ namespace FafCarsApi.Data.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("FafCarsApi.Models.Report", b =>
+                {
+                    b.HasOne("FafCarsApi.Models.User", "User")
+                        .WithMany("Reports")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("FafCarsApi.Models.Brand", b =>
                 {
                     b.Navigation("Listings");
@@ -9383,6 +9429,8 @@ namespace FafCarsApi.Data.Migrations
             modelBuilder.Entity("FafCarsApi.Models.User", b =>
                 {
                     b.Navigation("Listings");
+
+                    b.Navigation("Reports");
                 });
 #pragma warning restore 612, 618
         }
