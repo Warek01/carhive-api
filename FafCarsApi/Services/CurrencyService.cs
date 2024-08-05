@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 using FafCarsApi.Data;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 namespace FafCarsApi.Services;
 
@@ -34,22 +35,35 @@ public class CurrencyService(
   }
 
   public async Task<double?> GetCurrency(string code) {
-    var res = (double?)await cache.Db.HashGetAsync("currency", code);
+    var res = (double?) await cache.Db.HashGetAsync(CacheService.Keys.Currencies, code);
 
     if (res != null) {
       return res;
     }
 
     Currency currency = await FetchCurrency();
-    var hashTasks = new List<Task>(currency.Data.Count);
+    List<Task<bool>> tasks = [];
+    IBatch batch = cache.Db.CreateBatch();
 
     foreach (KeyValuePair<string, double> pair in currency.Data) {
-      Task<bool> task = cache.Db.HashSetAsync(CacheService.Keys.Currencies, pair.Key.ToLower(), pair.Value);
-      hashTasks.Add(task);
+      Task<bool> task = batch.HashSetAsync(
+        CacheService.Keys.Currencies,
+        pair.Key.ToUpper(),
+        pair.Value,
+        flags: CommandFlags.FireAndForget
+      );
+      
+      tasks.Add(task);
     }
 
-    await Task.WhenAll(hashTasks);
-    await cache.Db.KeyExpireAsync(CacheService.Keys.Currencies, currency.Timestamp.Date.AddDays(1) - DateTime.Now);
+    Task<bool> keyExpireTask = batch.KeyExpireAsync(
+      CacheService.Keys.Currencies,
+      currency.Timestamp.Date.AddDays(1) - DateTime.Now
+    );
+    
+    tasks.Add(keyExpireTask);
+    batch.Execute();
+    await Task.WhenAll(tasks);
 
     return currency.Data.TryGetValue(code, out double value) ? value : null;
   }

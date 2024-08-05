@@ -12,7 +12,7 @@ namespace FafCarsApi.Controllers;
 public class CurrencyController(CurrencyService currencyService) : Controller {
   [HttpGet]
   public async Task<ActionResult<double>> GetLatestCurrency([FromQuery] string code) {
-    double? ratio = await currencyService.GetCurrency(code);
+    double? ratio = await currencyService.GetCurrency(code.ToUpper());
 
     if (ratio == null) {
       return NotFound();
