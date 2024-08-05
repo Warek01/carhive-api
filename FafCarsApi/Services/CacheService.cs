@@ -16,11 +16,16 @@ public class CacheService(ConnectionMultiplexer muxer) {
 
 private static readonly JsonSerializerOptions Options = new() {
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    WriteIndented = true,
+    WriteIndented = false,
     AllowTrailingCommas = false,
     PropertyNameCaseInsensitive = false,
     DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
-    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+    DefaultIgnoreCondition = JsonIgnoreCondition.Never,
+    IgnoreReadOnlyFields = false,
+    IgnoreReadOnlyProperties = false,
+    ReadCommentHandling = JsonCommentHandling.Skip,
+    NumberHandling = JsonNumberHandling.Strict,
+    UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow,
   };
 
   public static ValueTask<T> DeserializeAsync<T>(RedisValue value) where T : class {
