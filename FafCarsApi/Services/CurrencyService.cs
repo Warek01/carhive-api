@@ -3,8 +3,6 @@ using System.Text.Json.Serialization;
 using FafCarsApi.Data;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
-using FafCarsApi.Extensions;
-using FafCarsApi.Helpers;
 
 namespace FafCarsApi.Services;
 
@@ -36,7 +34,7 @@ public class CurrencyService(
   }
 
   public async Task<double?> GetCurrency(string code) {
-    var res = (double?)await cache.HashGetAsync("currency", code);
+    var res = (double?)await cache.Db.HashGetAsync("currency", code);
 
     if (res != null) {
       return res;
@@ -46,11 +44,12 @@ public class CurrencyService(
     var hashTasks = new List<Task>(currency.Data.Count);
 
     foreach (KeyValuePair<string, double> pair in currency.Data) {
-      hashTasks.Add(cache.HashSetAsync("currency", pair.Key.ToLower(), pair.Value));
+      Task<bool> task = cache.Db.HashSetAsync(CacheService.Keys.Currencies, pair.Key.ToLower(), pair.Value);
+      hashTasks.Add(task);
     }
 
     await Task.WhenAll(hashTasks);
-    await cache.KeyExpireAsync("currency", currency.Timestamp.Date.AddDays(1) - DateTime.Now);
+    await cache.Db.KeyExpireAsync(CacheService.Keys.Currencies, currency.Timestamp.Date.AddDays(1) - DateTime.Now);
 
     return currency.Data.TryGetValue(code, out double value) ? value : null;
   }

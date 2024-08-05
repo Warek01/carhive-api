@@ -5,9 +5,14 @@ using StackExchange.Redis;
 namespace FafCarsApi.Services;
 
 public class CacheService(ConnectionMultiplexer muxer) {
-  private readonly IDatabase _db = muxer.GetDatabase();
+  public readonly IDatabase Db = muxer.GetDatabase();
 
-  private static readonly JsonSerializerOptions Options = new() {
+  public struct Keys {
+    public const string Currencies = "currencies";
+    public const string RefreshTokens = "refresh-tokens";
+  }
+
+private static readonly JsonSerializerOptions Options = new() {
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     WriteIndented = true,
     AllowTrailingCommas = false,
@@ -16,54 +21,25 @@ public class CacheService(ConnectionMultiplexer muxer) {
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
   };
 
-  public Task<bool> StringSetAsync<T>(RedisKey key, T value, TimeSpan? expiry = null) where T : class {
-    return _db.StringSetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value, Options), expiry);
+  public static ValueTask<T?> DeserializeValueAsync<T>(RedisValue value) where T : class {
+    if (!value.IsNullOrEmpty) {
+      return new ValueTask<T?>();
+    }
+
+    using var stream = new MemoryStream(value!);
+    return JsonSerializer.DeserializeAsync<T>(stream, Options);
   }
 
-  public Task<bool> StringSetAsync(RedisKey key, RedisValue value, TimeSpan? expiry = null) {
-    return _db.StringSetAsync(key, value, expiry);
-  }
-
-  public async Task<T?> StringGetAsync<T>(RedisKey key) where T : class {
-    byte[]? bytes = await _db.StringGetAsync(key);
-
-    if (bytes == null) {
+  public static T? DeserializeValue<T>(RedisValue value) where T : class {
+    if (!value.IsNullOrEmpty) {
       return null;
     }
 
-    using var stream = new MemoryStream(bytes);
-    return await JsonSerializer.DeserializeAsync<T>(stream, Options);
+    using var stream = new MemoryStream(value!);
+    return JsonSerializer.Deserialize<T>(stream, Options);
   }
 
-  public Task<RedisValue> StringGetAsync(RedisKey key) {
-    return _db.StringGetAsync(key);
-  }
-
-  public Task<bool> HashSetAsync<T>(RedisKey key, RedisValue hashField, T value)
-    where T : class {
-    return _db.HashSetAsync(key, hashField, JsonSerializer.SerializeToUtf8Bytes(value, Options));
-  }
-
-  public Task<bool> HashSetAsync(RedisKey key, RedisValue hashField, RedisValue value) {
-    return _db.HashSetAsync(key, hashField, value);
-  }
-
-  public async Task<T?> HashGetAsync<T>(RedisKey key, RedisValue hashField) where T : class {
-    byte[]? bytes = await _db.HashGetAsync(key, hashField);
-
-    if (bytes == null) {
-      return null;
-    }
-
-    using var stream = new MemoryStream(bytes);
-    return await JsonSerializer.DeserializeAsync<T>(stream, Options);
-  }
-
-  public Task<RedisValue> HashGetAsync(RedisKey key, RedisValue hashField) {
-    return _db.HashGetAsync(key, hashField);
-  }
-
-  public Task<bool> KeyExpireAsync(RedisKey key, TimeSpan? expiry = null) {
-    return _db.KeyExpireAsync(key, expiry);
+  public static byte[] SerializeValue<T>(RedisValue value) where T : class {
+    return JsonSerializer.SerializeToUtf8Bytes(value, Options);
   }
 }

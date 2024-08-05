@@ -1,7 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Asp.Versioning;
-using FafCarsApi.Dtos;
 using FafCarsApi.Dtos.Request;
 using FafCarsApi.Dtos.Response;
 using FafCarsApi.Models;
@@ -17,10 +16,9 @@ namespace FafCarsApi.Controllers;
 [Route("Api/v{v:apiVersion}/[controller]")]
 public class AuthController(
   AuthService authService,
-  UserService userService
+  UserService userService,
+  CacheService cache
 ) : Controller {
-  private readonly Dictionary<Guid, string> _refreshTokens = [];
-
   [HttpPost("Login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
     User? user = await userService.FindUserByUsername(loginDto.Username);
@@ -40,7 +38,11 @@ public class AuthController(
       RefreshToken = refreshToken
     };
 
-    _refreshTokens.Add(user.Id, refreshToken);
+    await cache.Db.StringSetAsync(
+      $"{CacheService.Keys.RefreshTokens}:{user.Id.ToString()}",
+      refreshToken,
+      TimeSpan.FromHours(1)
+    );
 
     return response;
   }
@@ -61,7 +63,11 @@ public class AuthController(
       RefreshToken = refreshToken
     };
 
-    _refreshTokens.Add(newUser.Id, refreshToken);
+    await cache.Db.StringSetAsync(
+      $"{CacheService.Keys.RefreshTokens}:{newUser.Id.ToString()}",
+      refreshToken,
+      TimeSpan.FromHours(1)
+    );
 
     return response;
   }
@@ -74,15 +80,18 @@ public class AuthController(
       return BadRequest("invalid token");
     }
 
-    Guid userId = Guid.Parse(principal.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
+    string userIdStr = principal.FindFirst(JwtRegisteredClaimNames.Sub)!.Value;
+    Guid userId = Guid.Parse(userIdStr);
     User? user = await userService.FindUser(userId);
 
     if (user == null) {
       return NotFound("user not found");
     }
 
-    if (_refreshTokens.ContainsKey(userId)) {
-      return BadRequest("no token in tokens list");
+    string? refreshToken = await cache.Db.StringGetAsync($"{CacheService.Keys.RefreshTokens}:{userIdStr}");
+
+    if (refreshToken == null) {
+      return Unauthorized();
     }
 
     string newToken = authService.GenerateAccessToken(user);

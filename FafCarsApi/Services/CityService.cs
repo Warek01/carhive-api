@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FafCarsApi.Services;
 
-public class CityService(FafCarsDbContext dbContext) {
+public class CityService(FafCarsDbContext db, CacheService cache) {
   public async Task<List<string>> FindCities(string countryCode, string? search) {
-    IQueryable<City> query = dbContext.Cities
+    IQueryable<City> query = db.Cities
       .AsNoTracking()
       .Where(c => c.CountryCode == countryCode);
 
@@ -15,14 +15,14 @@ public class CityService(FafCarsDbContext dbContext) {
       : query.OrderByDescending(c => EF.Functions.TrigramsWordSimilarity(c.Name, search));
 
     query = query.Take(10);
-    
+
     return await query
       .Select(c => c.Name)
       .ToListAsync();
   }
 
   public async Task<int> GetCitiesCount() {
-    return await dbContext.Cities
+    return await db.Cities
       .AsNoTracking()
       .CountAsync();
   }
