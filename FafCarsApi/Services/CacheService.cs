@@ -10,6 +10,8 @@ public class CacheService(ConnectionMultiplexer muxer) {
   public struct Keys {
     public const string Currencies = "currencies";
     public const string RefreshTokens = "refresh-tokens";
+    public const string Cities = "cities";
+    public const string EntitiesCount = "entities-count";
   }
 
 private static readonly JsonSerializerOptions Options = new() {
@@ -21,25 +23,17 @@ private static readonly JsonSerializerOptions Options = new() {
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
   };
 
-  public static ValueTask<T?> DeserializeValueAsync<T>(RedisValue value) where T : class {
-    if (!value.IsNullOrEmpty) {
-      return new ValueTask<T?>();
-    }
-
+  public static ValueTask<T> DeserializeAsync<T>(RedisValue value) where T : class {
     using var stream = new MemoryStream(value!);
-    return JsonSerializer.DeserializeAsync<T>(stream, Options);
+    return JsonSerializer.DeserializeAsync<T>(stream, Options)!;
   }
 
-  public static T? DeserializeValue<T>(RedisValue value) where T : class {
-    if (!value.IsNullOrEmpty) {
-      return null;
-    }
-
+  public static T Deserialize<T>(RedisValue value) where T : class {
     using var stream = new MemoryStream(value!);
-    return JsonSerializer.Deserialize<T>(stream, Options);
+    return JsonSerializer.Deserialize<T>(stream, Options)!;
   }
 
-  public static byte[] SerializeValue<T>(RedisValue value) where T : class {
+  public static byte[] Serialize<T>(T value) where T : class {
     return JsonSerializer.SerializeToUtf8Bytes(value, Options);
   }
 }
