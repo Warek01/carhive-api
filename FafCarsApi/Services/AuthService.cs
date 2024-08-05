@@ -6,12 +6,17 @@ using System.Text.Json;
 using FafCarsApi.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using StackExchange.Redis;
 using JsonClaimValueTypes = System.IdentityModel.Tokens.Jwt.JsonClaimValueTypes;
 using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames;
 
 namespace FafCarsApi.Services;
 
-public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
+public class AuthService(
+  IConfiguration config,
+  ILogger<AuthService> logger,
+  CacheService cache
+) {
   public static TokenValidationParameters GetTokenValidationParameters(IConfiguration config) {
     return new TokenValidationParameters {
       NameClaimType = "sub",
@@ -61,7 +66,7 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     var issuer = config["Jwt:Issuer"]!;
     var audience = config["Jwt:Audience"]!;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));
-    var tokenTtl = int.Parse(config["JWT:TTL"]!);
+    var tokenTtl = int.Parse(config["JWT:Ttl"]!);
     var identity = new ClaimsIdentity([
       new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
       new Claim(
@@ -91,5 +96,21 @@ public class AuthService(IConfiguration config, ILogger<AuthService> logger) {
     JsonWebTokenHandler.DefaultMapInboundClaims = false;
     JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
     app.UseAuthorization();
+  }
+
+  public void CacheRefreshToken(Guid userId, string refreshToken) {
+    var refreshTtl = double.Parse(config["JWT:RefreshTtl"]!);
+
+    cache.Db.StringSetAsync(
+      $"{CacheService.Keys.RefreshTokens}:{userId.ToString()}",
+      refreshToken,
+      TimeSpan.FromMinutes(refreshTtl),
+      flags: CommandFlags.FireAndForget
+    );
+  }
+
+  public async Task<string?> GetCachedRefreshToken(Guid userId) {
+    string? refreshToken = await cache.Db.StringGetAsync($"{CacheService.Keys.RefreshTokens}:{userId.ToString()}");
+    return refreshToken;
   }
 }

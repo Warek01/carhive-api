@@ -16,8 +16,7 @@ namespace FafCarsApi.Controllers;
 [Route("Api/v{v:apiVersion}/[controller]")]
 public class AuthController(
   AuthService authService,
-  UserService userService,
-  CacheService cache
+  UserService userService
 ) : Controller {
   [HttpPost("Login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
@@ -38,11 +37,7 @@ public class AuthController(
       RefreshToken = refreshToken
     };
 
-    await cache.Db.StringSetAsync(
-      $"{CacheService.Keys.RefreshTokens}:{user.Id.ToString()}",
-      refreshToken,
-      TimeSpan.FromHours(1)
-    );
+    authService.CacheRefreshToken(user.Id, refreshToken);
 
     return response;
   }
@@ -63,11 +58,7 @@ public class AuthController(
       RefreshToken = refreshToken
     };
 
-    await cache.Db.StringSetAsync(
-      $"{CacheService.Keys.RefreshTokens}:{newUser.Id.ToString()}",
-      refreshToken,
-      TimeSpan.FromHours(1)
-    );
+    authService.CacheRefreshToken(newUser.Id, refreshToken);
 
     return response;
   }
@@ -88,16 +79,16 @@ public class AuthController(
       return NotFound("user not found");
     }
 
-    string? refreshToken = await cache.Db.StringGetAsync($"{CacheService.Keys.RefreshTokens}:{userIdStr}");
+    string? refreshToken = await authService.GetCachedRefreshToken(userId);
 
-    if (refreshToken == null) {
+    if (refreshToken == null || refreshToken != responseDto.RefreshToken) {
       return Unauthorized();
     }
 
-    string newToken = authService.GenerateAccessToken(user);
+    string newAccessToken = authService.GenerateAccessToken(user);
 
     return new JwtResponseDto {
-      Token = newToken,
+      Token = newAccessToken,
       RefreshToken = responseDto.RefreshToken
     };
   }
