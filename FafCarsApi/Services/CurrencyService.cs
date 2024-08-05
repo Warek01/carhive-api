@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using FafCarsApi.Data;
 using FafCarsApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.Distributed;
 using FafCarsApi.Extensions;
 using FafCarsApi.Helpers;
 
@@ -12,7 +11,7 @@ namespace FafCarsApi.Services;
 public class CurrencyService(
   FafCarsDbContext dbContext,
   IConfiguration config,
-  IDistributedCache cache,
+  CacheService cache,
   HttpClient httpClient
 ) {
   private class ApiResponse {
@@ -21,31 +20,39 @@ public class CurrencyService(
       public DateTime LastUpdatedAt { get; set; }
     }
 
+    public class ApiData {
+      [JsonPropertyName("code")]
+      public string Code { get; set; } = null!;
+
+      [JsonPropertyName("value")]
+      public double Value { get; set; }
+    }
+
     [JsonPropertyName("meta")]
     public ApiMeta Meta { get; set; } = null!;
 
     [JsonPropertyName("data")]
-    public Dictionary<string, CurrencyData> Data { get; set; } = null!;
+    public Dictionary<string, ApiData> Data { get; set; } = null!;
   }
 
-  public async Task<Currency> GetCurrency() {
-    var res = await cache.GetAsync<Currency>("currency");
+  public async Task<double?> GetCurrency(string code) {
+    var res = (double?)await cache.HashGetAsync("currency", code);
 
     if (res != null) {
       return res;
     }
 
     Currency currency = await FetchCurrency();
+    var hashTasks = new List<Task>(currency.Data.Count);
 
-    await cache.SetAsync(
-      "currency",
-      currency,
-      new DistributedCacheEntryOptions {
-        AbsoluteExpiration = currency.Timestamp.Date.AddDays(1)
-      }
-    );
+    foreach (KeyValuePair<string, double> pair in currency.Data) {
+      hashTasks.Add(cache.HashSetAsync("currency", pair.Key.ToLower(), pair.Value));
+    }
 
-    return currency;
+    await Task.WhenAll(hashTasks);
+    await cache.KeyExpireAsync("currency", currency.Timestamp.Date.AddDays(1) - DateTime.Now);
+
+    return currency.Data.TryGetValue(code, out double value) ? value : null;
   }
 
   private async Task<Currency> FetchCurrency() {
@@ -68,7 +75,9 @@ public class CurrencyService(
 
     currency = new Currency {
       Timestamp = DateTime.Now,
-      Data = apiResponse.Data,
+      Data = apiResponse.Data
+        .Select(pair => new KeyValuePair<string, double>(pair.Key, pair.Value.Value))
+        .ToDictionary(),
     };
 
     await dbContext.AddAsync(currency);

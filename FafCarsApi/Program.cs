@@ -158,12 +158,13 @@ public static class Program {
   }
 
   private static void SetupCache() {
-    _builder.Services.AddStackExchangeRedisCache(options => {
-      options.Configuration = _builder.Configuration.GetConnectionString("Redis")!;
-      options.ConfigurationOptions = new ConfigurationOptions {
-        AbortOnConnectFail = true,
-        EndPoints = { options.Configuration }
-      };
+    ConnectionMultiplexer muxer = ConnectionMultiplexer.Connect(new ConfigurationOptions {
+      EndPoints = { _builder.Configuration.GetConnectionString("Redis")! },
+      Protocol = RedisProtocol.Resp3,
+      AbortOnConnectFail = true,
+      AllowAdmin = false,
     });
+
+    _builder.Services.AddSingleton(muxer);
   }
 }
