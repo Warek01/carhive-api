@@ -2,6 +2,6 @@
 dist
 build
 obj
-wwwroot/*.webp
+FafCarsApi/wwwroot/*.webp
 .idea
 venv

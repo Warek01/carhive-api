@@ -1,0 +1,5026 @@
+[
+  {
+    "brandName": "Acura",
+    "name": "2.2CL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "2.3CL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "3.0CL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "3.2CL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "ILX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "Integra"
+  },
+  {
+    "brandName": "Acura",
+    "name": "Legend"
+  },
+  {
+    "brandName": "Acura",
+    "name": "MDX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "NSX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "RDX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "3.5 RL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "RL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "RSX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "SLX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "2.5TL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "3.2TL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "TL"
+  },
+  {
+    "brandName": "Acura",
+    "name": "TSX"
+  },
+  {
+    "brandName": "Acura",
+    "name": "Vigor"
+  },
+  {
+    "brandName": "Acura",
+    "name": "ZDX"
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "name": "164"
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "name": "8C Competizione"
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "name": "GTV-6"
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "name": "Milano"
+  },
+  {
+    "brandName": "Alfa Romeo",
+    "name": "Spider"
+  },
+  {
+    "brandName": "AMC",
+    "name": "Alliance"
+  },
+  {
+    "brandName": "AMC",
+    "name": "Concord"
+  },
+  {
+    "brandName": "AMC",
+    "name": "Eagle"
+  },
+  {
+    "brandName": "AMC",
+    "name": "Encore"
+  },
+  {
+    "brandName": "AMC",
+    "name": "Spirit"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "DB7"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "DB9"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "DBS"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "Lagonda"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "Rapide"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "V12 Vantage"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "V8 Vantage"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "Vanquish"
+  },
+  {
+    "brandName": "Aston Martin",
+    "name": "Virage"
+  },
+  {
+    "brandName": "Audi",
+    "name": "100"
+  },
+  {
+    "brandName": "Audi",
+    "name": "200"
+  },
+  {
+    "brandName": "Audi",
+    "name": "4000"
+  },
+  {
+    "brandName": "Audi",
+    "name": "5000"
+  },
+  {
+    "brandName": "Audi",
+    "name": "80"
+  },
+  {
+    "brandName": "Audi",
+    "name": "90"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A3"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A4"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A5"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A6"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A7"
+  },
+  {
+    "brandName": "Audi",
+    "name": "A8"
+  },
+  {
+    "brandName": "Audi",
+    "name": "allroad"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Cabriolet"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Coupe"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Q3"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Q5"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Q7"
+  },
+  {
+    "brandName": "Audi",
+    "name": "Quattro"
+  },
+  {
+    "brandName": "Audi",
+    "name": "R8"
+  },
+  {
+    "brandName": "Audi",
+    "name": "RS 4"
+  },
+  {
+    "brandName": "Audi",
+    "name": "RS 5"
+  },
+  {
+    "brandName": "Audi",
+    "name": "RS 6"
+  },
+  {
+    "brandName": "Audi",
+    "name": "S4"
+  },
+  {
+    "brandName": "Audi",
+    "name": "S5"
+  },
+  {
+    "brandName": "Audi",
+    "name": "S6"
+  },
+  {
+    "brandName": "Audi",
+    "name": "S7"
+  },
+  {
+    "brandName": "Audi",
+    "name": "S8"
+  },
+  {
+    "brandName": "Audi",
+    "name": "TT"
+  },
+  {
+    "brandName": "Audi",
+    "name": "TT RS"
+  },
+  {
+    "brandName": "Audi",
+    "name": "TTS"
+  },
+  {
+    "brandName": "Audi",
+    "name": "V8 Quattro"
+  },
+  {
+    "brandName": "Avanti",
+    "name": "Convertible"
+  },
+  {
+    "brandName": "Avanti",
+    "name": "Coupe"
+  },
+  {
+    "brandName": "Avanti",
+    "name": "Sedan"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Arnage"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Azure"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Brooklands"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Continental"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Corniche"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Eight"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Mulsanne"
+  },
+  {
+    "brandName": "Bentley",
+    "name": "Turbo R"
+  },
+  {
+    "brandName": "BMW",
+    "name": "128i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "135i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "135is"
+  },
+  {
+    "brandName": "BMW",
+    "name": "318i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "318iC"
+  },
+  {
+    "brandName": "BMW",
+    "name": "318iS"
+  },
+  {
+    "brandName": "BMW",
+    "name": "318ti"
+  },
+  {
+    "brandName": "BMW",
+    "name": "320i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "323ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "323i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "323is"
+  },
+  {
+    "brandName": "BMW",
+    "name": "323iT"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325e"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325es"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325is"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325iX"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "328Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "328i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "328iS"
+  },
+  {
+    "brandName": "BMW",
+    "name": "328xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "330Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "330i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "330xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "335d"
+  },
+  {
+    "brandName": "BMW",
+    "name": "335i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "335is"
+  },
+  {
+    "brandName": "BMW",
+    "name": "335xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "ActiveHybrid 3"
+  },
+  {
+    "brandName": "BMW",
+    "name": "325"
+  },
+  {
+    "brandName": "BMW",
+    "name": "524td"
+  },
+  {
+    "brandName": "BMW",
+    "name": "525i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "525xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "528e"
+  },
+  {
+    "brandName": "BMW",
+    "name": "528i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "528iT"
+  },
+  {
+    "brandName": "BMW",
+    "name": "528xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "530i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "530iT"
+  },
+  {
+    "brandName": "BMW",
+    "name": "530xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "533i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "535i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "535i Gran Turismo"
+  },
+  {
+    "brandName": "BMW",
+    "name": "535xi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "540i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "545i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "550i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "550i Gran Turismo"
+  },
+  {
+    "brandName": "BMW",
+    "name": "ActiveHybrid 5"
+  },
+  {
+    "brandName": "BMW",
+    "name": "633CSi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "635CSi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "640i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "640i Gran Coupe"
+  },
+  {
+    "brandName": "BMW",
+    "name": "645Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "650i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "650i Gran Coupe"
+  },
+  {
+    "brandName": "BMW",
+    "name": "L6"
+  },
+  {
+    "brandName": "BMW",
+    "name": "733i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "735i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "735iL"
+  },
+  {
+    "brandName": "BMW",
+    "name": "740i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "740iL"
+  },
+  {
+    "brandName": "BMW",
+    "name": "740Li"
+  },
+  {
+    "brandName": "BMW",
+    "name": "745i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "745Li"
+  },
+  {
+    "brandName": "BMW",
+    "name": "750i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "750iL"
+  },
+  {
+    "brandName": "BMW",
+    "name": "750Li"
+  },
+  {
+    "brandName": "BMW",
+    "name": "760i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "760Li"
+  },
+  {
+    "brandName": "BMW",
+    "name": "ActiveHybrid 7"
+  },
+  {
+    "brandName": "BMW",
+    "name": "Alpina B7"
+  },
+  {
+    "brandName": "BMW",
+    "name": "840Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "850Ci"
+  },
+  {
+    "brandName": "BMW",
+    "name": "850CSi"
+  },
+  {
+    "brandName": "BMW",
+    "name": "850i"
+  },
+  {
+    "brandName": "BMW",
+    "name": "L7"
+  },
+  {
+    "brandName": "BMW",
+    "name": "1 Series M"
+  },
+  {
+    "brandName": "BMW",
+    "name": "M Coupe"
+  },
+  {
+    "brandName": "BMW",
+    "name": "M Roadster"
+  },
+  {
+    "brandName": "BMW",
+    "name": "M3"
+  },
+  {
+    "brandName": "BMW",
+    "name": "M5"
+  },
+  {
+    "brandName": "BMW",
+    "name": "M6"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X5 M"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X6 M"
+  },
+  {
+    "brandName": "BMW",
+    "name": "ActiveHybrid X6"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X1"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X3"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X5"
+  },
+  {
+    "brandName": "BMW",
+    "name": "X6"
+  },
+  {
+    "brandName": "BMW",
+    "name": "Z3"
+  },
+  {
+    "brandName": "BMW",
+    "name": "Z4"
+  },
+  {
+    "brandName": "BMW",
+    "name": "Z8"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Veyron"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Chiron"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Divo"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Centodieci"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "La Voiture Noire"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "EB110"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Bolide"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 35"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 57"
+  },
+  {
+    "brandName": "Bugatti",
+    "name": "Type 41 Royale"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Century"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Electra"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Enclave"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Encore"
+  },
+  {
+    "brandName": "Buick",
+    "name": "LaCrosse"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Le Sabre"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Lucerne"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Park Avenue"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Rainier"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Reatta"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Regal"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Rendezvous"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Riviera"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Roadmaster"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Skyhawk"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Skylark"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Somerset"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Terraza"
+  },
+  {
+    "brandName": "Buick",
+    "name": "Verano"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Allante"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "ATS"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Brougham"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Catera"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Cimarron"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "CTS"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "De Ville"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "DTS"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Eldorado"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Escalade"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Escalade ESV"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Escalade EXT"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Fleetwood"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "Seville"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "SRX"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "STS"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "XLR"
+  },
+  {
+    "brandName": "Cadillac",
+    "name": "XTS"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Astro"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Avalanche"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Aveo"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Aveo5"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Beretta"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Blazer"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Camaro"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Caprice"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Captiva Sport"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Cavalier"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Celebrity"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Chevette"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Citation"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Cobalt"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Colorado"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Corsica"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Corvette"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Cruze"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "El Camino"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Equinox"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Express Van"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "G Van"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "HHR"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Impala"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Kodiak C4500"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Lumina"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Lumina APV"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "LUV"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Malibu"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Metro"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Monte Carlo"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Nova"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Prizm"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "S10 Blazer"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "S10 Pickup"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Silverado and other C/K1500"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Silverado and other C/K2500"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Silverado and other C/K3500"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Sonic"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Spark"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Spectrum"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Sprint"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "SSR"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Suburban"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Tahoe"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Tracker"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "TrailBlazer"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "TrailBlazer EXT"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Traverse"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Uplander"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Venture"
+  },
+  {
+    "brandName": "Chevrolet",
+    "name": "Volt"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "200"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "300"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "300M"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Aspen"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Caravan"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Cirrus"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Concorde"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Conquest"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Cordoba"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Crossfire"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "E Class"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Fifth Avenue"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Grand Voyager"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Imperial"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Intrepid"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Laser"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "LeBaron"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "LHS"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Neon"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "New Yorker"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Newport"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Pacifica"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Prowler"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "PT Cruiser"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Sebring"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "TC by Maserati"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Town &amp; Country"
+  },
+  {
+    "brandName": "Chrysler",
+    "name": "Voyager"
+  },
+  {
+    "brandName": "Daewoo",
+    "name": "Lanos"
+  },
+  {
+    "brandName": "Daewoo",
+    "name": "Leganza"
+  },
+  {
+    "brandName": "Daewoo",
+    "name": "Nubira"
+  },
+  {
+    "brandName": "Daihatsu",
+    "name": "Charade"
+  },
+  {
+    "brandName": "Daihatsu",
+    "name": "Rocky"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "200SX"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "210"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "280ZX"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "300ZX"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "310"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "510"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "720"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "810"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "Maxima"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "Pulsar"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "Sentra"
+  },
+  {
+    "brandName": "Datsun",
+    "name": "Stanza"
+  },
+  {
+    "brandName": "DeLorean",
+    "name": "DMC-12"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "400"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "600"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Aries"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Avenger"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Caliber"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Caravan"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Challenger"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Charger"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Colt"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Conquest"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "D/W Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Dakota"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Dart"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Daytona"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Diplomat"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Durango"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Dynasty"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Grand Caravan"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Intrepid"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Journey"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Lancer"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Magnum"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Mirada"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Monaco"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Neon"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Nitro"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Omni"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Raider"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram 1500 Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram 2500 Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram 3500 Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram 4500 Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram 50 Truck"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "RAM C/V"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram SRT-10"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram Van"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ram Wagon"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Ramcharger"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Rampage"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Shadow"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Spirit"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Sprinter"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "SRT-4"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "St. Regis"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Stealth"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Stratus"
+  },
+  {
+    "brandName": "Dodge",
+    "name": "Viper"
+  },
+  {
+    "brandName": "Eagle",
+    "name": "Medallion"
+  },
+  {
+    "brandName": "Eagle",
+    "name": "Premier"
+  },
+  {
+    "brandName": "Eagle",
+    "name": "Summit"
+  },
+  {
+    "brandName": "Eagle",
+    "name": "Talon"
+  },
+  {
+    "brandName": "Eagle",
+    "name": "Vision"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "308 GTB Quattrovalvole"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "308 GTBI"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "308 GTS Quattrovalvole"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "308 GTSI"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "328 GTB"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "328 GTS"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "348 GTB"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "348 GTS"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "348 Spider"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "348 TB"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "348 TS"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "360"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "456 GT"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "456M GT"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "458 Italia"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "512 BBi"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "512M"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "512TR"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "550 Maranello"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "575M Maranello"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "599 GTB Fiorano"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "599 GTO"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "612 Scaglietti"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "California"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "Enzo"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "F355"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "F40"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "F430"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "F50"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "FF"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "Mondial"
+  },
+  {
+    "brandName": "Ferrari",
+    "name": "Testarossa"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "2000 Spider"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "500"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "Bertone X1/9"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "Brava"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "Pininfarina Spider"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "Strada"
+  },
+  {
+    "brandName": "FIAT",
+    "name": "X1/9"
+  },
+  {
+    "brandName": "Fisker",
+    "name": "Karma"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Aerostar"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Aspire"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Bronco"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Bronco II"
+  },
+  {
+    "brandName": "Ford",
+    "name": "C-MAX"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Club Wagon"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Contour"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Courier"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Crown Victoria"
+  },
+  {
+    "brandName": "Ford",
+    "name": "E-150 and Econoline 150"
+  },
+  {
+    "brandName": "Ford",
+    "name": "E-250 and Econoline 250"
+  },
+  {
+    "brandName": "Ford",
+    "name": "E-350 and Econoline 350"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Edge"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Escape"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Escort"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Excursion"
+  },
+  {
+    "brandName": "Ford",
+    "name": "EXP"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Expedition"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Expedition EL"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Explorer"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Explorer Sport Trac"
+  },
+  {
+    "brandName": "Ford",
+    "name": "F100"
+  },
+  {
+    "brandName": "Ford",
+    "name": "F150"
+  },
+  {
+    "brandName": "Ford",
+    "name": "F250"
+  },
+  {
+    "brandName": "Ford",
+    "name": "F350"
+  },
+  {
+    "brandName": "Ford",
+    "name": "F450"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Fairmont"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Festiva"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Fiesta"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Five Hundred"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Flex"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Focus"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Freestar"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Freestyle"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Fusion"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Granada"
+  },
+  {
+    "brandName": "Ford",
+    "name": "GT"
+  },
+  {
+    "brandName": "Ford",
+    "name": "LTD"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Mustang"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Probe"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Ranger"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Taurus"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Taurus X"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Tempo"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Thunderbird"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Transit Connect"
+  },
+  {
+    "brandName": "Ford",
+    "name": "Windstar"
+  },
+  {
+    "brandName": "Ford",
+    "name": "ZX2 Escort"
+  },
+  {
+    "brandName": "Freightliner",
+    "name": "Sprinter"
+  },
+  {
+    "brandName": "Geo",
+    "name": "Metro"
+  },
+  {
+    "brandName": "Geo",
+    "name": "Prizm"
+  },
+  {
+    "brandName": "Geo",
+    "name": "Spectrum"
+  },
+  {
+    "brandName": "Geo",
+    "name": "Storm"
+  },
+  {
+    "brandName": "Geo",
+    "name": "Tracker"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Acadia"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Caballero"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Canyon"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Envoy"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Envoy XL"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Envoy XUV"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Jimmy"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Rally Wagon"
+  },
+  {
+    "brandName": "GMC",
+    "name": "S15 Jimmy"
+  },
+  {
+    "brandName": "GMC",
+    "name": "S15 Pickup"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Safari"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Savana"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Sierra C/K1500"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Sierra C/K2500"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Sierra C/K3500"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Sonoma"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Suburban"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Syclone"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Terrain"
+  },
+  {
+    "brandName": "GMC",
+    "name": "TopKick C4500"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Typhoon"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Vandura"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Yukon"
+  },
+  {
+    "brandName": "GMC",
+    "name": "Yukon XL"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Accord"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Civic"
+  },
+  {
+    "brandName": "Honda",
+    "name": "CR-V"
+  },
+  {
+    "brandName": "Honda",
+    "name": "CR-Z"
+  },
+  {
+    "brandName": "Honda",
+    "name": "CRX"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Accord Crosstour"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Crosstour"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Del Sol"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Element"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Fit"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Insight"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Odyssey"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Passport"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Pilot"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Prelude"
+  },
+  {
+    "brandName": "Honda",
+    "name": "Ridgeline"
+  },
+  {
+    "brandName": "Honda",
+    "name": "S2000"
+  },
+  {
+    "brandName": "HUMMER",
+    "name": "H1"
+  },
+  {
+    "brandName": "HUMMER",
+    "name": "H2"
+  },
+  {
+    "brandName": "HUMMER",
+    "name": "H3"
+  },
+  {
+    "brandName": "HUMMER",
+    "name": "H3T"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Accent"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Azera"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Elantra"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Elantra Coupe"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Elantra Touring"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Entourage"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Equus"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Excel"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Genesis"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Genesis Coupe"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Santa Fe"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Scoupe"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Sonata"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Tiburon"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Tucson"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Veloster"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "Veracruz"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "XG300"
+  },
+  {
+    "brandName": "Hyundai",
+    "name": "XG350"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "EX35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "EX37"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "FX35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "FX37"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "FX45"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "FX50"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "G20"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "G25"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "G35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "G37"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "I30"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "I35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "J30"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "JX35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M30"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M35"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M35h"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M37"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M45"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "M56"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "Q45"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "QX4"
+  },
+  {
+    "brandName": "Infiniti",
+    "name": "QX56"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Amigo"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Ascender"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Axiom"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Hombre"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "i-280"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "i-290"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "i-350"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "i-370"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "I-Mark"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Impulse"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Oasis"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Rodeo"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Stylus"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Trooper"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "Trooper II"
+  },
+  {
+    "brandName": "Isuzu",
+    "name": "VehiCROSS"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "S-Type"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "X-Type"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XF"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ12"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ6"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJR"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJR-S"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJS"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ Vanden Plas"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ8"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ8 L"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XJ Sport"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XK8"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XK"
+  },
+  {
+    "brandName": "Jaguar",
+    "name": "XKR"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Cherokee"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "CJ"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Comanche"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Commander"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Compass"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Grand Cherokee"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Grand Wagoneer"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Liberty"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Patriot"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Scrambler"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Wagoneer"
+  },
+  {
+    "brandName": "Jeep",
+    "name": "Wrangler"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Amanti"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Borrego"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Forte"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Forte Koup"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Optima"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Rio"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Rio5"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Rondo"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Sedona"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Sephia"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Sorento"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Soul"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Spectra"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Spectra5"
+  },
+  {
+    "brandName": "Kia",
+    "name": "Sportage"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Aventador"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Countach"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Diablo"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Gallardo"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Jalpa"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "LM002"
+  },
+  {
+    "brandName": "Lamborghini",
+    "name": "Murcielago"
+  },
+  {
+    "brandName": "Lancia",
+    "name": "Beta"
+  },
+  {
+    "brandName": "Lancia",
+    "name": "Zagato"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Defender"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Discovery"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Freelander"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "LR2"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "LR3"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "LR4"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Range Rover"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Range Rover Evoque"
+  },
+  {
+    "brandName": "Land Rover",
+    "name": "Range Rover Sport"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "CT 200h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "ES 250"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "ES 300"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "ES 300h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "ES 330"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "ES 350"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 300"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 350"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 400"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 430"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 450h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GS 460"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GX 460"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "GX 470"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "HS 250h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS 250"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS 250C"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS 300"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS 350"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS 350C"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "IS F"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LFA"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LS 400"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LS 430"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LS 460"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LS 600h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LX 450"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LX 470"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "LX 570"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "RX 300"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "RX 330"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "RX 350"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "RX 400h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "RX 450h"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "SC 300"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "SC 400"
+  },
+  {
+    "brandName": "Lexus",
+    "name": "SC 430"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Aviator"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Blackwood"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Continental"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "LS"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Mark LT"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Mark VI"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Mark VII"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Mark VIII"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "MKS"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "MKT"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "MKX"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "MKZ"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Navigator"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Navigator L"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Town Car"
+  },
+  {
+    "brandName": "Lincoln",
+    "name": "Zephyr"
+  },
+  {
+    "brandName": "Lotus",
+    "name": "Elan"
+  },
+  {
+    "brandName": "Lotus",
+    "name": "Elise"
+  },
+  {
+    "brandName": "Lotus",
+    "name": "Esprit"
+  },
+  {
+    "brandName": "Lotus",
+    "name": "Evora"
+  },
+  {
+    "brandName": "Lotus",
+    "name": "Exige"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "430"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "Biturbo"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "Coupe"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "GranSport"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "GranTurismo"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "Quattroporte"
+  },
+  {
+    "brandName": "Maserati",
+    "name": "Spyder"
+  },
+  {
+    "brandName": "Maybach",
+    "name": "57"
+  },
+  {
+    "brandName": "Maybach",
+    "name": "62"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "323"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "626"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "929"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "B-Series Pickup"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "CX-5"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "CX-7"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "CX-9"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "GLC"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDA2"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDA3"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDA5"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDA6"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDASPEED3"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MAZDASPEED6"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Miata MX5"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Millenia"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MPV"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MX3"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "MX6"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Navajo"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Protege"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Protege5"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "RX-7"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "RX-8"
+  },
+  {
+    "brandName": "Mazda",
+    "name": "Tribute"
+  },
+  {
+    "brandName": "McLaren",
+    "name": "MP4-12C"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "190D"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "190E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "240D"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300CD"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300CE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300D"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300TD"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300TE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C250d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C300e"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C300h"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C230"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C240"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C280"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C300"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C32 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C36 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C43 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "C63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL600"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CL65 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK430"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLK63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLS500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLS550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLS55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "CLS63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "260E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "280CE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "280E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "400E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "500E"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E300 Hybrid"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E350e"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E300"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E320 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E320 CDI"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E350 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E400 Hybrid"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E420"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E430"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "E63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GL320 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GL320 CDI"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GL350 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GL450"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GL550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLK350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML320 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML320 CDI"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML350 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML430"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML450 Hybrid"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "ML63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R320 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R320 CDI"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R350 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "R63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300SD"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300SDL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300SE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "350SD"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "350SDL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "380SE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "380SEC"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "380SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "400SE"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "400SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "420SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "500SEC"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "500SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "560SEC"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "560SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "600SEC"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "600SEL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S350 Bluetec"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S400 Hybrid"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S420"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S430"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S600"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "S65 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "300SL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "380SL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "380SLC"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "500SL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "560SL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "600SL"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL600"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SL65 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK230"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK280"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK300"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK320"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK32 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLK55 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLR"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "SLS AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "Sprinter"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A160"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "A45 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "B250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "G350d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA180"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA200"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA220"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLA45 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC250"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC300"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC350e"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC43 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLC63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE300d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE350"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE43 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE450"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLE63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS350d"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS450"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS500"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS550"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS580"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "GLS63 AMG"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "EQC400"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "Maybach S560"
+  },
+  {
+    "brandName": "Mercedes-Benz",
+    "name": "Maybach S650"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Capri"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Cougar"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Grand Marquis"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Lynx"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Marauder"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Mariner"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Marquis"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Milan"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Montego"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Monterey"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Mountaineer"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Mystique"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Sable"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Topaz"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Tracer"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Villager"
+  },
+  {
+    "brandName": "Mercury",
+    "name": "Zephyr"
+  },
+  {
+    "brandName": "Merkur",
+    "name": "Scorpio"
+  },
+  {
+    "brandName": "Merkur",
+    "name": "XR4Ti"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper Clubman"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper S Clubman"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper Countryman"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper S Countryman"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper Coupe"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper S Coupe"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper S"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper Roadster"
+  },
+  {
+    "brandName": "MINI",
+    "name": "Cooper S Roadster"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "3000GT"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Cordia"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Diamante"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Eclipse"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Endeavor"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Expo"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Galant"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "i"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Lancer"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Lancer Evolution"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Mighty Max"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Mirage"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Montero"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Montero Sport"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Outlander"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Outlander Sport"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Precis"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Raider"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Sigma"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Starion"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Tredia"
+  },
+  {
+    "brandName": "Mitsubishi",
+    "name": "Van"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "200SX"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "240SX"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "300ZX"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "350Z"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "370Z"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Altima"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Armada"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Axxess"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Cube"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Frontier"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "GT-R"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Juke"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Leaf"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Maxima"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Murano"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Murano CrossCabriolet"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "NV"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "NX"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Pathfinder"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Pulsar"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Quest"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Rogue"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Sentra"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Stanza"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Titan"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Van"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Versa"
+  },
+  {
+    "brandName": "Nissan",
+    "name": "Xterra"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "88"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Achieva"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Alero"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Aurora"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Bravada"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Custom Cruiser"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Cutlass"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Cutlass Calais"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Cutlass Ciera"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Cutlass Supreme"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Firenza"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Intrigue"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Ninety-Eight"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Omega"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Regency"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Silhouette"
+  },
+  {
+    "brandName": "Oldsmobile",
+    "name": "Toronado"
+  },
+  {
+    "brandName": "Peugeot",
+    "name": "405"
+  },
+  {
+    "brandName": "Peugeot",
+    "name": "504"
+  },
+  {
+    "brandName": "Peugeot",
+    "name": "505"
+  },
+  {
+    "brandName": "Peugeot",
+    "name": "604"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Acclaim"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Arrow"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Breeze"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Caravelle"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Champ"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Colt"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Conquest"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Gran Fury"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Grand Voyager"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Horizon"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Laser"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Neon"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Prowler"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Reliant"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Sapporo"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Scamp"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Sundance"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Trailduster"
+  },
+  {
+    "brandName": "Plymouth",
+    "name": "Voyager"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "1000"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "6000"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Aztek"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Bonneville"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Catalina"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Fiero"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Firebird"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "G3"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "G5"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "G6"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "G8"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Grand Am"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Grand Prix"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "GTO"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "J2000"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Le Mans"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Montana"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Parisienne"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Phoenix"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Safari"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Solstice"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Sunbird"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Sunfire"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Torrent"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Trans Sport"
+  },
+  {
+    "brandName": "Pontiac",
+    "name": "Vibe"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "911"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "924"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "928"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "944"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "968"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "Boxster"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "Carrera GT"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "Cayenne"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "Cayman"
+  },
+  {
+    "brandName": "Porsche",
+    "name": "Panamera"
+  },
+  {
+    "brandName": "RAM",
+    "name": "1500"
+  },
+  {
+    "brandName": "RAM",
+    "name": "2500"
+  },
+  {
+    "brandName": "RAM",
+    "name": "3500"
+  },
+  {
+    "brandName": "RAM",
+    "name": "4500"
+  },
+  {
+    "brandName": "Renault",
+    "name": "18i"
+  },
+  {
+    "brandName": "Renault",
+    "name": "Fuego"
+  },
+  {
+    "brandName": "Renault",
+    "name": "Le Car"
+  },
+  {
+    "brandName": "Renault",
+    "name": "R18"
+  },
+  {
+    "brandName": "Renault",
+    "name": "Sportwagon"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Camargue"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Corniche"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Ghost"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Park Ward"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Phantom"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Silver Dawn"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Silver Seraph"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Silver Spirit"
+  },
+  {
+    "brandName": "Rolls-Royce",
+    "name": "Silver Spur"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9-2X"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9-3"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9-4X"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9-5"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9-7X"
+  },
+  {
+    "brandName": "Saab",
+    "name": "900"
+  },
+  {
+    "brandName": "Saab",
+    "name": "9000"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Astra"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Aura"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "ION"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "L100"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "L200"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "L300"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "LS"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "LW1"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "LW2"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "LW200"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "LW300"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Outlook"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Relay"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SC1"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SC2"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Sky"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SL"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SL1"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SL2"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SW1"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "SW2"
+  },
+  {
+    "brandName": "Saturn",
+    "name": "Vue"
+  },
+  {
+    "brandName": "Scion",
+    "name": "FR-S"
+  },
+  {
+    "brandName": "Scion",
+    "name": "iQ"
+  },
+  {
+    "brandName": "Scion",
+    "name": "tC"
+  },
+  {
+    "brandName": "Scion",
+    "name": "xA"
+  },
+  {
+    "brandName": "Scion",
+    "name": "xB"
+  },
+  {
+    "brandName": "Scion",
+    "name": "xD"
+  },
+  {
+    "brandName": "Smart",
+    "name": "fortwo"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Fabia"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Octavia"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Superb"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Kodiaq"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Karoq"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Kamiq"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Scala"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Citigo"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Rapid"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Enyaq"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Roomster"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Yeti"
+  },
+  {
+    "brandName": "Skoda",
+    "name": "Felicia"
+  },
+  {
+    "brandName": "SRT",
+    "name": "Viper"
+  },
+  {
+    "brandName": "Sterling",
+    "name": "825"
+  },
+  {
+    "brandName": "Sterling",
+    "name": "827"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Baja"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Brat"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "BRZ"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Forester"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Impreza"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Impreza WRX"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Justy"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "L Series"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Legacy"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Loyale"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Outback"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "SVX"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "Tribeca"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "XT"
+  },
+  {
+    "brandName": "Subaru",
+    "name": "XV Crosstrek"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Aerio"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Equator"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Esteem"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Forenza"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Grand Vitara"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Kizashi"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Reno"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Samurai"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Sidekick"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Swift"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "SX4"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Verona"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "Vitara"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "X-90"
+  },
+  {
+    "brandName": "Suzuki",
+    "name": "XL7"
+  },
+  {
+    "brandName": "Tesla",
+    "name": "Roadster"
+  },
+  {
+    "brandName": "Tesla",
+    "name": "Model S"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "4Runner"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Avalon"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Camry"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Celica"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Corolla"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Corona"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Cressida"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Echo"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "FJ Cruiser"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Highlander"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Land Cruiser"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Matrix"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "MR2"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "MR2 Spyder"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Paseo"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Previa"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Prius"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Prius C"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Prius V"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "RAV4"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Sequoia"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Sienna"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Solara"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Starlet"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Supra"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "T100"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Tacoma"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Tercel"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Tundra"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Van"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Venza"
+  },
+  {
+    "brandName": "Toyota",
+    "name": "Yaris"
+  },
+  {
+    "brandName": "Triumph",
+    "name": "TR7"
+  },
+  {
+    "brandName": "Triumph",
+    "name": "TR8"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Beetle"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Cabrio"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Cabriolet"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "CC"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Corrado"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Dasher"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Eos"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Eurovan"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Fox"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "GLI"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Golf R"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "GTI"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Golf"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Rabbit"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Jetta"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Passat"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Phaeton"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Pickup"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Quantum"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "R32"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Routan"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Scirocco"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Tiguan"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Touareg"
+  },
+  {
+    "brandName": "Volkswagen",
+    "name": "Vanagon"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "240"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "260"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "740"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "760"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "780"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "850"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "940"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "960"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "C30"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "C70"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "S40"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "S60"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "S70"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "S80"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "S90"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "V40"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "V50"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "V70"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "V90"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "XC60"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "XC70"
+  },
+  {
+    "brandName": "Volvo",
+    "name": "XC90"
+  },
+  {
+    "brandName": "Yugo",
+    "name": "GV"
+  },
+  {
+    "brandName": "Yugo",
+    "name": "GVC"
+  },
+  {
+    "brandName": "Yugo",
+    "name": "GVL"
+  },
+  {
+    "brandName": "Yugo",
+    "name": "GVS"
+  },
+  {
+    "brandName": "Yugo",
+    "name": "GVX"
+  }
+]
