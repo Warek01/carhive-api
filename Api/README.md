@@ -9,6 +9,7 @@
 - Jwt:Key (512-bit string)
 - ConnectionStrings:Default
 - ApiKey:CurrencyApi
+- Oauth:Google:ClientId
 
 In development, make db migrations using the update-db.sh script. \
 To add all the cities of some country in the database, run add_cities.py script.
