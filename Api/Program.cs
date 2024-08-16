@@ -143,6 +143,7 @@ public static class Program {
     dataSourceBuilder.MapEnum<CarTransmission>();
     dataSourceBuilder.MapEnum<ListingStatus>();
     dataSourceBuilder.MapEnum<ListingAction>();
+    dataSourceBuilder.MapEnum<OauthIdentityProvider>();
     dataSourceBuilder.MapEnum<ReportType>();
     dataSourceBuilder.EnableDynamicJson();
     dataSourceBuilder.EnableParameterLogging();

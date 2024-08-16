@@ -44,6 +44,7 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<ListingStatus>();
     modelBuilder.HasPostgresEnum<ListingAction>();
     modelBuilder.HasPostgresEnum<ReportType>();
+    modelBuilder.HasPostgresEnum<OauthIdentityProvider>();
 
     modelBuilder.Entity<Report>()
       .Property(e => e.Id)

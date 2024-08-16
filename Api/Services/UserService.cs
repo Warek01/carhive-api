@@ -4,7 +4,7 @@ using Api.Dtos.Request;
 using Api.Enums;
 using Api.Models;
 using AutoMapper;
-using Api.Dtos;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -72,6 +72,22 @@ public class UserService(
     );
 
     user.Roles = [UserRole.User];
+
+    await dbContext.Users.AddAsync(user);
+    await dbContext.SaveChangesAsync();
+    return user;
+  }
+
+  public async Task<User> RegisterUser(GoogleJsonWebSignature.Payload payload, string username) {
+    var user = new User {
+      Provider = OauthIdentityProvider.Google,
+      Email = payload.Email,
+      Username = username,
+      FirstName = payload.GivenName,
+      LastName = payload.FamilyName,
+      Picture = payload.Picture,
+      Roles = [UserRole.User]
+    };
 
     await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();

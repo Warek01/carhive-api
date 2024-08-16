@@ -14,10 +14,25 @@ public class User {
   [StringLength(255)]
   [Column("username")]
   public string Username { get; set; } = null!;
+  
+  [StringLength(255)]
+  [Column("first_name")]
+  public string? FirstName { get; set; }
+  
+  [StringLength(255)]
+  [Column("last_name")]
+  public string? LastName { get; set; }
+  
+  [StringLength(255)]
+  [Column("picture")]
+  public string? Picture { get; set; }
 
   [StringLength(255)]
   [Column("password")]
-  public string Password { get; set; } = null!;
+  public string? Password { get; set; }
+  
+  [Column("provider")]
+  public OauthIdentityProvider? Provider { get; set; }
 
   [StringLength(255)]
   [Column("email")]

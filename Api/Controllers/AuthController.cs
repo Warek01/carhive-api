@@ -1,10 +1,12 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using Api.Dtos.Request;
 using Api.Dtos.Response;
 using Api.Models;
 using Api.Services;
 using Asp.Versioning;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,9 +16,10 @@ namespace Api.Controllers;
 [ApiVersion(1)]
 [AllowAnonymous]
 [Route("Api/v{v:apiVersion}/[controller]")]
-public class AuthController(
+public partial class AuthController(
   AuthService authService,
-  UserService userService
+  UserService userService,
+  IConfiguration config
 ) : Controller {
   [HttpPost("Login")]
   public async Task<ActionResult<JwtResponseDto>> Login([FromBody] LoginDto loginDto) {
@@ -42,6 +45,33 @@ public class AuthController(
     return response;
   }
 
+  [HttpPost("Google-Login")]
+  public async Task<ActionResult<JwtResponseDto>> GoogleLogin([FromBody] OauthLoginDto oauthLoginDto) {
+    try {
+      var payload = await ValidateGoogleToken(oauthLoginDto.Token);
+      string username = NameToUsername(payload.Name);
+      User? user = await userService.FindUserByUsername(username);
+
+      if (user == null) {
+        return NotFound();
+      }
+
+      string token = authService.GenerateAccessToken(user);
+      string refreshToken = authService.GenerateRefreshToken();
+      var response = new JwtResponseDto {
+        Token = token,
+        RefreshToken = refreshToken
+      };
+
+      authService.CacheRefreshToken(user.Id, refreshToken);
+
+      return response;
+    }
+    catch (InvalidJwtException) {
+      return Unauthorized();
+    }
+  }
+
   [HttpPost("Register")]
   public async Task<ActionResult<JwtResponseDto>> Register([FromBody] RegisterDto registerDto) {
     User? user = await userService.FindUserByUsername(registerDto.Username);
@@ -51,7 +81,7 @@ public class AuthController(
     }
 
     User newUser = await userService.RegisterUser(registerDto);
-    string token = authService.GenerateAccessToken(user!);
+    string token = authService.GenerateAccessToken(newUser);
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
@@ -61,6 +91,34 @@ public class AuthController(
     authService.CacheRefreshToken(newUser.Id, refreshToken);
 
     return response;
+  }
+
+  [HttpPost("Google-Register")]
+  public async Task<ActionResult<JwtResponseDto>> GoogleRegister([FromBody] OauthRegisterDto oauthRegisterDto) {
+    try {
+      var payload = await ValidateGoogleToken(oauthRegisterDto.Token);
+      string username = NameToUsername(payload.Name);
+      User? user = await userService.FindUserByUsername(username);
+
+      if (user != null) {
+        return Conflict();
+      }
+
+      User newUser = await userService.RegisterUser(payload, username);
+      string token = authService.GenerateAccessToken(newUser);
+      string refreshToken = authService.GenerateRefreshToken();
+      var response = new JwtResponseDto {
+        Token = token,
+        RefreshToken = refreshToken
+      };
+
+      authService.CacheRefreshToken(newUser.Id, refreshToken);
+
+      return response;
+    }
+    catch (InvalidJwtException) {
+      return Unauthorized();
+    }
   }
 
   [HttpPost("Refresh")]
@@ -92,4 +150,18 @@ public class AuthController(
       RefreshToken = responseDto.RefreshToken
     };
   }
+
+  private Task<GoogleJsonWebSignature.Payload> ValidateGoogleToken(string token) {
+    var settings = new GoogleJsonWebSignature.ValidationSettings {
+      Audience = [config["Oauth:Google:ClientId"]],
+    };
+    return GoogleJsonWebSignature.ValidateAsync(token, settings);
+  }
+
+  private static string NameToUsername(string name) {
+    return WhitespaceRegex().Replace(name.ToLower(), ".");
+  }
+
+  [GeneratedRegex(@"\s+")]
+  private static partial Regex WhitespaceRegex();
 }

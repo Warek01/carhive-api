@@ -30,6 +30,7 @@ namespace Api.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "car_transmission", new[] { "manual", "automatic", "continuously_variable" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_action", new[] { "create", "delete", "report", "sell", "add_to_favorites", "remove_from_favorites", "restore", "block", "update" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "oauth_identity_provider", new[] { "google" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "report_type", new[] { "listing", "user", "application" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
@@ -9206,8 +9207,17 @@ namespace Api.Data.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("email");
 
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("last_name");
+
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("password");
@@ -9216,6 +9226,15 @@ namespace Api.Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("phone_number");
+
+                    b.Property<string>("Picture")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)")
+                        .HasColumnName("picture");
+
+                    b.Property<OauthIdentityProvider?>("Provider")
+                        .HasColumnType("oauth_identity_provider")
+                        .HasColumnName("provider");
 
                     b.Property<List<UserRole>>("Roles")
                         .IsRequired()
@@ -9249,7 +9268,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$t5.L0ZNXD5aPyJO2Bn5zc.NKiuhdj8Q5tL2yVVa02yYk0L1nf9ShS",
+                            Password = "$2a$13$zG2npB2erOqCgYWwMa7JhOXzUXUJoGTXe/GzDcmkaqmFUiOW3iJ0O",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9260,7 +9279,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$VzrzxI8s6Z6CRKyTHd7lOOZSsdvRRgrzilAR3W6ub0DSmUVFuwzPq",
+                            Password = "$2a$13$yD1q8rrnnvVvaAg29XplI..A3U7OIeEoY2495JQC0q.AvsM/CNu5a",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9271,7 +9290,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$ecEWWxLqH6wRkpgWJCrz4uT7u/zCopIs4hcwxwkywHPisqSo5O7D2",
+                            Password = "$2a$13$cagUI7i/3G.neY0WTTJOZeXGX4CiCSwO1/kKuqdbO51na7ERyv8sy",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
