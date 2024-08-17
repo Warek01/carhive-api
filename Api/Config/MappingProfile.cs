@@ -14,6 +14,7 @@ public class MappingProfile : Profile {
     CreateMap<RegisterDto, User>();
     CreateMap<CreateUserDto, User>();
     CreateMap<CreateReportDto, Report>();
+    CreateMap<Comment, CommentDto>();
 
     CreateMap<CreateListingDto, Listing>()
       .ForMember(

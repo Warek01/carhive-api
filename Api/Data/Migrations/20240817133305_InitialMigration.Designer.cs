@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(CarHiveDbContext))]
-    [Migration("20240817104222_InitialMigration")]
+    [Migration("20240817133305_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -34,7 +34,7 @@ namespace Api.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_action", new[] { "create", "delete", "report", "sell", "add_to_favorites", "remove_from_favorites", "restore", "block", "update" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "listing_status", new[] { "available", "sold", "deleted", "blocked" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "oauth_identity_provider", new[] { "google" });
-            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "report_type", new[] { "listing", "user", "application" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "report_type", new[] { "listing", "user", "comment" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
@@ -546,6 +546,43 @@ namespace Api.Data.Migrations
                             Name = "Chisinau",
                             CountryCode = "MD"
                         });
+                });
+
+            modelBuilder.Entity("Api.Models.Comment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id")
+                        .HasDefaultValueSql("UUID_GENERATE_V4()");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("character varying(5000)")
+                        .HasColumnName("content");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("created_at")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid>("ListingId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("listing_id");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ListingId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("comments");
                 });
 
             modelBuilder.Entity("Api.Models.Country", b =>
@@ -2122,6 +2159,30 @@ namespace Api.Data.Migrations
                     b.HasKey("Timestamp");
 
                     b.ToTable("currencies");
+                });
+
+            modelBuilder.Entity("Api.Models.Like", b =>
+                {
+                    b.Property<Guid>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("entity_id");
+
+                    b.Property<DateTime>("LikedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
+                        .HasColumnName("liked_at")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("EntityId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("likes");
                 });
 
             modelBuilder.Entity("Api.Models.Listing", b =>
@@ -9167,6 +9228,10 @@ namespace Api.Data.Migrations
                         .HasColumnName("created_at")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("entity_id");
+
                     b.Property<string>("Reason")
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
@@ -9272,7 +9337,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$q8YRZDOQlgNoCZIuWlAO7eZ8tSEgwURYCITVNGnwmPm6igSUNQ69e",
+                            Password = "$2a$13$xCXYHhy9kgN.xKOIRaRDYOskOj43IsALnP.GdI5OHlLeoIjvh7.z.",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9283,7 +9348,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$q7gOl7z0vB7drHVUHzvwHef3r/dFrnqg8Xte0LqGMxczDq8zpDvs6",
+                            Password = "$2a$13$yW93QwRdSoN65mcFFwe77eVjcbXmYvHAabIVdBtfod.Njx.uj8leC",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9294,7 +9359,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$m4QP0THWNTFklhAredxfju/a/lcKsnugPZxk2WdYZA01vDq8LCl52",
+                            Password = "$2a$13$O8FK1zZY32UvnAWJGQUBfueCoAJaCBK5ZO8bhCHfLsVfK1s6BxZWC",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9322,6 +9387,36 @@ namespace Api.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("Api.Models.Comment", b =>
+                {
+                    b.HasOne("Api.Models.Listing", "Listing")
+                        .WithMany("Comments")
+                        .HasForeignKey("ListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Api.Models.User", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Listing");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Api.Models.Like", b =>
+                {
+                    b.HasOne("Api.Models.User", "User")
+                        .WithMany("Likes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Api.Models.Listing", b =>
@@ -9446,6 +9541,11 @@ namespace Api.Data.Migrations
                     b.Navigation("Listings");
                 });
 
+            modelBuilder.Entity("Api.Models.Listing", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
             modelBuilder.Entity("Api.Models.Model", b =>
                 {
                     b.Navigation("Listings");
@@ -9453,6 +9553,10 @@ namespace Api.Data.Migrations
 
             modelBuilder.Entity("Api.Models.User", b =>
                 {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Likes");
+
                     b.Navigation("Listings");
 
                     b.Navigation("Reports");

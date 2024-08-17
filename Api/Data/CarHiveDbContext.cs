@@ -21,6 +21,8 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
   public virtual DbSet<City> Cities { get; set; }
   public virtual DbSet<Currency> Currencies { get; set; }
   public virtual DbSet<Report> Reports { get; set; }
+  public virtual DbSet<Comment> Comments { get; set; }
+  public virtual DbSet<Like> Likes { get; set; }
 
   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
     optionsBuilder.UseNpgsql();
@@ -46,6 +48,18 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
     modelBuilder.HasPostgresEnum<ReportType>();
     modelBuilder.HasPostgresEnum<OauthIdentityProvider>();
 
+    modelBuilder.Entity<Comment>()
+      .Property(e => e.Id)
+      .HasDefaultValueSql(UuidGenSql);
+    
+    modelBuilder.Entity<Comment>()
+      .Property(e => e.CreatedAt)
+      .HasDefaultValueSql(CurrentTimestampSql);
+    
+    modelBuilder.Entity<Like>()
+      .Property(e => e.LikedAt)
+      .HasDefaultValueSql(CurrentTimestampSql);
+    
     modelBuilder.Entity<Report>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);

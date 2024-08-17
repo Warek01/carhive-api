@@ -25,7 +25,7 @@ namespace Api.Data.Migrations
                 .Annotation("Npgsql:Enum:listing_action", "create,delete,report,sell,add_to_favorites,remove_from_favorites,restore,block,update")
                 .Annotation("Npgsql:Enum:listing_status", "available,sold,deleted,blocked")
                 .Annotation("Npgsql:Enum:oauth_identity_provider", "google")
-                .Annotation("Npgsql:Enum:report_type", "listing,user,application")
+                .Annotation("Npgsql:Enum:report_type", "listing,user,comment")
                 .Annotation("Npgsql:Enum:user_role", "user,admin,super_admin")
                 .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,")
                 .Annotation("Npgsql:PostgresExtension:uuid-ossp", ",,");
@@ -115,10 +115,30 @@ namespace Api.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "likes",
+                columns: table => new
+                {
+                    entity_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    liked_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_likes", x => x.entity_id);
+                    table.ForeignKey(
+                        name: "FK_likes_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "reports",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "UUID_GENERATE_V4()"),
+                    entity_id = table.Column<Guid>(type: "uuid", nullable: false),
                     type = table.Column<ReportType>(type: "report_type", nullable: false),
                     user_id = table.Column<Guid>(type: "uuid", nullable: false),
                     reason = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
@@ -217,6 +237,33 @@ namespace Api.Data.Migrations
                     table.ForeignKey(
                         name: "FK_listings_users_publisher_id",
                         column: x => x.publisher_id,
+                        principalTable: "users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "comments",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false, defaultValueSql: "UUID_GENERATE_V4()"),
+                    content = table.Column<string>(type: "character varying(5000)", maxLength: 5000, nullable: false),
+                    created_at = table.Column<DateTime>(type: "TIMESTAMP(1) WITHOUT TIME ZONE", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    user_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    listing_id = table.Column<Guid>(type: "uuid", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_comments", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_comments_listings_listing_id",
+                        column: x => x.listing_id,
+                        principalTable: "listings",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_comments_users_user_id",
+                        column: x => x.user_id,
                         principalTable: "users",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -540,9 +587,9 @@ namespace Api.Data.Migrations
                 columns: new[] { "id", "created_at", "deleted_at", "email", "first_name", "last_name", "password", "phone_number", "picture", "provider", "roles", "updated_at", "username" },
                 values: new object[,]
                 {
-                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", null, null, "$2a$13$m4QP0THWNTFklhAredxfju/a/lcKsnugPZxk2WdYZA01vDq8LCl52", "+37378222444", null, null, new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
-                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", null, null, "$2a$13$q7gOl7z0vB7drHVUHzvwHef3r/dFrnqg8Xte0LqGMxczDq8zpDvs6", "+37378222111", null, null, new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
-                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", null, null, "$2a$13$q8YRZDOQlgNoCZIuWlAO7eZ8tSEgwURYCITVNGnwmPm6igSUNQ69e", "+37378000111", null, null, new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
+                    { new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"), new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "user@gmail.com", null, null, "$2a$13$O8FK1zZY32UvnAWJGQUBfueCoAJaCBK5ZO8bhCHfLsVfK1s6BxZWC", "+37378222444", null, null, new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "user" },
+                    { new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"), new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "alex@gmail.com", null, null, "$2a$13$yW93QwRdSoN65mcFFwe77eVjcbXmYvHAabIVdBtfod.Njx.uj8leC", "+37378222111", null, null, new List<UserRole> { UserRole.User }, new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "alex" },
+                    { new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"), new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "admin@gmail.com", null, null, "$2a$13$xCXYHhy9kgN.xKOIRaRDYOskOj43IsALnP.GdI5OHlLeoIjvh7.z.", "+37378000111", null, null, new List<UserRole> { UserRole.SuperAdmin }, new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin" }
                 });
 
             migrationBuilder.InsertData(
@@ -1957,6 +2004,21 @@ namespace Api.Data.Migrations
                 column: "country");
 
             migrationBuilder.CreateIndex(
+                name: "IX_comments_listing_id",
+                table: "comments",
+                column: "listing_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comments_user_id",
+                table: "comments",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_likes_user_id",
+                table: "likes",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_listing_activity_listing_id",
                 table: "listing_activity",
                 column: "listing_id");
@@ -2037,7 +2099,13 @@ namespace Api.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "comments");
+
+            migrationBuilder.DropTable(
                 name: "currencies");
+
+            migrationBuilder.DropTable(
+                name: "likes");
 
             migrationBuilder.DropTable(
                 name: "listing_activity");

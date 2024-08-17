@@ -61,4 +61,10 @@ public class User {
 
   [InverseProperty(nameof(Report.User))]
   public List<Report> Reports { get; set; } = [];
+  
+  [InverseProperty(nameof(Comment.User))]
+  public List<Comment> Comments { get; set; } = [];
+  
+  [InverseProperty(nameof(Like.User))]
+  public List<Like> Likes { get; set; } = [];
 }

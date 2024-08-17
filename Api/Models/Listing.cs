@@ -131,4 +131,7 @@ public class Listing {
 
   [Column("sold_at", TypeName = CarHiveDbContext.TimestampNoTimezoneSql)]
   public DateTime? SoldAt { get; set; }
+
+  [InverseProperty(nameof(Comment.Listing))]
+  public List<Comment> Comments { get; set; } = [];
 }

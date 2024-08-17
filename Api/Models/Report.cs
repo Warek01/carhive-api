@@ -11,6 +11,9 @@ public class Report {
   [Column("id")]
   public Guid Id { get; set; }
   
+  [Column("entity_id")]
+  public Guid EntityId { get; set; }
+  
   [Column("type")]
   public ReportType Type { get; set; }
   
