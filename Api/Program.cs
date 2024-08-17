@@ -7,6 +7,7 @@ using Api.Helpers;
 using Api.Services;
 using Asp.Versioning;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -70,7 +71,13 @@ public static class Program {
     app.UseSwaggerUI();
     app.UseHttpsRedirection();
     app.UseExceptionHandler();
-    StaticFileService.SetupStaticFileServing(app);
+    app.UseFileServer();
+    app.UseStaticFiles(new StaticFileOptions {
+      RequestPath = StaticFileService.RequestPath,
+      HttpsCompression = HttpsCompressionMode.Compress,
+      ServeUnknownFileTypes = false,
+      RedirectToAppendTrailingSlash = false,
+    });
     app.UseCors(options => {
       options.AllowAnyOrigin();
       options.AllowAnyHeader();
@@ -78,7 +85,6 @@ public static class Program {
     });
     AuthService.SetupAuthorization(app);
     app.MapControllerRoute("Default", "{controller}/{action}/{id?}");
-
     app.Run();
   }
 

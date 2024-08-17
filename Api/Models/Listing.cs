@@ -22,7 +22,7 @@ public class Listing {
 
   [StringLength(255)]
   [Column("model_name")]
-  public string? ModelName { get; set; }
+  public string ModelName { get; set; } = null!;
 
   [ForeignKey($"{nameof(ModelName)},{nameof(BrandName)}")]
   [InverseProperty(nameof(Model.Listings))]

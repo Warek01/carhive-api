@@ -1,36 +1,30 @@
 using System.Text;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.Extensions.FileProviders;
 
 namespace Api.Services;
 
 public class StaticFileService {
-  public static readonly string Root = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-  public static readonly PathString RelativeRequestPath = new PathString("/file");
-  public static readonly PathString FullRequestPath = new PathString(Path.Join("/api/v1", RelativeRequestPath));
+  public readonly string RootPath;
 
-  public StaticFileService() {
-    if (!Directory.Exists(Root))
-      Directory.CreateDirectory(Root);
+  // The relative path from the base url to the files folder
+  public const string RequestPath = "/Api/File";
+
+  public const string UploadsPath = "Uploads";
+
+  public StaticFileService(IHostEnvironment hostEnvironment) {
+    RootPath = hostEnvironment.ContentRootPath;
+    
+    if (!Directory.Exists(RootPath)) {
+      Directory.CreateDirectory(RootPath);
+    }
   }
 
-  public static void SetupStaticFileServing(WebApplication app) {
-    app.UseFileServer();
-    app.UseStaticFiles(new StaticFileOptions {
-      RequestPath = FullRequestPath,
-      HttpsCompression = HttpsCompressionMode.Compress,
-      ServeUnknownFileTypes = false,
-      FileProvider = new PhysicalFileProvider(Root)
-    });
+  public async Task CreateFile(string body, params string[] paths) {
+    await CreateFile(Encoding.UTF8.GetBytes(body), paths);
   }
 
-  public static async Task Create(string fileName, string body) {
-    await Create(fileName, Encoding.UTF8.GetBytes(body));
-  }
-
-  public static async Task Create(string fileName, byte[] bytes) {
-    await File.WriteAllBytesAsync(
-      Path.Combine(Root, fileName.ToLower()),
+  public Task CreateFile(byte[] bytes, params string[] paths) {
+    return File.WriteAllBytesAsync(
+      Path.Combine(RootPath, Path.Combine(paths)),
       bytes
     );
   }

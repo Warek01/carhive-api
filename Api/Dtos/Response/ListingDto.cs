@@ -3,6 +3,12 @@
 namespace Api.Dtos.Response;
 
 public class ListingDto {
+  public class PublisherDto {
+    public Guid Id { get; set; }
+    public string Username { get; set; } = null!;
+    public Uri? Picture { get; set; }
+  }
+  
   public Guid Id { get; set; }
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
@@ -10,9 +16,9 @@ public class ListingDto {
   public DateTime CreatedAt { get; set; }
   public string CityName { get; set; } = null!;
   public int Views { get; set; }
-  public List<string> ImagesUrls { get; set; } = [];
+  public List<Uri> ImagesUrls { get; set; } = [];
   public ListingStatus Status { get; set; }
-  public CarDrivetrain Drivetrain { get; set; }
+  public CarDrivetrain? Drivetrain { get; set; }
   public double? Price { get; set; }
   public CarBodyStyle? BodyStyle { get; set; }
   public int? Horsepower { get; set; }
@@ -24,7 +30,7 @@ public class ListingDto {
   public int? Mileage { get; set; }
   public int? ProductionYear { get; set; }
   public DateTime? DeletedAt { get; set; }
-  public UserDto? Publisher { get; set; }
+  public PublisherDto? Publisher { get; set; }
   public string? CountryCode { get; set; } = null!;
   public string? SellAddress { get; set; }
   public bool? IsFavorite { get; set; }

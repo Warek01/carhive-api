@@ -17,6 +17,8 @@ public static class AppServices {
 
   private static readonly List<Type> SingletonServices = [
     typeof(StaticFileService),
+    typeof(ListingMappingService),
+    typeof(ImageService),
   ];
 
   public static void Register(WebApplicationBuilder builder) {

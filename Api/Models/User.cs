@@ -25,7 +25,7 @@ public class User {
   
   [StringLength(255)]
   [Column("picture")]
-  public string? Picture { get; set; }
+  public Uri? Picture { get; set; }
 
   [StringLength(255)]
   [Column("password")]

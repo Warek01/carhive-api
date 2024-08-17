@@ -3,19 +3,19 @@ using Api.Dtos.Request;
 using Api.Dtos.Response;
 using Api.Enums;
 using Api.Exceptions;
-using Api.Helpers;
 using Api.Models;
 using Api.Queries;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ImageHelper = Api.Helpers.ImageHelper;
 
 namespace Api.Services;
 
 public class ListingService(
   CarHiveDbContext dbContext,
-  IMapper mapper
+  ListingMappingService listingMappingService,
+  IMapper mapper,
+  ImageService imageService
 ) {
   public async Task<ActionResult<PaginatedResultDto<ListingDto>>> GetFilteredListingsAsync(ListingQuery query) {
     IQueryable<Listing> listings;
@@ -101,7 +101,7 @@ public class ListingService(
     foreach (CarColor color in query.Colors) {
       listings = listings.Where(l => l.Color == color);
     }
-    
+
     foreach (CarStatus status in query.Statuses) {
       listings = listings.Where(l => l.CarStatus == status);
     }
@@ -142,8 +142,10 @@ public class ListingService(
       .Skip(query.Page * query.Take)
       .Take(query.Take);
 
+    var listingsList = await listings.ToListAsync();
+
     return new PaginatedResultDto<ListingDto> {
-      Items = await listings.Select(l => mapper.Map<ListingDto>(l)).ToListAsync(),
+      Items = listingMappingService.ListingsToDto(listingsList),
       TotalItems = totalListings
     };
   }
@@ -229,9 +231,11 @@ public class ListingService(
     listing.PublisherId = publisher.Id;
 
     foreach (IFormFile image in createDto.Images) {
-      string generatedFileName = Guid.NewGuid() + ".webp";
-      await ImageHelper.Create(generatedFileName, image);
-      listing.Images.Add(generatedFileName);
+      string generatedFileName = Path.ChangeExtension(Guid.NewGuid().ToString(), ImageService.DefaultImageExtension);
+      PathString path = Path.Combine(StaticFileService.UploadsPath, generatedFileName);
+
+      await imageService.CreateImage(image, path);
+      listing.Images.Add(path);
     }
 
     var activity = new ListingActivity {
@@ -309,7 +313,7 @@ public class ListingService(
 
     listing.Views++;
     await dbContext.SaveChangesAsync();
-    
+
     return new OkResult();
   }
 }

@@ -1,17 +1,20 @@
-using Api.Services;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Formats.Webp;
 using SixLabors.ImageSharp.Processing;
 
-namespace Api.Helpers;
+namespace Api.Services;
 
-public static class ImageHelper {
-  public static async Task Create(string fileName, IFormFile file) {
+public class ImageService(StaticFileService staticFileService) {
+  public const string DefaultImageExtension = "webp";
+  
+  public async Task CreateImage(IFormFile file, PathString path) {
     await using Stream stream = file.OpenReadStream();
     using Image image = await Image.LoadAsync(stream);
 
-    image.Mutate(ctx => { ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height)); });
-
+    image.Mutate(ctx => {
+      ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height));
+    });
+    
     var encoder = new WebpEncoder {
       Quality = 80,
       Method = WebpEncodingMethod.Level4,
@@ -19,7 +22,7 @@ public static class ImageHelper {
     };
 
     await image.SaveAsWebpAsync(
-      Path.Combine(StaticFileService.Root, fileName),
+      Path.Combine(staticFileService.RootPath, path),
       encoder
     );
   }

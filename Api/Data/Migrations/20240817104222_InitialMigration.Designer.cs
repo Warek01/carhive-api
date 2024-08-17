@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(CarHiveDbContext))]
-    [Migration("20240816101337_InitialMigration")]
+    [Migration("20240817104222_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -2211,6 +2211,7 @@ namespace Api.Data.Migrations
                         .HasColumnName("mileage");
 
                     b.Property<string>("ModelName")
+                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("character varying(255)")
                         .HasColumnName("model_name");
@@ -9271,7 +9272,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$zG2npB2erOqCgYWwMa7JhOXzUXUJoGTXe/GzDcmkaqmFUiOW3iJ0O",
+                            Password = "$2a$13$q8YRZDOQlgNoCZIuWlAO7eZ8tSEgwURYCITVNGnwmPm6igSUNQ69e",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9282,7 +9283,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$yD1q8rrnnvVvaAg29XplI..A3U7OIeEoY2495JQC0q.AvsM/CNu5a",
+                            Password = "$2a$13$q7gOl7z0vB7drHVUHzvwHef3r/dFrnqg8Xte0LqGMxczDq8zpDvs6",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9293,7 +9294,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$cagUI7i/3G.neY0WTTJOZeXGX4CiCSwO1/kKuqdbO51na7ERyv8sy",
+                            Password = "$2a$13$m4QP0THWNTFklhAredxfju/a/lcKsnugPZxk2WdYZA01vDq8LCl52",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9351,7 +9352,9 @@ namespace Api.Data.Migrations
 
                     b.HasOne("Api.Models.Model", "Model")
                         .WithMany("Listings")
-                        .HasForeignKey("ModelName", "BrandName");
+                        .HasForeignKey("ModelName", "BrandName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 

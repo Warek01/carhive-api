@@ -85,7 +85,7 @@ public class UserService(
       Username = username,
       FirstName = payload.GivenName,
       LastName = payload.FamilyName,
-      Picture = payload.Picture,
+      Picture = new Uri(payload.Picture),
       Roles = [UserRole.User]
     };
 
