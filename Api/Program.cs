@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using Serilog;
@@ -37,7 +38,6 @@ public static class Program {
         c.WriteTo.Console();
       }
     );
-
     _builder.Services.AddAutoMapper(typeof(MappingProfile));
     _builder.Services.AddControllers();
     _builder.Services.AddSingleton<IConfiguration>(_builder.Configuration);
@@ -58,9 +58,15 @@ public static class Program {
       options.SubstituteApiVersionInUrl = true;
     });
 
+    var fileProvider = new PhysicalFileProvider(_builder.Environment.WebRootPath);
+
+    if (_builder.Environment.IsDevelopment()) {
+      _builder.Services.AddDirectoryBrowser();
+      SetupSwagger();
+    }
+
     SetupDataSource();
     SetupAuthentication();
-    SetupSwagger();
     SetupCache();
     AppServices.Register(_builder);
 
@@ -77,14 +83,36 @@ public static class Program {
       HttpsCompression = HttpsCompressionMode.Compress,
       ServeUnknownFileTypes = false,
       RedirectToAppendTrailingSlash = false,
-    });
-    app.UseCors(options => {
-      options.AllowAnyOrigin();
-      options.AllowAnyHeader();
-      options.AllowAnyMethod();
+      FileProvider = fileProvider,
     });
     AuthService.SetupAuthorization(app);
     app.MapControllerRoute("Default", "{controller}/{action}/{id?}");
+
+    if (app.Environment.IsDevelopment()) {
+      app.UseCors(options => {
+        options.AllowAnyOrigin();
+        options.AllowAnyHeader();
+        options.AllowAnyMethod();
+      });
+      app.UseDirectoryBrowser(new DirectoryBrowserOptions {
+        FileProvider = fileProvider,
+        RequestPath = "/DirectoryBrowser",
+        RedirectToAppendTrailingSlash = false,
+      });
+      app.UseDefaultFiles();
+      app.UseStaticFiles(new StaticFileOptions {
+        RequestPath = "/DirectoryBrowser",
+        HttpsCompression = HttpsCompressionMode.Compress,
+        ServeUnknownFileTypes = true,
+        RedirectToAppendTrailingSlash = false,
+        FileProvider = fileProvider,
+      });
+      app.MapGet("/", ctx => {
+        ctx.Response.Redirect("swagger/index.html");
+        return Task.CompletedTask;
+      });
+    }
+
     app.Run();
   }
 
