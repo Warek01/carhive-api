@@ -68,6 +68,7 @@ public static class Program {
     SetupDataSource();
     SetupAuthentication();
     SetupCache();
+
     AppServices.Register(_builder);
 
     var app = _builder.Build();
@@ -117,6 +118,10 @@ public static class Program {
   }
 
   private static void SetupAuthentication() {
+    var jwtConfig = new JwtConfig();
+    _builder.Configuration.Bind("Jwt", jwtConfig);
+    _builder.Services.AddSingleton(jwtConfig);
+
     _builder.Services.AddAuthentication(options => {
       options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -124,7 +129,7 @@ public static class Program {
       options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
       options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(options => {
-      options.TokenValidationParameters = AuthService.GetTokenValidationParameters(_builder.Configuration);
+      options.TokenValidationParameters = AuthService.CreateTokenValidationParameters(jwtConfig);
       options.MapInboundClaims = false;
     });
     _builder.Services.AddAuthorization();

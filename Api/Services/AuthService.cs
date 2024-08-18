@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using Api.Helpers;
 using Api.Models;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -13,17 +14,19 @@ using JwtRegisteredClaimNames = System.IdentityModel.Tokens.Jwt.JwtRegisteredCla
 namespace Api.Services;
 
 public class AuthService(
-  IConfiguration config,
   ILogger<AuthService> logger,
-  CacheService cache
+  CacheService cache,
+  JwtConfig jwtConfig
 ) {
-  public static TokenValidationParameters GetTokenValidationParameters(IConfiguration config) {
-    return new TokenValidationParameters {
-      NameClaimType = "sub",
+  public readonly TokenValidationParameters TokenValidationParameters = CreateTokenValidationParameters(jwtConfig);
+
+  public static TokenValidationParameters CreateTokenValidationParameters(JwtConfig jwtConfig) =>
+    new TokenValidationParameters {
+      NameClaimType = JwtRegisteredClaimNames.Sub,
       RoleClaimType = "role",
-      ValidIssuer = config["Jwt:Issuer"],
-      ValidAudience = config["Jwt:Audience"],
-      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!)),
+      ValidIssuer = jwtConfig.Issuer,
+      ValidAudience = jwtConfig.Audience,
+      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfig.Key)),
       ValidateIssuer = true,
       ValidateAudience = true,
       ValidateLifetime = true,
@@ -35,7 +38,6 @@ public class AuthService(
       LogValidationExceptions = true,
       LogTokenId = true
     };
-  }
 
   public bool ValidatePassword(User user, string password) {
     return BCrypt.Net.BCrypt.EnhancedVerify(password, user.Password);
@@ -43,7 +45,7 @@ public class AuthService(
 
   public ClaimsPrincipal? ValidateToken(string token) {
     var tokenHandler = new JwtSecurityTokenHandler();
-    var parameters = GetTokenValidationParameters(config);
+    var parameters = TokenValidationParameters;
     parameters.ValidateLifetime = false;
 
     try {
@@ -63,10 +65,10 @@ public class AuthService(
   }
 
   public string GenerateAccessToken(User user) {
-    var issuer = config["Jwt:Issuer"]!;
-    var audience = config["Jwt:Audience"]!;
-    var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config["Jwt:Key"]!));
-    var tokenTtl = int.Parse(config["JWT:Ttl"]!);
+    var issuer = jwtConfig.Issuer;
+    var audience = jwtConfig.Audience;
+    var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtConfig.Key));
+    var tokenTtl = jwtConfig.Ttl;
     var identity = new ClaimsIdentity([
       new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
       new Claim(
@@ -99,7 +101,7 @@ public class AuthService(
   }
 
   public void CacheRefreshToken(Guid userId, string refreshToken) {
-    var refreshTtl = double.Parse(config["JWT:RefreshTtl"]!);
+    var refreshTtl = jwtConfig.RefreshTtl;
 
     cache.Db.StringSetAsync(
       $"{CacheService.Keys.RefreshTokens}:{userId.ToString()}",
