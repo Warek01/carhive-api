@@ -7,6 +7,5 @@ namespace Api.Dtos.Response;
 /// </summary>
 public class UserAdminDto : UserDto {
   public List<UserRole> Roles { get; set; } = [];
-
   public DateTime CreatedAt { get; set; }
 }

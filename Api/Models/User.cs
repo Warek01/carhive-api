@@ -67,4 +67,7 @@ public class User {
 
   [InverseProperty(nameof(Like.User))]
   public List<Like> Likes { get; set; } = [];
+
+  [Column("status")]
+  public UserStatus Status { get; set; } = UserStatus.User;
 }

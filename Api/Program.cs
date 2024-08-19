@@ -193,6 +193,7 @@ public static class Program {
       .MapEnum<ListingStatus>()
       .MapEnum<ListingAction>()
       .MapEnum<OauthIdentityProvider>()
+      .MapEnum<UserStatus>()
       .MapEnum<ReportType>();
 
     dataSourceBuilder.EnableDynamicJson();

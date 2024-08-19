@@ -21,4 +21,6 @@ public class CreateUserDto {
   public string Email { get; set; } = null!;
 
   public List<UserRole> Roles { get; set; } = null!;
+  
+  public UserStatus Status { get; set; }
 }

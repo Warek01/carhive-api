@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Data;
 
-public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHostEnvironment env)
-  : DbContext(options) {
+public class CarHiveDbContext(
+  DbContextOptions<CarHiveDbContext> options,
+  IWebHostEnvironment env
+) : DbContext(options) {
   public const string TimestampNoTimezoneSql = "TIMESTAMP(1) WITHOUT TIME ZONE";
   private const string CurrentTimestampSql = "CURRENT_TIMESTAMP";
   private const string UuidGenSql = "UUID_GENERATE_V4()";
@@ -33,20 +35,23 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
   }
 
   protected override void OnModelCreating(ModelBuilder modelBuilder) {
-    modelBuilder.HasPostgresExtension("uuid-ossp");
-    modelBuilder.HasPostgresExtension("pg_trgm");
+    modelBuilder
+      .HasPostgresExtension("uuid-ossp")
+      .HasPostgresExtension("pg_trgm");
 
-    modelBuilder.HasPostgresEnum<CarBodyStyle>();
-    modelBuilder.HasPostgresEnum<CarFuelType>();
-    modelBuilder.HasPostgresEnum<CarColor>();
-    modelBuilder.HasPostgresEnum<UserRole>();
-    modelBuilder.HasPostgresEnum<CarStatus>();
-    modelBuilder.HasPostgresEnum<CarDrivetrain>();
-    modelBuilder.HasPostgresEnum<CarTransmission>();
-    modelBuilder.HasPostgresEnum<ListingStatus>();
-    modelBuilder.HasPostgresEnum<ListingAction>();
-    modelBuilder.HasPostgresEnum<ReportType>();
-    modelBuilder.HasPostgresEnum<OauthIdentityProvider>();
+    modelBuilder
+      .HasPostgresEnum<CarBodyStyle>()
+      .HasPostgresEnum<CarFuelType>()
+      .HasPostgresEnum<CarColor>()
+      .HasPostgresEnum<UserRole>()
+      .HasPostgresEnum<CarStatus>()
+      .HasPostgresEnum<CarDrivetrain>()
+      .HasPostgresEnum<CarTransmission>()
+      .HasPostgresEnum<ListingStatus>()
+      .HasPostgresEnum<ListingAction>()
+      .HasPostgresEnum<ReportType>()
+      .HasPostgresEnum<OauthIdentityProvider>()
+      .HasPostgresEnum<UserStatus>();
 
     modelBuilder.Entity<Comment>()
       .Property(e => e.Id)

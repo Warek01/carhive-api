@@ -33,6 +33,7 @@ namespace Api.Data.Migrations
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "oauth_identity_provider", new[] { "google" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "report_type", new[] { "listing", "user", "comment" });
             NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_role", new[] { "user", "admin", "super_admin" });
+            NpgsqlModelBuilderExtensions.HasPostgresEnum(modelBuilder, "user_status", new[] { "user", "certified_dealer", "certified_reseller", "moderator" });
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "pg_trgm");
             NpgsqlModelBuilderExtensions.HasPostgresExtension(modelBuilder, "uuid-ossp");
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -9332,6 +9333,10 @@ namespace Api.Data.Migrations
                         .HasColumnType("user_role[]")
                         .HasColumnName("roles");
 
+                    b.Property<UserStatus>("Status")
+                        .HasColumnType("user_status")
+                        .HasColumnName("status");
+
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TIMESTAMP(1) WITHOUT TIME ZONE")
@@ -9359,9 +9364,10 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$2BGMvYThg.SD6ET2mnjPn.e.PUdsSBc7uU0oq9ajPZtTCA6QVU2Uq",
+                            Password = "$2a$13$cclkMYusUTb.rphy8z.hyuy.TVfaxXSSzC3Qcwsm8IUYZPIJbE4jO",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
+                            Status = UserStatus.User,
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "admin"
                         },
@@ -9370,9 +9376,10 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$RmTKU4zZaAKgLnl4e5dNk.yRLilkYZGncIEF.QKoqnbgivazodUu6",
+                            Password = "$2a$13$ydlS5zExQoVY1YPJCdwuTe4CO67TvLOiL2TROD9HNrVZMuiyn5wyO",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
+                            Status = UserStatus.User,
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "alex"
                         },
@@ -9381,9 +9388,10 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$hzSDuTCNLMCeniUVzlrTCepNx95Rx3dqWPm9jrCEI4JNsWAo5qoou",
+                            Password = "$2a$13$/oExhYHa9LLmtoPjRHeyYetx0a/tLd3unGGq3LgVofQYLEUNCgWny",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
+                            Status = UserStatus.User,
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Username = "user"
                         });
