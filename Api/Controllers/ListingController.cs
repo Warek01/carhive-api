@@ -21,7 +21,8 @@ namespace Api.Controllers;
 public class ListingController(
   ListingService listingService,
   IMapper mapper,
-  UserService userService
+  UserService userService,
+  ListingMappingService listingMappingService
 ) : Controller {
   [HttpGet]
   public Task<ActionResult<PaginatedResultDto<ListingDto>>> GetListings(
@@ -49,7 +50,7 @@ public class ListingController(
     if (listing == null)
       return NotFound();
 
-    ListingDto dto = mapper.Map<ListingDto>(listing);
+    ListingDto dto = listingMappingService.ListingToDto(listing);
 
     if (User.Identity is { IsAuthenticated: true }) {
       Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
