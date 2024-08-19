@@ -14,7 +14,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Api.Data.Migrations
 {
     [DbContext(typeof(CarHiveDbContext))]
-    [Migration("20240819192206_InitialMigration")]
+    [Migration("20240819195011_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -2318,7 +2318,8 @@ namespace Api.Data.Migrations
                         .HasColumnName("views");
 
                     b.Property<string>("Vin")
-                        .HasColumnType("text")
+                        .HasMaxLength(17)
+                        .HasColumnType("character varying(17)")
                         .HasColumnName("vin");
 
                     b.Property<int?>("WheelSize")
@@ -9367,7 +9368,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$cclkMYusUTb.rphy8z.hyuy.TVfaxXSSzC3Qcwsm8IUYZPIJbE4jO",
+                            Password = "$2a$13$jMlNv5l.XBm1pvBd8eqccebcMSDBpBkws.gIOfB5iTZlPMnc1Fr5W",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             Status = UserStatus.User,
@@ -9379,7 +9380,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$ydlS5zExQoVY1YPJCdwuTe4CO67TvLOiL2TROD9HNrVZMuiyn5wyO",
+                            Password = "$2a$13$An4frsPSzlIsfycdTyUhwO0M4Cm3q8feOt1AvSl0lqnUEAH4jNpRu",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             Status = UserStatus.User,
@@ -9391,7 +9392,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$/oExhYHa9LLmtoPjRHeyYetx0a/tLd3unGGq3LgVofQYLEUNCgWny",
+                            Password = "$2a$13$t9BbFwTVPWKz0EXB8PmN.OkYhboNagBxXI7pb5eQ8UJLrIcKG1C62",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             Status = UserStatus.User,

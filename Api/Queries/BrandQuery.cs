@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using Api.Helpers;
 
 namespace Api.Queries;
 
 public class BrandQuery {
-  [RegularExpression("^[a-zA-Z]{2}$")]
+  [RegularExpression(RegexStrings.CountryCode)]
   public string? CountryCode { get; set; }
 
   [StringLength(255)]

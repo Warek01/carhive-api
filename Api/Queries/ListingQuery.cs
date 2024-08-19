@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using Api.Enums;
+using Api.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Queries;
@@ -77,7 +78,7 @@ public class ListingQuery : PaginationQuery {
   public int? WheelSizeMax { get; set; }
 
   [FromQuery(Name = "country")]
-  [RegularExpression("^[a-zA-Z]{2}$")]
+  [RegularExpression(RegexStrings.CountryCode)]
   public string? CountryCode { get; set; }
 
   [FromQuery(Name = "city")]

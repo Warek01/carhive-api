@@ -6,7 +6,6 @@ using Api.Queries;
 using Api.Services;
 using Asp.Versioning;
 using AutoMapper;
-using Api.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -63,7 +62,7 @@ public class UserController(
   }
 
   [HttpPatch]
-  [Authorize(Roles = AuthRoles.Admin)]
+  [Authorize(Roles = AuthRoles.User)]
   [Route("{userId:Guid}")]
   public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto) {
     User? user = await userService.FindUser(userId);
@@ -72,8 +71,15 @@ public class UserController(
       return NotFound();
     }
 
-    await userService.UpdateUser(user, updateDto);
-    return NoContent();
+    if (User.IsInRole(AuthRoles.SuperAdminOnly)) {
+      return await userService.UpdateUserAsSuperAdmin(user, updateDto);
+    }
+
+    if (User.IsInRole(AuthRoles.AdminOnly)) {
+      return await userService.UpdateUserAsAdmin(user, updateDto);
+    }
+
+    return await userService.UpdateUserAsUser(user, updateDto);
   }
 
   [HttpPost]

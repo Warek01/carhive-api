@@ -15,7 +15,7 @@ public class Listing {
   public Guid Id { get; set; }
 
   [Column("vin")]
-  [Length(17, 17)]
+  [StringLength(17)]
   public string? Vin { get; set; }
 
   [StringLength(255)]

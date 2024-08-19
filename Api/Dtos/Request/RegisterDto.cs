@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Api.Helpers;
 
 namespace Api.Dtos.Request;
 
@@ -14,5 +15,6 @@ public class RegisterDto {
 
   [DefaultValue("email@gmail.com")]
   [StringLength(255)]
+  [RegularExpression(RegexStrings.Email)]
   public string Email { get; set; } = null!;
 }

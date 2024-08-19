@@ -102,17 +102,72 @@ public class UserService(
     await dbContext.SaveChangesAsync();
   }
 
-  public async Task UpdateUser(User user, UpdateUserDto updateDto) {
-    user.Username = updateDto.Username;
-    user.Email = updateDto.Email;
-    user.Roles = updateDto.Roles;
-    user.UpdatedAt = DateTime.Now;
-    await dbContext.SaveChangesAsync();
+  public async Task<ActionResult> UpdateUserAsUser(User user, UpdateUserDto dto) {
+    return await UpdateUser(user, dto);
+  }
+
+  public async Task<ActionResult> UpdateUserAsSuperAdmin(User user, UpdateUserDto dto) {
+    if (dto.UpdateRoles) {
+      if (dto.Roles == null) {
+        return new BadRequestObjectResult("roles should not be null");
+      }
+
+      user.Roles = dto.Roles;
+    }
+
+    return await UpdateUser(user, dto);
+  }
+
+  public async Task<ActionResult> UpdateUserAsAdmin(User user, UpdateUserDto dto) {
+    if (dto.UpdateStatus) {
+      if (dto.Status == null) {
+        return new BadRequestObjectResult("status should not be null");
+      }
+
+      user.Status = dto.Status.Value;
+    }
+
+    return await UpdateUser(user, dto);
   }
 
   public async Task<ActionResult> ClearFavorites(User user) {
     user.Favorites.Clear();
     await dbContext.SaveChangesAsync();
     return new OkResult();
+  }
+
+  private async Task<ActionResult> UpdateUser(User user, UpdateUserDto dto) {
+    if (dto.UpdateUsername) {
+      if (dto.Username == null) {
+        return new BadRequestObjectResult("username should not be null");
+      }
+
+      user.Username = dto.Username;
+    }
+
+    if (dto.UpdateEmail) {
+      if (dto.Email == null) {
+        return new BadRequestObjectResult("email should not be null");
+      }
+
+      user.Email = dto.Email;
+    }
+
+    if (dto.UpdateFirstName) {
+      user.FirstName = dto.FirstName;
+    }
+
+    if (dto.UpdateLastName) {
+      user.LastName = dto.LastName;
+    }
+
+    if (dto.UpdatePicture) {
+      user.Picture = dto.Picture;
+    }
+
+    user.UpdatedAt = DateTime.Now;
+    await dbContext.SaveChangesAsync();
+
+    return new NoContentResult();
   }
 }

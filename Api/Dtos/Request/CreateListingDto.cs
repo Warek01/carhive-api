@@ -1,12 +1,13 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Api.Enums;
+using Api.Helpers;
 
 namespace Api.Dtos.Request;
 
 public class CreateListingDto {
   [DefaultValue("1HGCM82633A123456")]
-  [RegularExpression("^[A-HJ-NPR-Z0-9]{17}$")]
+  [RegularExpression(RegexStrings.Vin)]
   public string? Vin { get; set; }
 
   [DefaultValue("Toyota")]
@@ -23,7 +24,7 @@ public class CreateListingDto {
 
   [Length(2, 2)]
   [DefaultValue("DE")]
-  [RegularExpression("^[a-zA-Z]{2}$")]
+  [RegularExpression(RegexStrings.CountryCode)]
   public string CountryCode { get; set; } = null!;
 
   [DefaultValue(CarDrivetrain.RearWheelDrive)]

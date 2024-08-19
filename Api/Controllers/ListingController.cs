@@ -147,7 +147,7 @@ public class ListingController(
     }
 
     if (!User.IsInRole(AuthRoles.Admin) && !user.Listings.Contains(listing)) {
-      return Forbid("user does not own listing");
+      return Unauthorized("user does not own listing");
     }
 
     await listingService.SetListingStatus(listing, status);

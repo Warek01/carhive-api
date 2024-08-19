@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Api.Enums;
+using Api.Helpers;
 
 namespace Api.Dtos.Request;
 
@@ -18,9 +19,10 @@ public class CreateUserDto {
 
   [DefaultValue("warek@gmail.com")]
   [Length(1, 255)]
+  [RegularExpression(RegexStrings.Email)]
   public string Email { get; set; } = null!;
 
   public List<UserRole> Roles { get; set; } = null!;
-  
+
   public UserStatus Status { get; set; }
 }
