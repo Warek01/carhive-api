@@ -5,6 +5,10 @@ using Api.Enums;
 namespace Api.Dtos.Request;
 
 public class CreateListingDto {
+  [DefaultValue("1HGCM82633A123456")]
+  [RegularExpression("^[A-HJ-NPR-Z0-9]{17}$")]
+  public string Vin { get; set; } = null!;
+  
   [DefaultValue("Toyota")]
   public string BrandName { get; set; } = null!;
 
@@ -19,6 +23,7 @@ public class CreateListingDto {
 
   [Length(2, 2)]
   [DefaultValue("DE")]
+  [RegularExpression("^[a-zA-Z]{2}$")]
   public string CountryCode { get; set; } = null!;
   
   [DefaultValue(CarDrivetrain.RearWheelDrive)]

@@ -77,10 +77,11 @@ public class ListingQuery : PaginationQuery {
   public int? WheelSizeMax { get; set; }
 
   [FromQuery(Name = "country")]
-  [Length(2, 2)]
+  [RegularExpression("^[a-zA-Z]{2}$")]
   public string? CountryCode { get; set; }
 
   [FromQuery(Name = "city")]
+  
   [Length(1, 255)]
   public string? CityName { get; set; }
 }

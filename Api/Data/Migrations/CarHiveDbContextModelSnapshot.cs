@@ -2313,6 +2313,11 @@ namespace Api.Data.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("views");
 
+                    b.Property<string>("Vin")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("vin");
+
                     b.Property<int?>("WheelSize")
                         .HasColumnType("integer")
                         .HasColumnName("wheel_size");
@@ -2330,6 +2335,9 @@ namespace Api.Data.Migrations
                     b.HasIndex("ProductionYear");
 
                     b.HasIndex("PublisherId");
+
+                    b.HasIndex("Vin")
+                        .IsUnique();
 
                     b.HasIndex("CityName", "CountryCode");
 
@@ -2364,6 +2372,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 20000,
+                            Vin = "1FTFW1ET2EKE48860",
                             WheelSize = 18
                         },
                         new
@@ -2392,6 +2401,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 0,
+                            Vin = "WA1LAAF73FD016439",
                             WheelSize = 20
                         },
                         new
@@ -2420,6 +2430,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 160,
+                            Vin = "2FMDK4KC0EBE12345",
                             WheelSize = 17
                         },
                         new
@@ -2448,6 +2459,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.ContinuouslyVariable,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 0,
+                            Vin = "JTDKARFP7J3087654",
                             WheelSize = 16
                         },
                         new
@@ -2477,6 +2489,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 0,
+                            Vin = "5NPE24AF8FH123456",
                             WheelSize = 22
                         },
                         new
@@ -2506,6 +2519,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 6, 15, 15, 53, 58, 594, DateTimeKind.Unspecified),
                             Views = 0,
+                            Vin = "3VW217AU6EM123456",
                             WheelSize = 22
                         },
                         new
@@ -2534,6 +2548,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 300,
+                            Vin = "1FADP3F20FL123456",
                             WheelSize = 17
                         },
                         new
@@ -2562,6 +2577,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 8, 2, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 150,
+                            Vin = "1C4RJFBG1FC123456",
                             WheelSize = 19
                         },
                         new
@@ -2590,6 +2606,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 400,
+                            Vin = "WBA3B9C52DF123456",
                             WheelSize = 18
                         },
                         new
@@ -2618,6 +2635,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 8, 2, 11, 30, 0, 0, DateTimeKind.Unspecified),
                             Views = 250,
+                            Vin = "1G1ZC5ST2FF123456",
                             WheelSize = 19
                         },
                         new
@@ -2646,6 +2664,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 350,
+                            Vin = "3GNCJPSB2JL123456",
                             WheelSize = 18
                         },
                         new
@@ -2674,6 +2693,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 8, 2, 12, 30, 0, 0, DateTimeKind.Unspecified),
                             Views = 200,
+                            Vin = "1C4RJFAG1KC123456",
                             WheelSize = 17
                         },
                         new
@@ -2702,6 +2722,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 180,
+                            Vin = "WAU2GBF57LN123456",
                             WheelSize = 17
                         },
                         new
@@ -2730,6 +2751,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             Views = 300,
+                            Vin = "1G1BC5SM4KZ123456",
                             WheelSize = 18
                         },
                         new
@@ -2758,6 +2780,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Manual,
                             UpdatedAt = new DateTime(2024, 8, 2, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 250,
+                            Vin = "2T2BZMCA7JC123456",
                             WheelSize = 17
                         },
                         new
@@ -2786,6 +2809,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 14, 30, 0, 0, DateTimeKind.Unspecified),
                             Views = 350,
+                            Vin = "5J8TC2H36JL123456",
                             WheelSize = 19
                         },
                         new
@@ -2814,6 +2838,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 15, 0, 0, 0, DateTimeKind.Unspecified),
                             Views = 400,
+                            Vin = "2FMPK4J91LBB12345",
                             WheelSize = 18
                         },
                         new
@@ -2842,6 +2867,7 @@ namespace Api.Data.Migrations
                             Transmission = CarTransmission.Automatic,
                             UpdatedAt = new DateTime(2024, 8, 2, 15, 30, 0, 0, DateTimeKind.Unspecified),
                             Views = 280,
+                            Vin = "JTDKBRFU4J3001234",
                             WheelSize = 18
                         });
                 });
@@ -9334,7 +9360,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$xCXYHhy9kgN.xKOIRaRDYOskOj43IsALnP.GdI5OHlLeoIjvh7.z.",
+                            Password = "$2a$13$rCxv5yonMoxqk5SUOCeX6enuyAdZgN3eQK498YsRRaMWBpH9zBQIq",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9345,7 +9371,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$yW93QwRdSoN65mcFFwe77eVjcbXmYvHAabIVdBtfod.Njx.uj8leC",
+                            Password = "$2a$13$XmP/KWN9hx7Z1r4caYCl9eykHZoKgg4PS3d/cqeZuteMhU8TYMLGq",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9356,7 +9382,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$O8FK1zZY32UvnAWJGQUBfueCoAJaCBK5ZO8bhCHfLsVfK1s6BxZWC",
+                            Password = "$2a$13$62CzEZM51Abf5EFMuNx5yuniTEnc7SgepuK1r/umk/9vKoa.RJRZK",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),

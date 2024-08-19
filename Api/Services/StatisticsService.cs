@@ -1,7 +1,6 @@
 using Api.Dtos.Response;
 using Api.Models;
 using Api.Queries;
-using Api.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Api.Services;

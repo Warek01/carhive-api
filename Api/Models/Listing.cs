@@ -3,14 +3,20 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Api.Data;
 using Api.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api.Models;
 
 [Table("listings")]
+[Index(nameof(Vin), IsUnique = true)]
 public class Listing {
   [Key]
   [Column("id")]
   public Guid Id { get; set; }
+  
+  [Column("vin")]
+  [Length(17, 17)]
+  public string Vin { get; set; } = null!;
 
   [StringLength(255)]
   [Column("brand_name")]

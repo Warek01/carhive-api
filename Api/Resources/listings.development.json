@@ -1,6 +1,7 @@
 [
   {
     "id": "68f9e03a-30c3-47a7-a2b8-0a7f6a6c0ca1",
+    "vin": "1FTFW1ET2EKE48860",
     "brandName": "Audi",
     "modelName": "A4",
     "price": 35000.00,
@@ -33,6 +34,7 @@
   },
   {
     "id": "dcfe205e-0e10-4a0f-a6b6-4e0ac50e1d9f",
+    "vin": "WA1LAAF73FD016439",
     "brandName": "BMW",
     "modelName": "X5",
     "price": 55000.00,
@@ -63,6 +65,7 @@
   },
   {
     "id": "7f42a1ed-bb14-4e10-9b2c-3b4f80d63f2b",
+    "vin": "2FMDK4KC0EBE12345",
     "brandName": "Mercedes-Benz",
     "modelName": "C63 AMG",
     "price": 40000.00,
@@ -95,6 +98,7 @@
   },
   {
     "id": "f3e6e478-3a21-4b05-9926-6fe29f4a58c0",
+    "vin": "JTDKARFP7J3087654",
     "brandName": "Toyota",
     "modelName": "Camry",
     "price": 30000.00,
@@ -125,6 +129,7 @@
   },
   {
     "id": "b78f7f22-07af-4dee-8c96-ed34d7b9bb95",
+    "vin": "5NPE24AF8FH123456",
     "brandName": "Ford",
     "modelName": "F150",
     "price": 45000.00,
@@ -158,6 +163,7 @@
   },
   {
     "id": "b78f7f22-07ae-4dee-8c96-ed34d7b9bb95",
+    "vin": "3VW217AU6EM123456",
     "brandName": "Skoda",
     "modelName": "Fabia",
     "price": 90000.00,
@@ -191,6 +197,7 @@
   },
   {
     "id": "8a7b1c5f-6b52-42d9-9c89-3489b87e25f0",
+    "vin": "1FADP3F20FL123456",
     "brandName": "Skoda",
     "modelName": "Octavia",
     "price": 28000.00,
@@ -223,6 +230,7 @@
   },
   {
     "id": "e0a3b5c7-65b4-420f-9b5d-21c6c456d0f1",
+    "vin": "1C4RJFBG1FC123456",
     "brandName": "Skoda",
     "modelName": "Kodiaq",
     "price": 45000.00,
@@ -255,6 +263,7 @@
   },
   {
     "id": "b60a4b8e-3f0b-490d-9b84-767d8f5eb0f3",
+    "vin": "WBA3B9C52DF123456",
     "brandName": "Skoda",
     "modelName": "Superb",
     "price": 32000.00,
@@ -287,6 +296,7 @@
   },
   {
     "id": "c36d4f9a-3e5b-48a7-9b0f-8f0a7c5e5d2b",
+    "vin": "1G1ZC5ST2FF123456",
     "brandName": "Skoda",
     "modelName": "Karoq",
     "price": 35000.00,
@@ -319,6 +329,7 @@
   },
   {
     "id": "a1b2c3d4-5e6f-7a8b-9c0d-ef1a2b3c4d5e",
+    "vin": "3GNCJPSB2JL123456",
     "brandName": "Honda",
     "modelName": "CR-V",
     "price": 32000.00,
@@ -351,6 +362,7 @@
   },
   {
     "id": "c8b3deae-9ab3-4e52-830a-34266afa39af",
+    "vin": "1C4RJFAG1KC123456",
     "brandName": "Volkswagen",
     "modelName": "Golf",
     "price": 27000.00,
@@ -383,6 +395,7 @@
   },
   {
     "id": "3b8519ee-2286-4512-8ff3-87bc1db7d385",
+    "vin": "WAU2GBF57LN123456",
     "brandName": "Nissan",
     "modelName": "Altima",
     "price": 29000.00,
@@ -415,6 +428,7 @@
   },
   {
     "id": "b5d49d6e-4a6b-4c56-bb2d-d7e3b0f547b4",
+    "vin": "1G1BC5SM4KZ123456",
     "brandName": "Hyundai",
     "modelName": "Tucson",
     "price": 34000.00,
@@ -447,6 +461,7 @@
   },
   {
     "id": "a4d7e4f5-9b3e-4a99-8b6c-5d6e7f8a9b0c",
+    "vin": "2T2BZMCA7JC123456",
     "brandName": "Chevrolet",
     "modelName": "Malibu",
     "price": 28000.00,
@@ -479,6 +494,7 @@
   },
   {
     "id": "b8a9d0f3-2b5e-4c1a-80a7-9b3d6c8e0a1b",
+    "vin": "5J8TC2H36JL123456",
     "brandName": "Kia",
     "modelName": "Sportage",
     "price": 32000.00,
@@ -511,6 +527,7 @@
   },
   {
     "id": "c2e1d3f4-5a6b-4c7d-b8a9-0d1e2f3a4b5c",
+    "vin": "2FMPK4J91LBB12345",
     "brandName": "Mazda",
     "modelName": "CX-5",
     "price": 33000.00,
@@ -543,6 +560,7 @@
   },
   {
     "id": "d3e4f5b6-7a8b-4c9d-8e1f-0a2b3c4d5e6f",
+    "vin": "JTDKBRFU4J3001234",
     "brandName": "Subaru",
     "modelName": "Outback",
     "price": 34000.00,

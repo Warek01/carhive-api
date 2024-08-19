@@ -39,6 +39,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private class JsonResourceListing : JsonResource {
     public string Id { get; set; } = null!;
+    public string Vin { get; set; } = null!;
     public string BrandName { get; set; } = null!;
     public string ModelName { get; set; } = null!;
     public string City { get; set; } = null!;
@@ -180,6 +181,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
     var listings = resourceListings.Select(
       l => new Listing {
         Id = new Guid(l.Id),
+        Vin = l.Vin,
         CreatedAt = l.CreatedAt,
         UpdatedAt = l.UpdatedAt,
         DeletedAt = l.DeletedAt,

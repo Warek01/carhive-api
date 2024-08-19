@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Api.Queries;
 
 public class BrandQuery {
-  [Length(2, 2)]
+  [RegularExpression("^[a-zA-Z]{2}$")]
   public string? CountryCode { get; set; }
   
   [StringLength(255)]
