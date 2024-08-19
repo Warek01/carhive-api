@@ -10,7 +10,7 @@ public class ListingDto {
   }
   
   public Guid Id { get; set; }
-  public string Vin { get; set; } = null!;
+  public string? Vin { get; set; }
   public string BrandName { get; set; } = null!;
   public string ModelName { get; set; } = null!;
   public DateTime UpdatedAt { get; set; }

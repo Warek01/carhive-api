@@ -39,7 +39,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private class JsonResourceListing : JsonResource {
     public string Id { get; set; } = null!;
-    public string Vin { get; set; } = null!;
+    public string? Vin { get; set; }
     public string BrandName { get; set; } = null!;
     public string ModelName { get; set; } = null!;
     public string City { get; set; } = null!;

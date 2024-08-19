@@ -7,7 +7,7 @@ namespace Api.Dtos.Request;
 public class CreateListingDto {
   [DefaultValue("1HGCM82633A123456")]
   [RegularExpression("^[A-HJ-NPR-Z0-9]{17}$")]
-  public string Vin { get; set; } = null!;
+  public string? Vin { get; set; }
   
   [DefaultValue("Toyota")]
   public string BrandName { get; set; } = null!;

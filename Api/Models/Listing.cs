@@ -16,7 +16,7 @@ public class Listing {
   
   [Column("vin")]
   [Length(17, 17)]
-  public string Vin { get; set; } = null!;
+  public string? Vin { get; set; }
 
   [StringLength(255)]
   [Column("brand_name")]

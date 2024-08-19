@@ -2314,7 +2314,6 @@ namespace Api.Data.Migrations
                         .HasColumnName("views");
 
                     b.Property<string>("Vin")
-                        .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("vin");
 
@@ -9360,7 +9359,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("e00e715a-fe5e-4814-b595-6cc3cd316fca"),
                             CreatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
-                            Password = "$2a$13$rCxv5yonMoxqk5SUOCeX6enuyAdZgN3eQK498YsRRaMWBpH9zBQIq",
+                            Password = "$2a$13$2BGMvYThg.SD6ET2mnjPn.e.PUdsSBc7uU0oq9ajPZtTCA6QVU2Uq",
                             PhoneNumber = "+37378000111",
                             Roles = new List<UserRole> { UserRole.SuperAdmin },
                             UpdatedAt = new DateTime(2024, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9371,7 +9370,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("7e4d9d9b-97d8-4e5c-ad49-abe09837c70c"),
                             CreatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alex@gmail.com",
-                            Password = "$2a$13$XmP/KWN9hx7Z1r4caYCl9eykHZoKgg4PS3d/cqeZuteMhU8TYMLGq",
+                            Password = "$2a$13$RmTKU4zZaAKgLnl4e5dNk.yRLilkYZGncIEF.QKoqnbgivazodUu6",
                             PhoneNumber = "+37378222111",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -9382,7 +9381,7 @@ namespace Api.Data.Migrations
                             Id = new Guid("29aa0b25-d42a-4877-8b4c-3c359e5bee77"),
                             CreatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "user@gmail.com",
-                            Password = "$2a$13$62CzEZM51Abf5EFMuNx5yuniTEnc7SgepuK1r/umk/9vKoa.RJRZK",
+                            Password = "$2a$13$hzSDuTCNLMCeniUVzlrTCepNx95Rx3dqWPm9jrCEI4JNsWAo5qoou",
                             PhoneNumber = "+37378222444",
                             Roles = new List<UserRole> { UserRole.User },
                             UpdatedAt = new DateTime(2024, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
