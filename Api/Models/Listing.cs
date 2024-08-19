@@ -13,7 +13,7 @@ public class Listing {
   [Key]
   [Column("id")]
   public Guid Id { get; set; }
-  
+
   [Column("vin")]
   [Length(17, 17)]
   public string? Vin { get; set; }
@@ -98,10 +98,10 @@ public class Listing {
 
   [Column("views")]
   public int Views { get; set; } = 0;
-  
+
   [Column("drivetrain")]
   public CarDrivetrain? Drivetrain { get; set; }
-  
+
   [Column("transmission")]
   public CarTransmission? Transmission { get; set; }
 

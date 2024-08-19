@@ -50,7 +50,7 @@ public class UserController(
 
     return new PaginatedResultDto<UserAdminDto> {
       Items = users,
-      TotalItems = count
+      TotalItems = count,
     };
   }
 
@@ -66,7 +66,7 @@ public class UserController(
   [Authorize(Roles = AuthRoles.Admin)]
   [Route("{userId:Guid}")]
   public async Task<ActionResult> UpdateUser(Guid userId, [FromBody] UpdateUserDto updateDto) {
-    var user = await userService.FindUser(userId);
+    User? user = await userService.FindUser(userId);
 
     if (user == null) {
       return NotFound();
@@ -87,15 +87,15 @@ public class UserController(
     await userService.CreateUser(createDto);
     return Created();
   }
-  
-  
+
+
   [HttpPost]
   [Route("Clear-Favorites")]
   [Authorize(Roles = AuthRoles.User)]
   public async Task<ActionResult> ClearFavorites() {
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    User user = (await userService.FindUser(userId, includeFavorites: true))!;
-    
+    User user = (await userService.FindUser(userId, true))!;
+
     return await userService.ClearFavorites(user);
   }
 }

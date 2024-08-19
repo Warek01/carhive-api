@@ -8,7 +8,7 @@ public class ListingDto {
     public string Username { get; set; } = null!;
     public Uri? Picture { get; set; }
   }
-  
+
   public Guid Id { get; set; }
   public string? Vin { get; set; }
   public string BrandName { get; set; } = null!;

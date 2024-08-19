@@ -51,19 +51,19 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
     modelBuilder.Entity<Comment>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);
-    
+
     modelBuilder.Entity<Comment>()
       .Property(e => e.CreatedAt)
       .HasDefaultValueSql(CurrentTimestampSql);
-    
+
     modelBuilder.Entity<Like>()
       .Property(e => e.LikedAt)
       .HasDefaultValueSql(CurrentTimestampSql);
-    
+
     modelBuilder.Entity<Report>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);
-    
+
     modelBuilder.Entity<Report>()
       .Property(e => e.CreatedAt)
       .HasDefaultValueSql(CurrentTimestampSql);
@@ -71,11 +71,11 @@ public class CarHiveDbContext(DbContextOptions<CarHiveDbContext> options, IWebHo
     modelBuilder.Entity<ListingActivity>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);
-    
+
     modelBuilder.Entity<ListingActivity>()
       .Property(e => e.Timestamp)
       .HasDefaultValueSql(CurrentTimestampSql);
-    
+
     modelBuilder.Entity<Listing>()
       .Property(e => e.Id)
       .HasDefaultValueSql(UuidGenSql);

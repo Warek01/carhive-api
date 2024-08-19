@@ -6,19 +6,17 @@ namespace Api.Services;
 
 public class ImageService(StaticFileService staticFileService) {
   public const string DefaultImageExtension = "webp";
-  
+
   public async Task CreateImage(IFormFile file, PathString path) {
     await using Stream stream = file.OpenReadStream();
     using Image image = await Image.LoadAsync(stream);
 
-    image.Mutate(ctx => {
-      ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height));
-    });
-    
+    image.Mutate(ctx => { ctx.Crop(Math.Min(1920, image.Width), Math.Min(1080, image.Height)); });
+
     var encoder = new WebpEncoder {
       Quality = 80,
       Method = WebpEncodingMethod.Level4,
-      FileFormat = WebpFileFormatType.Lossy
+      FileFormat = WebpFileFormatType.Lossy,
     };
 
     await image.SaveAsWebpAsync(

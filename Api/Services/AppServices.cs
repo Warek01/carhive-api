@@ -23,11 +23,11 @@ public static class AppServices {
   ];
 
   public static void Register(WebApplicationBuilder builder) {
-    foreach (var serviceType in ScopedServices) {
+    foreach (Type? serviceType in ScopedServices) {
       builder.Services.AddScoped(serviceType);
     }
 
-    foreach (var serviceType in SingletonServices) {
+    foreach (Type? serviceType in SingletonServices) {
       builder.Services.AddSingleton(serviceType);
     }
   }

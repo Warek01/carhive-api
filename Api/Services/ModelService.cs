@@ -28,7 +28,7 @@ public class ModelService(CarHiveDbContext dbContext) {
 
     var model = new Model {
       Name = dto.Name,
-      Brand = brand
+      Brand = brand,
     };
 
     await dbContext.AddAsync(model);

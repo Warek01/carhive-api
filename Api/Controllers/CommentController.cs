@@ -37,7 +37,7 @@ public class CommentController(CommentService commentService) : Controller {
     if (comment == null) {
       return NotFound();
     }
-    
+
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
 
     if (comment.UserId != userId) {

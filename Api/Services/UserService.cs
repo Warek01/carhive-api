@@ -20,7 +20,7 @@ public class UserService(
   }
 
   public async Task<User?> DeleteUser(Guid userId) {
-    var user = await dbContext.Users.FindAsync(userId);
+    User? user = await dbContext.Users.FindAsync(userId);
 
     if (user == null)
       return null;
@@ -64,14 +64,14 @@ public class UserService(
   }
 
   public async Task<User> RegisterUser(RegisterDto registerDto) {
-    User user = mapper.Map<User>(registerDto);
+    var user = mapper.Map<User>(registerDto);
 
     user.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(
       user.Password,
       int.Parse(config["BCrypt:HashRounds"]!)
     );
 
-    user.Roles = [UserRole.User];
+    user.Roles = [UserRole.User,];
 
     await dbContext.Users.AddAsync(user);
     await dbContext.SaveChangesAsync();
@@ -86,7 +86,7 @@ public class UserService(
       FirstName = payload.GivenName,
       LastName = payload.FamilyName,
       Picture = new Uri(payload.Picture),
-      Roles = [UserRole.User]
+      Roles = [UserRole.User,],
     };
 
     await dbContext.Users.AddAsync(user);
@@ -96,7 +96,7 @@ public class UserService(
 
   // To be called by admin when creating users in dashboard
   public async Task CreateUser(CreateUserDto createDto) {
-    User user = mapper.Map<User>(createDto);
+    var user = mapper.Map<User>(createDto);
 
     await dbContext.AddAsync(user);
     await dbContext.SaveChangesAsync();

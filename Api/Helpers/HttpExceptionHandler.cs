@@ -19,22 +19,22 @@ public class HttpExceptionHandler(ILogger<HttpExceptionHandler> logger) : IExcep
       httpException.Message);
 
     ProblemDetails problemDetails = httpException switch {
-      BadRequestException => new() {
+      BadRequestException => new ProblemDetails {
         Status = StatusCodes.Status400BadRequest,
         Title = "Bad Request",
-        Detail = httpException.Message
+        Detail = httpException.Message,
       },
-      NotFoundException => new() {
+      NotFoundException => new ProblemDetails {
         Status = StatusCodes.Status404NotFound,
         Title = "Not Found",
-        Detail = httpException.Message
+        Detail = httpException.Message,
       },
-      UnauthorizedException => new() {
+      UnauthorizedException => new ProblemDetails {
         Status = StatusCodes.Status401Unauthorized,
         Title = "Unauthorized",
-        Detail = httpException.Message
+        Detail = httpException.Message,
       },
-      _ => throw new ArgumentOutOfRangeException()
+      _ => throw new ArgumentOutOfRangeException(),
     };
 
     httpContext.Response.StatusCode = problemDetails.Status!.Value;

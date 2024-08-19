@@ -37,7 +37,7 @@ public partial class AuthController(
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
-      RefreshToken = refreshToken
+      RefreshToken = refreshToken,
     };
 
     authService.CacheRefreshToken(user.Id, refreshToken);
@@ -48,7 +48,7 @@ public partial class AuthController(
   [HttpPost("Google-Login")]
   public async Task<ActionResult<JwtResponseDto>> GoogleLogin([FromBody] OauthLoginDto oauthLoginDto) {
     try {
-      var payload = await ValidateGoogleToken(oauthLoginDto.Token);
+      GoogleJsonWebSignature.Payload? payload = await ValidateGoogleToken(oauthLoginDto.Token);
       string username = NameToUsername(payload.Name);
       User? user = await userService.FindUserByUsername(username);
 
@@ -60,7 +60,7 @@ public partial class AuthController(
       string refreshToken = authService.GenerateRefreshToken();
       var response = new JwtResponseDto {
         Token = token,
-        RefreshToken = refreshToken
+        RefreshToken = refreshToken,
       };
 
       authService.CacheRefreshToken(user.Id, refreshToken);
@@ -85,7 +85,7 @@ public partial class AuthController(
     string refreshToken = authService.GenerateRefreshToken();
     var response = new JwtResponseDto {
       Token = token,
-      RefreshToken = refreshToken
+      RefreshToken = refreshToken,
     };
 
     authService.CacheRefreshToken(newUser.Id, refreshToken);
@@ -96,7 +96,7 @@ public partial class AuthController(
   [HttpPost("Google-Register")]
   public async Task<ActionResult<JwtResponseDto>> GoogleRegister([FromBody] OauthRegisterDto oauthRegisterDto) {
     try {
-      var payload = await ValidateGoogleToken(oauthRegisterDto.Token);
+      GoogleJsonWebSignature.Payload? payload = await ValidateGoogleToken(oauthRegisterDto.Token);
       string username = NameToUsername(payload.Name);
       User? user = await userService.FindUserByUsername(username);
 
@@ -109,7 +109,7 @@ public partial class AuthController(
       string refreshToken = authService.GenerateRefreshToken();
       var response = new JwtResponseDto {
         Token = token,
-        RefreshToken = refreshToken
+        RefreshToken = refreshToken,
       };
 
       authService.CacheRefreshToken(newUser.Id, refreshToken);
@@ -147,13 +147,13 @@ public partial class AuthController(
 
     return new JwtResponseDto {
       Token = newAccessToken,
-      RefreshToken = responseDto.RefreshToken
+      RefreshToken = responseDto.RefreshToken,
     };
   }
 
   private Task<GoogleJsonWebSignature.Payload> ValidateGoogleToken(string token) {
     var settings = new GoogleJsonWebSignature.ValidationSettings {
-      Audience = [config["Oauth:Google:ClientId"]],
+      Audience = [config["Oauth:Google:ClientId"],],
     };
     return GoogleJsonWebSignature.ValidateAsync(token, settings);
   }

@@ -16,7 +16,7 @@ public class ReportController(ReportService reportService) : Controller {
   [HttpPost]
   public async Task<ActionResult> GenerateReport(CreateReportDto dto) {
     Guid userId = Guid.Parse(User.FindFirst(JwtRegisteredClaimNames.Sub)!.Value);
-    
+
     return await reportService.CreateReport(dto, userId);
   }
 }

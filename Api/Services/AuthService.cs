@@ -20,8 +20,8 @@ public class AuthService(
 ) {
   public readonly TokenValidationParameters TokenValidationParameters = CreateTokenValidationParameters(jwtConfig);
 
-  public static TokenValidationParameters CreateTokenValidationParameters(JwtConfig jwtConfig) =>
-    new TokenValidationParameters {
+  public static TokenValidationParameters CreateTokenValidationParameters(JwtConfig jwtConfig) {
+    return new TokenValidationParameters() {
       NameClaimType = JwtRegisteredClaimNames.Sub,
       RoleClaimType = "role",
       ValidIssuer = jwtConfig.Issuer,
@@ -36,8 +36,9 @@ public class AuthService(
       RequireExpirationTime = true,
       RequireSignedTokens = true,
       LogValidationExceptions = true,
-      LogTokenId = true
+      LogTokenId = true,
     };
+  }
 
   public bool ValidatePassword(User user, string password) {
     return BCrypt.Net.BCrypt.EnhancedVerify(password, user.Password);
@@ -45,7 +46,7 @@ public class AuthService(
 
   public ClaimsPrincipal? ValidateToken(string token) {
     var tokenHandler = new JwtSecurityTokenHandler();
-    var parameters = TokenValidationParameters;
+    TokenValidationParameters? parameters = TokenValidationParameters;
     parameters.ValidateLifetime = false;
 
     try {
@@ -65,17 +66,17 @@ public class AuthService(
   }
 
   public string GenerateAccessToken(User user) {
-    var issuer = jwtConfig.Issuer;
-    var audience = jwtConfig.Audience;
+    string? issuer = jwtConfig.Issuer;
+    string? audience = jwtConfig.Audience;
     var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtConfig.Key));
-    var tokenTtl = jwtConfig.Ttl;
+    int tokenTtl = jwtConfig.Ttl;
     var identity = new ClaimsIdentity([
       new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
       new Claim(
         ClaimTypes.Role,
         JsonSerializer.Serialize(user.Roles.Select(r => r.ToString())),
         JsonClaimValueTypes.JsonArray
-      )
+      ),
     ]);
 
     var tokenDescriptor = new SecurityTokenDescriptor {
@@ -83,10 +84,10 @@ public class AuthService(
       Expires = DateTime.UtcNow.AddMinutes(tokenTtl),
       Issuer = issuer,
       Audience = audience,
-      SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature)
+      SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature),
     };
     var tokenHandler = new JwtSecurityTokenHandler();
-    var token = tokenHandler.CreateToken(tokenDescriptor);
+    SecurityToken? token = tokenHandler.CreateToken(tokenDescriptor);
     return tokenHandler.WriteToken(token);
   }
 
@@ -101,7 +102,7 @@ public class AuthService(
   }
 
   public void CacheRefreshToken(Guid userId, string refreshToken) {
-    var refreshTtl = jwtConfig.RefreshTtl;
+    int refreshTtl = jwtConfig.RefreshTtl;
 
     cache.Db.StringSetAsync(
       $"{CacheService.Keys.RefreshTokens}:{userId.ToString()}",

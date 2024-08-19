@@ -12,7 +12,7 @@ public class StaticFileService {
 
   public StaticFileService(IHostEnvironment hostEnvironment) {
     RootPath = hostEnvironment.ContentRootPath;
-    
+
     if (!Directory.Exists(RootPath)) {
       Directory.CreateDirectory(RootPath);
     }

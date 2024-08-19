@@ -85,18 +85,18 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
   };
 
   public void Initialize() {
-    List<Action<ModelBuilder>> populateFunctions = [PopulateCountries, PopulateBrands, PopulateModels];
-    List<Action<ModelBuilder>> devPopulateFunctions = [PopulateUsers, PopulateListings, PopulateListingUserFavorites];
+    List<Action<ModelBuilder>> populateFunctions = [PopulateCountries, PopulateBrands, PopulateModels,];
+    List<Action<ModelBuilder>> devPopulateFunctions = [PopulateUsers, PopulateListings, PopulateListingUserFavorites,];
     List<Action<ModelBuilder>> all = env.IsDevelopment()
       ? populateFunctions.Concat(devPopulateFunctions).ToList()
       : populateFunctions;
 
-    foreach (var fn in all) {
+    foreach (Action<ModelBuilder>? fn in all) {
       fn(modelBuilder);
     }
 
     modelBuilder.Entity<City>()
-      .HasData(new City { Name = "Chisinau", CountryCode = "MD" });
+      .HasData(new City { Name = "Chisinau", CountryCode = "MD", });
   }
 
   private static List<T> ReadArrayResourceFile<T>(string fileName) where T : JsonResource {
@@ -119,7 +119,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private static void PopulateUsers(ModelBuilder modelBuilder) {
     List<JsonResourceUser> resourceUsers = ReadArrayResourceFile<JsonResourceUser>("users.development");
-    var users = resourceUsers.Select(
+    IEnumerable<User>? users = resourceUsers.Select(
       u => new User {
         Id = new Guid(u.Id),
         CreatedAt = u.CreatedAt,
@@ -129,7 +129,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         Username = u.Username,
         Email = u.Email,
         Password = EnhancedHashPassword(u.Password, 13),
-        Roles = u.Roles.Select(r => Enum.Parse<UserRole>(r, ignoreCase: true)).ToList(),
+        Roles = u.Roles.Select(r => Enum.Parse<UserRole>(r, true)).ToList(),
       }
     );
 
@@ -139,7 +139,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private static void PopulateCountries(ModelBuilder modelBuilder) {
     List<JsonResourceCountry> resourceCountries = ReadArrayResourceFile<JsonResourceCountry>("countries");
-    var countries = resourceCountries.Select(
+    IEnumerable<Country>? countries = resourceCountries.Select(
       c => new Country {
         Code = c.Code,
         Name = c.Name,
@@ -152,7 +152,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private static void PopulateBrands(ModelBuilder modelBuilder) {
     List<JsonResourceBrand> resourceCountries = ReadArrayResourceFile<JsonResourceBrand>("brands");
-    var brands = resourceCountries.Select(
+    IEnumerable<Brand>? brands = resourceCountries.Select(
       c => new Brand {
         CountryCode = c.CountryCode,
         Name = c.Name,
@@ -165,7 +165,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private static void PopulateModels(ModelBuilder modelBuilder) {
     List<JsonResourceModel> resourceModels = ReadArrayResourceFile<JsonResourceModel>("models");
-    var models = resourceModels.Select(
+    IEnumerable<Model>? models = resourceModels.Select(
       m => new Model {
         Name = m.Name,
         BrandName = m.BrandName,
@@ -178,7 +178,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
 
   private static void PopulateListings(ModelBuilder modelBuilder) {
     List<JsonResourceListing> resourceListings = ReadArrayResourceFile<JsonResourceListing>("listings.development");
-    var listings = resourceListings.Select(
+    IEnumerable<Listing>? listings = resourceListings.Select(
       l => new Listing {
         Id = new Guid(l.Id),
         Vin = l.Vin,
@@ -191,10 +191,10 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         WheelSize = l.WheelSize,
         Mileage = l.Mileage,
         Price = l.Price,
-        Color = l.Color != null ? Enum.Parse<CarColor>(l.Color, ignoreCase: true) : null,
-        BodyStyle = l.BodyStyle != null ? Enum.Parse<CarBodyStyle>(l.BodyStyle, ignoreCase: true) : null,
+        Color = l.Color != null ? Enum.Parse<CarColor>(l.Color, true) : null,
+        BodyStyle = l.BodyStyle != null ? Enum.Parse<CarBodyStyle>(l.BodyStyle, true) : null,
         CountryCode = l.CountryCode,
-        FuelType = l.FuelType != null ? Enum.Parse<CarFuelType>(l.FuelType, ignoreCase: true) : null,
+        FuelType = l.FuelType != null ? Enum.Parse<CarFuelType>(l.FuelType, true) : null,
         Horsepower = l.Horsepower,
         SellAddress = l.Address,
         PublisherId = new Guid(l.PublisherId),
@@ -204,12 +204,12 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
         EngineVolume = l.EngineVolume,
         Description = l.Description,
         BlockedAt = l.BlockedAt,
-        Status = Enum.Parse<ListingStatus>(l.Status, ignoreCase: true),
+        Status = Enum.Parse<ListingStatus>(l.Status, true),
         SoldAt = l.SoldAt,
-        CarStatus = l.CarStatus != null ? Enum.Parse<CarStatus>(l.CarStatus, ignoreCase: true) : null,
-        Drivetrain = l.Drivetrain != null ? Enum.Parse<CarDrivetrain>(l.Drivetrain, ignoreCase: true) : null,
+        CarStatus = l.CarStatus != null ? Enum.Parse<CarStatus>(l.CarStatus, true) : null,
+        Drivetrain = l.Drivetrain != null ? Enum.Parse<CarDrivetrain>(l.Drivetrain, true) : null,
         Views = l.Views ?? 0,
-        Transmission = l.Transmission != null ? Enum.Parse<CarTransmission>(l.Transmission, ignoreCase: true) : null,
+        Transmission = l.Transmission != null ? Enum.Parse<CarTransmission>(l.Transmission, true) : null,
       }
     );
 
@@ -220,7 +220,7 @@ public class DbInitializer(ModelBuilder modelBuilder, IWebHostEnvironment env) {
   private static void PopulateListingUserFavorites(ModelBuilder modelBuilder) {
     List<JsonResourceListingUserFavorite> resourceFavorites =
       ReadArrayResourceFile<JsonResourceListingUserFavorite>("listingUserFavorite.development");
-    var favorites = resourceFavorites.Select(
+    IEnumerable<ListingUserFavorite>? favorites = resourceFavorites.Select(
       f => new ListingUserFavorite {
         UserId = new Guid(f.UserId),
         ListingId = new Guid(f.ListingId),

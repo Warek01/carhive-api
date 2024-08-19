@@ -14,7 +14,7 @@ public class CacheService(ConnectionMultiplexer muxer) {
     public const string EntitiesCount = "entities-count";
   }
 
-private static readonly JsonSerializerOptions Options = new() {
+  private static readonly JsonSerializerOptions Options = new() {
     PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     WriteIndented = false,
     AllowTrailingCommas = false,

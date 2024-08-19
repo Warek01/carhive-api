@@ -14,15 +14,15 @@ public class User {
   [StringLength(255)]
   [Column("username")]
   public string Username { get; set; } = null!;
-  
+
   [StringLength(255)]
   [Column("first_name")]
   public string? FirstName { get; set; }
-  
+
   [StringLength(255)]
   [Column("last_name")]
   public string? LastName { get; set; }
-  
+
   [StringLength(255)]
   [Column("picture")]
   public Uri? Picture { get; set; }
@@ -30,7 +30,7 @@ public class User {
   [StringLength(255)]
   [Column("password")]
   public string? Password { get; set; }
-  
+
   [Column("provider")]
   public OauthIdentityProvider? Provider { get; set; }
 
@@ -39,7 +39,7 @@ public class User {
   public string Email { get; set; } = null!;
 
   [Column("roles")]
-  public List<UserRole> Roles { get; set; } = [UserRole.User];
+  public List<UserRole> Roles { get; set; } = [UserRole.User,];
 
   public List<Listing> Listings { get; set; } = [];
 
@@ -61,10 +61,10 @@ public class User {
 
   [InverseProperty(nameof(Report.User))]
   public List<Report> Reports { get; set; } = [];
-  
+
   [InverseProperty(nameof(Comment.User))]
   public List<Comment> Comments { get; set; } = [];
-  
+
   [InverseProperty(nameof(Like.User))]
   public List<Like> Likes { get; set; } = [];
 }

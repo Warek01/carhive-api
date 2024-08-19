@@ -7,7 +7,7 @@ public class ListingMappingService(
   IConfiguration configuration
 ) {
   public ListingDto ListingToDto(Listing listing) {
-    var l = listing;
+    Listing? l = listing;
 
     var dto = new ListingDto {
       Id = l.Id,
@@ -49,7 +49,7 @@ public class ListingMappingService(
     dto.Publisher = new ListingDto.PublisherDto {
       Id = l.PublisherId,
       Username = l.Publisher.Username,
-      Picture = l.Publisher.Picture
+      Picture = l.Publisher.Picture,
     };
 
     return dto;

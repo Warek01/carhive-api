@@ -8,27 +8,27 @@ public class CreateListingDto {
   [DefaultValue("1HGCM82633A123456")]
   [RegularExpression("^[A-HJ-NPR-Z0-9]{17}$")]
   public string? Vin { get; set; }
-  
+
   [DefaultValue("Toyota")]
   public string BrandName { get; set; } = null!;
 
   [DefaultValue("Camry")]
   public string ModelName { get; set; } = null!;
-  
+
   [StringLength(255)]
   [DefaultValue("Belin")]
   public string CityName { get; set; } = null!;
-  
+
   public List<IFormFile> Images { get; set; } = [];
 
   [Length(2, 2)]
   [DefaultValue("DE")]
   [RegularExpression("^[a-zA-Z]{2}$")]
   public string CountryCode { get; set; } = null!;
-  
+
   [DefaultValue(CarDrivetrain.RearWheelDrive)]
   public CarDrivetrain? Drivetrain { get; set; }
-  
+
   [DefaultValue(CarTransmission.Automatic)]
   public CarTransmission? Transmission { get; set; }
 
@@ -38,18 +38,18 @@ public class CreateListingDto {
 
   [DefaultValue(CarBodyStyle.Sedan)]
   public CarBodyStyle? BodyStyle { get; set; }
-  
+
   [DefaultValue(220)]
   [Range(0, int.MaxValue)]
   public int? Horsepower { get; set; }
 
   [DefaultValue(CarFuelType.Hybrid)]
   public CarFuelType? FuelType { get; set; }
-  
+
   [DefaultValue(3.5)]
   [Range(0, double.MaxValue)]
   public double? EngineVolume { get; set; }
-    
+
   [DefaultValue(CarColor.Black)]
   public CarColor? Color { get; set; }
 
@@ -72,10 +72,10 @@ public class CreateListingDto {
   [StringLength(255)]
   [DefaultValue("789 Oak Rd, Berlin, DE")]
   public string? SellAddress { get; set; }
-  
+
   [DefaultValue(Enums.CarStatus.Used)]
   public CarStatus? CarStatus { get; set; }
-  
+
   [StringLength(5000)]
   [DefaultValue("Random Text")]
   public string? Description { get; set; }

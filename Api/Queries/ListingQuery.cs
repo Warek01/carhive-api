@@ -81,7 +81,6 @@ public class ListingQuery : PaginationQuery {
   public string? CountryCode { get; set; }
 
   [FromQuery(Name = "city")]
-  
   [Length(1, 255)]
   public string? CityName { get; set; }
 }

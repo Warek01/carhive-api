@@ -34,7 +34,7 @@ public class ListingService(
       listings = listings.Where(l => l.PublisherId == query.UserId);
     }
 
-    if (query is { PriceMin: not null, PriceMax: not null } && query.PriceMin > query.PriceMax) {
+    if (query is { PriceMin: not null, PriceMax: not null, } && query.PriceMin > query.PriceMax) {
       throw new BadRequestException("min price cannot be greater then max perice");
     }
 
@@ -46,7 +46,7 @@ public class ListingService(
       listings = listings.Where(l => l.Price <= query.PriceMax);
     }
 
-    if (query is { MileageMin: not null, MileageMax: not null } && query.MileageMin > query.MileageMax) {
+    if (query is { MileageMin: not null, MileageMax: not null, } && query.MileageMin > query.MileageMax) {
       throw new BadRequestException("min mileage cannot be greater then max mileage");
     }
 
@@ -58,7 +58,7 @@ public class ListingService(
       listings = listings.Where(l => l.Mileage <= query.MileageMax);
     }
 
-    if (query is { WheelSizeMin: not null, WheelSizeMax: not null } && query.WheelSizeMin > query.WheelSizeMax) {
+    if (query is { WheelSizeMin: not null, WheelSizeMax: not null, } && query.WheelSizeMin > query.WheelSizeMax) {
       throw new BadRequestException("min wheel size cannot be greater then max wheel size");
     }
 
@@ -70,7 +70,7 @@ public class ListingService(
       listings = listings.Where(l => l.WheelSize <= query.WheelSizeMax);
     }
 
-    if (query is { ClearanceMin: not null, ClearanceMax: not null } && query.ClearanceMin > query.ClearanceMax) {
+    if (query is { ClearanceMin: not null, ClearanceMax: not null, } && query.ClearanceMin > query.ClearanceMax) {
       throw new BadRequestException("min clearance cannot be greater then max clearance");
     }
 
@@ -130,7 +130,7 @@ public class ListingService(
         "priceAsc" => listings.OrderBy(l => l.Price),
         "yearAsc" => listings.OrderBy(l => l.ProductionYear),
         "yearDesc" => listings.OrderByDescending(l => l.ProductionYear),
-        _ => listings.OrderByDescending(l => l.CreatedAt)
+        _ => listings.OrderByDescending(l => l.CreatedAt),
       };
     }
 
@@ -142,11 +142,11 @@ public class ListingService(
       .Skip(query.Page * query.Take)
       .Take(query.Take);
 
-    var listingsList = await listings.ToListAsync();
+    List<Listing>? listingsList = await listings.ToListAsync();
 
     return new PaginatedResultDto<ListingDto> {
       Items = listingMappingService.ListingsToDto(listingsList),
-      TotalItems = totalListings
+      TotalItems = totalListings,
     };
   }
 
@@ -220,13 +220,13 @@ public class ListingService(
   }
 
   public async Task CreateListing(CreateListingDto createDto, Guid publisherId) {
-    var model = await dbContext.Models.FindAsync(createDto.ModelName, createDto.BrandName);
+    Model? model = await dbContext.Models.FindAsync(createDto.ModelName, createDto.BrandName);
     if (model == null) {
       throw new BadRequestException("model not found");
     }
 
-    Listing listing = mapper.Map<Listing>(createDto);
-    var publisher = (await dbContext.Users.FindAsync(publisherId))!;
+    var listing = mapper.Map<Listing>(createDto);
+    User? publisher = (await dbContext.Users.FindAsync(publisherId))!;
     listing.Publisher = publisher;
     listing.PublisherId = publisher.Id;
 

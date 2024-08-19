@@ -72,7 +72,7 @@ public static class Program {
 
     AppServices.Register(_builder);
 
-    var app = _builder.Build();
+    WebApplication app = _builder.Build();
 
     app
       .UseSerilogRequestLogging()
@@ -149,7 +149,7 @@ public static class Program {
       .AddSwaggerGen(options => {
         options.SwaggerDoc("v1", new OpenApiInfo {
           Version = "v1",
-          Title = "CarHive API"
+          Title = "CarHive API",
         });
 
         var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -161,18 +161,18 @@ public static class Program {
           Scheme = "bearer",
           Description = "Specify the authorization token.",
           In = ParameterLocation.Header,
-          Type = SecuritySchemeType.Http
+          Type = SecuritySchemeType.Http,
         };
         options.AddSecurityDefinition("jwt_auth", securityDefinition);
 
         var securityScheme = new OpenApiSecurityScheme {
           Reference = new OpenApiReference {
             Id = "jwt_auth",
-            Type = ReferenceType.SecurityScheme
-          }
+            Type = ReferenceType.SecurityScheme,
+          },
         };
         var securityRequirements = new OpenApiSecurityRequirement {
-          [securityScheme] = []
+          [securityScheme] = [],
         };
         options.AddSecurityRequirement(securityRequirements);
         options.OperationFilter<CustomSwaggerOperationFilter>();
@@ -206,7 +206,7 @@ public static class Program {
 
   private static void SetupCache() {
     ConnectionMultiplexer muxer = ConnectionMultiplexer.Connect(new ConfigurationOptions {
-      EndPoints = { _builder.Configuration.GetConnectionString("Redis")! },
+      EndPoints = { _builder.Configuration.GetConnectionString("Redis")!, },
       Protocol = RedisProtocol.Resp3,
       AbortOnConnectFail = true,
       AllowAdmin = false,

@@ -35,7 +35,7 @@ public class CurrencyService(
   }
 
   public async Task<double?> GetCurrency(string code) {
-    var res = (double?) await cache.Db.HashGetAsync(CacheService.Keys.Currencies, code);
+    var res = (double?)await cache.Db.HashGetAsync(CacheService.Keys.Currencies, code);
 
     if (res != null) {
       return res;
@@ -52,7 +52,7 @@ public class CurrencyService(
         pair.Value,
         flags: CommandFlags.FireAndForget
       );
-      
+
       tasks.Add(task);
     }
 
@@ -60,7 +60,7 @@ public class CurrencyService(
       CacheService.Keys.Currencies,
       currency.Timestamp.Date.AddDays(1) - DateTime.Now
     );
-    
+
     tasks.Add(keyExpireTask);
     batch.Execute();
     await Task.WhenAll(tasks);
@@ -84,7 +84,7 @@ public class CurrencyService(
 
     HttpResponseMessage res = await httpClient.SendAsync(request);
     Stream rawResult = await res.Content.ReadAsStreamAsync();
-    ApiResponse apiResponse = (await JsonSerializer.DeserializeAsync<ApiResponse>(rawResult))!;
+    var apiResponse = (await JsonSerializer.DeserializeAsync<ApiResponse>(rawResult))!;
 
     currency = new Currency {
       Timestamp = DateTime.Now,

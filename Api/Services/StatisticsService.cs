@@ -14,7 +14,7 @@ public class StatisticsService(ListingService listingService) {
       CreatedToday = await listingService
         .GetTotalListings()
         .Where(l => l.CreatedAt.Date == DateTime.Today)
-        .CountAsync()
+        .CountAsync(),
     };
 
     if (!query.IncludeStats) {
@@ -26,7 +26,7 @@ public class StatisticsService(ListingService listingService) {
     int totalDays = DateTime.DaysInMonth(year, month);
     statsDto.CreatedListingsStats = new List<int>();
     statsDto.TotalListingsStats = new List<int>();
-    int total = 0;
+    var total = 0;
 
     List<Listing> listings = await listingService.GetTotalListings()
       .Where(l => l.CreatedAt.Year == year && l.CreatedAt.Month == month)
@@ -36,14 +36,14 @@ public class StatisticsService(ListingService listingService) {
       .GroupBy(l => l.CreatedAt.Day)
       .ToDictionary(g => g.Key, g => g.Count());
 
-    for (int day = 1; day <= totalDays; day++) {
-      int count = dailyCounts.TryGetValue(day, out var dailyCount) ? dailyCount : 0;
+    for (var day = 1; day <= totalDays; day++) {
+      int count = dailyCounts.TryGetValue(day, out int dailyCount) ? dailyCount : 0;
       total += count;
 
       statsDto.CreatedListingsStats.Add(count);
       statsDto.TotalListingsStats.Add(total);
     }
-    
+
     return statsDto;
   }
 }

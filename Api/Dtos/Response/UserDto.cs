@@ -13,12 +13,12 @@ public class UserDto {
   public string Email { get; set; } = null!;
 
   public string? PhoneNumber { get; set; }
-  
+
   public string? Picture { get; set; }
-  
+
   public string? FirstName { get; set; }
-  
+
   public string? LastName { get; set; }
-  
+
   public OauthIdentityProvider? OauthIdentityProvider { get; set; }
 }

@@ -7,7 +7,7 @@ namespace Api.Helpers;
 public class CustomSwaggerOperationFilter : IOperationFilter {
   public void Apply(OpenApiOperation operation, OperationFilterContext context) {
     // get roles at method level first.
-    var roles = context.MethodInfo.GetCustomAttributes(true)
+    string[]? roles = context.MethodInfo.GetCustomAttributes(true)
       .OfType<AuthorizeAttribute>()
       .Select(a => a.Roles)
       .Distinct()
@@ -23,7 +23,7 @@ public class CustomSwaggerOperationFilter : IOperationFilter {
         .ToArray();
     }
 
-    string rolesStr = "None";
+    var rolesStr = "None";
 
     if (roles != null && roles.Length != 0) {
       rolesStr = string.Join(", ", roles);
